@@ -1,0 +1,26 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - ask_movie
+
+responses:
+  utter_greet:
+  - text: "Hi there, I’m Kumo, your personal movie and tv show assistant. What would you like to watch ?"
+
+  utter_goodbye:
+  - text: "I’m happy to help you anytime."
+  
+  utter_get_movie:
+  - text: "Sure, popular new releases are Avatar: The way of the water,  Puss in boots: The Last Wish and Violent Night."
+
+
+forms:
+  movie_genre_form:
+    required_slots:
+      - genre
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

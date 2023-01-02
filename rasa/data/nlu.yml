@@ -1,0 +1,40 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: ask_movie
+  examples: |
+    - I'm bored. I want to watch a movie. Do you have anything to suggest me ?
+    - What movie do you suggest ?
+    - What film shoud I watch ?
+    - Is there a good movie to watch ?
+    - I'd like a good movie for tonight
+    - Can you suggest me a good film to watch ?
