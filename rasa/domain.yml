@@ -1,5 +1,11 @@
 version: "3.1"
 
+slots:
+  top_names:
+    type: text
+    mappings:
+    - type: custom
+
 intents:
   - greet
   - goodbye
@@ -12,14 +18,12 @@ responses:
   utter_goodbye:
   - text: "I’m happy to help you anytime."
   
-  utter_get_movie:
-  - text: "Sure, popular new releases are Avatar: The way of the water,  Puss in boots: The Last Wish and Violent Night."
+  utter_discover_movie:
+  - text: "Sure, popular new releases are: {top_names}"
 
+actions:
+  - action_discover_movie
 
-forms:
-  movie_genre_form:
-    required_slots:
-      - genre
 
 session_config:
   session_expiration_time: 60

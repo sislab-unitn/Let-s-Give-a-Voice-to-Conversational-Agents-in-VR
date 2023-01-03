@@ -6,4 +6,5 @@ stories:
   steps:
   - action: utter_greet
   - intent: ask_movie
-  - action: utter_get_movie
+  - action: action_discover_movie
+  - action: utter_discover_movie
