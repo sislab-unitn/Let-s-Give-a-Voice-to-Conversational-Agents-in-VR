@@ -4,7 +4,49 @@ stories:
 
 - story: movie recommendation
   steps:
+  - intent: greet
   - action: utter_greet
   - intent: ask_movie
+  - action: utter_disambigua_discovery
+  - intent: popular
   - action: action_discover_movie
+  - slot_was_set:
+    - top_names
   - action: utter_discover_movie
+  - action: action_restart
+
+- story: movie recommendation genre implicit
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_movie
+  - action: utter_disambigua_discovery
+  - intent: genre
+  - slot_was_set:
+    - genre
+  - action: action_discover_movie
+  - slot_was_set:
+    - top_names
+  - action: utter_discover_genre_movie
+  - action: action_restart
+
+- story: movie recommendation genre explicit
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_movie
+  - action: utter_disambigua_discovery
+  - intent: genre
+  - slot_was_set:
+    - genre: null
+  - action: utter_intent_specification
+  - action: discovery_form
+  - action: action_discover_movie
+  - slot_was_set:
+    - top_names
+  - action: utter_discover_genre_movie
+  - action: action_restart
+# TODO validation of genre slot
+# double take if genre is not valid
+# branch genre slot filled or not
+# one does not know what available genres are there

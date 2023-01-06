@@ -7,7 +7,41 @@ rules:
   - intent: goodbye
   - action: utter_goodbye
 
-- rule: Sa
+- rule: Help genres
   steps:
-  - intent: goodbye
-  - action: utter_goodbye
+  - intent: help_genres
+  - action: action_genres_available
+  - slot_was_set:
+      - genres_available
+  - action: utter_genres
+
+- rule: Help genres memoization
+  condition:
+    - slot_was_set:
+      - genres_available
+  steps:
+  - intent: help_genres
+  - action: utter_genres
+
+- rule: Activate form
+  steps:
+  - intent: genre
+  - slot_was_set:
+    - genre: null
+  - action: utter_intent_specification
+  - action: discovery_form
+  - active_loop: discovery_form
+  - slot_was_set:
+    - genre
+
+- rule: Submit form
+  condition:
+  # Condition that form is active.
+  - active_loop: discovery_form
+  steps:
+  # Form is deactivated
+  - action: discovery_form
+  - active_loop: null
+  - slot_was_set:
+    - genre
+  wait_for_user_input: false

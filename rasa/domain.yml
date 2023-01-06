@@ -1,30 +1,74 @@
-version: "3.1"
-
+version: '3.1'
+intents:
+- ask_movie
+- goodbye
+- greet
+- genre
+- popular
+- help_genres
+responses:
+  utter_greet:
+  - text: Hi there, I’m Kumo, your personal movie and tv show assistant. What would you like to watch?
+  - text: Hi, I’m Kumo, your personal movie and tv show assistant. What would you like to watch?
+  - text: Hi, I’m Kumo, your personal movie and tv show assistant. Would you like to watch something?
+  - text: Hi, I’m Kumo, your personal movie and tv show assistant. Should I recommend you something?
+  utter_goodbye:
+  - text: I’m happy to help you anytime.
+  - text: I’m glad to help you anytime.
+  - text: "It's a pleasure."
+  utter_discover_movie:
+  - text: 'Sure, new releases are: {top_names}.'
+  - text: 'Popular new releases are: {top_names}.'
+  - text: 'Based on popularity some suggestions are: {top_names}.'
+  - text: "By popularity I'd suggest you: {top_names}."
+  utter_discover_genre_movie:
+  - text: 'Sure, new {genre}  releases are: {top_names}.'
+  - text: 'Popular new {genre} releases are: {top_names}.'
+  - text: 'In the {genre} genre some suggestions are: {top_names}.'
+  - text: "Based on popularity, I'd suggest you: {top_names} as {genre} movies."
+  - text: '{top_names} are great movies in the {genre} genre.'
+  utter_disambigua_discovery:
+  - text: Do you want to see what's popular or do you have a specific genre in mind?
+  - text: Would you prefer what's popular or do you have a specific genre in mind?
+  - text: Do you like something popular or a specific genre?
+  utter_continue:
+  - text: Is there anything else you'd like to ask?
+  utter_intent_specification:
+  - text: What genre do you have in mind?
+  - text: What kind of genre do you have in mind?
+  - text: What genre would you like to watch?
+  - text: Which genre is your favourite?
+  - text: Which genre are you in the mood for?
+  utter_genres:
+  - text: 'The genres available are: {genres_available}.'
+  - text: You can choose among these {genres_available} genres.
+  - text: 'These are the genres available: {genres_available}.'
+  - text: '{genres_available}: are the possible genres.'
+actions:
+- action_discover_movie
+- action_genres_available
 slots:
   top_names:
     type: text
     mappings:
     - type: custom
-
-intents:
-  - greet
-  - goodbye
-  - ask_movie
-
-responses:
-  utter_greet:
-  - text: "Hi there, I’m Kumo, your personal movie and tv show assistant. What would you like to watch ?"
-
-  utter_goodbye:
-  - text: "I’m happy to help you anytime."
-  
-  utter_discover_movie:
-  - text: "Sure, popular new releases are: {top_names}"
-
-actions:
-  - action_discover_movie
-
-
+  genre:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: genre
+      intent: genre
+      influence_conversation: true
+  genres_available:
+    type: text
+    mappings:
+    - type: custom
+forms:
+  discovery_form:
+    required_slots:
+    - genre
+entities:
+- genre
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
