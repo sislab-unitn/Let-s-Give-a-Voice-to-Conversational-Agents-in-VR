@@ -21,166 +21,6 @@ nlu:
     - a show
     - a serie
     - a series
-- synonym: Action
-  examples: |
-    - Action
-    - action
-    - actions
-- synonym: Adventure
-  examples: |
-    - Adventure
-    - adventure
-    - adventures
-- synonym: Animation
-  examples: |
-    - Animation
-    - animation
-    - animations
-- synonym: Comedy
-  examples: |
-    - Comedy
-    - comedy
-    - comedys
-    - comedies
-    - comedic
-- synonym: Crime
-  examples: |
-    - Crime
-    - crime
-    - crimes
-- synonym: Documentary
-  examples: |
-    - Documentary
-    - documentary
-    - documentarys
-- synonym: Drama
-  examples: |
-    - Drama
-    - drama
-    - dramas
-- synonym: Family
-  examples: |
-    - Family
-    - family
-    - familys
-- synonym: Fantasy
-  examples: |
-    - Fantasy
-    - fantasy
-    - fantasys
-- synonym: History
-  examples: |
-    - History
-    - history
-    - historys
-    - historic
-    - Historic
-- synonym: Horror
-  examples: |
-    - Horror
-    - horror
-    - horrors
-- synonym: Music
-  examples: |
-    - Music
-    - music
-    - musics
-    - musical
-    - Musical
-- synonym: Mystery
-  examples: |
-    - Mystery
-    - mystery
-    - mysterys
-    - mysterious
-    - Mysterious
-- synonym: Romance
-  examples: |
-    - Romance
-    - romance
-    - romances
-    - romantic
-    - Romantic
-    - romantics
-    - Romantics
-    - romanctical
-    - Romanticals
-    - romanticals
-    - Romanticals
-- synonym: Science Fiction
-  examples: |
-    - Science Fiction
-    - science fiction
-    - science fictions
-    - science
-    - Science
-- synonym: TV Movie
-  examples: |
-    - TV Movie
-    - tv Movie
-    - tv movies
-- synonym: Thriller
-  examples: |
-    - Thriller
-    - thriller
-    - thrillers
-- synonym: War
-  examples: |
-    - War
-    - war
-    - wars
-- synonym: Western
-  examples: |
-    - Western
-    - western
-    - westerns
-- synonym: Action & Adventure
-  examples: |
-    - Action & Adventure
-    - action & adventure
-    - action & adventures
-- synonym: Animation
-  examples: |
-    - Animation
-    - animation
-    - animations
-- synonym: Kids
-  examples: |
-    - Kids
-    - kids
-    - kids
-    - children
-    - child
-    - Children
-    - Child
-- synonym: News
-  examples: |
-    - News
-    - news
-- synonym: Reality
-  examples: |
-    - Reality
-    - reality
-- synonym: Sci-Fi & Fantasy
-  examples: |
-    - Sci-Fi & Fantasy
-    - sci-Fi & Fantasy
-    - sci-Fi & fantasys
-- synonym: Soap
-  examples: |
-    - Soap
-    - soap
-    - soaps
-- synonym: Talk
-  examples: |
-    - Talk
-    - talk
-    - talks
-- synonym: War & Politics
-  examples: |
-    - War & Politics
-    - war & Politics
-    - war & politics
 
 - lookup: genre
   examples: |
@@ -219,6 +59,139 @@ nlu:
     - Talk
     - War & Politics
     - Western
+    - synonym: Action
+    - Action
+    - action
+    - actions
+    - Adventure
+    - Adventure
+    - adventure
+    - adventures
+    - Animation
+    - Animation
+    - animation
+    - animations
+    - Comedy
+    - Comedy
+    - comedy
+    - comedys
+    - comedies
+    - comedic
+    - Crime
+    - Crime
+    - crime
+    - crimes
+    - Documentary
+    - Documentary
+    - documentary
+    - documentarys
+    - Drama
+    - Drama
+    - drama
+    - dramas
+    - Family
+    - Family
+    - family
+    - familys
+    - Fantasy
+    - Fantasy
+    - fantasy
+    - fantasys
+    - History
+    - History
+    - history
+    - historys
+    - historic
+    - Historic
+    - Horror
+    - Horror
+    - horror
+    - horrors
+    - Music
+    - Music
+    - music
+    - musics
+    - musical
+    - Musical
+    - Mystery
+    - Mystery
+    - mystery
+    - mysterys
+    - mysterious
+    - Mysterious
+    - Romance
+    - Romance
+    - romance
+    - romances
+    - romantic
+    - Romantic
+    - romantics
+    - Romantics
+    - romanctical
+    - Romanticals
+    - romanticals
+    - Romanticals
+    - Science Fiction
+    - Science Fiction
+    - science fiction
+    - science fictions
+    - science
+    - Science
+    - TV Movie
+    - TV Movie
+    - tv Movie
+    - tv movies
+    - Thriller
+    - Thriller
+    - thriller
+    - thrillers
+    - War
+    - War
+    - war
+    - wars
+    - Western
+    - Western
+    - western
+    - westerns
+    - Action & Adventure
+    - Action & Adventure
+    - action & adventure
+    - action & adventures
+    - Animation
+    - Animation
+    - animation
+    - animations
+    - Kids
+    - Kids
+    - kids
+    - kids
+    # - children
+    # - child
+    # - Children
+    # - Child
+    - News
+    - News
+    - news
+    - Reality
+    - Reality
+    - reality
+    - Sci-Fi & Fantasy
+    - Sci-Fi & Fantasy
+    - sci-Fi & Fantasy
+    - sci-Fi & fantasys
+    - Soap
+    - Soap
+    - soap
+    - soaps
+    - Talk
+    - Talk
+    - talk
+    - talks
+    - War & Politics
+    - War & Politics
+    - war & Politics
+    - war & politics
+
 
 - intent: greet
   examples: |
