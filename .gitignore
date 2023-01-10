@@ -48,4 +48,4 @@ tags
 log
 .idea
 
-./rasa/.rasa/cache/*
+rasa/.rasa/cache/*
