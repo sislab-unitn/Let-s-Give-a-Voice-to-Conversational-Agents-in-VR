@@ -103,9 +103,9 @@ actions:
 - action_discover_movie
 - action_genres_available
 - action_lookup_movie
-- action_get_availability_movie
-- action_validate_slot_mappings
-- action_clean_genres
+# - action_get_availability_movie
+# - action_validate_slot_mappings
+# - action_clean_genres
 slots:
   movie_or_tv:
     type: text
@@ -140,24 +140,20 @@ slots:
     type: text
     mappings:
     - type: custom
-  # results_none:
-  #   type: bool
-  #   mappings:
-  #   - type: custom
 forms:
-  discovery_form:
+  genre_form:
     required_slots:
     - genre
   movie_tv_form:
     required_slots:
     - movie_or_tv
-  lookup_form:
-    required_slots:
-    - movie
+  # lookup_form:
+  #   required_slots:
+  #   - movie
 entities:
 - movie_or_tv
 - genre
-- movie
+# - movie
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

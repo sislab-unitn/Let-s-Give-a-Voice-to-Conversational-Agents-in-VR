@@ -28,48 +28,28 @@ rules:
   - intent: nlu_fallback
   - action: utter_please_rephrase
 
-# - rule: Implementation of the Two-Stage-Fallback
-#   steps:
-#   - intent: nlu_fallback
-#   - action: action_two_stage_fallback
-#   - active_loop: action_two_stage_fallback
-
 - rule: out of scope
   steps:
   - intent: out_of_scope
   - action: utter_out_of_scope
 
-- rule: Activate discovery form
+- rule: Activate genre form
+  
   steps:
   - intent: genre
   - slot_was_set:
     - genre: null
   - action: utter_intent_specification
-  - action: discovery_form
-  - active_loop: discovery_form
+  - action: genre_form
+  - active_loop: genre_form
   - slot_was_set:
     - genre
 
-# - rule: genre without movie or tv
-#   condition:
-#   - slot_was_set:
-#     - movie_or_tv
-#     - genre
-#   steps:
-#   - action: action_discover_movie
-#   - slot_was_set:
-#     - top_names
-#   - action: utter_discover_genre_movie
-#   - action: action_restart
-
-
-- rule: Submit discovery form
+- rule: Submit genre form
   condition:
-  # Condition that form is active.
-  - active_loop: discovery_form
+  - active_loop: genre_form
   steps:
-  # Form is deactivated
-  - action: discovery_form
+  - action: genre_form
   - active_loop: null
   - slot_was_set:
     - genre
@@ -89,35 +69,31 @@ rules:
 
 - rule: Submit movie_tv form
   condition:
-  # Condition that form is active.
   - active_loop: movie_tv_form
   steps:
-  # Form is deactivated
   - action: movie_tv_form
   - active_loop: null
   - slot_was_set:
     - movie_or_tv
   wait_for_user_input: false
 
-- rule: Activate movie lookup form
-  steps:
-  - intent: lookup_movie
-  - slot_was_set:
-    - movie: null
-  - action: utter_lookup_specification
-  - action: lookup_form
-  - active_loop: lookup_form
-  - slot_was_set:
-    - movie
+# - rule: Activate movie lookup form
+#   steps:
+#   - intent: lookup_movie
+#   - slot_was_set:
+#     - movie: null
+#   - action: utter_lookup_specification
+#   - action: lookup_form
+#   - active_loop: lookup_form
+#   - slot_was_set:
+#     - movie
 
-- rule: Submit movie lookup form
-  condition:
-  # Condition that form is active.
-  - active_loop: lookup_form
-  steps:
-  # Form is deactivated
-  - action: lookup_form
-  - active_loop: null
-  - slot_was_set:
-    - movie
-  wait_for_user_input: false
+# - rule: Submit movie lookup form
+#   condition:
+#   - active_loop: lookup_form
+#   steps:
+#   - action: lookup_form
+#   - active_loop: null
+#   - slot_was_set:
+#     - movie
+#   wait_for_user_input: false

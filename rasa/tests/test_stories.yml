@@ -13,15 +13,13 @@ stories:
 
 - story: help explicit
   steps:
-  - user: What genres are there?
+  - user: |
+      What genres are available?
   - intent: help_genres
   - action: utter_disambigua_movie_tv
-  - action: movie_tv_form
-  - action: action_listen
   - user: |
       a movie
   - intent: ask_movie
-  - action: movie_tv_form
   - action: action_genres_available
   - action: utter_genres
 

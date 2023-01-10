@@ -32,57 +32,12 @@ stories:
     - genre
   - checkpoint: checkpoint_movie_tv_genre_gotten
 
-# - story: movie or tv disambigua implicit genre
-#   steps:
-#   - intent: genre
-#   - slot_was_set:
-#     - genre
-#     - movie_or_tv: null
-#   - checkpoint: checkpoint_genre_gotten
-
 - story: movie or tv disambigua implicit movie or tv
   steps:
   - intent: ask_movie
   - slot_was_set:
     - movie_or_tv
-    # - genre: null
   - checkpoint: checkpoint_movie_tv_gotten
-
-# - story: recommendation implicit genre from movie
-#   steps:
-#   - checkpoint: checkpoint_movie_tv_gotten
-#   - action: utter_disambigua_discovery
-#   - intent: genre
-#   - slot_was_set:
-#     - genre
-#   - checkpoint: checkpoint_movie_tv_genre_gotten
-
-# - story: recommendation implicit movie from genre
-#   steps:
-#   - checkpoint: checkpoint_genre_gotten
-#   - action: utter_disambigua_movie_tv
-#   - intent: ask_movie
-#   - slot_was_set:
-#     - movie_or_tv
-#   - checkpoint: checkpoint_movie_tv_genre_gotten
-
-# - story: recommendation explicit movie from genre
-#   steps:
-#   - checkpoint: checkpoint_genre_gotten
-#   - action: utter_disambigua_movie_tv
-#   - action: movie_tv_form
-#   - checkpoint: checkpoint_movie_tv_genre_gotten
-
-# - story: genre without movie or tv
-#   steps:
-#   - intent: ask_movie
-#   - slot_was_set:
-#     - genre
-#     - movie_or_tv: null
-#   - action: utter_movie_or_tv_first
-#   - action: movie_tv_form
-#   - checkpoint: checkpoint_movie_tv_genre_gotten
-  # wait_for_user_input: false
 
 - story: movie or tv disambigua explicit
   steps:
@@ -94,6 +49,16 @@ stories:
   - action: movie_tv_form
   - checkpoint: checkpoint_movie_tv_gotten
 
+- story: movie recommendation genre implicit
+  steps:
+  - checkpoint: checkpoint_movie_tv_gotten
+  - action: utter_disambigua_discovery
+  - intent: genre
+  - slot_was_set:
+    - genre
+  - checkpoint: checkpoint_movie_tv_genre_gotten
+
+
 - story: movie recommendation genre explicit
   steps:
   - checkpoint: checkpoint_movie_tv_gotten
@@ -102,7 +67,7 @@ stories:
   - slot_was_set:
     - genre: null
   - action: utter_intent_specification
-  - action: discovery_form
+  - action: genre_form
   - checkpoint: checkpoint_movie_tv_genre_gotten
 
 - story:  movie recommendation popular
@@ -122,38 +87,36 @@ stories:
   - action: action_restart
 
 
-- story: movie lookup implicit
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: lookup_movie
-  - slot_was_set:
-    - movie
-  - action: action_lookup_movie
-  - action: action_restart
+# - story: movie lookup implicit
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: lookup_movie
+#   - slot_was_set:
+#     - movie
+#   - action: action_lookup_movie
 
-- story: movie lookup explicit
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: lookup_movie
-  - slot_was_set:
-    - movie: null
-  - action: utter_lookup_specification
-  - action: lookup_form
-  - action: action_lookup_movie
-  - action: action_restart
+# - story: movie lookup explicit
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: lookup_movie
+#   - slot_was_set:
+#     - movie: null
+#   - action: utter_lookup_specification
+#   - action: lookup_form
+#   - action: action_lookup_movie
 
-# interactive movie with netflix checkpoint
-- story: movie interaction
-  steps:
-  - checkpoint: checkpoint_movie_gotten
-  - intent: ask_availability_movie
-  - slot_was_set:
-    - movie
-  - action: action_get_availability_movie
-  - action: utter_availability_movie
-  - action: action_restart  
+# # interactive movie with netflix checkpoint
+# - story: movie interaction
+#   steps:
+#   - checkpoint: checkpoint_movie_gotten
+#   - intent: ask_availability_movie
+#   - slot_was_set:
+#     - movie
+#   - action: action_get_availability_movie
+#   - action: utter_availability_movie
+
   
 # TODO validation of genre slot 
 # double take if genre is not valid ?
@@ -168,3 +131,13 @@ stories:
 # caps the validated slot √
 # propose new form if confidence is low
 # what if a user sets genre before movie or tv?
+# what may happen in validation of slots
+
+
+# with movie_or_tv set
+
+# - slot is not present in either movie or tv show.
+# - prompt again with possibilities
+
+# - slot is present with high confidence in the opposite slot
+# - do you want to change?

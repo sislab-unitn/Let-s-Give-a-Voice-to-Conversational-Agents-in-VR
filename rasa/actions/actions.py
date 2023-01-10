@@ -25,9 +25,7 @@ tmdb.API_KEY = 'c038a92e3fe9346f02feaf2d8ae2efab'
 # 5 seconds timeout for requests to avoid blocking
 tmdb.REQUESTS_TIMEOUT = 5  # seconds, for both connect and read
 
-# add fallback is results are empty
-class ActionDiscoverMovie(Action):
-    def get_slot_ids(self,movie_or_tv) -> Dict:
+def get_slot_ids(movie_or_tv) -> Dict:
         genre = tmdb.Genres()
         genres =  {}
         if movie_or_tv == 'movie':
@@ -37,27 +35,52 @@ class ActionDiscoverMovie(Action):
             for item in genre.tv_list()['genres']:
                 genres[item['name']] = str(item['id'])
         return genres
+
+def genre_matcher(selected_genre,movie_or_tv):
+    print(selected_genre)
+    selected_genre = selected_genre.lower()
+    genres_og = get_slot_ids(movie_or_tv)
+    inverse_genres = {v: k for k, v in genres_og.items()}
+    genres_lower = {}
+    for key,item in genres_og.items():
+        genres_lower[key.lower()] = item
+    similarity = {}
+    for genre_lower in genres_lower:
+        for word in genre_lower.split():
+            try:
+                if selected_genre == word:
+                    return inverse_genres[genres_lower[genre_lower]],1
+                similarity[genre_lower][0] += Levenshtein.jaro(selected_genre,word)
+            except KeyError:
+                similarity[genre_lower] = [Levenshtein.jaro(selected_genre,word),genres_lower[genre_lower]]
+    # max similarity
+    similarity_mx = max(similarity, key = lambda x: similarity[x][0])
+    inverse_similarity = {v[0]: k for k, v in similarity.items()}
+    similarity_value = max(inverse_similarity, key = lambda x: x)
+    similarity_id = similarity[similarity_mx][1]
+    return inverse_genres[similarity_id],similarity_value
+# add fallback is results are empty
+class ActionDiscoverMovie(Action):
     def name(self) -> Text:
         return "action_discover_movie"
-
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         movie_or_tv = tracker.get_slot('movie_or_tv')
-        if movie_or_tv == None:
+        if movie_or_tv is None:
             print('movie or tv not set')
             return []
-        genre_ids = self.get_slot_ids(movie_or_tv)
+        genre_ids = get_slot_ids(movie_or_tv)
         genre = tracker.get_slot('genre')
         if movie_or_tv == 'movie':
-            if genre==None:
+            if genre is None:
                 discover = tmdb.Discover()
                 response = discover.movie()
             else:   
                 discover = tmdb.Discover()
                 response = discover.movie(with_genres=genre_ids[genre])
         elif movie_or_tv == 'tv show':
-            if genre==None:
+            if genre is None:
                 discover = tmdb.Discover()
                 response = discover.tv()
             else:   
@@ -81,30 +104,20 @@ class ActionDiscoverMovie(Action):
             return [evt]
 
 
-# add fallback is results are empty
-class ActionCleanGenres(Action):
-    def name(self) -> Text:
-        return "action_clean_genres"
+# # add fallback is results are empty
+# class ActionCleanGenres(Action):
+#     def name(self) -> Text:
+#         return "action_clean_genres"
 
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        evt = SlotSet("genre",None)
-        return [evt]
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#         evt = SlotSet("genre",None)
+#         return [evt]
 
 
 # add fallback is results are empty
 class ActionGenresAvailable(Action):
-    def get_slot_ids(self,movie_or_tv) -> Dict:
-        genre = tmdb.Genres()
-        genres =  {}
-        if movie_or_tv == 'movie':
-            for item in genre.movie_list()['genres']:
-                genres[item['name']] = str(item['id'])
-        else:
-            for item in genre.tv_list()['genres']:
-                genres[item['name']] = str(item['id'])
-        return genres
     def name(self) -> Text:
         return "action_genres_available"
 
@@ -115,7 +128,7 @@ class ActionGenresAvailable(Action):
         if movie_or_tv == None:
             print('movie or tv not set')
             return []
-        genres = self.get_slot_ids(movie_or_tv)
+        genres = get_slot_ids(movie_or_tv)
         genres_available = list(genres.keys())
         genres_available[-1] = "and " + genres_available[-1]
         genres_available = ", ".join(genres_available)
@@ -128,174 +141,114 @@ class ActionLookupMovie(Action):
     def name(self) -> Text:
         return "action_lookup_movie"
 
-    def run(self, dispatcher: CollectingDispatcher,
+    async def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('Hi')
-        dispatcher.utter_message(utter_message="utter_greet")
+        state = tracker.current_state()
+        from pprint import pprint
+        pprint(state)
+        return []
   
   
-from typing import Text, Any, Dict
+# from typing import Text, Any, Dict
 
-from rasa_sdk import Tracker, ValidationAction
-from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.types import DomainDict
+# from rasa_sdk import Tracker, ValidationAction
+# from rasa_sdk.executor import CollectingDispatcher
+# from rasa_sdk.types import DomainDict
 
 
-class ValidatePredefinedSlots(ValidationAction):
-    
-    def get_slot_ids(self,movie_or_tv) -> Dict:
-        genre = tmdb.Genres()
-        genres =  {}
-        if movie_or_tv == 'movie':
-            for item in genre.movie_list()['genres']:
-                genres[item['name']] = str(item['id'])
-        else:
-            for item in genre.tv_list()['genres']:
-                genres[item['name']] = str(item['id'])
-        return genres
-    def genre_matcher(self,selected_genre,movie_or_tv):
-        selected_genre = selected_genre.lower()
-        genres_og = self.get_slot_ids(movie_or_tv)
-        inverse_genres = {v: k for k, v in genres_og.items()}
-        genres = {}
-        for key,item in genres_og.items():
-            genres[key.lower()] = item
-        similarity = {}
-        for genre in genres:
-            for word in genre.split():
-                try:
-                    if selected_genre == word:
-                        return inverse_genres[genres[genre]],1
-                    similarity[genre][0] += Levenshtein.jaro(selected_genre,word)
-                except KeyError:
-                    similarity[genre] = [Levenshtein.jaro(selected_genre,word),genres[genre]]
-        # max similarity
-        similarity_mx = max(similarity, key = lambda x: similarity[x][0])
-        similarity_id = similarity[similarity_mx][1]
-        return inverse_genres[similarity_id],similarity_mx
-    def validate_genre(
-        self,
-        slot_value: Any,
-        dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: DomainDict,
-    ) -> Dict[Text, Any]:
-        """Validate genre value."""
-        print(f"slot_value {slot_value}")
-        movie_or_tv = tracker.get_slot('movie_or_tv')
-        if movie_or_tv == None:
-            print('movie or tv not set')
-            return {"genre": None}
-        genre,confidence = self.genre_matcher(slot_value,movie_or_tv)
-        if confidence < 0.5:
-            print('confidence too low')
-            dispatcher.utter_message(utter_message="utter_genre_not_found")
-            return {"genre": None}
-        print(f"was mapped to {genre} with confidence {confidence}")
-        return {"genre": genre}
-    def validate_movie_or_tv(
-        self,
-        slot_value: Any,
-        dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: DomainDict,
-    ) -> Dict[Text, Any]:
-        """Validate movie or tv value."""
-        print(f"slot_value {slot_value}")
-        movie_or_tv = tracker.get_slot('movie_or_tv')
-        movie = Levenshtein.jaro(movie_or_tv,'movie')
-        tv_show = Levenshtein.jaro(movie_or_tv,'tv show')
-        if movie > tv_show:
-            movie_or_tv = 'movie'
-        else:
-            movie_or_tv = 'tv show'
-        print(f"was mapped to {movie_or_tv}")
-        return {"movie_or_tv": movie_or_tv}
+# class ValidatePredefinedSlots(ValidationAction):
+   
+#     def validate_genre(
+#         self,
+#         slot_value: Any,
+#         dispatcher: CollectingDispatcher,
+#         tracker: Tracker,
+#         domain: DomainDict,
+#     ) ->   List[Dict[Text, Any]]:
+#         """Validate genre value."""
+#         print(f"slot_value {slot_value}")
+#         movie_or_tv = tracker.get_slot('movie_or_tv')
+#         if movie_or_tv == None:
+#             print('movie or tv not set')
+#             return {"genre": None}
+#         # here i match to movie_or_tv
+#         genre,confidence = genre_matcher(slot_value,movie_or_tv)
+#         if confidence < 0.8:
+#             print('confidence too low')
+#             return {"genre": None}
+#         print(f"was mapped to {genre} with confidence {confidence}")
+#         return [{"genre": genre}]
+#     def validate_movie_or_tv(
+#         self,
+#         slot_value: Any,
+#         dispatcher: CollectingDispatcher,
+#         tracker: Tracker,
+#         domain: DomainDict,
+#     ) -> Dict[Text, Any]:
+#         """Validate movie or tv value."""
+#         print(f"slot_value {slot_value}")
+#         movie_or_tv = tracker.get_slot('movie_or_tv')
+#         movie = Levenshtein.jaro(movie_or_tv,'movie')
+#         tv_show = Levenshtein.jaro(movie_or_tv,'tv show')
+#         if movie > tv_show:
+#             movie_or_tv = 'movie'
+#         else:
+#             movie_or_tv = 'tv show'
+#         print(f"was mapped to {movie_or_tv}")
+#         return {"movie_or_tv": movie_or_tv}
        
-from typing import Text, List, Any, Dict
+# from typing import Text, List, Any, Dict
 
-from rasa_sdk import Tracker, FormValidationAction
-from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.types import DomainDict
+# from rasa_sdk import Tracker, FormValidationAction
+# from rasa_sdk.executor import CollectingDispatcher
+# from rasa_sdk.types import DomainDict
 
 
-class ValidateGenreForm(FormValidationAction):
-    def name(self) -> Text:
-        return "validate_discovery_form"
+# class ValidateGenreForm(FormValidationAction):
+#     def name(self) -> Text:
+#         return "validate_discovery_form"
     
-    def get_slot_ids(self,movie_or_tv) -> Dict:
-        genre = tmdb.Genres()
-        genres =  {}
-        if movie_or_tv == 'movie':
-            for item in genre.movie_list()['genres']:
-                genres[item['name'].lower()] = str(item['id']).lower()
-        else:
-            for item in genre.tv_list()['genres']:
-                genres[item['name'].lower()] = str(item['id']).lower()
-        return genres
-    def genre_matcher(self,selected_genre,movie_or_tv):
-        selected_genre = selected_genre.lower()
-        genres_og = self.get_slot_ids(movie_or_tv)
-        inverse_genres = {v: k for k, v in genres_og.items()}
-        genres = {}
-        for key,item in genres_og.items():
-            genres[key.lower()] = item
-        similarity = {}
-        for genre in genres:
-            for word in genre.split():
-                try:
-                    if selected_genre == word:
-                        return inverse_genres[genres[genre]],1
-                    similarity[genre][0] += Levenshtein.jaro(selected_genre,word)
-                    
-                except KeyError:
-                    similarity[genre] = [Levenshtein.jaro(selected_genre,word),genres[genre]]
-        # max similarity
-        similarity_mx = max(similarity, key = lambda x: similarity[x][0])
-        # if similarity_mx < 0.5:
-        #     return None
-        similarity_id = similarity[similarity_mx][1]
-        return inverse_genres[similarity_id], similarity_mx
-    def validate_genre(
-        self,
-        slot_value: Any,
-        dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: DomainDict,
-    ) -> Dict[Text, Any]:
-        """Validate genre value."""
-        # validation succeeded, capitalize the value of the "location" slot
-        movie_or_tv = tracker.get_slot('movie_or_tv')
-        if movie_or_tv == None:
-            print('movie or tv not set')
-            return {"genre": None}
-        print(f"slot_value {slot_value}")
-        genre,confidence = self.genre_matcher(slot_value,movie_or_tv)
-        print(f"was mapped to {genre} with confidence {confidence}")
-        # if genre is None:
-            # print("genre not found")
-            # dispatcher.utter_message(text="Sorry, I didn't understand that. Please try again.")
-            # return {"genre": None}
-        return {"genre": genre}
-class ValidateMovieTvForm(FormValidationAction):
-    def name(self) -> Text:
-        return "validate_movie_tv_form"
-    def validate_movie_or_tv(
-        self,
-        slot_value: Any,
-        dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: DomainDict,
-    ) -> Dict[Text, Any]:
-        """Validate movie or tv value."""
-        print(f"slot_value {slot_value}")
-        movie_or_tv = tracker.get_slot('movie_or_tv')
-        movie = Levenshtein.jaro(movie_or_tv,'movie')
-        tv_show = Levenshtein.jaro(movie_or_tv,'tv show')
-        if movie > tv_show:
-            movie_or_tv = 'movie'
-        else:
-            movie_or_tv = 'tv show'
-        print(f"was mapped to {movie_or_tv}")
-        return {"movie_or_tv": movie_or_tv}
+#     def validate_genre(
+#         self,
+#         slot_value: Any,
+#         dispatcher: CollectingDispatcher,
+#         tracker: Tracker,
+#         domain: DomainDict,
+#     ) -> Dict[Text, Any]:
+#         """Validate genre value."""
+#         # validation succeeded, capitalize the value of the "location" slot
+#         movie_or_tv = tracker.get_slot('movie_or_tv')
+#         if movie_or_tv == None:
+#             print('movie or tv not set')
+#             return {"genre": None}
+#         print(f"slot_value {slot_value}")
+#         genre,confidence = genre_matcher(slot_value,movie_or_tv)
+#         print(f"was mapped to {genre} with confidence {confidence}")
+#         # if genre is None:
+#             # print("genre not found")
+#             # dispatcher.utter_message(text="Sorry, I didn't understand that. Please try again.")
+#             # return {"genre": None}
+#         return {"genre": genre}
+# class ValidateMovieTvForm(FormValidationAction):
+#     def name(self) -> Text:
+#         return "validate_movie_tv_form"
+#     def validate_movie_or_tv(
+#         self,
+#         slot_value: Any,
+#         dispatcher: CollectingDispatcher,
+#         tracker: Tracker,
+#         domain: DomainDict,
+#     ) -> Dict[Text, Any]:
+#         """Validate movie or tv value."""
+#         print(f"slot_value {slot_value}")
+#         movie_or_tv = tracker.get_slot('movie_or_tv')
+#         movie = Levenshtein.jaro(movie_or_tv,'movie')
+#         tv_show = Levenshtein.jaro(movie_or_tv,'tv show')
+#         if movie > tv_show:
+#             movie_or_tv = 'movie'
+#         else:
+#             movie_or_tv = 'tv show'
+#         print(f"was mapped to {movie_or_tv}")
+#         return {"movie_or_tv": movie_or_tv}
