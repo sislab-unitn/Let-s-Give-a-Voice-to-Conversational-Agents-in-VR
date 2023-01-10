@@ -1,11 +1,17 @@
 version: '3.1'
 intents:
-- ask_movie
-- goodbye
 - greet
+- goodbye
+- affirm
+- deny
+- ask_movie
 - genre
 - popular
 - help_genres
+- out_of_scope
+- ask_availability_movie
+- lookup_movie
+- help
 responses:
   utter_greet:
   - text: Hi there, I’m Kumo, your personal movie and tv show assistant. What would you like to watch?
@@ -16,6 +22,15 @@ responses:
   - text: I’m happy to help you anytime.
   - text: I’m glad to help you anytime.
   - text: "It's a pleasure."
+  utter_thank_you:
+  - text: I’m happy to help you anytime.
+  - text: I’m glad to help you anytime.
+  - text: "It's a pleasure."
+  utter_help:
+  - text: Hi there, I’m Kumo, your personal movie and tv show assistant. I can recommend you movies and tv shows
+  - text: Hi, I’m Kumo, your personal movie and tv show assistant. I'm able to recommend you movies and tv shows
+  - text: Hi, I’m Kumo, your personal movie and tv show assistant. I can suggest you movies and tv shows
+  - text: Hi, I’m Kumo, your personal movie and tv show assistant. I can recommend you movies and tv shows
   utter_discover_movie:
   - text: 'Sure, new releases are: {top_names}.'
   - text: 'Popular new releases are: {top_names}.'
@@ -25,14 +40,23 @@ responses:
   - text: 'Sure, new {genre}  releases are: {top_names}.'
   - text: 'Popular new {genre} releases are: {top_names}.'
   - text: 'In the {genre} genre some suggestions are: {top_names}.'
-  - text: "Based on popularity, I'd suggest you: {top_names} as {genre} movies."
-  - text: '{top_names} are great movies in the {genre} genre.'
+  - text: "Based on popularity, I'd suggest you: {top_names} in {genre} genre."
+  - text: '{top_names} are great releases in the {genre} genre.'
   utter_disambigua_discovery:
   - text: Do you want to see what's popular or do you have a specific genre in mind?
   - text: Would you prefer what's popular or do you have a specific genre in mind?
   - text: Do you like something popular or a specific genre?
+  utter_disambigua_movie_tv:
+  - text: Do you want to see a movie or a tv show?
+  - text: Would you prefer a film or a show?
+  - text: Do you like a movie or a tv series?
+  - text: Are you in the mood for a movie or a tv series?
   utter_continue:
   - text: Is there anything else you'd like to ask?
+  - text: Would you like a movie or tv show to watch?
+  - text: Would you like a recommendation for movie or tv show to watch?
+  - text: Would you like a recommendation for movie or tv show to binge?
+  - text: What would you like to watch?
   utter_intent_specification:
   - text: What genre do you have in mind?
   - text: What kind of genre do you have in mind?
@@ -44,31 +68,96 @@ responses:
   - text: You can choose among these {genres_available} genres.
   - text: 'These are the genres available: {genres_available}.'
   - text: '{genres_available}: are the possible genres.'
+  utter_ask_rephrase:
+  - text: "I didn't get that. Can you rephrase please?"
+  - text: "I didn't understand. Could you repeat please?"
+  - text: "Could you rephrase plese?"
+  utter_please_rephrase:
+  - text: "I didn't get that. Can you rephrase please?"
+  - text: "I didn't understand. Could you repeat please?"
+  - text: "Could you rephrase plese?"
+  utter_out_of_scope:
+  - text: Sorry, I can't handle that request. I'm kumo, a movie and show recommendation system.
+  - text: Sorry, but I'm a movie and show recommendation system.
+  - text: Sorry, but I can only help you with movies and tv shows.
+  utter_default:
+  - text: I'm sorry, I can't help you.
+  utter_availability_movie:
+  - text: The movie {movie} is available on {distributors}.
+  - text: It is available on {distributors}.
+  - text: You can watch {movie} on {distributors}.
+  utter_lookup_specification:
+  - text: What movie are you looking for?
+  - text: Which movie are you looking for?
+  utter_no_results:
+  - text: There are no results in your query
+  - text: No results were found
+  - text: There are no results for your search
+  - text: Zero results matching in {genre}?
+  - text: There are no {movie_or_tv} for your search
+  - text: There are no {movie_or_tv} results for your search
+  utter_movie_or_tv_first:
+  - text: I need movie or tv show first
+  - text: I need movie or tv series first
 actions:
 - action_discover_movie
 - action_genres_available
+- action_lookup_movie
+- action_get_availability_movie
+- action_validate_slot_mappings
+- action_clean_genres
 slots:
-  top_names:
+  movie_or_tv:
     type: text
     mappings:
-    - type: custom
+    - type: from_entity
+      entity: movie_or_tv
+      intent:
+        - ask_movie
+        - help_genres
+      influence_conversation: true
   genre:
     type: text
     mappings:
     - type: from_entity
       entity: genre
-      intent: genre
+      intent:
+      - ask_movie 
+      - genre
+      influence_conversation: true
+  movie:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: movie
+      intent: lookup_movie
       influence_conversation: true
   genres_available:
     type: text
     mappings:
     - type: custom
+  top_names:
+    type: text
+    mappings:
+    - type: custom
+  # results_none:
+  #   type: bool
+  #   mappings:
+  #   - type: custom
 forms:
   discovery_form:
     required_slots:
     - genre
+  movie_tv_form:
+    required_slots:
+    - movie_or_tv
+  lookup_form:
+    required_slots:
+    - movie
 entities:
+- movie_or_tv
 - genre
+- movie
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
