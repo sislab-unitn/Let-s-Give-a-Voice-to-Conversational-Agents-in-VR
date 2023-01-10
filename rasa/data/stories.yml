@@ -103,6 +103,7 @@ stories:
     - movie_or_tv
     - genre
     - genre_validated: true
+    - suggested_genre: null
   - checkpoint: checkpoint_discovery
 
 - story: movie discovery genre validation
@@ -113,6 +114,7 @@ stories:
     - movie_or_tv
     - genre
     - genre_validated: false
+    - suggested_genre: null
   - action: action_genres_available
   - slot_was_set:
     - genres_available
@@ -122,23 +124,52 @@ stories:
     - genre
   - checkpoint: checkpoint_movie_tv_genre_gotten
 
-# - story: movie discovery genre validation
-#   steps:
-#   - checkpoint: checkpoint_movie_tv_genre_gotten
-#   - action: custom_genre_validation
-#   - slot_was_set:
-#     - movie_or_tv
-#     - genre
-#     - genre_validated: false
-#   - action: action_genres_available
-#   - slot_was_set:
-#     - genres_available
-#   - action: utter_genre_disambigua
-#   - intent: genre
-#   - slot_was_set:
-#     - genre: null
-#   - checkpoint: checkpoint_movie_tv_genre_gotten
+- story: movie discovery genre validation
+  steps:
+  - checkpoint: checkpoint_movie_tv_genre_gotten
+  - action: custom_genre_validation
+  - slot_was_set:
+    - movie_or_tv
+    - genre
+    - genre_validated: false
+    - suggested_genre
+  - action: action_genres_available
+  - slot_was_set:
+    - genres_available
+  - checkpoint: checkpoint_genre_suggestion
 
+- story: movie discovery genre validation affirm
+  steps:
+  - checkpoint: checkpoint_genre_suggestion
+  - action: utter_genre_disambigua_suggestion
+  - intent: affirm
+  - action: custom_genre_validation_confirmation
+  - slot_was_set:
+    - movie_or_tv
+    - genre
+    - genre_validated: true
+    - suggested_genre: null
+  - checkpoint: checkpoint_discovery
+
+- story: movie discovery genre validation deny
+  steps:
+  - checkpoint: checkpoint_genre_suggestion
+  - action: utter_genre_disambigua_suggestion
+  - intent: deny
+  - action: utter_intent_specification
+  - intent: genre
+  - slot_was_set:
+    - genre
+  - checkpoint: checkpoint_movie_tv_genre_gotten
+
+- story: movie discovery genre validation deny check
+  steps:
+  - checkpoint: checkpoint_genre_suggestion
+  - action: utter_genre_disambigua_suggestion
+  - intent: genre
+  - slot_was_set:
+    - genre
+  - checkpoint: checkpoint_movie_tv_genre_gotten
 # - story: movie discovery checkpoint (final)
 #   steps:
 #   - checkpoint: checkpoint_discovery
@@ -160,6 +191,10 @@ stories:
   steps:
   - checkpoint: checkpoint_discovery_popular
   - action: custom_genre_validation
+  - slot_was_set:
+    - movie_or_tv
+    - genre: null
+    - genre_validated: true
   - action: action_discover_movie
   - slot_was_set:
     - top_names

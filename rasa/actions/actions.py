@@ -177,17 +177,55 @@ class CustomGenreValidation(Action):
         if genre is None:
             evt_genre = SlotSet("genre",None)
             evt_validated = SlotSet("genre_validated",True)
-            return [evt_movie_or_tv,evt_genre,evt_validated]
+            evt_suggested_genre = SlotSet("suggested_genre",None)
+            return [evt_movie_or_tv,evt_genre,evt_validated,evt_suggested_genre]
         else:
             matched_genre, confidence =  genre_matcher(genre,movie_or_tv)
             print(f"genre {genre} was matched to {matched_genre} with confidence {confidence}")
             if confidence > 0.9:
                 evt_genre = SlotSet("genre",matched_genre)
                 evt_validated = SlotSet("genre_validated",True)
+                evt_suggested_genre = SlotSet("suggested_genre",None)
+                return [evt_movie_or_tv,evt_genre,evt_validated]               
+            elif confidence > 0.6:
+                evt_genre = SlotSet("genre",genre)
+                evt_validated = SlotSet("genre_validated",False)
+                evt_suggested_genre = SlotSet("suggested_genre",matched_genre)
+                return [evt_movie_or_tv,evt_genre,evt_validated,evt_suggested_genre]
             else:
                 evt_genre = SlotSet("genre",genre)
                 evt_validated = SlotSet("genre_validated",False)
-            return [evt_movie_or_tv,evt_genre,evt_validated]
+                evt_suggested_genre = SlotSet("suggested_genre",None)
+                return [evt_movie_or_tv,evt_genre,evt_validated,evt_suggested_genre]
+    
+
+class CustomGenreValidationConfirmation(Action):
+    def name(self) -> Text:
+        return "custom_genre_validation_confirmation"
+
+    async def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        print('Hi')
+        state = tracker.current_state()
+        from pprint import pprint
+        pprint(state)
+        
+        movie_or_tv = tracker.get_slot('movie_or_tv')
+        if Levenshtein.jaro(movie_or_tv,'movie') > Levenshtein.jaro(movie_or_tv,'tv show'):
+            movie_or_tv = 'movie'
+        else:
+            movie_or_tv = 'tv show'
+        evt_movie_or_tv = SlotSet("movie_or_tv",movie_or_tv)
+        
+        
+        genre = tracker.get_slot('genre')
+        suggested_genre = tracker.get_slot('suggested_genre')
+        print(f"genre {genre} was replaced with {suggested_genre}")
+        evt_genre = SlotSet("genre",suggested_genre)
+        evt_validated = SlotSet("genre_validated",True)
+        evt_suggested_genre = SlotSet("suggested_genre",None)
+        return [evt_movie_or_tv,evt_genre,evt_validated,evt_suggested_genre]
     
 
 # from typing import Text, Any, Dict

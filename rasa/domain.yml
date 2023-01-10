@@ -102,11 +102,14 @@ responses:
   - text: There are no {movie_or_tv} results for your search
   utter_genre_disambigua:
   - text: '{genre} is not a {movie_or_tv} genre. Available {movie_or_tv} genres are {genres_available}. What genre would you like to watch?'
+  utter_genre_disambigua_suggestion:
+  - text:  '{genre} is not a {movie_or_tv} genre. Did you mean {suggested_genre}?'
 actions:
-- action_discover_movie
-- action_genres_available
-- action_lookup_movie
-- custom_genre_validation
+  - action_discover_movie
+  - action_genres_available
+  - action_lookup_movie
+  - custom_genre_validation
+  - custom_genre_validation_confirmation
 # - action_get_availability_movie
 # - action_validate_slot_mappings
 # - action_clean_genres

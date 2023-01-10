@@ -326,6 +326,7 @@ nlu:
     - I want something to binge [Action](genre)
     - a [movie](movie_or_tv)
     - a [tv show](movie_or_tv)
+    - i want a good [action](genre)  genre
 - intent: help_genres
   examples: |
     - What genres are available?
