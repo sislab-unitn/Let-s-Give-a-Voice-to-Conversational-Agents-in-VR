@@ -51,13 +51,17 @@ rules:
     - genre
 
 # - rule: genre without movie or tv
-#   steps:
-#   - intent: ask_movie
+#   condition:
 #   - slot_was_set:
-#     - movie_or_tv: null
+#     - movie_or_tv
 #     - genre
-#   - action: utter_movie_or_tv_first
+#   steps:
+#   - action: action_discover_movie
+#   - slot_was_set:
+#     - top_names
+#   - action: utter_discover_genre_movie
 #   - action: action_restart
+
 
 - rule: Submit discovery form
   condition:

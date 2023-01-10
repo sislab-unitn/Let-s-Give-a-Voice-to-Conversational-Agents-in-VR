@@ -1,0 +1,18 @@
+version: "3.1"
+stories:
+- story: help explicit (./tests/test_stories.yml)
+  steps:
+  - user: |-
+      What genres are there?
+  - action: action_listen  # predicted: utter_lookup_specification
+  - intent: help_genres
+  - action: utter_disambigua_movie_tv
+  - action: movie_tv_form
+  - action: action_listen  # predicted: action_genres_available
+  - user: |-
+      a movie
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: ask_movie
+  - action: movie_tv_form  # predicted: utter_disambigua_movie_tv
+  - action: action_genres_available  # predicted: utter_disambigua_discovery
+  - action: utter_genres

@@ -32,23 +32,11 @@ class ActionDiscoverMovie(Action):
         genres =  {}
         if movie_or_tv == 'movie':
             for item in genre.movie_list()['genres']:
-                genres[item['name'].lower()] = str(item['id'])
+                genres[item['name']] = str(item['id'])
         else:
             for item in genre.tv_list()['genres']:
-                genres[item['name'].lower()] = str(item['id'])
+                genres[item['name']] = str(item['id'])
         return genres
-    def genre_matcher(self,selected_genre,movie_or_tv):
-        genres = self.get_slot_ids(movie_or_tv)
-        similarity = {}
-        for genre in genres:
-            for word in genre.split():
-                try:
-                    similarity[genre] += Levenshtein.jaro(selected_genre,word)
-                except KeyError:
-                    similarity[genre] = Levenshtein.jaro(selected_genre,word)
-        # max similarity
-        similarity = max(similarity, key=similarity.get)
-        return similarity
     def name(self) -> Text:
         return "action_discover_movie"
 
@@ -60,16 +48,12 @@ class ActionDiscoverMovie(Action):
             print('movie or tv not set')
             return []
         genre_ids = self.get_slot_ids(movie_or_tv)
-        try:
-            genre = tracker.get_slot('genre').lower()
-        except AttributeError:
-            genre = tracker.get_slot('genre')
+        genre = tracker.get_slot('genre')
         if movie_or_tv == 'movie':
             if genre==None:
                 discover = tmdb.Discover()
                 response = discover.movie()
             else:   
-                genre = self.genre_matcher(genre,movie_or_tv)
                 discover = tmdb.Discover()
                 response = discover.movie(with_genres=genre_ids[genre])
         elif movie_or_tv == 'tv show':
@@ -77,7 +61,7 @@ class ActionDiscoverMovie(Action):
                 discover = tmdb.Discover()
                 response = discover.tv()
             else:   
-                genre = self.genre_matcher(genre,movie_or_tv)
+                
                 discover = tmdb.Discover()
                 response = discover.tv(with_genres=genre_ids[genre])
         # top 3 results
@@ -182,15 +166,14 @@ class ValidatePredefinedSlots(ValidationAction):
             for word in genre.split():
                 try:
                     if selected_genre == word:
-                        return inverse_genres[genres[genre]]
+                        return inverse_genres[genres[genre]],1
                     similarity[genre][0] += Levenshtein.jaro(selected_genre,word)
-                    
                 except KeyError:
                     similarity[genre] = [Levenshtein.jaro(selected_genre,word),genres[genre]]
         # max similarity
         similarity_mx = max(similarity, key = lambda x: similarity[x][0])
         similarity_id = similarity[similarity_mx][1]
-        return inverse_genres[similarity_id]
+        return inverse_genres[similarity_id],similarity_mx
     def validate_genre(
         self,
         slot_value: Any,
@@ -204,8 +187,12 @@ class ValidatePredefinedSlots(ValidationAction):
         if movie_or_tv == None:
             print('movie or tv not set')
             return {"genre": None}
-        genre = self.genre_matcher(slot_value,movie_or_tv)
-        print(f"was mapped to {genre}")
+        genre,confidence = self.genre_matcher(slot_value,movie_or_tv)
+        if confidence < 0.5:
+            print('confidence too low')
+            dispatcher.utter_message(utter_message="utter_genre_not_found")
+            return {"genre": None}
+        print(f"was mapped to {genre} with confidence {confidence}")
         return {"genre": genre}
     def validate_movie_or_tv(
         self,
@@ -259,7 +246,7 @@ class ValidateGenreForm(FormValidationAction):
             for word in genre.split():
                 try:
                     if selected_genre == word:
-                        return inverse_genres[genres[genre]]
+                        return inverse_genres[genres[genre]],1
                     similarity[genre][0] += Levenshtein.jaro(selected_genre,word)
                     
                 except KeyError:
@@ -269,7 +256,7 @@ class ValidateGenreForm(FormValidationAction):
         # if similarity_mx < 0.5:
         #     return None
         similarity_id = similarity[similarity_mx][1]
-        return inverse_genres[similarity_id]
+        return inverse_genres[similarity_id], similarity_mx
     def validate_genre(
         self,
         slot_value: Any,
@@ -284,8 +271,8 @@ class ValidateGenreForm(FormValidationAction):
             print('movie or tv not set')
             return {"genre": None}
         print(f"slot_value {slot_value}")
-        genre = self.genre_matcher(slot_value,movie_or_tv)
-        print(f"was mapped to {genre}")
+        genre,confidence = self.genre_matcher(slot_value,movie_or_tv)
+        print(f"was mapped to {genre} with confidence {confidence}")
         # if genre is None:
             # print("genre not found")
             # dispatcher.utter_message(text="Sorry, I didn't understand that. Please try again.")

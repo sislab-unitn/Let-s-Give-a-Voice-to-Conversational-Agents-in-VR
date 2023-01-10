@@ -34,7 +34,7 @@ stories:
 
 # - story: movie or tv disambigua implicit genre
 #   steps:
-#   - intent: ask_movie
+#   - intent: genre
 #   - slot_was_set:
 #     - genre
 #     - movie_or_tv: null
@@ -48,14 +48,14 @@ stories:
     # - genre: null
   - checkpoint: checkpoint_movie_tv_gotten
 
-- story: recommendation implicit genre from movie
-  steps:
-  - checkpoint: checkpoint_movie_tv_gotten
-  - action: utter_disambigua_discovery
-  - intent: genre
-  - slot_was_set:
-    - genre
-  - checkpoint: checkpoint_movie_tv_genre_gotten
+# - story: recommendation implicit genre from movie
+#   steps:
+#   - checkpoint: checkpoint_movie_tv_gotten
+#   - action: utter_disambigua_discovery
+#   - intent: genre
+#   - slot_was_set:
+#     - genre
+#   - checkpoint: checkpoint_movie_tv_genre_gotten
 
 # - story: recommendation implicit movie from genre
 #   steps:
@@ -73,14 +73,16 @@ stories:
 #   - action: movie_tv_form
 #   - checkpoint: checkpoint_movie_tv_genre_gotten
 
-- story: genre without movie or tv
-  steps:
-  - intent: ask_movie
-  - slot_was_set:
-    - movie_or_tv: null
-    - genre
-  - action: utter_movie_or_tv_first
-  - action: action_restart
+# - story: genre without movie or tv
+#   steps:
+#   - intent: ask_movie
+#   - slot_was_set:
+#     - genre
+#     - movie_or_tv: null
+#   - action: utter_movie_or_tv_first
+#   - action: movie_tv_form
+#   - checkpoint: checkpoint_movie_tv_genre_gotten
+  # wait_for_user_input: false
 
 - story: movie or tv disambigua explicit
   steps:

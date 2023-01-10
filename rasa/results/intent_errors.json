@@ -1,0 +1,26 @@
+[
+  {
+    "text": "Anything",
+    "intent": "ask_movie",
+    "intent_prediction": {
+      "name": "popular",
+      "confidence": 0.9057727456092834
+    }
+  },
+  {
+    "text": "idk",
+    "intent": "ask_movie",
+    "intent_prediction": {
+      "name": "popular",
+      "confidence": 0.49235549569129944
+    }
+  },
+  {
+    "text": "something",
+    "intent": "popular",
+    "intent_prediction": {
+      "name": "ask_movie",
+      "confidence": 0.5448631644248962
+    }
+  }
+]

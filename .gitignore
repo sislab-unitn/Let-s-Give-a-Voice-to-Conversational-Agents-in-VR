@@ -48,4 +48,6 @@ tags
 log
 .idea
 
+# ignore rasa cache and saved models to save space
 rasa/.rasa/cache/*
+rasa/models/*

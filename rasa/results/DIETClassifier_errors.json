@@ -1,0 +1,30 @@
+[
+  {
+    "text": "Which film]{\"entity\":\"movie_or_tv\",\"value\":\"movie\"}) genres are there?",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "movie_or_tv",
+        "start": 44,
+        "end": 49,
+        "confidence_entity": 0.6899593472480774,
+        "value": "movie",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Information on a movie please",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "movie_or_tv",
+        "start": 17,
+        "end": 22,
+        "confidence_entity": 0.7992872595787048,
+        "value": "movie",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  }
+]

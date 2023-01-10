@@ -1,0 +1,14 @@
+[
+  {
+    "text": "What genres are available in movie ?",
+    "entities": [
+      {
+        "start": 29,
+        "end": 34,
+        "value": "movie",
+        "entity": "movie_or_tv"
+      }
+    ],
+    "predicted_entities": []
+  }
+]
