@@ -1,5 +1,58 @@
 version: "3.1"
 nlu:
+- synonym: movie
+  examples: |
+    - movie
+    - film
+    - movies
+    - films
+- synonym: tv show
+  examples: |
+    - tv show
+    - tv series
+    - show
+    - series
+    - tv
+    - tv shows
+    - shows
+- lookup: genre
+  examples: |
+    - Action
+    - Adventure
+    - Animation
+    - Comedy
+    - Crime
+    - Documentary
+    - Drama
+    - Family
+    - Fantasy
+    - History
+    - Horror
+    - Music
+    - Mystery
+    - Romance
+    - Science Fiction
+    - TV Movie
+    - Thriller
+    - War
+    - Western
+    - Action & Adventure
+    - Animation
+    - Comedy
+    - Crime
+    - Documentary
+    - Drama
+    - Family
+    - Kids
+    - Mystery
+    - News
+    - Reality
+    - Sci-Fi & Fantasy
+    - Soap
+    - Talk
+    - War & Politics
+    - Western
+    
 - intent: greet
   examples: |
     - hey
@@ -15,11 +68,40 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
+- intent: affirm
+  examples: |
+    - yeah
+    - correct
+    - ye
+    - uh yes
+    - let's do it
+    - yeah
+    - uh yes
+    - um yes
+    - yes knocking
+    - that's correct
+    - yes yes
+    - right
+    - yea
+    - yes
+    - yes right
+    - yes and i dont care
+    - right on
+    - i love that
+- intent: deny
+  examples: |
+    - no
+    - no new selection
+    - no thanks
+    - no thank you
+    - uh no
+    - breath no
+    - do you have something else
+    - no this does not work for me
 - intent: goodbye
   examples: |
-    - cu
     - good by
-    - cee you later
+    - see you later
     - good night
     - bye
     - goodbye
@@ -27,14 +109,81 @@ nlu:
     - see you around
     - bye bye
     - see you later
+- intent: thank_you
+  examples: |
+    - thank you
+    - thanks
+    - ty
+    - love you
+    - thank you so much
+    - ty for your help
+- intent: out_of_scope
+  examples: |
+    - I want to order food
+    - What is 2 + 2?
+    - Who's the US President?
+    - fuck you
+    - bitch
+    - Tell me the weather
+    - cheer me up please
+    - Call my mother
+- intent: help
+  examples: |
+    - help
+    - help me
+    - what can you do?
+    - what can you help me with?
 - intent: ask_movie
   examples: |
-    - I'm bored. I want to watch a movie. Do you have anything to suggest me ?
-    - What movie do you suggest ?
-    - What film shoud I watch ?
-    - Is there a good movie to watch ?
-    - I'd like a good movie for tonight
-    - Can you suggest me a good film to watch ?
+    - [movie](movie_or_tv)
+    - [tv show](movie_or_tv)
+    - I'm bored. I want to watch a [movie](movie_or_tv). Do you have anything to suggest me ?
+    - What [movie](movie_or_tv) do you suggest ?
+    - What [film]{"entity":"movie_or_tv","value":"movie"} shoud I watch ?
+    - Is there a good [movie](movie_or_tv) to watch ?
+    - I'd like a good [movie](movie_or_tv) for tonight
+    - Can you suggest me a good [film]{"entity":"movie_or_tv","value":"movie"} to watch ?
+    - I'm bored. I want to watch a [tv show](movie_or_tv). Do you have anything to suggest me ?
+    - What [tv show](movie_or_tv) do you suggest ?
+    - What [show]{"entity":"movie_or_tv","value":"tv show"} shoud I watch ?
+    - Is there a good [series]{"entity":"movie_or_tv","value":"tv show"} to watch ?
+    - I'd like a good [show]{"entity":"movie_or_tv","value":"tv show"} for tonight
+    - Can you suggest me a good [show]{"entity":"movie_or_tv","value":"tv show"} to watch ?
+    - I want to watch a [movie](movie_or_tv)
+    - I want to watch a [tv show](movie_or_tv)
+    - I want to watch something
+    - Suggest me something
+    - Anything
+    - idk
+    - something
+    - something good
+    - i want to watch
+    - recommend me something
+    - I want something to binge    
+    - [Action](genre) [movie](movie_or_tv)
+    - [Action](genre) [tv show](movie_or_tv)
+    - I'm bored. I want to watch an [Action](genre) [movie](movie_or_tv). Do you have anything to suggest me ?
+    - What [Action](genre) [movie](movie_or_tv) do you suggest ?
+    - What [Action](genre) [film]{"entity":"movie_or_tv","value":"movie"} shoud I watch ?
+    - Is there a good [movie](movie_or_tv) to watch in [Action](genre) genre?
+    - I'd like a good [movie](movie_or_tv) in [Action](genre) for tonight
+    - Can you suggest me a good [Action](genre) [film]{"entity":"movie_or_tv","value":"movie"} to watch ?
+    - I'm bored. I want to watch a [Action](genre) genre [tv show](movie_or_tv). Do you have anything to suggest me ?
+    - What [Action](genre) [tv show](movie_or_tv) do you suggest ?
+    - What [Action](genre) [show]{"entity":"movie_or_tv","value":"tv show"} shoud I watch ?
+    - Is there a good [Action](genre) [series]{"entity":"movie_or_tv","value":"tv show"} to watch ?
+    - I'd like a good [Action](genre) [show]{"entity":"movie_or_tv","value":"tv show"} for tonight
+    - Can you suggest me a good [Action](genre) [show]{"entity":"movie_or_tv","value":"tv show"} to watch ?
+    - I want to watch a [Action](genre) [movie](movie_or_tv)
+    - I want to watch a [Action](genre) [tv show](movie_or_tv)
+    - I want to watch something in the [Action](genre) genre
+    - Suggest me something [Action](genre)
+    - Anything [Action](genre)
+    - something [Action](genre)
+    - something good [Action](genre)
+    - i want to watch [Action](genre)
+    - recommend me something [Action](genre)
+    - I want something to binge [Action](genre)
 - intent: help_genres
   examples: |
     - What genres are available?
@@ -42,6 +191,15 @@ nlu:
     - Which genres do exists?
     - Which genres are there?
     - How many genres are there?
+    - How many genres are in [movie](movie_or_tv)?
+    - How many genres are in [tv show](movie_or_tv)?
+    - Which [movie](movie_or_tv) genres do exists?
+    - Which [tv show](movie_or_tv) genres do exists?
+    - Which [movie](movie_or_tv) genres are there?
+    - Which [tv show](movie_or_tv) genres are there?
+    - Which [series]{"entity":"movie_or_tv","value":"tv show"} genres do exists?
+    - Which film]{"entity":"movie_or_tv","value":"movie"}) genres are there?
+    - Which [series]{"entity":"movie_or_tv","value":"tv show"} genres are there?
 - intent: popular
   examples: |
     - Something that's popular
@@ -73,126 +231,48 @@ nlu:
     - anything that's popular
     - anything popular will do
     - popular will do
-    - good old popular will do
+    - good old popular will do    
+
 - intent: genre
   examples: |
     - By genre
     - Second option
+    - Genre
+    - Genres
+    - By genre please
+    - by genre thanks
+    - [Action](genre)
+    - [Action](genre)
+    - [Action](genre)
     - [Action](genre) please
     - I have [Action](genre) in mind
     - Show me [Action](genre) movies
     - I want to watch [Action](genre) movies
     - Only [Action](genre) please
-    - [Action](genre) thanks
-    - [Comedy](genre) please
-    - I have [Comedy](genre) in mind
-    - Show me [Comedy](genre) movies
-    - I want to watch [Comedy](genre) movies
-    - Only [Comedy](genre) please
-    - [Comedy](genre) thanks
-    - [Adventure](genre) please
-    - I have [Adventure](genre) in mind
-    - Show me [Adventure](genre) movies
-    - I want to watch [Adventure](genre) movies
-    - Only [Adventure](genre) please
-    - [Adventure](genre) thanks
-    - [Animation](genre) please
-    - I have [Animation](genre) in mind
-    - Show me [Animation](genre) movies
-    - I want to watch [Animation](genre) movies
-    - Only [Animation](genre) please
-    - [Animation](genre) thanks
-    - [Crime](genre) please
-    - I have [Crime](genre) in mind
-    - Show me [Crime](genre) movies
-    - I want to watch [Crime](genre) movies
-    - Only [Crime](genre) please
-    - [Crime](genre) thanks
-    - [Documentary](genre) please
-    - I have [Documentary](genre) in mind
-    - Show me [Documentary](genre) movies
-    - I want to watch [Documentary](genre) movies
-    - Only [Documentary](genre) please
-    - [Documentary](genre) thanks
-    - [Drama](genre) please
-    - I have [Drama](genre) in mind
-    - Show me [Drama](genre) movies
-    - I want to watch [Drama](genre) movies
-    - Only [Drama](genre) please
-    - [Drama](genre) thanks
-    - [Family](genre) please
-    - I have [Family](genre) in mind
-    - Show me [Family](genre) movies
-    - I want to watch [Family](genre) movies
-    - Only [Family](genre) please
-    - [Family](genre) thanks
-    - [Fantasy](genre) please
-    - I have [Fantasy](genre) in mind
-    - Show me [Fantasy](genre) movies
-    - I want to watch [Fantasy](genre) movies
-    - Only [Fantasy](genre) please
-    - [Fantasy](genre) thanks
-    - [History](genre) please
-    - I have [History](genre) in mind
-    - Show me [History](genre) movies
-    - I want to watch [History](genre) movies
-    - Only [History](genre) please
-    - [History](genre) thanks
-    - [Horror](genre) please
-    - I have [Horror](genre) in mind
-    - Show me [Horror](genre) movies
-    - I want to watch [Horror](genre) movies
-    - Only [Horror](genre) please
-    - [Horror](genre) thanks   
-    - [Music](genre) please
-    - I have [Music](genre) in mind
-    - Show me [Music](genre) movies
-    - I want to watch [Music](genre) movies
-    - Only [Music](genre) please
-    - [Music](genre) thanks
-    - [Mystery](genre) please
-    - I have [Mystery](genre) in mind
-    - Show me [Mystery](genre) movies
-    - I want to watch [Mystery](genre) movies
-    - Only [Mystery](genre) please
-    - [Mystery](genre) thanks
-    - [Romance](genre) please
-    - I have [Romance](genre) in mind
-    - Show me [Romance](genre) movies
-    - I want to watch [Romance](genre) movies
-    - Only [Romance](genre) please
-    - [Romance](genre) thanks
-    - [Science Fiction](genre) please
-    - I have [Science Fiction](genre) in mind
-    - Show me [Science Fiction](genre) movies
-    - I want to watch [Science Fiction](genre) movies
-    - Only [Science Fiction](genre) please
-    - [TV Movie](genre) thanks
-    - [TV Movie](genre) please
-    - I have [TV Movie](genre) in mind
-    - Show me [TV Movie](genre) movies
-    - I want to watch [TV Movie](genre) movies
-    - Only [TV Movie](genre) please
-    - [TV Movie](genre) thanks
-    - [Thriller](genre) please
-    - I have [Thriller](genre) in mind
-    - Show me [Thriller](genre) movies
-    - I want to watch [Thriller](genre) movies
-    - Only [Thriller](genre) please
-    - [Thriller](genre) thanks
-    - [War](genre) please
-    - I have [War](genre) in mind
-    - Show me [War](genre) movies
-    - I want to watch [War](genre) movies
-    - Only [War](genre) please
-    - [War](genre) thanks
-    - [Western](genre) please
-    - I have [Western](genre) in mind
-    - Show me [Western](genre) movies
-    - I want to watch [Western](genre) movies
-    - Only [Western](genre) please
-    - [Western](genre) thanks
-
+    - Action(genre) thanks    
+    - [Action](genre)
+    - [Action](genre) if possible
+    - Movies in [Action](genre)
+    - Film in [Action](genre)
+    - [Action](genre) releases
+    - [Action](genre) new releases
+    - [Action](genre) newly published
+    - Best in [Action](genre) 
+    - Best of [Action](genre)
+    - Good [Action](genre)
+    - Awesome [Action](genre)
+    - Incredible [Action](genre) movies
+    - [Action](genre) films
+- intent: lookup_movie 
+  examples: |
+    - Lookup [Avatar](movie)?
+    - Information on [Avatar](movie)?
+    - Information on a movie please
+    - I want information on a film
+- intent: ask_availability_movie
+  examples: |
+    - Where can I watch [Avatar](movie)?
+#    - Is [Avatar](movie) available on [netflix](distributor)?
 # Adventure
 # Animation
 # Comedy

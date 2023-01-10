@@ -2,51 +2,167 @@ version: "3.1"
 
 stories:
 
-- story: movie recommendation
+- story: Help genres explicit
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: ask_movie
-  - action: utter_disambigua_discovery
-  - intent: popular
-  - action: action_discover_movie
+  - intent: help_genres
   - slot_was_set:
-    - top_names
-  - action: utter_discover_movie
-  - action: action_restart
+    - movie_or_tv: null
+  - action: utter_disambigua_movie_tv
+  - action: movie_tv_form
+  - action: action_genres_available
+  - slot_was_set:
+      - genres_available
+  - action: utter_genres
 
-- story: movie recommendation genre implicit
+- story: Help genres implicit
   steps:
-  - intent: greet
-  - action: utter_greet
+  - intent: help_genres
+  - slot_was_set:
+    - movie_or_tv
+  - action: action_genres_available
+  - slot_was_set:
+      - genres_available
+  - action: utter_genres
+
+- story: movie or tv implicit
+  steps:
   - intent: ask_movie
+  - slot_was_set:
+    - movie_or_tv
+    - genre
+  - checkpoint: checkpoint_movie_tv_genre_gotten
+
+# - story: movie or tv disambigua implicit genre
+#   steps:
+#   - intent: ask_movie
+#   - slot_was_set:
+#     - genre
+#     - movie_or_tv: null
+#   - checkpoint: checkpoint_genre_gotten
+
+- story: movie or tv disambigua implicit movie or tv
+  steps:
+  - intent: ask_movie
+  - slot_was_set:
+    - movie_or_tv
+    # - genre: null
+  - checkpoint: checkpoint_movie_tv_gotten
+
+- story: recommendation implicit genre from movie
+  steps:
+  - checkpoint: checkpoint_movie_tv_gotten
   - action: utter_disambigua_discovery
   - intent: genre
   - slot_was_set:
     - genre
-  - action: action_discover_movie
+  - checkpoint: checkpoint_movie_tv_genre_gotten
+
+# - story: recommendation implicit movie from genre
+#   steps:
+#   - checkpoint: checkpoint_genre_gotten
+#   - action: utter_disambigua_movie_tv
+#   - intent: ask_movie
+#   - slot_was_set:
+#     - movie_or_tv
+#   - checkpoint: checkpoint_movie_tv_genre_gotten
+
+# - story: recommendation explicit movie from genre
+#   steps:
+#   - checkpoint: checkpoint_genre_gotten
+#   - action: utter_disambigua_movie_tv
+#   - action: movie_tv_form
+#   - checkpoint: checkpoint_movie_tv_genre_gotten
+
+- story: genre without movie or tv
+  steps:
+  - intent: ask_movie
   - slot_was_set:
-    - top_names
-  - action: utter_discover_genre_movie
+    - movie_or_tv: null
+    - genre
+  - action: utter_movie_or_tv_first
   - action: action_restart
+
+- story: movie or tv disambigua explicit
+  steps:
+  - intent: ask_movie
+  - slot_was_set:
+    - movie_or_tv: null
+    - genre: null
+  - action: utter_disambigua_movie_tv
+  - action: movie_tv_form
+  - checkpoint: checkpoint_movie_tv_gotten
 
 - story: movie recommendation genre explicit
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: ask_movie
+  - checkpoint: checkpoint_movie_tv_gotten
   - action: utter_disambigua_discovery
   - intent: genre
   - slot_was_set:
     - genre: null
   - action: utter_intent_specification
   - action: discovery_form
+  - checkpoint: checkpoint_movie_tv_genre_gotten
+
+- story:  movie recommendation popular
+  steps:
+  - checkpoint: checkpoint_movie_tv_gotten
+  - action: utter_disambigua_discovery
+  - intent: popular
+  - checkpoint: checkpoint_movie_tv_genre_gotten
+
+- story: movie discovery checkpoint (final)
+  steps:
+  - checkpoint: checkpoint_movie_tv_genre_gotten
   - action: action_discover_movie
   - slot_was_set:
     - top_names
   - action: utter_discover_genre_movie
   - action: action_restart
-# TODO validation of genre slot
-# double take if genre is not valid
-# branch genre slot filled or not
-# one does not know what available genres are there
+
+
+- story: movie lookup implicit
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: lookup_movie
+  - slot_was_set:
+    - movie
+  - action: action_lookup_movie
+  - action: action_restart
+
+- story: movie lookup explicit
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: lookup_movie
+  - slot_was_set:
+    - movie: null
+  - action: utter_lookup_specification
+  - action: lookup_form
+  - action: action_lookup_movie
+  - action: action_restart
+
+# interactive movie with netflix checkpoint
+- story: movie interaction
+  steps:
+  - checkpoint: checkpoint_movie_gotten
+  - intent: ask_availability_movie
+  - slot_was_set:
+    - movie
+  - action: action_get_availability_movie
+  - action: utter_availability_movie
+  - action: action_restart  
+  
+# TODO validation of genre slot 
+# double take if genre is not valid ?
+# branch genre slot filled or not √
+# one does not know what available genres are there √
+# check correctness of parsed genres
+# fallback rule √
+# fallback story
+# open netflix
+# test and add unhappy paths
+# explicit 0 result
+# caps the validated slot √
+# propose new form if confidence is low
+# what if a user sets genre before movie or tv?
