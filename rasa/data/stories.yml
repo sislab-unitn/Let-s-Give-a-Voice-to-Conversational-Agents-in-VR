@@ -24,6 +24,23 @@ stories:
       - genres_available
   - action: utter_genres
 
+- story: genre implicit
+  steps:
+  - intent: ask_movie
+  - slot_was_set:
+    - movie_or_tv: null
+    - genre
+  - checkpoint: checkpoint_genre_gotten
+
+- story: genre implicit movie
+  steps:
+  - checkpoint: checkpoint_genre_gotten
+  - action: utter_disambigua_movie_tv
+  - intent: ask_movie
+  - slot_was_set:
+    - movie_or_tv
+  - checkpoint: checkpoint_movie_tv_genre_gotten
+
 - story: movie or tv implicit
   steps:
   - intent: ask_movie
@@ -75,17 +92,89 @@ stories:
   - checkpoint: checkpoint_movie_tv_gotten
   - action: utter_disambigua_discovery
   - intent: popular
-  - checkpoint: checkpoint_movie_tv_genre_gotten
+  - checkpoint: checkpoint_discovery_popular
 
-- story: movie discovery checkpoint (final)
+
+- story: movie discovery genre validation
   steps:
   - checkpoint: checkpoint_movie_tv_genre_gotten
+  - action: custom_genre_validation
+  - slot_was_set:
+    - movie_or_tv
+    - genre
+    - genre_validated: true
+  - checkpoint: checkpoint_discovery
+
+- story: movie discovery genre validation
+  steps:
+  - checkpoint: checkpoint_movie_tv_genre_gotten
+  - action: custom_genre_validation
+  - slot_was_set:
+    - movie_or_tv
+    - genre
+    - genre_validated: false
+  - action: action_genres_available
+  - slot_was_set:
+    - genres_available
+  - action: utter_genre_disambigua
+  - intent: genre
+  - slot_was_set:
+    - genre
+  - checkpoint: checkpoint_movie_tv_genre_gotten
+
+# - story: movie discovery genre validation
+#   steps:
+#   - checkpoint: checkpoint_movie_tv_genre_gotten
+#   - action: custom_genre_validation
+#   - slot_was_set:
+#     - movie_or_tv
+#     - genre
+#     - genre_validated: false
+#   - action: action_genres_available
+#   - slot_was_set:
+#     - genres_available
+#   - action: utter_genre_disambigua
+#   - intent: genre
+#   - slot_was_set:
+#     - genre: null
+#   - checkpoint: checkpoint_movie_tv_genre_gotten
+
+# - story: movie discovery checkpoint (final)
+#   steps:
+#   - checkpoint: checkpoint_discovery
+#   - action: action_discover_movie
+#   - slot_was_set:
+#     - top_names
+#   - action: utter_discover_genre_movie
+#   - action: action_restart
+- story: movie discovery checkpoint (final)
+  steps:
+  - checkpoint: checkpoint_discovery
   - action: action_discover_movie
   - slot_was_set:
     - top_names
   - action: utter_discover_genre_movie
   - action: action_restart
 
+- story: movie discovery checkpoint popular (final)
+  steps:
+  - checkpoint: checkpoint_discovery_popular
+  - action: custom_genre_validation
+  - action: action_discover_movie
+  - slot_was_set:
+    - top_names
+  - action: utter_discover_movie
+  - action: action_restart
+# - story: movie discovery checkpoint (final)
+#   steps:
+#   - slot_was_set:
+#     - genre: null
+#   - checkpoint: checkpoint_discovery
+#   - action: action_discover_movie
+#   - slot_was_set:
+#     - top_names
+#   - action: utter_discover_movie
+#   - action: action_restart
 
 # - story: movie lookup implicit
 #   steps:
@@ -141,3 +230,5 @@ stories:
 
 # - slot is present with high confidence in the opposite slot
 # - do you want to change?
+
+    

@@ -50,7 +50,7 @@ def genre_matcher(selected_genre,movie_or_tv):
             try:
                 if selected_genre == word:
                     return inverse_genres[genres_lower[genre_lower]],1
-                similarity[genre_lower][0] += Levenshtein.jaro(selected_genre,word)
+                similarity[genre_lower][0] = max(Levenshtein.jaro(selected_genre,word),similarity[genre_lower][0])
             except KeyError:
                 similarity[genre_lower] = [Levenshtein.jaro(selected_genre,word),genres_lower[genre_lower]]
     # max similarity
@@ -71,6 +71,7 @@ class ActionDiscoverMovie(Action):
             print('movie or tv not set')
             return []
         genre_ids = get_slot_ids(movie_or_tv)
+        
         genre = tracker.get_slot('genre')
         if movie_or_tv == 'movie':
             if genre is None:
@@ -151,6 +152,44 @@ class ActionLookupMovie(Action):
         return []
   
   
+class CustomGenreValidation(Action):
+    def name(self) -> Text:
+        return "custom_genre_validation"
+
+    async def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        print('Hi')
+        state = tracker.current_state()
+        from pprint import pprint
+        pprint(state)
+        
+        movie_or_tv = tracker.get_slot('movie_or_tv')
+        if Levenshtein.jaro(movie_or_tv,'movie') > Levenshtein.jaro(movie_or_tv,'tv show'):
+            movie_or_tv = 'movie'
+        else:
+            movie_or_tv = 'tv show'
+        evt_movie_or_tv = SlotSet("movie_or_tv",movie_or_tv)
+        
+        
+        genre = tracker.get_slot('genre')
+        
+        if genre is None:
+            evt_genre = SlotSet("genre",None)
+            evt_validated = SlotSet("genre_validated",True)
+            return [evt_movie_or_tv,evt_genre,evt_validated]
+        else:
+            matched_genre, confidence =  genre_matcher(genre,movie_or_tv)
+            print(f"genre {genre} was matched to {matched_genre} with confidence {confidence}")
+            if confidence > 0.9:
+                evt_genre = SlotSet("genre",matched_genre)
+                evt_validated = SlotSet("genre_validated",True)
+            else:
+                evt_genre = SlotSet("genre",genre)
+                evt_validated = SlotSet("genre_validated",False)
+            return [evt_movie_or_tv,evt_genre,evt_validated]
+    
+
 # from typing import Text, Any, Dict
 
 # from rasa_sdk import Tracker, ValidationAction

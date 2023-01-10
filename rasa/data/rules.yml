@@ -77,6 +77,29 @@ rules:
     - movie_or_tv
   wait_for_user_input: false
 
+
+# - rule: Activate genre validation form
+#   steps:
+#   - checkpoint: checkpoint_movie_tv_genre_gotten
+#   - action: custom_validation
+#   - slot_was_set:
+#     - genre_validated: false
+#   - action: action_genres_available
+#   - action: utter_genre_disambigua
+#   - action: genre_validation_form
+#   - active_loop: genre_validation_form
+#   - slot_was_set:
+#     - genre
+
+# - rule: Submit genre form
+#   condition:
+#   - active_loop: genre_form
+#   steps:
+#   - action: genre_form
+#   - active_loop: null
+#   - slot_was_set:
+#     - genre
+#   wait_for_user_input: false
 # - rule: Activate movie lookup form
 #   steps:
 #   - intent: lookup_movie
