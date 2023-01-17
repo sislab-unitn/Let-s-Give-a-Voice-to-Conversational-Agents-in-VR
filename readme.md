@@ -3,7 +3,7 @@
 This page contains a repo with a simple conversational agent. The conversational agent recommends movies and tv shows, with options to choose a genre.
 There are two implementations, one in Rasa and the other using Wit.
 
-The conversational agent retrieves data from [tmdb](https://www.themoviedb.org/) with their free to use API.
+The conversational agent retrieves data from [tmdb](https://www.themoviedb.org/) with their free to use API. Note that is necessary to have an account in order to get the required token that allows API requests. Check [here](https://www.themoviedb.org/faq/account) in order to get an account and generate a token
 
 For now it is possible to:
 - Ask for movie or tv show suggestion
@@ -74,7 +74,7 @@ Because the model is online, there is no need to train
 
 To run
 ```
-node examples/basic.js 45HUGIAZWCS5JQ2Y6IWOQDDTK3I2EXIA c038a92e3fe9346f02feaf2d8ae2efab
+node examples/basic.js <wit-server-token> <tmdb-token>
 ```
 
 ## Credits
