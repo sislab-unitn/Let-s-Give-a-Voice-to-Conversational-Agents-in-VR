@@ -52,4 +52,5 @@ log
 rasa/.rasa/cache/*
 rasa/models/*
 *.DS_Store
-.gitmodules
+
+#.gitmodules
