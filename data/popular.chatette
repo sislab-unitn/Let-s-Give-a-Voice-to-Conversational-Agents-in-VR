@@ -1,0 +1,27 @@
+~[popular]
+    popular
+    Popular
+    common
+@[movie_or_tv]
+    movie
+    tv show
+    film = movie
+    tv = tv show
+    show = tv show
+    movies = movie
+    films = movie
+    tv shows = tv show
+    shows = tv show
+%[popular](100)
+    Something [popular]
+    I want to watch something [popular]
+    Recomend me something [popular]
+    Suggest me something [popular]
+    [popular]
+    By popularity
+    Popular @[movie_or_tv]
+    Popular
+    Popular stuff
+    Anything that is popular
+    Good popular @[movie_or_tv]
+    

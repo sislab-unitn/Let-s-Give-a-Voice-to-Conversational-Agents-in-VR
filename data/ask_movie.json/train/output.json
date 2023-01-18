@@ -1,0 +1,7584 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "entities": [
+          {
+            "end": 6,
+            "entity": "movie_or_tv",
+            "start": 2,
+            "value": "movie"
+          },
+          {
+            "end": 19,
+            "entity": "genre",
+            "start": 14,
+            "value": "Drama"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A film in the Drama genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 6,
+            "entity": "movie_or_tv",
+            "start": 2,
+            "value": "movie"
+          },
+          {
+            "end": 22,
+            "entity": "genre",
+            "start": 14,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A film in the romances genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 6,
+            "entity": "movie_or_tv",
+            "start": 2,
+            "value": "movie"
+          },
+          {
+            "end": 28,
+            "entity": "genre",
+            "start": 14,
+            "value": "War & Politics"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A film in the war & Politics genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "movie_or_tv",
+            "start": 2,
+            "value": "movie"
+          },
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 15,
+            "value": "History"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A films in the Historic genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "movie_or_tv",
+            "start": 2,
+            "value": "movie"
+          },
+          {
+            "end": 22,
+            "entity": "genre",
+            "start": 15,
+            "value": "Western"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A films in the Western genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 7,
+            "value": "Action & Adventure"
+          },
+          {
+            "end": 31,
+            "entity": "movie_or_tv",
+            "start": 26,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good Action & Adventure films"
+      },
+      {
+        "entities": [
+          {
+            "end": 16,
+            "entity": "genre",
+            "start": 7,
+            "value": "Adventure"
+          },
+          {
+            "end": 23,
+            "entity": "movie_or_tv",
+            "start": 17,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good Adventure movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 16,
+            "entity": "genre",
+            "start": 7,
+            "value": "Adventure"
+          },
+          {
+            "end": 22,
+            "entity": "movie_or_tv",
+            "start": 17,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good Adventure shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 16,
+            "entity": "genre",
+            "start": 7,
+            "value": "Adventure"
+          },
+          {
+            "end": 24,
+            "entity": "movie_or_tv",
+            "start": 17,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good Adventure tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 16,
+            "entity": "genre",
+            "start": 7,
+            "value": "Animation"
+          },
+          {
+            "end": 23,
+            "entity": "movie_or_tv",
+            "start": 17,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good Animation movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 12,
+            "entity": "genre",
+            "start": 7,
+            "value": "Crime"
+          },
+          {
+            "end": 18,
+            "entity": "movie_or_tv",
+            "start": 13,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good Crime shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 12,
+            "entity": "genre",
+            "start": 7,
+            "value": "Drama"
+          },
+          {
+            "end": 17,
+            "entity": "movie_or_tv",
+            "start": 13,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good Drama film"
+      },
+      {
+        "entities": [
+          {
+            "end": 12,
+            "entity": "genre",
+            "start": 7,
+            "value": "Music"
+          },
+          {
+            "end": 17,
+            "entity": "movie_or_tv",
+            "start": 13,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good Music show"
+      },
+      {
+        "entities": [
+          {
+            "end": 12,
+            "entity": "genre",
+            "start": 7,
+            "value": "Music"
+          },
+          {
+            "end": 21,
+            "entity": "movie_or_tv",
+            "start": 13,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good Music tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 14,
+            "entity": "genre",
+            "start": 7,
+            "value": "Music"
+          },
+          {
+            "end": 20,
+            "entity": "movie_or_tv",
+            "start": 15,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good Musical shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 11,
+            "entity": "genre",
+            "start": 7,
+            "value": "News"
+          },
+          {
+            "end": 17,
+            "entity": "movie_or_tv",
+            "start": 12,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good News movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 14,
+            "entity": "genre",
+            "start": 7,
+            "value": "Reality"
+          },
+          {
+            "end": 22,
+            "entity": "movie_or_tv",
+            "start": 15,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good Reality tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 7,
+            "value": "Sci-Fi & Fantasy"
+          },
+          {
+            "end": 29,
+            "entity": "movie_or_tv",
+            "start": 24,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good Sci-Fi & Fantasy shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 11,
+            "entity": "genre",
+            "start": 7,
+            "value": "Talk"
+          },
+          {
+            "end": 18,
+            "entity": "movie_or_tv",
+            "start": 12,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good Talk movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 7,
+            "value": "Action & Adventure"
+          },
+          {
+            "end": 33,
+            "entity": "movie_or_tv",
+            "start": 26,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good action & adventure tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 17,
+            "entity": "genre",
+            "start": 7,
+            "value": "Animation"
+          },
+          {
+            "end": 23,
+            "entity": "movie_or_tv",
+            "start": 18,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good animations movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 17,
+            "entity": "genre",
+            "start": 7,
+            "value": "Animation"
+          },
+          {
+            "end": 23,
+            "entity": "movie_or_tv",
+            "start": 18,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good animations shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 13,
+            "entity": "genre",
+            "start": 7,
+            "value": "Comedy"
+          },
+          {
+            "end": 18,
+            "entity": "movie_or_tv",
+            "start": 14,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good comedy show"
+      },
+      {
+        "entities": [
+          {
+            "end": 14,
+            "entity": "genre",
+            "start": 7,
+            "value": "Family"
+          },
+          {
+            "end": 22,
+            "entity": "movie_or_tv",
+            "start": 15,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good familys tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 11,
+            "entity": "movie_or_tv",
+            "start": 7,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good film"
+      },
+      {
+        "entities": [
+          {
+            "end": 12,
+            "entity": "movie_or_tv",
+            "start": 7,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good films"
+      },
+      {
+        "entities": [
+          {
+            "end": 11,
+            "entity": "genre",
+            "start": 7,
+            "value": "Kids"
+          },
+          {
+            "end": 16,
+            "entity": "movie_or_tv",
+            "start": 12,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good kids film"
+      },
+      {
+        "entities": [
+          {
+            "end": 12,
+            "entity": "movie_or_tv",
+            "start": 7,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 13,
+            "entity": "movie_or_tv",
+            "start": 7,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 12,
+            "entity": "genre",
+            "start": 7,
+            "value": "Music"
+          },
+          {
+            "end": 18,
+            "entity": "movie_or_tv",
+            "start": 13,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good music movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 14,
+            "entity": "genre",
+            "start": 7,
+            "value": "Music"
+          },
+          {
+            "end": 22,
+            "entity": "movie_or_tv",
+            "start": 15,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good musical tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 14,
+            "entity": "genre",
+            "start": 7,
+            "value": "Reality"
+          },
+          {
+            "end": 20,
+            "entity": "movie_or_tv",
+            "start": 15,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good reality films"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 7,
+            "value": "Sci-Fi & Fantasy"
+          },
+          {
+            "end": 30,
+            "entity": "movie_or_tv",
+            "start": 24,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good sci-Fi & Fantasy movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 7,
+            "value": "Science Fiction"
+          },
+          {
+            "end": 29,
+            "entity": "movie_or_tv",
+            "start": 24,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good science fictions movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 7,
+            "value": "Science Fiction"
+          },
+          {
+            "end": 26,
+            "entity": "movie_or_tv",
+            "start": 24,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good science fictions tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 12,
+            "entity": "movie_or_tv",
+            "start": 7,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 11,
+            "entity": "genre",
+            "start": 7,
+            "value": "Soap"
+          },
+          {
+            "end": 17,
+            "entity": "movie_or_tv",
+            "start": 12,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good soap films"
+      },
+      {
+        "entities": [
+          {
+            "end": 12,
+            "entity": "genre",
+            "start": 7,
+            "value": "Talk"
+          },
+          {
+            "end": 19,
+            "entity": "movie_or_tv",
+            "start": 13,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good talks movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 9,
+            "entity": "movie_or_tv",
+            "start": 7,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 14,
+            "entity": "movie_or_tv",
+            "start": 7,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 15,
+            "entity": "movie_or_tv",
+            "start": 7,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 21,
+            "entity": "genre",
+            "start": 7,
+            "value": "War & Politics"
+          },
+          {
+            "end": 27,
+            "entity": "movie_or_tv",
+            "start": 22,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A good war & politics films"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "movie_or_tv",
+            "start": 2,
+            "value": "movie"
+          },
+          {
+            "end": 22,
+            "entity": "genre",
+            "start": 15,
+            "value": "Mystery"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A movie in the Mystery genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "movie_or_tv",
+            "start": 2,
+            "value": "movie"
+          },
+          {
+            "end": 22,
+            "entity": "genre",
+            "start": 15,
+            "value": "Family"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A movie in the familys genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "movie_or_tv",
+            "start": 2,
+            "value": "movie"
+          },
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 15,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A movie in the romanticals genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 8,
+            "entity": "movie_or_tv",
+            "start": 2,
+            "value": "movie"
+          },
+          {
+            "end": 22,
+            "entity": "genre",
+            "start": 16,
+            "value": "Horror"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A movies in the Horror genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 6,
+            "entity": "movie_or_tv",
+            "start": 2,
+            "value": "tv show"
+          },
+          {
+            "end": 21,
+            "entity": "genre",
+            "start": 14,
+            "value": "Western"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A show in the Western genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "movie_or_tv",
+            "start": 2,
+            "value": "tv show"
+          },
+          {
+            "end": 18,
+            "entity": "genre",
+            "start": 15,
+            "value": "War"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A shows in the War genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "movie_or_tv",
+            "start": 2,
+            "value": "tv show"
+          },
+          {
+            "end": 20,
+            "entity": "genre",
+            "start": 15,
+            "value": "Drama"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A shows in the drama genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 4,
+            "entity": "movie_or_tv",
+            "start": 2,
+            "value": "tv show"
+          },
+          {
+            "end": 21,
+            "entity": "genre",
+            "start": 12,
+            "value": "Animation"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A tv in the Animation genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 4,
+            "entity": "movie_or_tv",
+            "start": 2,
+            "value": "tv show"
+          },
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 12,
+            "value": "Documentary"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A tv in the Documentary genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 9,
+            "entity": "movie_or_tv",
+            "start": 2,
+            "value": "tv show"
+          },
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 17,
+            "value": "Adventure"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A tv show in the Adventure genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 10,
+            "entity": "movie_or_tv",
+            "start": 2,
+            "value": "tv show"
+          },
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 18,
+            "value": "Thriller"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "A tv shows in the Thriller genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 18,
+            "entity": "genre",
+            "start": 0,
+            "value": "Action & Adventure"
+          },
+          {
+            "end": 30,
+            "entity": "movie_or_tv",
+            "start": 25,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Action & Adventure genre films"
+      },
+      {
+        "entities": [
+          {
+            "end": 18,
+            "entity": "genre",
+            "start": 0,
+            "value": "Action & Adventure"
+          },
+          {
+            "end": 31,
+            "entity": "movie_or_tv",
+            "start": 25,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Action & Adventure genre movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 9,
+            "entity": "genre",
+            "start": 0,
+            "value": "Animation"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Animation"
+      },
+      {
+        "entities": [],
+        "intent": "ask_movie",
+        "text": "Anything"
+      },
+      {
+        "entities": [
+          {
+            "end": 18,
+            "entity": "genre",
+            "start": 9,
+            "value": "Animation"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Anything Animation genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 20,
+            "entity": "genre",
+            "start": 9,
+            "value": "Documentary"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Anything Documentary genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 14,
+            "entity": "genre",
+            "start": 9,
+            "value": "Drama"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Anything Drama genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 13,
+            "entity": "genre",
+            "start": 9,
+            "value": "Kids"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Anything Kids genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 16,
+            "entity": "genre",
+            "start": 9,
+            "value": "Reality"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Anything Reality genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 16,
+            "entity": "genre",
+            "start": 9,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Anything Romance genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 9,
+            "value": "Sci-Fi & Fantasy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Anything Sci-Fi & Fantasy genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 15,
+            "entity": "genre",
+            "start": 9,
+            "value": "Sci-Fi & Fantasy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Anything Sci-fi genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 9,
+            "value": "Science Fiction"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Anything Science Fiction genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 13,
+            "entity": "genre",
+            "start": 9,
+            "value": "Talk"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Anything Talk genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 17,
+            "entity": "genre",
+            "start": 9,
+            "value": "Thriller"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Anything Thriller genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 16,
+            "entity": "genre",
+            "start": 9,
+            "value": "Comedy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Anything comedic genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 15,
+            "entity": "genre",
+            "start": 9,
+            "value": "Crime"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Anything crimes genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 6,
+            "entity": "genre",
+            "start": 0,
+            "value": "Comedy"
+          },
+          {
+            "end": 11,
+            "entity": "movie_or_tv",
+            "start": 7,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Comedy film"
+      },
+      {
+        "entities": [
+          {
+            "end": 6,
+            "entity": "genre",
+            "start": 0,
+            "value": "Comedy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Comedy genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 5,
+            "entity": "genre",
+            "start": 0,
+            "value": "Crime"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Crime"
+      },
+      {
+        "entities": [
+          {
+            "end": 5,
+            "entity": "genre",
+            "start": 0,
+            "value": "Crime"
+          },
+          {
+            "end": 17,
+            "entity": "movie_or_tv",
+            "start": 12,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Crime genre movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 11,
+            "entity": "genre",
+            "start": 0,
+            "value": "Documentary"
+          },
+          {
+            "end": 23,
+            "entity": "movie_or_tv",
+            "start": 18,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Documentary genre films"
+      },
+      {
+        "entities": [
+          {
+            "end": 5,
+            "entity": "genre",
+            "start": 0,
+            "value": "Drama"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Drama genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 5,
+            "entity": "genre",
+            "start": 0,
+            "value": "Drama"
+          },
+          {
+            "end": 20,
+            "entity": "movie_or_tv",
+            "start": 12,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Drama genre tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 6,
+            "entity": "genre",
+            "start": 0,
+            "value": "Family"
+          },
+          {
+            "end": 18,
+            "entity": "movie_or_tv",
+            "start": 13,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Family genre shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "genre",
+            "start": 0,
+            "value": "Fantasy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Fantasy"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "genre",
+            "start": 0,
+            "value": "Fantasy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Fantasy genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "genre",
+            "start": 0,
+            "value": "Fantasy"
+          },
+          {
+            "end": 14,
+            "entity": "movie_or_tv",
+            "start": 8,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Fantasy movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 6,
+            "entity": "genre",
+            "start": 0,
+            "value": "Horror"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Horror genre"
+      },
+      {
+        "entities": [],
+        "intent": "ask_movie",
+        "text": "I want to binge something"
+      },
+      {
+        "entities": [
+          {
+            "end": 22,
+            "entity": "movie_or_tv",
+            "start": 18,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch a film"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "movie_or_tv",
+            "start": 18,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch a films"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "movie_or_tv",
+            "start": 18,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch a movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "movie_or_tv",
+            "start": 18,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch a movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 22,
+            "entity": "movie_or_tv",
+            "start": 18,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch a show"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "movie_or_tv",
+            "start": 18,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch a shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "movie_or_tv",
+            "start": 18,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch a tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "movie_or_tv",
+            "start": 18,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch a tv shows"
+      },
+      {
+        "entities": [],
+        "intent": "ask_movie",
+        "text": "I want to watch anything"
+      },
+      {
+        "entities": [],
+        "intent": "ask_movie",
+        "text": "I want to watch something"
+      },
+      {
+        "entities": [
+          {
+            "end": 35,
+            "entity": "genre",
+            "start": 26,
+            "value": "Animation"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something Animation"
+      },
+      {
+        "entities": [
+          {
+            "end": 35,
+            "entity": "genre",
+            "start": 26,
+            "value": "Animation"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something Animation genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "genre",
+            "start": 26,
+            "value": "Crime"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something Crime genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 37,
+            "entity": "genre",
+            "start": 26,
+            "value": "Documentary"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something Documentary"
+      },
+      {
+        "entities": [
+          {
+            "end": 32,
+            "entity": "genre",
+            "start": 26,
+            "value": "Family"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something Family"
+      },
+      {
+        "entities": [
+          {
+            "end": 34,
+            "entity": "genre",
+            "start": 26,
+            "value": "History"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something Historic genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "genre",
+            "start": 26,
+            "value": "History"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something History"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "genre",
+            "start": 26,
+            "value": "History"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something History genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "genre",
+            "start": 26,
+            "value": "Music"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something Music"
+      },
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "genre",
+            "start": 26,
+            "value": "Music"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something Music genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "genre",
+            "start": 26,
+            "value": "Mystery"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something Mystery genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 26,
+            "value": "Soap"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something Soap genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 34,
+            "entity": "genre",
+            "start": 26,
+            "value": "TV Movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something TV Movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 34,
+            "entity": "genre",
+            "start": 26,
+            "value": "Thriller"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something Thriller"
+      },
+      {
+        "entities": [
+          {
+            "end": 34,
+            "entity": "genre",
+            "start": 26,
+            "value": "Thriller"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something Thriller genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 40,
+            "entity": "genre",
+            "start": 26,
+            "value": "War & Politics"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something War & Politics"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "genre",
+            "start": 26,
+            "value": "Western"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something Western"
+      },
+      {
+        "entities": [
+          {
+            "end": 35,
+            "entity": "genre",
+            "start": 26,
+            "value": "Adventure"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something adventure"
+      },
+      {
+        "entities": [
+          {
+            "end": 35,
+            "entity": "genre",
+            "start": 26,
+            "value": "Animation"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something animation"
+      },
+      {
+        "entities": [
+          {
+            "end": 32,
+            "entity": "genre",
+            "start": 26,
+            "value": "Comedy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something comedy"
+      },
+      {
+        "entities": [
+          {
+            "end": 38,
+            "entity": "genre",
+            "start": 26,
+            "value": "Documentary"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something documentarys"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "genre",
+            "start": 26,
+            "value": "History"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something history"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "genre",
+            "start": 26,
+            "value": "Mystery"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something mystery"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 26,
+            "value": "News"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something news genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "genre",
+            "start": 26,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something romance"
+      },
+      {
+        "entities": [
+          {
+            "end": 34,
+            "entity": "genre",
+            "start": 26,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something romances genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 35,
+            "entity": "genre",
+            "start": 26,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something romantics genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 32,
+            "entity": "genre",
+            "start": 26,
+            "value": "Sci-Fi & Fantasy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something sci-fi"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "genre",
+            "start": 26,
+            "value": "Science Fiction"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something science"
+      },
+      {
+        "entities": [
+          {
+            "end": 41,
+            "entity": "genre",
+            "start": 26,
+            "value": "Science Fiction"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something science fiction"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 26,
+            "value": "Talk"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something talk genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "genre",
+            "start": 26,
+            "value": "Talk"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something talks"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 26,
+            "value": "War"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I want to watch something war genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 16,
+            "value": "Adventure"
+          },
+          {
+            "end": 31,
+            "entity": "movie_or_tv",
+            "start": 26,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good Adventure movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 16,
+            "value": "Adventure"
+          },
+          {
+            "end": 32,
+            "entity": "movie_or_tv",
+            "start": 26,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good Adventure movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 16,
+            "value": "Animation"
+          },
+          {
+            "end": 31,
+            "entity": "movie_or_tv",
+            "start": 26,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good Animation films"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 16,
+            "value": "Documentary"
+          },
+          {
+            "end": 33,
+            "entity": "movie_or_tv",
+            "start": 28,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good Documentary movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 21,
+            "entity": "genre",
+            "start": 16,
+            "value": "Drama"
+          },
+          {
+            "end": 27,
+            "entity": "movie_or_tv",
+            "start": 22,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good Drama movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 21,
+            "entity": "genre",
+            "start": 16,
+            "value": "Music"
+          },
+          {
+            "end": 28,
+            "entity": "movie_or_tv",
+            "start": 22,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good Music movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 16,
+            "value": "Reality"
+          },
+          {
+            "end": 26,
+            "entity": "movie_or_tv",
+            "start": 24,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good Reality tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 16,
+            "value": "Romance"
+          },
+          {
+            "end": 28,
+            "entity": "movie_or_tv",
+            "start": 24,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good Romance show"
+      },
+      {
+        "entities": [
+          {
+            "end": 20,
+            "entity": "genre",
+            "start": 16,
+            "value": "Soap"
+          },
+          {
+            "end": 25,
+            "entity": "movie_or_tv",
+            "start": 21,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good Soap film"
+      },
+      {
+        "entities": [
+          {
+            "end": 20,
+            "entity": "genre",
+            "start": 16,
+            "value": "Soap"
+          },
+          {
+            "end": 23,
+            "entity": "movie_or_tv",
+            "start": 21,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good Soap tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 16,
+            "value": "TV Movie"
+          },
+          {
+            "end": 30,
+            "entity": "movie_or_tv",
+            "start": 25,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good TV Movie movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 16,
+            "value": "Thriller"
+          },
+          {
+            "end": 30,
+            "entity": "movie_or_tv",
+            "start": 25,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good Thriller movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 16,
+            "value": "War & Politics"
+          },
+          {
+            "end": 36,
+            "entity": "movie_or_tv",
+            "start": 31,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good War & Politics movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 16,
+            "value": "Animation"
+          },
+          {
+            "end": 30,
+            "entity": "movie_or_tv",
+            "start": 26,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good animation film"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 16,
+            "value": "Comedy"
+          },
+          {
+            "end": 28,
+            "entity": "movie_or_tv",
+            "start": 24,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good comedic film"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 16,
+            "value": "History"
+          },
+          {
+            "end": 28,
+            "entity": "movie_or_tv",
+            "start": 24,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good history show"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 16,
+            "value": "Romance"
+          },
+          {
+            "end": 32,
+            "entity": "movie_or_tv",
+            "start": 28,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good romanticals film"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 16,
+            "value": "Romance"
+          },
+          {
+            "end": 33,
+            "entity": "movie_or_tv",
+            "start": 28,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good romanticals shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 22,
+            "entity": "genre",
+            "start": 16,
+            "value": "Sci-Fi & Fantasy"
+          },
+          {
+            "end": 29,
+            "entity": "movie_or_tv",
+            "start": 23,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good sci-fi movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 32,
+            "entity": "genre",
+            "start": 16,
+            "value": "Science Fiction"
+          },
+          {
+            "end": 35,
+            "entity": "movie_or_tv",
+            "start": 33,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good science fictions tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 16,
+            "value": "War & Politics"
+          },
+          {
+            "end": 33,
+            "entity": "movie_or_tv",
+            "start": 31,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like a good war & Politics tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 36,
+            "entity": "genre",
+            "start": 18,
+            "value": "Action & Adventure"
+          },
+          {
+            "end": 49,
+            "entity": "movie_or_tv",
+            "start": 43,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge Action & Adventure genre movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 18,
+            "value": "Crime"
+          },
+          {
+            "end": 34,
+            "entity": "movie_or_tv",
+            "start": 30,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge Crime genre film"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 18,
+            "value": "Crime"
+          },
+          {
+            "end": 34,
+            "entity": "movie_or_tv",
+            "start": 30,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge Crime genre show"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 18,
+            "value": "Crime"
+          },
+          {
+            "end": 32,
+            "entity": "movie_or_tv",
+            "start": 30,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge Crime genre tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 18,
+            "value": "Crime"
+          },
+          {
+            "end": 37,
+            "entity": "movie_or_tv",
+            "start": 30,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge Crime genre tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 18,
+            "value": "Documentary"
+          },
+          {
+            "end": 41,
+            "entity": "movie_or_tv",
+            "start": 36,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge Documentary genre films"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 18,
+            "value": "Drama"
+          },
+          {
+            "end": 35,
+            "entity": "movie_or_tv",
+            "start": 30,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge Drama genre films"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 18,
+            "value": "History"
+          },
+          {
+            "end": 39,
+            "entity": "movie_or_tv",
+            "start": 32,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge History genre tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 22,
+            "entity": "genre",
+            "start": 18,
+            "value": "Kids"
+          },
+          {
+            "end": 37,
+            "entity": "movie_or_tv",
+            "start": 29,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge Kids genre tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 18,
+            "value": "Music"
+          },
+          {
+            "end": 38,
+            "entity": "movie_or_tv",
+            "start": 30,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge Music genre tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 18,
+            "value": "Mystery"
+          },
+          {
+            "end": 38,
+            "entity": "movie_or_tv",
+            "start": 32,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge Mystery genre movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 18,
+            "value": "Romance"
+          },
+          {
+            "end": 37,
+            "entity": "movie_or_tv",
+            "start": 32,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge Romance genre movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 18,
+            "value": "Romance"
+          },
+          {
+            "end": 34,
+            "entity": "movie_or_tv",
+            "start": 32,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge Romance genre tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 18,
+            "value": "Sci-Fi & Fantasy"
+          },
+          {
+            "end": 36,
+            "entity": "movie_or_tv",
+            "start": 31,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge Sci-Fi genre movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 18,
+            "value": "Science Fiction"
+          },
+          {
+            "end": 38,
+            "entity": "movie_or_tv",
+            "start": 32,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge Science genre movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 18,
+            "value": "TV Movie"
+          },
+          {
+            "end": 37,
+            "entity": "movie_or_tv",
+            "start": 33,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge TV Movie genre show"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 18,
+            "value": "Western"
+          },
+          {
+            "end": 39,
+            "entity": "movie_or_tv",
+            "start": 32,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge Western genre tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "genre",
+            "start": 18,
+            "value": "Animation"
+          },
+          {
+            "end": 40,
+            "entity": "movie_or_tv",
+            "start": 35,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge animations genre movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "genre",
+            "start": 18,
+            "value": "Animation"
+          },
+          {
+            "end": 37,
+            "entity": "movie_or_tv",
+            "start": 35,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge animations genre tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 18,
+            "value": "Comedy"
+          },
+          {
+            "end": 37,
+            "entity": "movie_or_tv",
+            "start": 32,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge comedic genre films"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 18,
+            "value": "Crime"
+          },
+          {
+            "end": 33,
+            "entity": "movie_or_tv",
+            "start": 31,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge crimes genre tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 18,
+            "value": "Fantasy"
+          },
+          {
+            "end": 41,
+            "entity": "movie_or_tv",
+            "start": 33,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge fantasys genre tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 18,
+            "value": "Mystery"
+          },
+          {
+            "end": 38,
+            "entity": "movie_or_tv",
+            "start": 33,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge mysterys genre movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 18,
+            "value": "Sci-Fi & Fantasy"
+          },
+          {
+            "end": 35,
+            "entity": "movie_or_tv",
+            "start": 31,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge sci-fi genre film"
+      },
+      {
+        "entities": [
+          {
+            "end": 34,
+            "entity": "genre",
+            "start": 18,
+            "value": "Science Fiction"
+          },
+          {
+            "end": 46,
+            "entity": "movie_or_tv",
+            "start": 41,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge science fictions genre films"
+      },
+      {
+        "entities": [
+          {
+            "end": 53,
+            "entity": "genre",
+            "start": 35,
+            "value": "Action & Adventure"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge something in the Action & Adventure genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 40,
+            "entity": "genre",
+            "start": 35,
+            "value": "Crime"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge something in the Crime genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 41,
+            "entity": "genre",
+            "start": 35,
+            "value": "Family"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge something in the Family genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 42,
+            "entity": "genre",
+            "start": 35,
+            "value": "Fantasy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge something in the Fantasy genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 39,
+            "entity": "genre",
+            "start": 35,
+            "value": "Kids"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge something in the Kids genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 43,
+            "entity": "genre",
+            "start": 35,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge something in the Romantic genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 46,
+            "entity": "genre",
+            "start": 35,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge something in the Romanticals genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 50,
+            "entity": "genre",
+            "start": 35,
+            "value": "Science Fiction"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge something in the Science Fiction genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 42,
+            "entity": "genre",
+            "start": 35,
+            "value": "Science Fiction"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge something in the Science genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 49,
+            "entity": "genre",
+            "start": 35,
+            "value": "War & Politics"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge something in the War & Politics genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 42,
+            "entity": "genre",
+            "start": 35,
+            "value": "Western"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge something in the Western genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 45,
+            "entity": "genre",
+            "start": 35,
+            "value": "Animation"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge something in the animations genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 42,
+            "entity": "genre",
+            "start": 35,
+            "value": "Comedy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge something in the comedys genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 42,
+            "entity": "genre",
+            "start": 35,
+            "value": "History"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge something in the history genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 41,
+            "entity": "genre",
+            "start": 35,
+            "value": "Music"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge something in the musics genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 52,
+            "entity": "genre",
+            "start": 35,
+            "value": "Sci-Fi & Fantasy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge something in the sci-Fi & fantasys genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 50,
+            "entity": "genre",
+            "start": 35,
+            "value": "Science Fiction"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge something in the science fiction genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 18,
+            "value": "Talk"
+          },
+          {
+            "end": 37,
+            "entity": "movie_or_tv",
+            "start": 30,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to binge talks genre tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 35,
+            "entity": "genre",
+            "start": 17,
+            "value": "Action & Adventure"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have Action & Adventure genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 17,
+            "value": "Animation"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have Animation genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "genre",
+            "start": 17,
+            "value": "Documentary"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have Documentary genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 17,
+            "value": "Music"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have Musical genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 17,
+            "value": "Mystery"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have Mystery genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 17,
+            "value": "TV Movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have TV Movie genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 21,
+            "entity": "genre",
+            "start": 17,
+            "value": "Talk"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have Talk genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 17,
+            "value": "Thriller"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have Thriller genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "genre",
+            "start": 17,
+            "value": "War & Politics"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have War & Politics genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 19,
+            "value": "Action"
+          },
+          {
+            "end": 30,
+            "entity": "movie_or_tv",
+            "start": 26,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have a Action show"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 19,
+            "value": "Drama"
+          },
+          {
+            "end": 32,
+            "entity": "movie_or_tv",
+            "start": 25,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have a Drama tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 19,
+            "value": "Fantasy"
+          },
+          {
+            "end": 31,
+            "entity": "movie_or_tv",
+            "start": 27,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have a Fantasy show"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 19,
+            "value": "Fantasy"
+          },
+          {
+            "end": 29,
+            "entity": "movie_or_tv",
+            "start": 27,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have a Fantasy tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 19,
+            "value": "News"
+          },
+          {
+            "end": 29,
+            "entity": "movie_or_tv",
+            "start": 24,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have a News movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 19,
+            "value": "Sci-Fi & Fantasy"
+          },
+          {
+            "end": 31,
+            "entity": "movie_or_tv",
+            "start": 26,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have a Sci-Fi movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 19,
+            "value": "Sci-Fi & Fantasy"
+          },
+          {
+            "end": 31,
+            "entity": "movie_or_tv",
+            "start": 26,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have a Sci-fi shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 19,
+            "value": "Talk"
+          },
+          {
+            "end": 28,
+            "entity": "movie_or_tv",
+            "start": 24,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have a Talk show"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 19,
+            "value": "Horror"
+          },
+          {
+            "end": 33,
+            "entity": "movie_or_tv",
+            "start": 26,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have a horror tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 19,
+            "value": "Horror"
+          },
+          {
+            "end": 33,
+            "entity": "movie_or_tv",
+            "start": 27,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have a horrors movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 19,
+            "value": "Music"
+          },
+          {
+            "end": 35,
+            "entity": "movie_or_tv",
+            "start": 27,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have a musical tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 19,
+            "value": "Thriller"
+          },
+          {
+            "end": 33,
+            "entity": "movie_or_tv",
+            "start": 28,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have a thriller shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 36,
+            "entity": "genre",
+            "start": 17,
+            "value": "Action & Adventure"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have action & adventures genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 17,
+            "value": "Action"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have action genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 17,
+            "value": "Action"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have actions genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 17,
+            "value": "Animation"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have animation genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 17,
+            "value": "History"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have historys genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 21,
+            "entity": "genre",
+            "start": 17,
+            "value": "News"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have news genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 17,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have romantic genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "genre",
+            "start": 17,
+            "value": "Sci-Fi & Fantasy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have sci-Fi & Fantasy genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "genre",
+            "start": 17,
+            "value": "Science Fiction"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have science fictions genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 21,
+            "entity": "genre",
+            "start": 17,
+            "value": "Talk"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have talk genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 17,
+            "value": "TV Movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to have tv Movie genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 20,
+            "value": "Adventure"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a Adventure"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 20,
+            "value": "Drama"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a Drama"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 20,
+            "value": "Fantasy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a Fantasy"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 20,
+            "value": "Horror"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a Horror"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 20,
+            "value": "Music"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a Musical"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 20,
+            "value": "Mystery"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a Mysterious"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 20,
+            "value": "Mystery"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a Mystery"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 20,
+            "value": "News"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a News"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 20,
+            "value": "Reality"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a Reality"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 20,
+            "value": "Science Fiction"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a Science"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 20,
+            "value": "Soap"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a Soap"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 20,
+            "value": "Talk"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a Talk"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 20,
+            "value": "War"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a War"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 20,
+            "value": "Western"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a Western"
+      },
+      {
+        "entities": [
+          {
+            "end": 38,
+            "entity": "genre",
+            "start": 20,
+            "value": "Action & Adventure"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a action & adventure"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "movie_or_tv",
+            "start": 20,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a film"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "movie_or_tv",
+            "start": 20,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a films"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 20,
+            "value": "History"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a history"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 20,
+            "value": "Mystery"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a mystery"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 20,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a romantical"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "movie_or_tv",
+            "start": 20,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a show"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "movie_or_tv",
+            "start": 20,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 22,
+            "entity": "movie_or_tv",
+            "start": 20,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "movie_or_tv",
+            "start": 20,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "movie_or_tv",
+            "start": 20,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 20,
+            "value": "Western"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a western"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "genre",
+            "start": 20,
+            "value": "Western"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch a westerns"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 21,
+            "value": "Animation"
+          },
+          {
+            "end": 36,
+            "entity": "movie_or_tv",
+            "start": 31,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an Animation movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 32,
+            "entity": "genre",
+            "start": 21,
+            "value": "Documentary"
+          },
+          {
+            "end": 38,
+            "entity": "movie_or_tv",
+            "start": 33,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an Documentary movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 21,
+            "value": "Family"
+          },
+          {
+            "end": 33,
+            "entity": "movie_or_tv",
+            "start": 28,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an Family films"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 21,
+            "value": "Family"
+          },
+          {
+            "end": 30,
+            "entity": "movie_or_tv",
+            "start": 28,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an Family tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "genre",
+            "start": 21,
+            "value": "History"
+          },
+          {
+            "end": 36,
+            "entity": "movie_or_tv",
+            "start": 29,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an History tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 21,
+            "value": "Music"
+          },
+          {
+            "end": 29,
+            "entity": "movie_or_tv",
+            "start": 27,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an Music tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 21,
+            "value": "Music"
+          },
+          {
+            "end": 34,
+            "entity": "movie_or_tv",
+            "start": 27,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an Music tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 21,
+            "value": "News"
+          },
+          {
+            "end": 33,
+            "entity": "movie_or_tv",
+            "start": 26,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an News tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "genre",
+            "start": 21,
+            "value": "Science Fiction"
+          },
+          {
+            "end": 33,
+            "entity": "movie_or_tv",
+            "start": 29,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an Science show"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 21,
+            "value": "TV Movie"
+          },
+          {
+            "end": 36,
+            "entity": "movie_or_tv",
+            "start": 30,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an TV Movie movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 21,
+            "value": "War"
+          },
+          {
+            "end": 29,
+            "entity": "movie_or_tv",
+            "start": 25,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an War show"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 21,
+            "value": "War"
+          },
+          {
+            "end": 32,
+            "entity": "movie_or_tv",
+            "start": 25,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an War tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 39,
+            "entity": "genre",
+            "start": 21,
+            "value": "Action & Adventure"
+          },
+          {
+            "end": 46,
+            "entity": "movie_or_tv",
+            "start": 40,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an action & adventure movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "genre",
+            "start": 21,
+            "value": "Action"
+          },
+          {
+            "end": 35,
+            "entity": "movie_or_tv",
+            "start": 29,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an actions movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "genre",
+            "start": 21,
+            "value": "Animation"
+          },
+          {
+            "end": 39,
+            "entity": "movie_or_tv",
+            "start": 32,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an animations tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 21,
+            "value": "Comedy"
+          },
+          {
+            "end": 36,
+            "entity": "movie_or_tv",
+            "start": 30,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an comedies movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "genre",
+            "start": 21,
+            "value": "Documentary"
+          },
+          {
+            "end": 40,
+            "entity": "movie_or_tv",
+            "start": 34,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an documentarys movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 21,
+            "value": "Drama"
+          },
+          {
+            "end": 31,
+            "entity": "movie_or_tv",
+            "start": 27,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an drama show"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "genre",
+            "start": 21,
+            "value": "Horror"
+          },
+          {
+            "end": 31,
+            "entity": "movie_or_tv",
+            "start": 29,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an horrors tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 21,
+            "value": "Kids"
+          },
+          {
+            "end": 30,
+            "entity": "movie_or_tv",
+            "start": 25,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an kid shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 21,
+            "value": "News"
+          },
+          {
+            "end": 34,
+            "entity": "movie_or_tv",
+            "start": 26,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an news tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 21,
+            "value": "Thriller"
+          },
+          {
+            "end": 36,
+            "entity": "movie_or_tv",
+            "start": 31,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an thrillers films"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 21,
+            "value": "Thriller"
+          },
+          {
+            "end": 38,
+            "entity": "movie_or_tv",
+            "start": 31,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "I'd like to watch an thrillers tv show"
+      },
+      {
+        "entities": [],
+        "intent": "ask_movie",
+        "text": "I'd like to watch something"
+      },
+      {
+        "entities": [],
+        "intent": "ask_movie",
+        "text": "I'm bored"
+      },
+      {
+        "entities": [
+          {
+            "end": 3,
+            "entity": "genre",
+            "start": 0,
+            "value": "Kids"
+          },
+          {
+            "end": 10,
+            "entity": "movie_or_tv",
+            "start": 4,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Kid movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "genre",
+            "start": 0,
+            "value": "Music"
+          },
+          {
+            "end": 18,
+            "entity": "movie_or_tv",
+            "start": 14,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Musical genre film"
+      },
+      {
+        "entities": [
+          {
+            "end": 10,
+            "entity": "genre",
+            "start": 0,
+            "value": "Mystery"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Mysterious genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 4,
+            "entity": "genre",
+            "start": 0,
+            "value": "News"
+          },
+          {
+            "end": 11,
+            "entity": "movie_or_tv",
+            "start": 5,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "News movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "genre",
+            "start": 0,
+            "value": "Reality"
+          },
+          {
+            "end": 15,
+            "entity": "movie_or_tv",
+            "start": 8,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Reality tv show"
+      },
+      {
+        "entities": [],
+        "intent": "ask_movie",
+        "text": "Recomend me something"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "genre",
+            "start": 15,
+            "value": "Action & Adventure"
+          },
+          {
+            "end": 39,
+            "entity": "movie_or_tv",
+            "start": 34,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me a Action & Adventure films"
+      },
+      {
+        "entities": [
+          {
+            "end": 21,
+            "entity": "genre",
+            "start": 15,
+            "value": "Action"
+          },
+          {
+            "end": 24,
+            "entity": "movie_or_tv",
+            "start": 22,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me a Action tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 15,
+            "value": "Animation"
+          },
+          {
+            "end": 30,
+            "entity": "movie_or_tv",
+            "start": 25,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me a Animation films"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 15,
+            "value": "Documentary"
+          },
+          {
+            "end": 33,
+            "entity": "movie_or_tv",
+            "start": 27,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me a Documentary movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 19,
+            "entity": "genre",
+            "start": 15,
+            "value": "Kids"
+          },
+          {
+            "end": 25,
+            "entity": "movie_or_tv",
+            "start": 20,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me a Kids films"
+      },
+      {
+        "entities": [
+          {
+            "end": 20,
+            "entity": "genre",
+            "start": 15,
+            "value": "Music"
+          },
+          {
+            "end": 26,
+            "entity": "movie_or_tv",
+            "start": 21,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me a Music shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 22,
+            "entity": "genre",
+            "start": 15,
+            "value": "Reality"
+          },
+          {
+            "end": 25,
+            "entity": "movie_or_tv",
+            "start": 23,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me a Reality tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 15,
+            "value": "Romance"
+          },
+          {
+            "end": 30,
+            "entity": "movie_or_tv",
+            "start": 25,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me a Romantics films"
+      },
+      {
+        "entities": [
+          {
+            "end": 21,
+            "entity": "genre",
+            "start": 15,
+            "value": "Sci-Fi & Fantasy"
+          },
+          {
+            "end": 26,
+            "entity": "movie_or_tv",
+            "start": 22,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me a Sci-fi show"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 15,
+            "value": "TV Movie"
+          },
+          {
+            "end": 29,
+            "entity": "movie_or_tv",
+            "start": 24,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me a TV Movie movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 15,
+            "value": "TV Movie"
+          },
+          {
+            "end": 31,
+            "entity": "movie_or_tv",
+            "start": 24,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me a TV Movie tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 22,
+            "entity": "genre",
+            "start": 15,
+            "value": "Western"
+          },
+          {
+            "end": 25,
+            "entity": "movie_or_tv",
+            "start": 23,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me a Western tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "genre",
+            "start": 15,
+            "value": "Action & Adventure"
+          },
+          {
+            "end": 42,
+            "entity": "movie_or_tv",
+            "start": 34,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me a action & adventure tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 15,
+            "value": "Documentary"
+          },
+          {
+            "end": 35,
+            "entity": "movie_or_tv",
+            "start": 27,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me a documentary tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 21,
+            "entity": "genre",
+            "start": 15,
+            "value": "Drama"
+          },
+          {
+            "end": 29,
+            "entity": "movie_or_tv",
+            "start": 22,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me a dramas tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 15,
+            "value": "History"
+          },
+          {
+            "end": 28,
+            "entity": "movie_or_tv",
+            "start": 24,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me a historic show"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 15,
+            "value": "Romance"
+          },
+          {
+            "end": 34,
+            "entity": "movie_or_tv",
+            "start": 26,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me a romantical tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 22,
+            "entity": "genre",
+            "start": 15,
+            "value": "Science Fiction"
+          },
+          {
+            "end": 27,
+            "entity": "movie_or_tv",
+            "start": 23,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me a science show"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 15,
+            "value": "War & Politics"
+          },
+          {
+            "end": 34,
+            "entity": "movie_or_tv",
+            "start": 30,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me a war & Politics show"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 23,
+            "value": "Action"
+          },
+          {
+            "end": 35,
+            "entity": "movie_or_tv",
+            "start": 30,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Action films"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 23,
+            "value": "Action"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Action genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 32,
+            "entity": "genre",
+            "start": 23,
+            "value": "Adventure"
+          },
+          {
+            "end": 41,
+            "entity": "movie_or_tv",
+            "start": 39,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Adventure genre tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 32,
+            "entity": "genre",
+            "start": 23,
+            "value": "Animation"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Animation"
+      },
+      {
+        "entities": [
+          {
+            "end": 32,
+            "entity": "genre",
+            "start": 23,
+            "value": "Animation"
+          },
+          {
+            "end": 38,
+            "entity": "movie_or_tv",
+            "start": 33,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Animation shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 23,
+            "value": "Comedy"
+          },
+          {
+            "end": 44,
+            "entity": "movie_or_tv",
+            "start": 36,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Comedy genre tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "genre",
+            "start": 23,
+            "value": "Crime"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Crime genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "genre",
+            "start": 23,
+            "value": "Crime"
+          },
+          {
+            "end": 34,
+            "entity": "movie_or_tv",
+            "start": 29,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Crime movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 34,
+            "entity": "genre",
+            "start": 23,
+            "value": "Documentary"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Documentary"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "genre",
+            "start": 23,
+            "value": "Drama"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Drama"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "genre",
+            "start": 23,
+            "value": "Drama"
+          },
+          {
+            "end": 40,
+            "entity": "movie_or_tv",
+            "start": 35,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Drama genre shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 23,
+            "value": "Family"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Family"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 23,
+            "value": "Family"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Family genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 23,
+            "value": "Family"
+          },
+          {
+            "end": 37,
+            "entity": "movie_or_tv",
+            "start": 30,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Family tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 23,
+            "value": "Fantasy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Fantasy genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 23,
+            "value": "Fantasy"
+          },
+          {
+            "end": 36,
+            "entity": "movie_or_tv",
+            "start": 31,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Fantasy movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 23,
+            "value": "Horror"
+          },
+          {
+            "end": 34,
+            "entity": "movie_or_tv",
+            "start": 30,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Horror film"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 23,
+            "value": "Horror"
+          },
+          {
+            "end": 40,
+            "entity": "movie_or_tv",
+            "start": 36,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Horror genre show"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 23,
+            "value": "Kids"
+          },
+          {
+            "end": 42,
+            "entity": "movie_or_tv",
+            "start": 34,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Kids genre tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "genre",
+            "start": 23,
+            "value": "Music"
+          },
+          {
+            "end": 41,
+            "entity": "movie_or_tv",
+            "start": 35,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Music genre movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 23,
+            "value": "Music"
+          },
+          {
+            "end": 44,
+            "entity": "movie_or_tv",
+            "start": 37,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Musical genre tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "genre",
+            "start": 23,
+            "value": "Mystery"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Mysterious genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 23,
+            "value": "Mystery"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Mystery"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 23,
+            "value": "Mystery"
+          },
+          {
+            "end": 39,
+            "entity": "movie_or_tv",
+            "start": 31,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Mystery tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 23,
+            "value": "News"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something News"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 23,
+            "value": "News"
+          },
+          {
+            "end": 36,
+            "entity": "movie_or_tv",
+            "start": 34,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something News genre tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 23,
+            "value": "News"
+          },
+          {
+            "end": 36,
+            "entity": "movie_or_tv",
+            "start": 28,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something News tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 23,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Romance genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 34,
+            "entity": "genre",
+            "start": 23,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Romanticals"
+      },
+      {
+        "entities": [
+          {
+            "end": 32,
+            "entity": "genre",
+            "start": 23,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Romantics"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 23,
+            "value": "Sci-Fi & Fantasy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Sci-Fi"
+      },
+      {
+        "entities": [
+          {
+            "end": 39,
+            "entity": "genre",
+            "start": 23,
+            "value": "Sci-Fi & Fantasy"
+          },
+          {
+            "end": 46,
+            "entity": "movie_or_tv",
+            "start": 40,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Sci-Fi & Fantasy movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 39,
+            "entity": "genre",
+            "start": 23,
+            "value": "Sci-Fi & Fantasy"
+          },
+          {
+            "end": 47,
+            "entity": "movie_or_tv",
+            "start": 40,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Sci-Fi & Fantasy tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 38,
+            "entity": "genre",
+            "start": 23,
+            "value": "Science Fiction"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Science Fiction"
+      },
+      {
+        "entities": [
+          {
+            "end": 38,
+            "entity": "genre",
+            "start": 23,
+            "value": "Science Fiction"
+          },
+          {
+            "end": 41,
+            "entity": "movie_or_tv",
+            "start": 39,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Science Fiction tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 23,
+            "value": "Soap"
+          },
+          {
+            "end": 39,
+            "entity": "movie_or_tv",
+            "start": 34,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Soap genre films"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 23,
+            "value": "Soap"
+          },
+          {
+            "end": 34,
+            "entity": "movie_or_tv",
+            "start": 28,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Soap movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 23,
+            "value": "Soap"
+          },
+          {
+            "end": 35,
+            "entity": "movie_or_tv",
+            "start": 28,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Soap tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "genre",
+            "start": 23,
+            "value": "TV Movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something TV Movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "genre",
+            "start": 23,
+            "value": "TV Movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something TV Movie genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 23,
+            "value": "War"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something War"
+      },
+      {
+        "entities": [
+          {
+            "end": 37,
+            "entity": "genre",
+            "start": 23,
+            "value": "War & Politics"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something War & Politics genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 37,
+            "entity": "genre",
+            "start": 23,
+            "value": "War & Politics"
+          },
+          {
+            "end": 49,
+            "entity": "movie_or_tv",
+            "start": 44,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something War & Politics genre shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 23,
+            "value": "War"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something War genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 23,
+            "value": "Western"
+          },
+          {
+            "end": 37,
+            "entity": "movie_or_tv",
+            "start": 31,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something Western movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 23,
+            "value": "Action"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something action"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 23,
+            "value": "Action"
+          },
+          {
+            "end": 32,
+            "entity": "movie_or_tv",
+            "start": 30,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something action tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 23,
+            "value": "Action"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something actions genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "genre",
+            "start": 23,
+            "value": "Animation"
+          },
+          {
+            "end": 44,
+            "entity": "movie_or_tv",
+            "start": 40,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something animations genre film"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 23,
+            "value": "Crime"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something crimes genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 23,
+            "value": "Crime"
+          },
+          {
+            "end": 41,
+            "entity": "movie_or_tv",
+            "start": 36,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something crimes genre movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 23,
+            "value": "Crime"
+          },
+          {
+            "end": 43,
+            "entity": "movie_or_tv",
+            "start": 36,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something crimes genre tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 23,
+            "value": "Fantasy"
+          },
+          {
+            "end": 39,
+            "entity": "movie_or_tv",
+            "start": 37,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something fantasy genre tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "genre",
+            "start": 23,
+            "value": "History"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something historys"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 23,
+            "value": "Mystery"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something mystery genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "genre",
+            "start": 23,
+            "value": "Mystery"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something mysterys genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 23,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something romance"
+      },
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "genre",
+            "start": 23,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something romances"
+      },
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "genre",
+            "start": 23,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something romantic genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "genre",
+            "start": 23,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something romantical genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 32,
+            "entity": "genre",
+            "start": 23,
+            "value": "Romance"
+          },
+          {
+            "end": 40,
+            "entity": "movie_or_tv",
+            "start": 33,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something romantics tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 39,
+            "entity": "genre",
+            "start": 23,
+            "value": "Sci-Fi & Fantasy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something sci-Fi & Fantasy genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 23,
+            "value": "Science Fiction"
+          },
+          {
+            "end": 36,
+            "entity": "movie_or_tv",
+            "start": 31,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something science films"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "genre",
+            "start": 23,
+            "value": "Soap"
+          },
+          {
+            "end": 40,
+            "entity": "movie_or_tv",
+            "start": 35,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something soaps genre films"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 23,
+            "value": "Talk"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something talk"
+      },
+      {
+        "entities": [
+          {
+            "end": 32,
+            "entity": "genre",
+            "start": 23,
+            "value": "Thriller"
+          },
+          {
+            "end": 47,
+            "entity": "movie_or_tv",
+            "start": 39,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something thrillers genre tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "genre",
+            "start": 23,
+            "value": "TV Movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something tv Movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 23,
+            "value": "Western"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Recommend me something western genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "genre",
+            "start": 0,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Romance genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 11,
+            "entity": "genre",
+            "start": 0,
+            "value": "Romance"
+          },
+          {
+            "end": 23,
+            "entity": "movie_or_tv",
+            "start": 18,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Romanticals genre films"
+      },
+      {
+        "entities": [
+          {
+            "end": 11,
+            "entity": "genre",
+            "start": 0,
+            "value": "Romance"
+          },
+          {
+            "end": 14,
+            "entity": "movie_or_tv",
+            "start": 12,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Romanticals tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 16,
+            "entity": "genre",
+            "start": 0,
+            "value": "Sci-Fi & Fantasy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Sci-Fi & Fantasy"
+      },
+      {
+        "entities": [
+          {
+            "end": 16,
+            "entity": "genre",
+            "start": 0,
+            "value": "Sci-Fi & Fantasy"
+          },
+          {
+            "end": 27,
+            "entity": "movie_or_tv",
+            "start": 23,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Sci-Fi & Fantasy genre film"
+      },
+      {
+        "entities": [
+          {
+            "end": 16,
+            "entity": "genre",
+            "start": 0,
+            "value": "Sci-Fi & Fantasy"
+          },
+          {
+            "end": 19,
+            "entity": "movie_or_tv",
+            "start": 17,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Sci-Fi & Fantasy tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 6,
+            "entity": "genre",
+            "start": 0,
+            "value": "Sci-Fi & Fantasy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Sci-fi genre"
+      },
+      {
+        "entities": [],
+        "intent": "ask_movie",
+        "text": "Something"
+      },
+      {
+        "entities": [
+          {
+            "end": 16,
+            "entity": "genre",
+            "start": 10,
+            "value": "Comedy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something Comedy genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 21,
+            "entity": "genre",
+            "start": 10,
+            "value": "Documentary"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something Documentary genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 16,
+            "entity": "genre",
+            "start": 10,
+            "value": "Family"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something Family genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 17,
+            "entity": "genre",
+            "start": 10,
+            "value": "Fantasy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something Fantasy genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 16,
+            "entity": "genre",
+            "start": 10,
+            "value": "Horror"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something Horror genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 17,
+            "entity": "genre",
+            "start": 10,
+            "value": "Music"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something Musical genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 17,
+            "entity": "genre",
+            "start": 10,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something Romance genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 14,
+            "entity": "genre",
+            "start": 10,
+            "value": "Soap"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something Soap genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 18,
+            "entity": "genre",
+            "start": 10,
+            "value": "TV Movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something TV Movie genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 17,
+            "entity": "genre",
+            "start": 10,
+            "value": "Western"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something Western genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "genre",
+            "start": 10,
+            "value": "Action & Adventure"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something action & adventure genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 19,
+            "entity": "genre",
+            "start": 10,
+            "value": "Animation"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something animation genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 17,
+            "entity": "genre",
+            "start": 10,
+            "value": "Comedy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something comedys genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 15,
+            "entity": "genre",
+            "start": 10,
+            "value": "Drama"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something drama genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 17,
+            "value": "Adventure"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something in the Adventure genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 17,
+            "value": "Animation"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something in the Animation genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 17,
+            "value": "Comedy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something in the Comedy genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 22,
+            "entity": "genre",
+            "start": 17,
+            "value": "Crime"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something in the Crime genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 17,
+            "value": "Horror"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something in the Horror genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 21,
+            "entity": "genre",
+            "start": 17,
+            "value": "News"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something in the News genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 17,
+            "value": "Reality"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something in the Reality genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 17,
+            "value": "Sci-Fi & Fantasy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something in the Sci-Fi genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 21,
+            "entity": "genre",
+            "start": 17,
+            "value": "Soap"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something in the Soap genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 21,
+            "entity": "genre",
+            "start": 17,
+            "value": "Talk"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something in the Talk genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 17,
+            "value": "Thriller"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something in the Thriller genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 17,
+            "value": "Western"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something in the Western genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 17,
+            "value": "Fantasy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something in the fantasys genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 17,
+            "value": "History"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something in the historys genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 17,
+            "value": "Horror"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something in the horror genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 17,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something in the romances genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 17,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something in the romantical genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "genre",
+            "start": 17,
+            "value": "Sci-Fi & Fantasy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something in the sci-fi genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 14,
+            "entity": "genre",
+            "start": 10,
+            "value": "News"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something news genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 10,
+            "value": "War & Politics"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something war & Politics genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 13,
+            "entity": "genre",
+            "start": 10,
+            "value": "War"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Something war genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 22,
+            "entity": "genre",
+            "start": 13,
+            "value": "Adventure"
+          },
+          {
+            "end": 27,
+            "entity": "movie_or_tv",
+            "start": 23,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me a Adventure show"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 13,
+            "value": "Documentary"
+          },
+          {
+            "end": 30,
+            "entity": "movie_or_tv",
+            "start": 25,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me a Documentary movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 19,
+            "entity": "genre",
+            "start": 13,
+            "value": "Family"
+          },
+          {
+            "end": 25,
+            "entity": "movie_or_tv",
+            "start": 20,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me a Family films"
+      },
+      {
+        "entities": [
+          {
+            "end": 19,
+            "entity": "genre",
+            "start": 13,
+            "value": "Family"
+          },
+          {
+            "end": 25,
+            "entity": "movie_or_tv",
+            "start": 20,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me a Family shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 19,
+            "entity": "genre",
+            "start": 13,
+            "value": "Horror"
+          },
+          {
+            "end": 25,
+            "entity": "movie_or_tv",
+            "start": 20,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me a Horror shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 19,
+            "entity": "genre",
+            "start": 13,
+            "value": "Horror"
+          },
+          {
+            "end": 22,
+            "entity": "movie_or_tv",
+            "start": 20,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me a Horror tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 17,
+            "entity": "genre",
+            "start": 13,
+            "value": "Kids"
+          },
+          {
+            "end": 25,
+            "entity": "movie_or_tv",
+            "start": 18,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me a Kids tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 18,
+            "entity": "genre",
+            "start": 13,
+            "value": "Music"
+          },
+          {
+            "end": 23,
+            "entity": "movie_or_tv",
+            "start": 19,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me a Music show"
+      },
+      {
+        "entities": [
+          {
+            "end": 17,
+            "entity": "genre",
+            "start": 13,
+            "value": "Soap"
+          },
+          {
+            "end": 24,
+            "entity": "movie_or_tv",
+            "start": 18,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me a Soap movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "genre",
+            "start": 13,
+            "value": "Action & Adventure"
+          },
+          {
+            "end": 39,
+            "entity": "movie_or_tv",
+            "start": 32,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me a action & adventure tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 20,
+            "entity": "genre",
+            "start": 13,
+            "value": "Comedy"
+          },
+          {
+            "end": 27,
+            "entity": "movie_or_tv",
+            "start": 21,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me a comedic movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 18,
+            "entity": "genre",
+            "start": 13,
+            "value": "Music"
+          },
+          {
+            "end": 24,
+            "entity": "movie_or_tv",
+            "start": 19,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me a music shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 21,
+            "entity": "genre",
+            "start": 13,
+            "value": "Romance"
+          },
+          {
+            "end": 26,
+            "entity": "movie_or_tv",
+            "start": 22,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me a romances film"
+      },
+      {
+        "entities": [],
+        "intent": "ask_movie",
+        "text": "Suggest me anything"
+      },
+      {
+        "entities": [],
+        "intent": "ask_movie",
+        "text": "Suggest me something"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 21,
+            "value": "Action"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me something Action genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 21,
+            "value": "Adventure"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me something Adventure genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "genre",
+            "start": 21,
+            "value": "Animation"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me something Animation genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 21,
+            "value": "Comedy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me something Comedy genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "genre",
+            "start": 21,
+            "value": "Crime"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me something Crime genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 21,
+            "value": "Family"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me something Family genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 21,
+            "value": "Horror"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me something Horror genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "genre",
+            "start": 21,
+            "value": "Kids"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me something Kid genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "genre",
+            "start": 21,
+            "value": "News"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me something News genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 21,
+            "value": "Sci-Fi & Fantasy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me something Sci-Fi genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "genre",
+            "start": 21,
+            "value": "Western"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me something Western genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "genre",
+            "start": 21,
+            "value": "Action"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me something action genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "genre",
+            "start": 21,
+            "value": "Animation"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me something animations genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "genre",
+            "start": 21,
+            "value": "Documentary"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me something documentarys genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "genre",
+            "start": 21,
+            "value": "Mystery"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me something mysterys genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "genre",
+            "start": 21,
+            "value": "Reality"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me something reality genre"
+      },
+      {
+        "entities": [],
+        "intent": "ask_movie",
+        "text": "Suggest me something to binge"
+      },
+      {
+        "entities": [],
+        "intent": "ask_movie",
+        "text": "Suggest me something to watch"
+      },
+      {
+        "entities": [
+          {
+            "end": 35,
+            "entity": "genre",
+            "start": 21,
+            "value": "War & Politics"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Suggest me something war & politics genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 8,
+            "entity": "genre",
+            "start": 0,
+            "value": "TV Movie"
+          },
+          {
+            "end": 13,
+            "entity": "movie_or_tv",
+            "start": 9,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "TV Movie film"
+      },
+      {
+        "entities": [
+          {
+            "end": 8,
+            "entity": "genre",
+            "start": 0,
+            "value": "TV Movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "TV Movie genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 8,
+            "entity": "genre",
+            "start": 0,
+            "value": "TV Movie"
+          },
+          {
+            "end": 15,
+            "entity": "movie_or_tv",
+            "start": 9,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "TV Movie movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 4,
+            "entity": "genre",
+            "start": 0,
+            "value": "Talk"
+          },
+          {
+            "end": 18,
+            "entity": "movie_or_tv",
+            "start": 11,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Talk genre tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 4,
+            "entity": "genre",
+            "start": 0,
+            "value": "Talk"
+          },
+          {
+            "end": 10,
+            "entity": "movie_or_tv",
+            "start": 5,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Talk movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 8,
+            "entity": "genre",
+            "start": 0,
+            "value": "Thriller"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Thriller genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 8,
+            "entity": "genre",
+            "start": 0,
+            "value": "Thriller"
+          },
+          {
+            "end": 23,
+            "entity": "movie_or_tv",
+            "start": 15,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Thriller genre tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 14,
+            "entity": "genre",
+            "start": 0,
+            "value": "War & Politics"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "War & Politics"
+      },
+      {
+        "entities": [
+          {
+            "end": 14,
+            "entity": "genre",
+            "start": 0,
+            "value": "War & Politics"
+          },
+          {
+            "end": 20,
+            "entity": "movie_or_tv",
+            "start": 15,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "War & Politics movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 3,
+            "entity": "genre",
+            "start": 0,
+            "value": "War"
+          },
+          {
+            "end": 8,
+            "entity": "movie_or_tv",
+            "start": 4,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "War film"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "genre",
+            "start": 0,
+            "value": "Western"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Western"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "genre",
+            "start": 0,
+            "value": "Western"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Western genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "genre",
+            "start": 0,
+            "value": "Western"
+          },
+          {
+            "end": 19,
+            "entity": "movie_or_tv",
+            "start": 14,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "Western genre shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 6,
+            "entity": "genre",
+            "start": 0,
+            "value": "Action"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "action genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 9,
+            "entity": "genre",
+            "start": 0,
+            "value": "Animation"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "animation"
+      },
+      {
+        "entities": [
+          {
+            "end": 9,
+            "entity": "genre",
+            "start": 0,
+            "value": "Animation"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "animation genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 9,
+            "entity": "genre",
+            "start": 0,
+            "value": "Animation"
+          },
+          {
+            "end": 15,
+            "entity": "movie_or_tv",
+            "start": 10,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "animation movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 10,
+            "entity": "genre",
+            "start": 0,
+            "value": "Animation"
+          },
+          {
+            "end": 21,
+            "entity": "movie_or_tv",
+            "start": 17,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "animations genre show"
+      },
+      {
+        "entities": [
+          {
+            "end": 10,
+            "entity": "genre",
+            "start": 0,
+            "value": "Animation"
+          },
+          {
+            "end": 17,
+            "entity": "movie_or_tv",
+            "start": 11,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "animations movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "genre",
+            "start": 0,
+            "value": "Comedy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "comedic genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 5,
+            "entity": "genre",
+            "start": 0,
+            "value": "Crime"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "crime"
+      },
+      {
+        "entities": [
+          {
+            "end": 6,
+            "entity": "genre",
+            "start": 0,
+            "value": "Family"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "family genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "genre",
+            "start": 0,
+            "value": "Family"
+          },
+          {
+            "end": 19,
+            "entity": "movie_or_tv",
+            "start": 14,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "familys genre movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "genre",
+            "start": 0,
+            "value": "Fantasy"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "fantasy"
+      },
+      {
+        "entities": [
+          {
+            "end": 4,
+            "entity": "movie_or_tv",
+            "start": 0,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "film"
+      },
+      {
+        "entities": [
+          {
+            "end": 5,
+            "entity": "movie_or_tv",
+            "start": 0,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "films"
+      },
+      {
+        "entities": [
+          {
+            "end": 8,
+            "entity": "genre",
+            "start": 0,
+            "value": "History"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "historic"
+      },
+      {
+        "entities": [
+          {
+            "end": 8,
+            "entity": "genre",
+            "start": 0,
+            "value": "History"
+          },
+          {
+            "end": 13,
+            "entity": "movie_or_tv",
+            "start": 9,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "historic show"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "genre",
+            "start": 0,
+            "value": "History"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "history"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "genre",
+            "start": 0,
+            "value": "History"
+          },
+          {
+            "end": 18,
+            "entity": "movie_or_tv",
+            "start": 14,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "history genre film"
+      },
+      {
+        "entities": [
+          {
+            "end": 5,
+            "entity": "movie_or_tv",
+            "start": 0,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 6,
+            "entity": "movie_or_tv",
+            "start": 0,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 6,
+            "entity": "genre",
+            "start": 0,
+            "value": "Music"
+          },
+          {
+            "end": 12,
+            "entity": "movie_or_tv",
+            "start": 7,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "musics shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 8,
+            "entity": "genre",
+            "start": 0,
+            "value": "Mystery"
+          },
+          {
+            "end": 11,
+            "entity": "movie_or_tv",
+            "start": 9,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "mysterys tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 4,
+            "entity": "genre",
+            "start": 0,
+            "value": "News"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "news genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 4,
+            "entity": "genre",
+            "start": 0,
+            "value": "News"
+          },
+          {
+            "end": 13,
+            "entity": "movie_or_tv",
+            "start": 5,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "news tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 8,
+            "entity": "genre",
+            "start": 0,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "romantic genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 8,
+            "entity": "genre",
+            "start": 0,
+            "value": "Romance"
+          },
+          {
+            "end": 20,
+            "entity": "movie_or_tv",
+            "start": 15,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "romantic genre movie"
+      },
+      {
+        "entities": [
+          {
+            "end": 8,
+            "entity": "genre",
+            "start": 0,
+            "value": "Romance"
+          },
+          {
+            "end": 14,
+            "entity": "movie_or_tv",
+            "start": 9,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "romantic shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 10,
+            "entity": "genre",
+            "start": 0,
+            "value": "Romance"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "romantical genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 11,
+            "entity": "genre",
+            "start": 0,
+            "value": "Romance"
+          },
+          {
+            "end": 17,
+            "entity": "movie_or_tv",
+            "start": 12,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "romanticals films"
+      },
+      {
+        "entities": [
+          {
+            "end": 16,
+            "entity": "genre",
+            "start": 0,
+            "value": "Science Fiction"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "science fictions genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "genre",
+            "start": 0,
+            "value": "Science Fiction"
+          },
+          {
+            "end": 10,
+            "entity": "movie_or_tv",
+            "start": 8,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "science tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 4,
+            "entity": "movie_or_tv",
+            "start": 0,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "show"
+      },
+      {
+        "entities": [
+          {
+            "end": 5,
+            "entity": "movie_or_tv",
+            "start": 0,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 5,
+            "entity": "genre",
+            "start": 0,
+            "value": "Soap"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "soaps genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 5,
+            "entity": "genre",
+            "start": 0,
+            "value": "Soap"
+          },
+          {
+            "end": 16,
+            "entity": "movie_or_tv",
+            "start": 12,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "soaps genre show"
+      },
+      {
+        "entities": [
+          {
+            "end": 5,
+            "entity": "genre",
+            "start": 0,
+            "value": "Talk"
+          },
+          {
+            "end": 10,
+            "entity": "movie_or_tv",
+            "start": 6,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "talks film"
+      },
+      {
+        "entities": [
+          {
+            "end": 5,
+            "entity": "genre",
+            "start": 0,
+            "value": "Talk"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "talks genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 5,
+            "entity": "genre",
+            "start": 0,
+            "value": "Talk"
+          },
+          {
+            "end": 8,
+            "entity": "movie_or_tv",
+            "start": 6,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "talks tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 9,
+            "entity": "genre",
+            "start": 0,
+            "value": "Thriller"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "thrillers genre"
+      },
+      {
+        "entities": [
+          {
+            "end": 2,
+            "entity": "movie_or_tv",
+            "start": 0,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "tv"
+      },
+      {
+        "entities": [
+          {
+            "end": 9,
+            "entity": "genre",
+            "start": 0,
+            "value": "TV Movie"
+          },
+          {
+            "end": 14,
+            "entity": "movie_or_tv",
+            "start": 10,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "tv movies film"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "movie_or_tv",
+            "start": 0,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 8,
+            "entity": "movie_or_tv",
+            "start": 0,
+            "value": "tv show"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 14,
+            "entity": "genre",
+            "start": 0,
+            "value": "War & Politics"
+          },
+          {
+            "end": 20,
+            "entity": "movie_or_tv",
+            "start": 15,
+            "value": "movie"
+          }
+        ],
+        "intent": "ask_movie",
+        "text": "war & politics movie"
+      }
+    ],
+    "entity_synonyms": [
+      {
+        "synonyms": [
+          "movies",
+          "film",
+          "films",
+          "movie"
+        ],
+        "value": "movie"
+      },
+      {
+        "synonyms": [
+          "shows",
+          "tv",
+          "tv shows",
+          "show",
+          "tv show"
+        ],
+        "value": "tv show"
+      },
+      {
+        "synonyms": [
+          "action",
+          "Action",
+          "actions"
+        ],
+        "value": "Action"
+      },
+      {
+        "synonyms": [
+          "Adventure",
+          "adventures",
+          "adventure"
+        ],
+        "value": "Adventure"
+      },
+      {
+        "synonyms": [
+          "animations",
+          "Animation",
+          "animation"
+        ],
+        "value": "Animation"
+      },
+      {
+        "synonyms": [
+          "Comedy",
+          "comedic",
+          "comedies",
+          "comedy",
+          "comedys"
+        ],
+        "value": "Comedy"
+      },
+      {
+        "synonyms": [
+          "Crime",
+          "crimes",
+          "crime"
+        ],
+        "value": "Crime"
+      },
+      {
+        "synonyms": [
+          "documentary",
+          "Documentary",
+          "documentarys"
+        ],
+        "value": "Documentary"
+      },
+      {
+        "synonyms": [
+          "Drama",
+          "drama",
+          "dramas"
+        ],
+        "value": "Drama"
+      },
+      {
+        "synonyms": [
+          "family",
+          "familys",
+          "Family"
+        ],
+        "value": "Family"
+      },
+      {
+        "synonyms": [
+          "fantasy",
+          "Fantasy",
+          "fantasys"
+        ],
+        "value": "Fantasy"
+      },
+      {
+        "synonyms": [
+          "Historic",
+          "history",
+          "historys",
+          "historic",
+          "History"
+        ],
+        "value": "History"
+      },
+      {
+        "synonyms": [
+          "Horror",
+          "horror",
+          "horrors"
+        ],
+        "value": "Horror"
+      },
+      {
+        "synonyms": [
+          "musical",
+          "Musical",
+          "music",
+          "musics",
+          "Music"
+        ],
+        "value": "Music"
+      },
+      {
+        "synonyms": [
+          "mystery",
+          "mysterious",
+          "Mysterious",
+          "mysterys",
+          "Mystery"
+        ],
+        "value": "Mystery"
+      },
+      {
+        "synonyms": [
+          "romantics",
+          "romance",
+          "Romantic",
+          "romantic",
+          "romances",
+          "Romantics",
+          "Romance",
+          "romantical",
+          "romanticals",
+          "Romanticals"
+        ],
+        "value": "Romance"
+      },
+      {
+        "synonyms": [
+          "science fictions",
+          "science",
+          "Science",
+          "Science Fiction",
+          "science fiction"
+        ],
+        "value": "Science Fiction"
+      },
+      {
+        "synonyms": [
+          "TV Movie",
+          "tv movies",
+          "tv Movie"
+        ],
+        "value": "TV Movie"
+      },
+      {
+        "synonyms": [
+          "Thriller",
+          "thriller",
+          "thrillers"
+        ],
+        "value": "Thriller"
+      },
+      {
+        "synonyms": [
+          "War",
+          "wars",
+          "war"
+        ],
+        "value": "War"
+      },
+      {
+        "synonyms": [
+          "Western",
+          "westerns",
+          "western"
+        ],
+        "value": "Western"
+      },
+      {
+        "synonyms": [
+          "action & adventures",
+          "action & adventure",
+          "Action & Adventure"
+        ],
+        "value": "Action & Adventure"
+      },
+      {
+        "synonyms": [
+          "kids",
+          "Kid",
+          "Kids",
+          "kid"
+        ],
+        "value": "Kids"
+      },
+      {
+        "synonyms": [
+          "news",
+          "News"
+        ],
+        "value": "News"
+      },
+      {
+        "synonyms": [
+          "Reality",
+          "reality"
+        ],
+        "value": "Reality"
+      },
+      {
+        "synonyms": [
+          "Sci-Fi & Fantasy",
+          "Sci-fi",
+          "Sci-Fi",
+          "sci-fi",
+          "sci-Fi & fantasys",
+          "sci-Fi & Fantasy"
+        ],
+        "value": "Sci-Fi & Fantasy"
+      },
+      {
+        "synonyms": [
+          "soap",
+          "soaps",
+          "Soap"
+        ],
+        "value": "Soap"
+      },
+      {
+        "synonyms": [
+          "talks",
+          "Talk",
+          "talk"
+        ],
+        "value": "Talk"
+      },
+      {
+        "synonyms": [
+          "War & Politics",
+          "war & Politics",
+          "war & politics"
+        ],
+        "value": "War & Politics"
+      }
+    ],
+    "lookup_tables": [],
+    "regex_features": []
+  }
+}

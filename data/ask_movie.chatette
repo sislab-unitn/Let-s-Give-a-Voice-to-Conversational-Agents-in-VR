@@ -1,0 +1,220 @@
+@[movie_or_tv]
+    movie
+    tv show
+    film = movie
+    tv = tv show
+    show = tv show
+    movies = movie
+    films = movie
+    tv shows = tv show
+    shows = tv show
+@[genre]
+    Action
+    Adventure
+    Animation
+    Comedy
+    Crime
+    Documentary
+    Drama
+    Family
+    Fantasy
+    History
+    Horror
+    Music
+    Mystery
+    Romance
+    Science Fiction
+    TV Movie
+    Thriller
+    War
+    Western
+    Action & Adventure
+    Animation
+    Comedy
+    Crime
+    Documentary
+    Drama
+    Family
+    Kids
+    Mystery
+    News
+    Reality
+    Sci-Fi & Fantasy
+    Soap
+    Talk
+    War & Politics
+    Western
+    Action
+    action = Action
+    actions = Action
+    Adventure
+    Adventure
+    adventure = Adventure
+    adventures = Adventure
+    Animation
+    Animation
+    animation = Animation   
+    animations = Animation
+    Comedy
+    Comedy
+    comedy = Comedy
+    comedys = Comedy
+    comedies = Comedy
+    comedic = Comedy
+    Crime 
+    Crime
+    crime   = Crime
+    crimes = Crime
+    Documentary
+    Documentary
+    documentary = Documentary
+    documentarys = Documentary
+    Drama
+    Drama
+    drama = Drama
+    dramas = Drama
+    Family
+    Family
+    family = Family
+    familys = Family
+    Fantasy
+    Fantasy
+    fantasy = Fantasy
+    fantasys = Fantasy
+    History
+    History
+    history = History
+    historys = History
+    historic = History
+    Historic = History
+    Horror
+    Horror
+    horror = Horror
+    horrors = Horror
+    Music
+    Music
+    music = Music
+    musics = Music
+    musical = Music
+    Musical = Music
+    Mystery 
+    Mystery
+    mystery = Mystery
+    mysterys = Mystery
+    mysterious = Mystery
+    Mysterious = Mystery
+    Romance
+    Romance
+    romance = Romance
+    romances = Romance
+    romantic = Romance
+    Romantic = Romance
+    romantics = Romance
+    Romantics = Romance
+    romantical = Romance 
+    Romanticals = Romance
+    romanticals = Romance
+    Romanticals = Romance
+    Science Fiction 
+    Science Fiction
+    science fiction = Science Fiction
+    science fictions = Science Fiction
+    science = Science Fiction
+    Science = Science Fiction
+    TV Movie
+    TV Movie 
+    tv Movie = TV Movie
+    tv movies = TV Movie
+    Thriller 
+    Thriller
+    thriller = Thriller
+    thrillers = Thriller
+    War
+    War
+    war = War
+    wars = War
+    Western 
+    Western
+    western = Western
+    westerns = Western
+    Action & Adventure
+    Action & Adventure
+    action & adventure = Action & Adventure
+    action & adventures = Action & Adventure
+    Animation
+    Animation
+    animation = Animation
+    animations = Animation
+    Kids
+    Kid = Kids
+    kids = Kids
+    kid = Kids
+    News
+    News
+    news = News
+    Reality
+    Reality
+    reality = Reality
+    Sci-Fi & Fantasy
+    Sci-Fi & Fantasy
+    sci-Fi & Fantasy = Sci-Fi & Fantasy
+    sci-Fi & fantasys = Sci-Fi & Fantasy
+    sci-fi = Sci-Fi & Fantasy
+    Sci-fi = Sci-Fi & Fantasy
+    Sci-Fi = Sci-Fi & Fantasy
+    Soap
+    Soap
+    soap = Soap
+    soaps = Soap
+    Talk
+    Talk
+    talk = Talk
+    talks = Talk
+    War & Politics
+    War & Politics
+    war & Politics = War & Politics
+    war & politics = War & Politics
+
+%[ask_movie](500)
+    I want to watch a @[movie_or_tv]
+    I'd like to watch an @[genre] @[movie_or_tv]
+    Recommend me a @[genre] @[movie_or_tv]
+    Suggest me a @[genre] @[movie_or_tv]
+    I'd like to watch a @[movie_or_tv]
+    I'd like to watch a @[genre]
+    @[genre] @[movie_or_tv]
+    @[genre] genre @[movie_or_tv]
+    Suggest me something @[genre] genre
+    A @[movie_or_tv] in the @[genre] genre
+    I'm bored
+    I want to watch something
+    Suggest me something to watch
+    I'd like to watch something
+    Anything @[genre] genre
+    Anything
+    Suggest me anything
+    I want to watch anything
+    A good @[genre] @[movie_or_tv]
+    A good @[movie_or_tv]
+    I'd like a good @[genre] @[movie_or_tv]
+    Something in the @[genre] genre
+    Something @[genre] genre
+    I want to watch something @[genre] genre
+    I want to watch something @[genre]
+    I'd like to have a @[genre] @[movie_or_tv]
+    I'd like to have @[genre] genre
+    Suggest me something to binge
+    I want to binge something
+    I'd like to binge something in the @[genre] genre
+    I'd like to binge @[genre] genre @[movie_or_tv]
+    Something
+    I want to watch something
+    Recomend me something
+    Suggest me something
+    Recommend me something @[genre] genre
+    Recommend me something @[genre]
+    Recommend me something @[genre] @[movie_or_tv]
+    Recommend me something @[genre] genre @[movie_or_tv]
+    @[genre] genre
+    @[genre]
+    @[movie_or_tv]

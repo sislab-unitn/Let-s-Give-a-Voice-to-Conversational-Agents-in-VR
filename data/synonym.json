@@ -1,0 +1,237 @@
+[
+    {
+        "synonyms": [
+        "actions",
+        "action",
+        "Action"
+        ],
+        "value": "Action"
+    },
+    {
+        "synonyms": [
+        "Adventure",
+        "adventures",
+        "adventure"
+        ],
+        "value": "Adventure"
+    },
+    {
+        "synonyms": [
+        "animations",
+        "Animation",
+        "animation"
+        ],
+        "value": "Animation"
+    },
+    {
+        "synonyms": [
+        "comedys",
+        "comedy",
+        "comedies",
+        "comedic",
+        "Comedy"
+        ],
+        "value": "Comedy"
+    },
+    {
+        "synonyms": [
+        "crime",
+        "Crime",
+        "crimes"
+        ],
+        "value": "Crime"
+    },
+    {
+        "synonyms": [
+        "Documentary",
+        "documentary",
+        "documentarys"
+        ],
+        "value": "Documentary"
+    },
+    {
+        "synonyms": [
+        "Drama",
+        "drama",
+        "dramas"
+        ],
+        "value": "Drama"
+    },
+    {
+        "synonyms": [
+        "Family",
+        "family",
+        "familys"
+        ],
+        "value": "Family"
+    },
+    {
+        "synonyms": [
+        "fantasy",
+        "fantasys",
+        "Fantasy"
+        ],
+        "value": "Fantasy"
+    },
+    {
+        "synonyms": [
+        "historys",
+        "historic",
+        "Historic",
+        "History",
+        "history"
+        ],
+        "value": "History"
+    },
+    {
+        "synonyms": [
+        "Horror",
+        "horror",
+        "horrors"
+        ],
+        "value": "Horror"
+    },
+    {
+        "synonyms": [
+        "Music",
+        "Musical",
+        "music",
+        "musics",
+        "musical"
+        ],
+        "value": "Music"
+    },
+    {
+        "synonyms": [
+        "Mystery",
+        "Mysterious",
+        "mystery",
+        "mysterys",
+        "mysterious"
+        ],
+        "value": "Mystery"
+    },
+    {
+        "synonyms": [
+        "romance",
+        "romantical",
+        "romances",
+        "romantics",
+        "romanticals",
+        "Romance",
+        "Romanticals",
+        "Romantics",
+        "Romantic",
+        "romantic"
+        ],
+        "value": "Romance"
+    },
+    {
+        "synonyms": [
+        "Science",
+        "science fiction",
+        "science fictions",
+        "science",
+        "Science Fiction"
+        ],
+        "value": "Science Fiction"
+    },
+    {
+        "synonyms": [
+        "TV Movie",
+        "tv Movie",
+        "tv movies"
+        ],
+        "value": "TV Movie"
+    },
+    {
+        "synonyms": [
+        "thrillers",
+        "thriller",
+        "Thriller"
+        ],
+        "value": "Thriller"
+    },
+    {
+        "synonyms": [
+        "war",
+        "wars",
+        "War"
+        ],
+        "value": "War"
+    },
+    {
+        "synonyms": [
+        "westerns",
+        "Western",
+        "western"
+        ],
+        "value": "Western"
+    },
+    {
+        "synonyms": [
+        "action & adventures",
+        "Action & Adventure",
+        "action & adventure"
+        ],
+        "value": "Action & Adventure"
+    },
+    {
+        "synonyms": [
+        "kid",
+        "kids",
+        "Kid",
+        "Kids"
+        ],
+        "value": "Kids"
+    },
+    {
+        "synonyms": [
+        "news",
+        "News"
+        ],
+        "value": "News"
+    },
+    {
+        "synonyms": [
+        "reality",
+        "Reality"
+        ],
+        "value": "Reality"
+    },
+    {
+        "synonyms": [
+        "Sci-fi",
+        "sci-fi",
+        "sci-Fi & fantasys",
+        "Sci-Fi & Fantasy",
+        "Sci-Fi",
+        "sci-Fi & Fantasy"
+        ],
+        "value": "Sci-Fi & Fantasy"
+    },
+    {
+        "synonyms": [
+        "soaps",
+        "soap",
+        "Soap"
+        ],
+        "value": "Soap"
+    },
+    {
+        "synonyms": [
+        "talks",
+        "Talk",
+        "talk"
+        ],
+        "value": "Talk"
+    },
+    {
+        "synonyms": [
+        "war & Politics",
+        "War & Politics",
+        "war & politics"
+        ],
+        "value": "War & Politics"
+    }
+]
