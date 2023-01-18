@@ -1,0 +1,602 @@
+[
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Nah Thanks",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "nah thank",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Ni Thanks",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "nah Thank you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not interested thank",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not please",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "not thanks",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "not interested please",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "ni thank",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "no thank you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "No please",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not interested Thank you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "no ty",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "I'm not interested,",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "nah Please",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Ni thank",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "not Thank you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not interested ty",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Nah please",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "No thank",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not Thanks",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "I'm not interested, Thanks",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Nah thanks",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "no please",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "not interested Ty",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "not interested ty",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Ni thank you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "ni ty",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Ni Thank you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "nah Ty",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "No",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "nah thanks",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "no thanks",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not interested Thanks",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not interested Ty",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "not interested",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "No thanks",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "ni Thanks",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "no",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "ni Thank",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "I'm not interested, thanks",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not ty",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "I'm not interested, thank",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "not Ty",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not thanks",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Ni please",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Nah ty",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not interested Please",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not Thank",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not interested please",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Nah Please",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "ni please",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "not thank you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not interested thank you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "no thank",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "I'm not interested, please",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "I'm not interested, ty",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Ni",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not interested",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not Thank you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "ni Ty",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "No Please",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "not interested thank you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Nah Ty",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not interested thanks",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "I'm not interested, thank you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Ni Please",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "not interested thank",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "No thank you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "nah ty",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not thank you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "nah thank you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "No Thanks",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Ni thanks",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Nah thank you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not thank",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "not Thank",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "not please",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "I'm not interested, Thank you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "no Thank",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "No Thank you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Ni ty",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "ni thanks",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "I'm not interested, Ty",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not interested Thank",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "not ty",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "not",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "nah Thanks",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "ni Thank you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Nah thank",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not Please",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "ni thank you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "no Please",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "not interested Thank you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "nah Thank",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "Not Ty",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "not Please",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "I'm not interested, Thank",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "deny",
+        "text": "No Ty",
+        "traits": []
+    }
+]

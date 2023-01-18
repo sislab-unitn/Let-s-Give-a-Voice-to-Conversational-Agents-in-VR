@@ -1,0 +1,30 @@
+~[genre]
+    [&genre]
+    [&genres]
+    [&type]
+    [&types]
+~[what]
+    [&What]
+    [&which]
+@[movie_or_tv]
+    movie
+    tv show
+    film = movie
+    tv = tv show
+    show = tv show
+    movies = movie
+    films = movie
+    tv shows = tv show
+    shows = tv show
+%[popular](100)
+    ~[what] ~[genre] are available in  @[movie_or_tv]?
+    How many ~[genre] are there?
+    Which ~[genre] are available?
+    ~[what] ~[genre] are there?
+    ~[what] ~[genre] are in @[movie_or_tv]?
+    ~[what] @[movie_or_tv] ~[genre] are there?
+    ~[what] @[movie_or_tv] ~[genre] are available?
+    ~[what] ~[genre] are there ?
+    ~[what] ~[genre] exists ?
+    ~[what] ~[genre] can you suggest me ?
+    

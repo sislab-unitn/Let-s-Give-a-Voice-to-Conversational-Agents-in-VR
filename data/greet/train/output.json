@@ -1,0 +1,179 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "Morning"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "Hello"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "Hello there"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "Ehy"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "good Evening"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "Goodmorning"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "morning"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "hello"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "ehi"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "hey"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "Goodafternoon"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "Good Evening"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "good evening"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "Ehi"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "Good evening"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "nice to meet you"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "good Afternoon"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "Good afternoon"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "good morning"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "Good Afternoon"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "good afternoon"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "goodevening"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "Hi"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "goodafternoon"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "Good Morning"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "ehy"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "Nice to meet you"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "Goodevening"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "hi"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "good Morning"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "Hey"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "hello there"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "Good morning"
+      },
+      {
+        "entities": [],
+        "intent": "greet",
+        "text": "goodmorning"
+      }
+    ],
+    "entity_synonyms": [],
+    "lookup_tables": [],
+    "regex_features": []
+  }
+}

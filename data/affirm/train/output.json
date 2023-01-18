@@ -1,0 +1,259 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Yeah ty"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Ye Ty"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "yeah Thank you"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "y thank you"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "yea Ty"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "yeah thank"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "thank"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "yes Thank"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Yes Please"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "ye Thank you"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Ye Please"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Yea Thanks"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "sure"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Y Please"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "ye Ty"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Yeah thanks"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "thanks"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Y please"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Yea Thank you"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Yea Thank"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "sure Thank"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "sure Thank you"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Yeah Thanks"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Yea Ty"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Y thank"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Ty"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Sure thank you"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Y Thank"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "ye please"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "y Thank"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "yeah Thank"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Yea please"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "yeah thanks"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "ye thank"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Yes"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "yea Please"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Sure Thank you"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "yes ty"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "yeah Thanks"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "sure Please"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "y Thank you"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Ye thank"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "y Please"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "yea thank"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "yea thanks"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "yeah Please"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "ye Thanks"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Yes Thank"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "y Ty"
+      },
+      {
+        "entities": [],
+        "intent": "affirm",
+        "text": "Yeah"
+      }
+    ],
+    "entity_synonyms": [],
+    "lookup_tables": [],
+    "regex_features": []
+  }
+}

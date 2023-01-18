@@ -1,0 +1,17 @@
+~[deny]
+    [&no]
+    [&ni]
+    [&not interested]
+    [&not]
+    [&nah]
+~[thank]
+    [&thank]
+    [&thanks]
+    [&thank you]
+    [&ty]
+    [&please]
+
+%[deny](100)
+    ~[deny]  ~[thank]
+    ~[deny]
+    I'm not interested, ~[thank?]

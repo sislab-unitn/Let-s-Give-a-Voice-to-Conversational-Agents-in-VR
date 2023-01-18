@@ -1,0 +1,290 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Popular"
+      },
+      {
+        "entities": [
+          {
+            "end": 15,
+            "entity": "movie_or_tv",
+            "start": 8,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "Popular tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 17,
+            "entity": "movie_or_tv",
+            "start": 13,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "Good popular film"
+      },
+      {
+        "entities": [
+          {
+            "end": 12,
+            "entity": "movie_or_tv",
+            "start": 8,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "Popular show"
+      },
+      {
+        "entities": [
+          {
+            "end": 10,
+            "entity": "movie_or_tv",
+            "start": 8,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "Popular tv"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Suggest me something popular"
+      },
+      {
+        "entities": [
+          {
+            "end": 19,
+            "entity": "movie_or_tv",
+            "start": 13,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "Good popular movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 18,
+            "entity": "movie_or_tv",
+            "start": 13,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "Good popular shows"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Anything that is popular"
+      },
+      {
+        "entities": [
+          {
+            "end": 13,
+            "entity": "movie_or_tv",
+            "start": 8,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "Popular movie"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Popular stuff"
+      },
+      {
+        "entities": [
+          {
+            "end": 18,
+            "entity": "movie_or_tv",
+            "start": 13,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "Good popular movie"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "I want to watch something popular"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "popular"
+      },
+      {
+        "entities": [
+          {
+            "end": 21,
+            "entity": "movie_or_tv",
+            "start": 13,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "Good popular tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 14,
+            "entity": "movie_or_tv",
+            "start": 8,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "Popular movies"
+      },
+      {
+        "entities": [
+          {
+            "end": 20,
+            "entity": "movie_or_tv",
+            "start": 13,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "Good popular tv show"
+      },
+      {
+        "entities": [
+          {
+            "end": 15,
+            "entity": "movie_or_tv",
+            "start": 13,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "Good popular tv"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "By popularity"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Recomend me something popular"
+      },
+      {
+        "entities": [
+          {
+            "end": 18,
+            "entity": "movie_or_tv",
+            "start": 13,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "Good popular films"
+      },
+      {
+        "entities": [
+          {
+            "end": 12,
+            "entity": "movie_or_tv",
+            "start": 8,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "Popular film"
+      },
+      {
+        "entities": [
+          {
+            "end": 16,
+            "entity": "movie_or_tv",
+            "start": 8,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "Popular tv shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 13,
+            "entity": "movie_or_tv",
+            "start": 8,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "Popular films"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Something popular"
+      },
+      {
+        "entities": [
+          {
+            "end": 13,
+            "entity": "movie_or_tv",
+            "start": 8,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "Popular shows"
+      },
+      {
+        "entities": [
+          {
+            "end": 17,
+            "entity": "movie_or_tv",
+            "start": 13,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "Good popular show"
+      }
+    ],
+    "entity_synonyms": [
+      {
+        "synonyms": [
+          "films",
+          "movie",
+          "movies",
+          "film"
+        ],
+        "value": "movie"
+      },
+      {
+        "synonyms": [
+          "shows",
+          "tv",
+          "tv show",
+          "tv shows",
+          "show"
+        ],
+        "value": "tv show"
+      }
+    ],
+    "lookup_tables": [],
+    "regex_features": []
+  }
+}

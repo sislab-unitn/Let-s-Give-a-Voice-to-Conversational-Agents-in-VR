@@ -1,0 +1,206 @@
+[
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "Morning",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "Hello",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "Hello there",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "Ehy",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "good Evening",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "Goodmorning",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "morning",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "hello",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "ehi",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "hey",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "Goodafternoon",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "Good Evening",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "good evening",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "Ehi",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "Good evening",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "nice to meet you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "good Afternoon",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "Good afternoon",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "good morning",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "Good Afternoon",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "good afternoon",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "goodevening",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "Hi",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "goodafternoon",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "Good Morning",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "ehy",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "Nice to meet you",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "Goodevening",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "hi",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "good Morning",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "Hey",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "hello there",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "Good morning",
+        "traits": []
+    },
+    {
+        "entities": [],
+        "intent": "greet",
+        "text": "goodmorning",
+        "traits": []
+    }
+]

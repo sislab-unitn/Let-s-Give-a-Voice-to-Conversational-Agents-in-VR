@@ -1,0 +1,893 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "How many Genre are there?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "How many Genres are there?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "How many Type are there?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "How many Types are there?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "How many genre are there?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "How many genres are there?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "How many type are there?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "How many types are there?"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "movie_or_tv",
+            "start": 18,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "What Genre are in tv show?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "What Genre are there ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "movie_or_tv",
+            "start": 29,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "What Genres are available in film?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "What Genres exists ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 32,
+            "entity": "movie_or_tv",
+            "start": 27,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "What Type are available in films?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "What Type exists ?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "What Types can you suggest me ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 10,
+            "entity": "movie_or_tv",
+            "start": 5,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "What films genre are available?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "What genre are there ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 24,
+            "entity": "movie_or_tv",
+            "start": 19,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "What genres are in films?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "What genres can you suggest me ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 10,
+            "entity": "movie_or_tv",
+            "start": 5,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "What movie Type are available?"
+      },
+      {
+        "entities": [
+          {
+            "end": 12,
+            "entity": "movie_or_tv",
+            "start": 5,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "What tv show types are available?"
+      },
+      {
+        "entities": [
+          {
+            "end": 13,
+            "entity": "movie_or_tv",
+            "start": 5,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "What tv shows Types are available?"
+      },
+      {
+        "entities": [
+          {
+            "end": 13,
+            "entity": "movie_or_tv",
+            "start": 5,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "What tv shows genres are there?"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "movie_or_tv",
+            "start": 27,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "What type are available in tv?"
+      },
+      {
+        "entities": [
+          {
+            "end": 19,
+            "entity": "movie_or_tv",
+            "start": 17,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "What type are in tv?"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "movie_or_tv",
+            "start": 28,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "What types are available in shows?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Which Genre exists ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 37,
+            "entity": "movie_or_tv",
+            "start": 30,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "Which Genres are available in tv show?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Which Genres are available?"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "movie_or_tv",
+            "start": 20,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "Which Genres are in shows?"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "movie_or_tv",
+            "start": 20,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "Which Genres are in tv show?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Which Genres exists ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "movie_or_tv",
+            "start": 28,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "Which Type are available in tv?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Which Type are available?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Which Type are there ?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Which Type are there?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Which Type can you suggest me ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 37,
+            "entity": "movie_or_tv",
+            "start": 29,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "Which Types are available in tv shows?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Which Types are available?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Which Types can you suggest me ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 10,
+            "entity": "movie_or_tv",
+            "start": 6,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "Which film Genre are there?"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "movie_or_tv",
+            "start": 19,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "Which genre are in tv shows?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Which genre exists ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 38,
+            "entity": "movie_or_tv",
+            "start": 30,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "Which genres are available in tv shows?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Which genres are available?"
+      },
+      {
+        "entities": [
+          {
+            "end": 12,
+            "entity": "movie_or_tv",
+            "start": 6,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "Which movies Genre are there?"
+      },
+      {
+        "entities": [
+          {
+            "end": 12,
+            "entity": "movie_or_tv",
+            "start": 6,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "Which movies Types are available?"
+      },
+      {
+        "entities": [
+          {
+            "end": 8,
+            "entity": "movie_or_tv",
+            "start": 6,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "Which tv type are available?"
+      },
+      {
+        "entities": [
+          {
+            "end": 36,
+            "entity": "movie_or_tv",
+            "start": 28,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "Which type are available in tv shows?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Which type are available?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Which type can you suggest me ?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Which types are available?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Which types are there?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Which types can you suggest me ?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "Which types exists ?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "what Genres are there?"
+      },
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "movie_or_tv",
+            "start": 27,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "what Type are available in film?"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "movie_or_tv",
+            "start": 27,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "what Type are available in movies?"
+      },
+      {
+        "entities": [
+          {
+            "end": 21,
+            "entity": "movie_or_tv",
+            "start": 17,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "what Type are in film?"
+      },
+      {
+        "entities": [
+          {
+            "end": 22,
+            "entity": "movie_or_tv",
+            "start": 17,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "what Type are in films?"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "movie_or_tv",
+            "start": 18,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "what Types are in films?"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "movie_or_tv",
+            "start": 18,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "what Types are in tv shows?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "what Types can you suggest me ?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "what genre are there ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 10,
+            "entity": "movie_or_tv",
+            "start": 5,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "what movie Type are available?"
+      },
+      {
+        "entities": [
+          {
+            "end": 11,
+            "entity": "movie_or_tv",
+            "start": 5,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "what movies Type are there?"
+      },
+      {
+        "entities": [
+          {
+            "end": 9,
+            "entity": "movie_or_tv",
+            "start": 5,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "what show genres are available?"
+      },
+      {
+        "entities": [
+          {
+            "end": 10,
+            "entity": "movie_or_tv",
+            "start": 5,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "what shows Type are available?"
+      },
+      {
+        "entities": [
+          {
+            "end": 7,
+            "entity": "movie_or_tv",
+            "start": 5,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "what tv genres are available?"
+      },
+      {
+        "entities": [
+          {
+            "end": 12,
+            "entity": "movie_or_tv",
+            "start": 5,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "what tv show genre are available?"
+      },
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "movie_or_tv",
+            "start": 27,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "what type are available in show?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "what type are there?"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "movie_or_tv",
+            "start": 28,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "what types are available in shows?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "what types are there ?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "which Genre are there ?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "which Genre exists ?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "which Genres are there ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 30,
+            "entity": "movie_or_tv",
+            "start": 28,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "which Type are available in tv?"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "movie_or_tv",
+            "start": 18,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "which Type are in shows?"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "movie_or_tv",
+            "start": 18,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "which Type are in tv show?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "which Type are there?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "which Type exists ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 33,
+            "entity": "movie_or_tv",
+            "start": 29,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "which Types are available in film?"
+      },
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "movie_or_tv",
+            "start": 29,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "which Types are available in tv?"
+      },
+      {
+        "entities": [
+          {
+            "end": 23,
+            "entity": "movie_or_tv",
+            "start": 19,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "which Types are in film?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "which Types can you suggest me ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 25,
+            "entity": "movie_or_tv",
+            "start": 19,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "which genre are in movies?"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "movie_or_tv",
+            "start": 19,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "which genre are in tv shows?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "which genre exists ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 11,
+            "entity": "movie_or_tv",
+            "start": 6,
+            "value": "movie"
+          }
+        ],
+        "intent": "popular",
+        "text": "which movie Type are available?"
+      },
+      {
+        "entities": [
+          {
+            "end": 13,
+            "entity": "movie_or_tv",
+            "start": 6,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "which tv show Genre are available?"
+      },
+      {
+        "entities": [
+          {
+            "end": 13,
+            "entity": "movie_or_tv",
+            "start": 6,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "which tv show genres are available?"
+      },
+      {
+        "entities": [
+          {
+            "end": 13,
+            "entity": "movie_or_tv",
+            "start": 6,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "which tv show type are there?"
+      },
+      {
+        "entities": [
+          {
+            "end": 14,
+            "entity": "movie_or_tv",
+            "start": 6,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "which tv shows genres are available?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "which type are there?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "which type can you suggest me ?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "which type exists ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 34,
+            "entity": "movie_or_tv",
+            "start": 29,
+            "value": "tv show"
+          }
+        ],
+        "intent": "popular",
+        "text": "which types are available in shows?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "which types are there?"
+      },
+      {
+        "entities": [],
+        "intent": "popular",
+        "text": "which types exists ?"
+      }
+    ],
+    "entity_synonyms": [
+      {
+        "synonyms": [
+          "movies",
+          "movie",
+          "films",
+          "film"
+        ],
+        "value": "movie"
+      },
+      {
+        "synonyms": [
+          "show",
+          "tv shows",
+          "tv",
+          "tv show",
+          "shows"
+        ],
+        "value": "tv show"
+      }
+    ],
+    "lookup_tables": [],
+    "regex_features": []
+  }
+}

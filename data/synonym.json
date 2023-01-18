@@ -1,237 +1,256 @@
 [
     {
-        "synonyms": [
-        "actions",
-        "action",
-        "Action"
-        ],
-        "value": "Action"
+    "synonyms": [
+        "movies",
+        "film",
+        "films",
+        "movie"
+    ],
+    "value": "movie"
     },
     {
-        "synonyms": [
+    "synonyms": [
+        "shows",
+        "tv",
+        "tv shows",
+        "show",
+        "tv show"
+    ],
+    "value": "tv show"
+    },
+    {
+    "synonyms": [
+        "action",
+        "Action",
+        "actions"
+    ],
+    "value": "Action"
+    },
+    {
+    "synonyms": [
         "Adventure",
         "adventures",
         "adventure"
-        ],
-        "value": "Adventure"
+    ],
+    "value": "Adventure"
     },
     {
-        "synonyms": [
+    "synonyms": [
         "animations",
         "Animation",
         "animation"
-        ],
-        "value": "Animation"
+    ],
+    "value": "Animation"
     },
     {
-        "synonyms": [
-        "comedys",
-        "comedy",
-        "comedies",
+    "synonyms": [
+        "Comedy",
         "comedic",
-        "Comedy"
-        ],
-        "value": "Comedy"
+        "comedies",
+        "comedy",
+        "comedys"
+    ],
+    "value": "Comedy"
     },
     {
-        "synonyms": [
-        "crime",
+    "synonyms": [
         "Crime",
-        "crimes"
-        ],
-        "value": "Crime"
+        "crimes",
+        "crime"
+    ],
+    "value": "Crime"
     },
     {
-        "synonyms": [
-        "Documentary",
+    "synonyms": [
         "documentary",
+        "Documentary",
         "documentarys"
-        ],
-        "value": "Documentary"
+    ],
+    "value": "Documentary"
     },
     {
-        "synonyms": [
+    "synonyms": [
         "Drama",
         "drama",
         "dramas"
-        ],
-        "value": "Drama"
+    ],
+    "value": "Drama"
     },
     {
-        "synonyms": [
-        "Family",
+    "synonyms": [
         "family",
-        "familys"
-        ],
-        "value": "Family"
+        "familys",
+        "Family"
+    ],
+    "value": "Family"
     },
     {
-        "synonyms": [
+    "synonyms": [
         "fantasy",
-        "fantasys",
-        "Fantasy"
-        ],
-        "value": "Fantasy"
+        "Fantasy",
+        "fantasys"
+    ],
+    "value": "Fantasy"
     },
     {
-        "synonyms": [
+    "synonyms": [
+        "Historic",
+        "history",
         "historys",
         "historic",
-        "Historic",
-        "History",
-        "history"
-        ],
-        "value": "History"
+        "History"
+    ],
+    "value": "History"
     },
     {
-        "synonyms": [
+    "synonyms": [
         "Horror",
         "horror",
         "horrors"
-        ],
-        "value": "Horror"
+    ],
+    "value": "Horror"
     },
     {
-        "synonyms": [
-        "Music",
+    "synonyms": [
+        "musical",
         "Musical",
         "music",
         "musics",
-        "musical"
-        ],
-        "value": "Music"
+        "Music"
+    ],
+    "value": "Music"
     },
     {
-        "synonyms": [
-        "Mystery",
-        "Mysterious",
+    "synonyms": [
         "mystery",
+        "mysterious",
+        "Mysterious",
         "mysterys",
-        "mysterious"
-        ],
-        "value": "Mystery"
+        "Mystery"
+    ],
+    "value": "Mystery"
     },
     {
-        "synonyms": [
-        "romance",
-        "romantical",
-        "romances",
+    "synonyms": [
         "romantics",
-        "romanticals",
-        "Romance",
-        "Romanticals",
-        "Romantics",
+        "romance",
         "Romantic",
-        "romantic"
-        ],
-        "value": "Romance"
+        "romantic",
+        "romances",
+        "Romantics",
+        "Romance",
+        "romantical",
+        "romanticals",
+        "Romanticals"
+    ],
+    "value": "Romance"
     },
     {
-        "synonyms": [
-        "Science",
-        "science fiction",
+    "synonyms": [
         "science fictions",
         "science",
-        "Science Fiction"
-        ],
-        "value": "Science Fiction"
+        "Science",
+        "Science Fiction",
+        "science fiction"
+    ],
+    "value": "Science Fiction"
     },
     {
-        "synonyms": [
+    "synonyms": [
         "TV Movie",
-        "tv Movie",
-        "tv movies"
-        ],
-        "value": "TV Movie"
+        "tv movies",
+        "tv Movie"
+    ],
+    "value": "TV Movie"
     },
     {
-        "synonyms": [
-        "thrillers",
+    "synonyms": [
+        "Thriller",
         "thriller",
-        "Thriller"
-        ],
-        "value": "Thriller"
+        "thrillers"
+    ],
+    "value": "Thriller"
     },
     {
-        "synonyms": [
-        "war",
+    "synonyms": [
+        "War",
         "wars",
-        "War"
-        ],
-        "value": "War"
+        "war"
+    ],
+    "value": "War"
     },
     {
-        "synonyms": [
-        "westerns",
+    "synonyms": [
         "Western",
+        "westerns",
         "western"
-        ],
-        "value": "Western"
+    ],
+    "value": "Western"
     },
     {
-        "synonyms": [
+    "synonyms": [
         "action & adventures",
-        "Action & Adventure",
-        "action & adventure"
-        ],
-        "value": "Action & Adventure"
+        "action & adventure",
+        "Action & Adventure"
+    ],
+    "value": "Action & Adventure"
     },
     {
-        "synonyms": [
-        "kid",
+    "synonyms": [
         "kids",
         "Kid",
-        "Kids"
-        ],
-        "value": "Kids"
+        "Kids",
+        "kid"
+    ],
+    "value": "Kids"
     },
     {
-        "synonyms": [
+    "synonyms": [
         "news",
         "News"
-        ],
-        "value": "News"
+    ],
+    "value": "News"
     },
     {
-        "synonyms": [
-        "reality",
-        "Reality"
-        ],
-        "value": "Reality"
+    "synonyms": [
+        "Reality",
+        "reality"
+    ],
+    "value": "Reality"
     },
     {
-        "synonyms": [
+    "synonyms": [
+        "Sci-Fi & Fantasy",
         "Sci-fi",
+        "Sci-Fi",
         "sci-fi",
         "sci-Fi & fantasys",
-        "Sci-Fi & Fantasy",
-        "Sci-Fi",
         "sci-Fi & Fantasy"
-        ],
-        "value": "Sci-Fi & Fantasy"
+    ],
+    "value": "Sci-Fi & Fantasy"
     },
     {
-        "synonyms": [
-        "soaps",
+    "synonyms": [
         "soap",
+        "soaps",
         "Soap"
-        ],
-        "value": "Soap"
+    ],
+    "value": "Soap"
     },
     {
-        "synonyms": [
+    "synonyms": [
         "talks",
         "Talk",
         "talk"
-        ],
-        "value": "Talk"
+    ],
+    "value": "Talk"
     },
     {
-        "synonyms": [
-        "war & Politics",
+    "synonyms": [
         "War & Politics",
+        "war & Politics",
         "war & politics"
-        ],
-        "value": "War & Politics"
+    ],
+    "value": "War & Politics"
     }
 ]
