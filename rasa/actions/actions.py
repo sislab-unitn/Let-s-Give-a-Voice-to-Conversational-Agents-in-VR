@@ -21,10 +21,14 @@ from rasa_sdk.events import (
 )
 import tmdbsimple as tmdb
 import Levenshtein
+# import os
+# import sys
+# print(sys.argv[0])
+# print(sys.argv[1])
 tmdb.API_KEY = 'c038a92e3fe9346f02feaf2d8ae2efab'
 # 5 seconds timeout for requests to avoid blocking
 tmdb.REQUESTS_TIMEOUT = 5  # seconds, for both connect and read
-
+# function to get the slot ids
 def get_slot_ids(movie_or_tv) -> Dict:
         genre = tmdb.Genres()
         genres =  {}
