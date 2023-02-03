@@ -52,6 +52,7 @@ log
 rasa/.rasa/cache/*
 rasa/models/*
 /__pycache__/*
+rasa/actions/__pycache__/*
 *.DS_Store
 
 #.gitmodules
