@@ -50,9 +50,9 @@ log
 
 # ignore rasa cache and saved models to save space
 rasa/.rasa/cache/*
-rasa/models/*
-/__pycache__/*
 rasa/actions/__pycache__/*
+rasa/models/*
+__pycache__/*
 *.DS_Store
 
 #.gitmodules
