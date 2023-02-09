@@ -12,9 +12,7 @@ app = FastAPI()
 
 token_auth_scheme = HTTPBearer()
 
-
 # class Item(BaseModel):
-
 
 @app.get("/")
 def read_root():
@@ -24,15 +22,6 @@ def read_root():
 def message(q:str,v:str ="20221114",token: str = Depends(token_auth_scheme)):
     r = requests.get(url = wit_URL+'message', params = {"q":q,"v":v},headers={'Authorization': 'Bearer ' + token.credentials})
     return r.json()
-# @app.get("/message")
-# async def message(request: Request):
-#     params = request.query_params
-#     url = f'{wit_URL}message?{params}'
-#     print(url)
-#     token = request.headers['Authorization'].split(' ')[1]
-#     print(token)
-#     response = RedirectResponse(url=url)
-#     return response
 @app.get("/language")
 def language(q:str,v:str ="20221114",token: str = Depends(token_auth_scheme)):
     r = requests.get(url = wit_URL+'language', params = {"q":q,"v":v},headers={'Authorization': 'Bearer ' + token.credentials})
