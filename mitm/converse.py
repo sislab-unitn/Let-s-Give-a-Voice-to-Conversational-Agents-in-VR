@@ -8,7 +8,7 @@ import json
 from pprint import pprint
 import urllib
 from typing import Tuple, Dict
-def converse(flow : http.HTTPFlow, rasa_path : str, rasa_port : int, wit_path : str, wit_port : int, entities:Dict, intents:Dict,traits:Dict) -> Tuple[int,str,Dict]:
+def converse(flow : http.HTTPFlow,path : str, port : int, rasa_path : str, rasa_port : int, wit_path : str, wit_port : int, entities:Dict, intents:Dict,traits:Dict) -> Tuple[int,str,Dict]:
     logging.log(ALERT,"Message")
     url = f'http://{rasa_path}:{rasa_port}/model/parse'
     post_body = f'{{"text":"{flow.request.query["q"]}"}}'

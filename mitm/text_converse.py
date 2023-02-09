@@ -8,44 +8,30 @@ import json
 from pprint import pprint
 import urllib
 from typing import Tuple, Dict
-def text_converse(flow : http.HTTPFlow, rasa_path : str, rasa_port : int, wit_path : str, wit_port : int, entities:Dict, intents:Dict,traits:Dict) -> Tuple[int,str,Dict]:
-    # call dictation
-    logging.log(ALERT,flow.request.headers)
-    url = f'https://{self.wit_path}:{self.wit_port}/dictation?v={flow.request.query["v"]}'
+def text_converse(flow : http.HTTPFlow,path : str, port : int, rasa_path : str, rasa_port : int, wit_path : str, wit_port : int, entities:Dict, intents:Dict,traits:Dict) -> Tuple[int,str,Dict]:
+    logging.log(ALERT,"Text Converse")
+    url = f'http://{rasa_path}:{rasa_port}/webhooks/rest/webhook'
     post_body = flow.request.content
-    headers = dict(flow.request.headers)
-    try:
-        del(headers['Transfer-encoding'])
-    except KeyError:
-        pass
-    headers['Content-Length'] = str(len(post_body))
-    resp = requests.post(url, data=flow.request.content, headers=headers, verify=False)
-    response_content = resp.content.decode("utf-8").split('\n}\r\n{\n')
-    logging.log(ALERT,response_content)
-    # pprint(response_content)
-    response_content[0] = response_content[0] + '}'
-    for i in range(1,len(response_content)-1):
-        response_content[i] = '{' + response_content[i] + '}'
-    response_content[-1] = '{' + response_content[-1][:-2]
-    logging.log(ALERT,response_content[-1]) 
-    response_dict = json.loads(response_content[-1])        
-    text = urllib.parse.quote_plus(response_dict["text"])
-    logging.log(ALERT,text)
-    # call message
-    url = f'http://{flow.request.host}/message?v={flow.request.query["v"]}&q={text}'
-    req_header = dict(flow.request.headers)
     try: 
-        del(req_header['Content-Length'])
-    except KeyError:
-        pass
-    try:
-        del(req_header['Content-Type'])
-    except KeyError:
-        pass
-    resp = requests.post(url, headers=req_header, verify=False)
-    logging.log(ALERT,resp.headers)
-    
-    resp_dict = resp.json()
-    resp_dict |= response_dict
-    status_code = resp.status_code
-    return status_code, json.dumps(resp_dict,indent=2), resp.headers
+        json.loads(post_body)
+    except ValueError:
+        status_code = 400
+        content = "{'Bad Request': 'Invalid JSON'}"
+        resp_header = dict(flow.request.headers)
+        resp_header['Host'] = rasa_path
+        resp_header['Content-Type'] = 'application/json'
+        resp_header['Content-Length'] = str(len(content))
+        return status_code, content, resp_header
+    # post_body = bytes(json.dumps(post_body), 'utf-8')
+    req_header = dict(flow.request.headers)
+    req_header['Host'] = rasa_path
+    req_header['Content-Type'] = 'application/json'
+    req_header['Content-Length'] = str(len(post_body))
+    resp = requests.post(url, data=post_body, headers=req_header, verify=False)
+    if resp.status_code != 200:
+        # logging.log(ALERT,resp.content)
+        return resp.status_code, resp.content, resp.headers
+    # logging.log(ALERT,resp.headers)
+    # logging.log(ALERT,resp.content)
+    status_code = 200
+    return status_code, resp.content, dict(resp.headers)

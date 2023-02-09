@@ -8,7 +8,7 @@ import json
 from pprint import pprint
 import urllib
 from typing import Tuple, Dict
-def event(flow : http.HTTPFlow, rasa_path : str, rasa_port : int, wit_path : str, wit_port : int, entities:Dict, intents:Dict,traits:Dict) -> Tuple[int,str,Dict]:
+def event(flow : http.HTTPFlow, path : str, port : int, rasa_path : str, rasa_port : int, wit_path : str, wit_port : int, entities:Dict, intents:Dict,traits:Dict) -> Tuple[int,str,Dict]:
     # call dictation
     logging.log(ALERT,flow.request.headers)
     url = f'https://{self.wit_path}:{self.wit_port}/dictation?v={flow.request.query["v"]}'

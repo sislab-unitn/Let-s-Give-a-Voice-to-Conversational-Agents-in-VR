@@ -17,13 +17,15 @@ from speech import speech
 from event import event
 from converse import converse
 from text_converse import text_converse
-from speech_converse import speech_converse
+from audio_converse import audio_converse
 
 from typing import Tuple, Dict
 class Injector:
     def __init__(self):
+        self.path = "127.0.0.1"
         self.rasa_path = "127.0.0.1"
         self.wit_path = "127.0.0.1"
+        self.port = 8080
         self.rasa_port = 8082
         self.wit_port = 8081
         self.entities = dict()
@@ -55,22 +57,22 @@ class Injector:
         logging.log(ALERT,flow.request)
         logging.log(ALERT,flow.request.path)
         if flow.request.path.startswith('/message'):
-            status_code, response_body, response_header = message(flow,self.rasa_path,self.rasa_port,self.wit_path,self.wit_port,self.entities,self.intents,self.traits)
+            status_code, response_body, response_header = message(flow,self.path,self.port,self.rasa_path,self.rasa_port,self.wit_path,self.wit_port,self.entities,self.intents,self.traits)
             flow.response = http.Response.make(status_code = status_code, content = response_body, headers = response_header)
-        if flow.request.path.startswith('/speech'):
-            status_code, response_body, response_header = speech(flow,self.rasa_path,self.rasa_port,self.wit_path,self.wit_port,self.entities,self.intents,self.traits)
-            flow.response = http.Response.make(status_code = status_code, content = response_body, headers = response_header)
+        # if flow.request.path.startswith('/speech'):
+        #     status_code, response_body, response_header = speech(flow,self.path,self.port,self.rasa_path,self.rasa_port,self.wit_path,self.wit_port,self.entities,self.intents,self.traits)
+        #     flow.response = http.Response.make(status_code = status_code, content = response_body, headers = response_header)
         if flow.request.path.startswith('/event'):
-            status_code, response_body, response_header = event(flow,self.rasa_path,self.rasa_port,self.wit_path,self.wit_port,self.entities,self.intents,self.traits)
+            status_code, response_body, response_header = event(flow,self.path,self.port,self.rasa_path,self.rasa_port,self.wit_path,self.wit_port,self.entities,self.intents,self.traits)
             flow.response = http.Response.make(status_code = status_code, content = response_body, headers = response_header)
         if flow.request.path.startswith('/converse'):
-            status_code, response_body, response_header = converse(flow,self.rasa_path,self.rasa_port,self.wit_path,self.wit_port,self.entities,self.intents,self.traits)
+            status_code, response_body, response_header = converse(flow,self.path,self.port,self.rasa_path,self.rasa_port,self.wit_path,self.wit_port,self.entities,self.intents,self.traits)
             flow.response = http.Response.make(status_code = status_code, content = response_body, headers = response_header)
         if flow.request.path.startswith('/text_converse'):
-            status_code, response_body, response_header = event(flow,self.rasa_path,self.rasa_port,self.wit_path,self.wit_port,self.entities,self.intents,self.traits)
+            status_code, response_body, response_header = text_converse(flow,self.path,self.port,self.rasa_path,self.rasa_port,self.wit_path,self.wit_port,self.entities,self.intents,self.traits)
             flow.response = http.Response.make(status_code = status_code, content = response_body, headers = response_header)
-        if flow.request.path.startswith('/speech_converse'):
-            status_code, response_body, response_header = converse(flow,self.rasa_path,self.rasa_port,self.wit_path,self.wit_port,self.entities,self.intents,self.traits)
+        if flow.request.path.startswith('/audio_converse'):
+            status_code, response_body, response_header = audio_converse(flow,self.path,self.port,self.rasa_path,self.rasa_port,self.wit_path,self.wit_port,self.entities,self.intents,self.traits)
             flow.response = http.Response.make(status_code = status_code, content = response_body, headers = response_header)
         # change the host here if i want to redirect the request
         # flow.request.host = "mitmproxy.org"
