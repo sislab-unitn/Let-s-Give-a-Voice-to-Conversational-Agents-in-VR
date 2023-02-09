@@ -49,11 +49,11 @@ log
 .idea
 
 # ignore rasa cache and saved models to save space
-# rasa/.rasa/cache/*
-# rasa/actions/__pycache__/*
-# rasa/models/*
-# __pycache__/*
-# mitm/__pycache__/*
+rasa/.rasa/cache/*
+rasa/actions/__pycache__/*
+rasa/models/*
+__pycache__/*
+mitm/__pycache__/*
 *.DS_Store
 DS_Store
 .vscode/*
