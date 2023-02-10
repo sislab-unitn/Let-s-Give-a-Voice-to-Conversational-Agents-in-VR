@@ -32,7 +32,7 @@ def intents(v:str ="20221114",token: str = Depends(token_auth_scheme)):
     return r.json()
 @app.get("/entities")
 def entities(v:str ="20221114",token: str = Depends(token_auth_scheme)):
-    r = requests.get(url = wit_URL+'entities', params = {"v":v},headers={'Authorization': 'Bearer ' + token.credentials})
+    r = requests.get(url = wit_URLE+'entities', params = {"v":v},headers={'Authorization': 'Bearer ' + token.credentials})
     return r.json()
 @app.get("/traits")
 def traits(v:str ="20221114",token: str = Depends(token_auth_scheme)):

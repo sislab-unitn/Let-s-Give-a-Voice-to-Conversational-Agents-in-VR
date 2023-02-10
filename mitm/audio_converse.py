@@ -22,30 +22,36 @@ def audio_converse(flow : http.HTTPFlow,path : str, port : int, rasa_path : str,
     # response is a json array of json objects separated by \r\n
     response_content = resp.content.decode("utf-8").split('\r\n')
     # get the last json object, which is not the last element of the array
-    response_dict = json.loads(response_content[-2])
-    text = response_dict["text"]
-    
-    # ask rasa
-    url = f'http://{rasa_path}:{rasa_port}/webhooks/rest/webhook'
-    post_body = bytes(json.dumps({"sender": "mitmproxy", "message": text}), 'utf-8')
-    req_header = dict(flow.request.headers)
-    req_header['Host'] = rasa_path
-    req_header['Content-Type'] = 'application/json'
-    req_header['Content-Length'] = str(len(post_body))
     try:
-        del req_header['Transfer-Encoding']
-    except KeyError:
+        response_dict = json.loads(response_content[-2])
+        text = response_dict["text"]
+        logging.log(ALERT,text)
+        # ask rasa
+        url = f'http://{rasa_path}:{rasa_port}/webhooks/rest/webhook'
+        post_body = bytes(json.dumps({"sender": "mitmproxy", "message": text}), 'utf-8')
+        req_header = dict(flow.request.headers)
+        req_header['Host'] = rasa_path
+        req_header['Content-Type'] = 'application/json'
+        req_header['Content-Length'] = str(len(post_body))
+        try:
+            del req_header['Transfer-Encoding']
+        except KeyError:
+            pass
+        resp = requests.post(url, data=post_body, headers=req_header, verify=False)
+        if resp.status_code != 200:
+            return resp.status_code, resp.content, dict(resp.headers)
+        response_dict = json.loads(resp.content.decode("utf-8"))
+        text = response_dict[0]["text"]
+        logging.log(ALERT,response_dict)
+    except IndexError:
+        text = "I didn't understand"
         pass
-    resp = requests.post(url, data=post_body, headers=req_header, verify=False)
-    if resp.status_code != 200:
-        return resp.status_code, resp.content, dict(resp.headers)
-    response_dict = json.loads(resp.content.decode("utf-8"))
     
     
     # text to audio
     url = f'http://{wit_path}:{wit_port}/synthesize?v={flow.request.query["v"]}'
     post_body = {
-                "q": '"'+response_dict[0]["text"] + '"',
+                "q": '"'+text + '"',
                 "voice": "Rebecca",
                 # "style": "soft",
                 # "speed": 150,
@@ -56,7 +62,10 @@ def audio_converse(flow : http.HTTPFlow,path : str, port : int, rasa_path : str,
     req_header['Content-Length'] = str(len(post_body))
     req_header['Content-Type'] = 'application/json'
     req_header['Accept'] = 'audio/wav'
+    logging.log(ALERT,req_header)
+    logging.log(ALERT,post_body)
     resp = requests.post(url, data=post_body, headers=req_header, verify=False)
+    logging.log(ALERT,resp.headers)
     if resp.status_code != 200:
         return resp.status_code, resp.content, dict(resp.headers)
     status_code = 200

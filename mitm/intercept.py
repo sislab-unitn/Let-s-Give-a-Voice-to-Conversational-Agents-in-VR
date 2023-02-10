@@ -13,7 +13,7 @@ from pprint import pprint
 import urllib
 
 from message import message
-from speech import speech
+# from speech import speech
 from event import event
 from converse import converse
 from text_converse import text_converse
@@ -26,7 +26,7 @@ class Injector:
         self.rasa_path = "127.0.0.1"
         self.wit_path = "127.0.0.1"
         self.port = 8080
-        self.rasa_port = 8082
+        self.rasa_port = 5005
         self.wit_port = 8081
         self.entities = dict()
         self.intents = dict()
