@@ -45,8 +45,6 @@ def audio_converse(flow : http.HTTPFlow,path : str, port : int, rasa_path : str,
         logging.log(ALERT,response_dict)
     except IndexError:
         text = "I didn't understand"
-        pass
-    
     
     # text to audio
     url = f'http://{wit_path}:{wit_port}/synthesize?v={flow.request.query["v"]}'
