@@ -1,0 +1,33 @@
+version: "3.1"
+slots:
+  movie_or_tv:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: movie_or_tv
+      intent:
+        - ask_movie
+        - help_genres
+      influence_conversation: true
+  genre:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: genre
+      intent:
+      - ask_movie 
+      - genre
+      influence_conversation: true
+  genre_validated:
+    type: bool
+    mappings:
+    - type: custom
+    influence_conversation: true
+  genres_available:
+    type: text
+    mappings:
+    - type: custom
+  top_names:
+    type: text
+    mappings:
+    - type: custom

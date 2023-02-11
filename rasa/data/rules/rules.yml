@@ -17,10 +17,10 @@ rules:
   - intent: help
   - action: utter_help
 
-- rule: Say thank you whenever
-  steps:
-  - intent: thank_you
-  - action: utter_thank_you
+# - rule: Say thank you whenever
+#   steps:
+#   - intent: thank_you
+#   - action: utter_thank_you
 
 
 - rule: Ask the user to rephrase whenever they send a message with low NLU confidence
