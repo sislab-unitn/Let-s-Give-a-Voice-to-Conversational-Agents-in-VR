@@ -49,6 +49,8 @@ log
 .idea
 
 # ignore rasa cache and saved models to save space
+*.pyc
+*.pyo
 rasa/.rasa/cache/*
 rasa/actions/__pycache__/*
 rasa/models/*

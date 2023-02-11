@@ -6,8 +6,8 @@ import requests
 from fastapi.security import HTTPBearer
 from fastapi import FastAPI, Request
 from starlette.responses import RedirectResponse
+import uvicorn
 
-wit_URL = "https://api.wit.ai/"
 app = FastAPI()
 
 token_auth_scheme = HTTPBearer()
@@ -24,3 +24,6 @@ def message(q:str,v:str ="20221114",token: str = Depends(token_auth_scheme)):
 def language(q:str,v:str ="20221114",token: str = Depends(token_auth_scheme)):
     r = requests.get(url = wit_URL+'language', params = {"q":q,"v":v},headers={'Authorization': 'Bearer ' + token.credentials})
     return r.json()
+
+if __name__ == "__main__":
+    uvicorn.run("__main__:app", host="localhost", port=8000, reload=True, workers=2)
