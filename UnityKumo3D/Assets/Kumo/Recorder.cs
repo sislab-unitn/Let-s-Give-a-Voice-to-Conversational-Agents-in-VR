@@ -2,10 +2,12 @@
 using System.IO;
 using System.Text;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using UnityEngine.Events;
+using static UnityEngine.JsonUtility;
 namespace Recorder
 {
     /// <summary>
@@ -48,6 +50,11 @@ namespace Recorder
         /// </summary>
         [Tooltip("What should the saved file name be, the file will be saved in Streaming Assets Directory, Don't add .wav at the end")]
         public string fileName;
+        /// <summary>
+        /// The URL to post the audio file to
+        /// </summary>
+        [Tooltip("The URL to post the audio file to")]
+        public string url;
 
         #endregion
 
@@ -109,7 +116,7 @@ namespace Recorder
             while (!(Microphone.GetPosition(null) > 0)) { }
             samplesData = new float[audioSource.clip.samples * audioSource.clip.channels];
             audioSource.clip.GetData(samplesData, 0);
-            string filePath = Path.Combine("Assets/Custom", fileName + ".wav");
+            string filePath = Path.Combine("Assets/Kumo", fileName + ".wav");
             // Delete the file if it exists.
             if (File.Exists(filePath))
             {
@@ -118,24 +125,25 @@ namespace Recorder
             try
             {
                 WriteWAVFile(audioSource.clip, filePath);
-                Debug.Log("File Saved Successfully at Custom/" + fileName + ".wav");
+                Debug.Log("File Saved Successfully at Kumo/" + fileName + ".wav");
             }
             catch (DirectoryNotFoundException)
             {
-                Debug.LogError("Please, Create a Custom Directory in the Assets Folder");
+                Debug.LogError("Please, Create a Kumo Directory in the Assets Folder");
             }
            
         }
 
         IEnumerator postRequest()
         {
-            byte [] fileContent= File.ReadAllBytes("Assets/Custom/"+fileName+".wav");
+            byte [] fileContent= File.ReadAllBytes("Assets/Kumo/"+fileName+".wav");
+            string content = System.Convert.ToBase64String(fileContent);
             // log the result
-
-            UnityWebRequest request = UnityWebRequest.Put("http://127.0.0.1:8080/audio_converse?v=20221114",fileContent);
-            //UnityWebRequest request = UnityWebRequest.Post("http://127.0.0.1/audio_converse?v=20221114",fileContent_str);
-            request.SetRequestHeader("Content-Type", "audio/wav");
-            request.SetRequestHeader("Authorization", "Bearer USPKTAOSA557WRC6CKHQW6BZVSVLID6W");
+            Debug.Log("here");
+            // create a request with json
+            string json = "{\"sender\":\"Unity\",\"audio\": \""+content+"\"}";
+            UnityWebRequest request = UnityWebRequest.Put(url,json);
+            request.SetRequestHeader("Content-Type", "application/json");
             yield return request.SendWebRequest();
             if (request.result != UnityWebRequest.Result.Success) {
                 Debug.Log(request.error);
@@ -143,9 +151,12 @@ namespace Recorder
             else {
                 Debug.Log("Upload complete!");
                 // save the result as binary
-                File.WriteAllBytes("Assets/Custom/"+"response"+".wav", request.downloadHandler.data);
+                // parse back the result
+                //Dictionary<string,string> data = JsonConvert.DeserializeObject<Dictionary<string, string>>(request.downloadHandler.text);
+                //ConversationData data = JsonConvert.DeserializeObject(request.downloadHandler.text, typeof(ConversationData)) as ConversationData;
+                ConversationData data = (ConversationData) JsonUtility.FromJson(request.downloadHandler.text, typeof(ConversationData));
+                File.WriteAllBytes("Assets/Kumo/"+"response"+".wav", System.Convert.FromBase64String(data.audio));
                 myEvent.Invoke();
-                
             }
             
         }
