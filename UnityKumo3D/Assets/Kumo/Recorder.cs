@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using UnityEngine.Events;
 using static UnityEngine.JsonUtility;
+using UnityEditor;
 namespace Recorder
 {
     /// <summary>
@@ -77,11 +78,14 @@ namespace Recorder
                 if (!isRecording){
                     audioSource.clip = Microphone.Start(Microphone.devices[0], true, 10, 44100);
                     isRecording = true;
+                    //SaveButton.GetComponentInChildren<Text>().text = "Recording...";
                 }else {
                     //Microphone.End(Microphone.devices[0]);
                     isRecording = false;
                     Save(fileName);
                     Microphone.End(Microphone.devices[0]);
+                    // disable save button
+                    SaveButton.interactable = false;
                     StartCoroutine(postRequest());
                 }
             });
@@ -94,11 +98,13 @@ namespace Recorder
                 if (!isRecording){
                     audioSource.clip = Microphone.Start(Microphone.devices[0], true, 10, 44100);
                     isRecording = true;
+                    //SaveButton.GetComponentInChildren<Text>().text = "Recording...";
                 }else {
                     //Microphone.End(Microphone.devices[0]);
                     isRecording = false;
                     Save(fileName);
                     Microphone.End(Microphone.devices[0]);
+                    SaveButton.interactable = false;
                     StartCoroutine(postRequest());
 
                 }
@@ -155,10 +161,17 @@ namespace Recorder
                 //Dictionary<string,string> data = JsonConvert.DeserializeObject<Dictionary<string, string>>(request.downloadHandler.text);
                 //ConversationData data = JsonConvert.DeserializeObject(request.downloadHandler.text, typeof(ConversationData)) as ConversationData;
                 ConversationData data = (ConversationData) JsonUtility.FromJson(request.downloadHandler.text, typeof(ConversationData));
+                // audio = System.Convert.FromBase64String(data.audio);
+                // GetComponent<AudioSource>().getAudioClip();
                 File.WriteAllBytes("Assets/Kumo/"+"response"+".wav", System.Convert.FromBase64String(data.audio));
+                AssetDatabase.Refresh();
+                // wait for the next frame
+                // play the audio
+
                 myEvent.Invoke();
             }
             
+            SaveButton.interactable = true;
         }
 
         // WAV file format from http://soundfile.sapp.org/doc/WaveFormat/
