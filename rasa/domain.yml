@@ -161,6 +161,10 @@ slots:
     type: text
     mappings:
     - type: custom
+  results_data:
+    type: any
+    mappings:
+    - type: custom
 forms:
   genre_form:
     required_slots:

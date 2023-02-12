@@ -1,10 +1,10 @@
 version: "3.1"
 actions:
-  - action_discover_movie
-  - action_genres_available
-  - action_lookup_movie
-  - custom_genre_validation
-  - custom_genre_validation_confirmation
+- action_discover_movie
+- action_genres_available
+- action_lookup_movie
+- custom_genre_validation
+- custom_genre_validation_confirmation
 # - action_get_availability_movie
 # - action_validate_slot_mappings
 # - action_clean_genres

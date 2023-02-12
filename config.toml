@@ -1,10 +1,10 @@
 [server]
-    wit_host = "127.0.0.1" 
-    wit_port = 8082
+    wit_host = "api.wit.ai" 
+    wit_port = 443
     wit_API = "USPKTAOSA557WRC6CKHQW6BZVSVLID6W"
-    wit_SSL = false
+    wit_SSL = true
     rasa_host = "localhost"
-    rasa_port = 5006
+    rasa_port = 5005
     rasa_API = ""
     rasa_SSL = false
     tmdb_host = "api.themoviedb.org"
@@ -12,5 +12,5 @@
     tmdb_API = "c038a92e3fe9346f02feaf2d8ae2efab"
     tmdb_SSL = true
     self_host = "localhost"
-    self_port = 8079
+    self_port = 8080
     self_SSL = false

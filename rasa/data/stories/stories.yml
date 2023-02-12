@@ -185,7 +185,7 @@ stories:
   - slot_was_set:
     - top_names
   - action: utter_discover_genre_movie
-  - action: action_restart
+  # - action: action_restart
 
 - story: movie discovery checkpoint popular (final)
   steps:
@@ -199,7 +199,7 @@ stories:
   - slot_was_set:
     - top_names
   - action: utter_discover_movie
-  - action: action_restart
+  # - action: action_restart
 # - story: movie discovery checkpoint (final)
 #   steps:
 #   - slot_was_set:

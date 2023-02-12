@@ -21,10 +21,32 @@ from rasa_sdk.events import (
 )
 import tmdbsimple as tmdb
 import Levenshtein
+import requests
+import argparse
+import pathlib
+import os, sys
+import toml
 
-tmdb.API_KEY = 'c038a92e3fe9346f02feaf2d8ae2efab'
+# check if config file exists
+current_path = pathlib.Path(__file__).parent.parent.parent.absolute()
+config_toml = "config.toml"
+config_path = os.path.join(current_path,config_toml)
+print(config_path)
+if not os.path.exists(config_path):
+    print(f"{config_toml} file not found in the default path in the server directory")
+    sys.exit(1)
+    
+# read config file
+with open(config_path,mode='r') as f:
+    config = toml.load(f)
+
+tmdb.API_KEY = config['server']['tmdb_API']
 # 5 seconds timeout for requests to avoid blocking
 tmdb.REQUESTS_TIMEOUT = 5  # seconds, for both connect and read
+tmdb.REQUESTS_SESSION = requests.Session()
+# complete a search to ensure that the API key is valid and the connection is working
+__ = tmdb.Discover()
+
 # function to get the slot ids
 def get_slot_ids(movie_or_tv) -> Dict:
         genre = tmdb.Genres()
@@ -103,7 +125,8 @@ class ActionDiscoverMovie(Action):
             top_names = ", ".join(top_names)
             print(top_names)
             evt = SlotSet("top_names",top_names)
-            return [evt]
+            ent = SlotSet("results_data",results)
+            return [evt,ent]
 
 
 # # add fallback is results are empty
@@ -146,10 +169,10 @@ class ActionLookupMovie(Action):
     async def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        print('Hi')
-        state = tracker.current_state()
-        from pprint import pprint
-        pprint(state)
+        # print('Hi')
+        # state = tracker.current_state()
+        # from pprint import pprint
+        # pprint(state)
         return []
   
   
@@ -160,10 +183,10 @@ class CustomGenreValidation(Action):
     async def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        print('Hi')
-        state = tracker.current_state()
-        from pprint import pprint
-        pprint(state)
+        # print('Hi')
+        # state = tracker.current_state()
+        # from pprint import pprint
+        # pprint(state)
         
         movie_or_tv = tracker.get_slot('movie_or_tv')
         if Levenshtein.jaro(movie_or_tv,'movie') > Levenshtein.jaro(movie_or_tv,'tv show'):
@@ -207,10 +230,10 @@ class CustomGenreValidationConfirmation(Action):
     async def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        print('Hi')
-        state = tracker.current_state()
-        from pprint import pprint
-        pprint(state)
+        # print('Hi')
+        # state = tracker.current_state()
+        # from pprint import pprint
+        # pprint(state)
         
         movie_or_tv = tracker.get_slot('movie_or_tv')
         if Levenshtein.jaro(movie_or_tv,'movie') > Levenshtein.jaro(movie_or_tv,'tv show'):
