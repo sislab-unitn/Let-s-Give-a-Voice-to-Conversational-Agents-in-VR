@@ -51,7 +51,7 @@ public class ServerConnection : MonoBehaviour
         byte [] fileContent= File.ReadAllBytes("Assets/Kumo/"+inputFileName+".wav");
         string content = System.Convert.ToBase64String(fileContent);
         // log the result
-        Debug.Log("here");
+        //Debug.Log("here");
         // create a request with json
         string json = "{\"sender\":\"Unity\",\"audio\": \""+content+"\"}";
         UnityWebRequest request = UnityWebRequest.Put(url,json);
@@ -66,6 +66,7 @@ public class ServerConnection : MonoBehaviour
             // parse back the result
             ConversationData data = (ConversationData) JsonUtility.FromJson(request.downloadHandler.text, typeof(ConversationData));
             File.WriteAllBytes("Assets/Kumo/"+outputFileName+".wav", System.Convert.FromBase64String(data.audio));
+            Debug.Log("Response Saved Succesfully!");
             // refresh the asset database to show the new file
             AssetDatabase.Refresh();
             // send event to play the audio
