@@ -8,12 +8,32 @@ using System.IO;
 using UnityEditor;
 public class ServerConnection : MonoBehaviour
 {
+    
+    string url;
+    
     #region Editor Exposed Variables
+    
     /// <summary>
-    /// The URL to post the audio file to
+    /// The host to post the audio file to
     /// </summary>
-    [Tooltip("The URL to post the audio file to")]
-    public string url;
+    [Tooltip("The host to post the audio file to")]
+    public string host;
+
+    /// <summary>
+    /// The port to post the audio file to
+    /// </summary>
+    [Tooltip("The port to post the audio file to")]
+    public string port;
+        /// <summary>
+    /// The path to post the audio file to
+    /// </summary>
+    [Tooltip("The path to post the audio file to")]
+    public string path;
+        /// <summary>
+    /// Use SSL or not
+    /// </summary>
+    [Tooltip("Use SSL or not")]
+    public bool ssl;
     /// <summary>
     /// The name of the inputfile to upload
     /// </summary>
@@ -35,7 +55,15 @@ public class ServerConnection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        url = (ssl?"https://":"http://")+host+":"+port;
         UnityWebRequest request = UnityWebRequest.Get(url);
+        request.SendWebRequest();
+        if (request.result != UnityWebRequest.Result.Success) {
+            Debug.Log(request.error);
+        }else {
+            Debug.Log("Connection Successful!");
+        }
+        url =  Path.Combine(url, path);
     }
 
     // Update is called once per frame
