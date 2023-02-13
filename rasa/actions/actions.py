@@ -28,7 +28,7 @@ import os, sys
 import toml
 
 # check if config file exists
-current_path = pathlib.Path(__file__).parent.parent.parent.absolute()
+current_path = pathlib.Path(__file__).parent.absolute()
 config_toml = "config.toml"
 config_path = os.path.join(current_path,config_toml)
 print(config_path)

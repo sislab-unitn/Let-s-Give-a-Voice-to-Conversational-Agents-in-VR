@@ -31,7 +31,7 @@ parser.add_argument('-c', '--config',required=False)      # option that takes a 
 args = parser.parse_args()
 
 # check if config file exists
-current_path = pathlib.Path(__file__).parent.parent.absolute()
+current_path = pathlib.Path(__file__).parent.absolute()
 config_toml = "config.toml"
 config_path = os.path.join(current_path,config_toml)
 if args.config:
@@ -97,6 +97,82 @@ def text_converse(post_body : TextMessage):
 
 @app.post("/audio_converse")
 @app.put("/audio_converse")
+async def audio_converse(request : Request):
+    '''
+        expect a json object with sender and audio keys. The audio data should be a base64 to utf-8 encoded string for the audio file. 
+        Both PUT and POST are accepted because Unity is not able to send a POST request without reEncoding the file.
+    '''
+    # get the audio file from the request and send it to wit.ai
+    url_wit_speech_to_text = f'http{"s" if config["server"]["wit_SSL"] else ""}://{config["server"]["wit_host"]}:{config["server"]["wit_port"]}/dictation'
+    wit_request_header_speech_to_text = dict()
+    wit_request_header_speech_to_text['Authorization'] = f'Bearer {config["server"]["wit_API"]}'
+    wit_request_header_speech_to_text['Content-Type'] = 'audio/wav'
+    # TODO streaming request
+    data = await request.body()
+    data_dict = json.loads(data)
+    wit_request_body_speech_to_text = base64.b64decode(data_dict['audio'])
+    response_wit_speech_to_text = wit_session.post(url = url_wit_speech_to_text ,data =  wit_request_body_speech_to_text ,headers= wit_request_header_speech_to_text,stream=True)
+    if response_wit_speech_to_text.status_code != 200:
+        return Response(status_code = response_wit_speech_to_text.status_code, content = response_wit_speech_to_text.content, headers = dict(response_wit_speech_to_text.headers))
+    wit_content = response_wit_speech_to_text.content.decode('utf-8').split('\r\n')
+    try:
+        response_dict = json.loads(wit_content[-2])
+    except IndexError:
+        response_dict = json.loads(wit_content[-1])
+
+    # forward the request to rasa server
+    rasa_body = dict()
+    rasa_body['sender'] = data_dict['sender']
+    rasa_body['message'] = response_dict['text']
+    url_rasa = f'http{"s" if config["server"]["rasa_SSL"] else ""}://{config["server"]["rasa_host"]}:{config["server"]["rasa_port"]}/webhooks/rest/webhook'
+    rasa_request_header = dict()
+    rasa_request_header['Content-Type'] = 'application/json'
+    rasa_body = json.dumps(rasa_body)
+    response_rasa = rasa_session.post(url = url_rasa ,data = rasa_body,headers=rasa_request_header)
+    if response_rasa.status_code != 200:
+        return Response(status_code = response_rasa.status_code, content = response_rasa.content, headers = dict(response_rasa.headers))
+    
+    # get the tracker slot data
+    url_tracker = f'http{"s" if config["server"]["rasa_SSL"] else ""}://{config["server"]["rasa_host"]}:{config["server"]["rasa_port"]}/conversations/{data_dict["sender"]}/tracker'
+    response_tracker = rasa_session.get(url = url_tracker)
+    if response_tracker.status_code != 200:
+        return Response(status_code = response_tracker.status_code, content = response_tracker.content, headers = dict(response_tracker.headers))
+    
+    
+    # get the audio synthetisite from wit.ai
+    url_wit_text_to_speech = f'http{"s" if config["server"]["wit_SSL"] else ""}://{config["server"]["wit_host"]}:{config["server"]["wit_port"]}/synthesize'
+    wit_request_header_text_to_speech = dict()
+    wit_request_header_text_to_speech['Authorization'] = f'Bearer {config["server"]["wit_API"]}'
+    wit_request_header_text_to_speech['Content-Type'] = 'application/json'
+    wit_request_header_text_to_speech['Accept'] = 'audio/wav'
+    response_rasa = response_rasa.json()
+    wit_request = {
+                "q": response_rasa[0]['text'],
+                "voice": "Rebecca",
+                # "style": "soft",
+                # "speed": 150,
+                # "pitch": 110,
+                # "gain": 95
+                }
+    wit_request_body_text_to_speech = json.dumps(wit_request)
+    response_wit_text_to_speech = wit_session.post(url = url_wit_text_to_speech ,data = wit_request_body_text_to_speech ,headers= wit_request_header_text_to_speech,stream=False)
+    if response_wit_text_to_speech.status_code != 200:
+        return Response(status_code = response_wit_text_to_speech.status_code, content = response_wit_text_to_speech.content, headers = dict(response_wit_text_to_speech.headers))
+    # compose the final response
+    response = dict()
+    response['sender'] = data_dict['sender']
+    response['message'] = response_dict['text']
+    response['response'] = response_rasa[0]['text']
+    response['audio'] = base64.b64encode(response_wit_text_to_speech.content).decode('utf-8')
+    response['tracker'] = response_tracker.json()
+    # get audio wav final file
+    return Response(status_code=200, content=json.dumps(response), headers={'Content-Type': 'application/json'})
+
+
+
+
+@app.post("/audio_converse_stream")
+@app.put("/audio_converse_stream")
 async def audio_converse(request : Request):
     '''
         expect a json object with sender and audio keys. The audio data should be a base64 to utf-8 encoded string for the audio file. 

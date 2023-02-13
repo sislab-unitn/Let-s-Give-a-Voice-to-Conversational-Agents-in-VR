@@ -1,0 +1,16 @@
+[server]
+    wit_host = "localhost" 
+    wit_port = 8079
+    wit_API = "USPKTAOSA557WRC6CKHQW6BZVSVLID6W"
+    wit_SSL = false
+    rasa_host = "localhost"
+    rasa_port = 5006
+    rasa_API = ""
+    rasa_SSL = false
+    # tmdb_host = "localhost"
+    # tmdb_port = 5007
+    # tmdb_API = "c038a92e3fe9346f02feaf2d8ae2efab"
+    # tmdb_SSL = false
+    self_host = "localhost"
+    self_port = 8080
+    self_SSL = false

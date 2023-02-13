@@ -32,7 +32,7 @@ namespace Recorder
         /// </summary>
         const int HEADER_SIZE = 44;
         bool isRecording = false;
-        public UnityEvent myEvent = new UnityEvent();
+        public UnityEvent recorderDone = new UnityEvent();
         #endregion
 
         #region Editor Exposed Variables
@@ -51,11 +51,6 @@ namespace Recorder
         /// </summary>
         [Tooltip("What should the saved file name be, the file will be saved in Streaming Assets Directory, Don't add .wav at the end")]
         public string fileName;
-        /// <summary>
-        /// The URL to post the audio file to
-        /// </summary>
-        [Tooltip("The URL to post the audio file to")]
-        public string url;
 
         #endregion
 
@@ -86,7 +81,7 @@ namespace Recorder
                     Microphone.End(Microphone.devices[0]);
                     // disable save button
                     SaveButton.interactable = false;
-                    StartCoroutine(postRequest());
+                    recorderDone.Invoke();
                 }
             });
         }
@@ -105,7 +100,7 @@ namespace Recorder
                     Save(fileName);
                     Microphone.End(Microphone.devices[0]);
                     SaveButton.interactable = false;
-                    StartCoroutine(postRequest());
+                    recorderDone.Invoke();
 
                 }
             }
@@ -138,40 +133,6 @@ namespace Recorder
                 Debug.LogError("Please, Create a Kumo Directory in the Assets Folder");
             }
            
-        }
-
-        IEnumerator postRequest()
-        {
-            byte [] fileContent= File.ReadAllBytes("Assets/Kumo/"+fileName+".wav");
-            string content = System.Convert.ToBase64String(fileContent);
-            // log the result
-            Debug.Log("here");
-            // create a request with json
-            string json = "{\"sender\":\"Unity\",\"audio\": \""+content+"\"}";
-            UnityWebRequest request = UnityWebRequest.Put(url,json);
-            request.SetRequestHeader("Content-Type", "application/json");
-            yield return request.SendWebRequest();
-            if (request.result != UnityWebRequest.Result.Success) {
-                Debug.Log(request.error);
-            }
-            else {
-                Debug.Log("Upload complete!");
-                // save the result as binary
-                // parse back the result
-                //Dictionary<string,string> data = JsonConvert.DeserializeObject<Dictionary<string, string>>(request.downloadHandler.text);
-                //ConversationData data = JsonConvert.DeserializeObject(request.downloadHandler.text, typeof(ConversationData)) as ConversationData;
-                ConversationData data = (ConversationData) JsonUtility.FromJson(request.downloadHandler.text, typeof(ConversationData));
-                // audio = System.Convert.FromBase64String(data.audio);
-                // GetComponent<AudioSource>().getAudioClip();
-                File.WriteAllBytes("Assets/Kumo/"+"response"+".wav", System.Convert.FromBase64String(data.audio));
-                AssetDatabase.Refresh();
-                // wait for the next frame
-                // play the audio
-
-                myEvent.Invoke();
-            }
-            
-            SaveButton.interactable = true;
         }
 
         // WAV file format from http://soundfile.sapp.org/doc/WaveFormat/
