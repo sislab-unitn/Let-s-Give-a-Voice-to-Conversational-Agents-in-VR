@@ -93,6 +93,7 @@ public class ServerConnection : MonoBehaviour
             // save the result as binary
             // parse back the result
             ConversationData data = (ConversationData) JsonUtility.FromJson(request.downloadHandler.text, typeof(ConversationData));
+            //var data = JsonConvert.DeserializeObject<Dictionary<string, string>>(request.downloadHandler.text);
             File.WriteAllBytes("Assets/Kumo/"+outputFileName+".wav", System.Convert.FromBase64String(data.audio));
             Debug.Log("Response Saved Succesfully!");
             // refresh the asset database to show the new file

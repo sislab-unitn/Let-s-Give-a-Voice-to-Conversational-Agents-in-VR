@@ -164,7 +164,7 @@ async def audio_converse(request : Request):
     response['message'] = response_dict['text']
     response['response'] = response_rasa[0]['text']
     response['audio'] = base64.b64encode(response_wit_text_to_speech.content).decode('utf-8')
-    response['tracker'] = response_tracker.json()
+    response['slots'] = response_tracker.json()['slots']
     # get audio wav final file
     return Response(status_code=200, content=json.dumps(response), headers={'Content-Type': 'application/json'})
 
@@ -240,7 +240,7 @@ async def audio_converse(request : Request):
     response['message'] = response_dict['text']
     response['response'] = response_rasa[0]['text']
     response['audio'] = base64.b64encode(response_wit_text_to_speech.content).decode('utf-8')
-    response['tracker'] = response_tracker.json()
+    response['tracker'] = response_tracker.json()['slots']
     # get audio wav final file
     return Response(status_code=200, content=json.dumps(response), headers={'Content-Type': 'application/json'})
 

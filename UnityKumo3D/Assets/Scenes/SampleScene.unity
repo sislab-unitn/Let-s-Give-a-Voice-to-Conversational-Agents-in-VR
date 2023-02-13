@@ -579,11 +579,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 507b1e8665a6240c38707a021c812eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: http://localhost:8081/audio_converse
-  host: localhost
-  port: 8081
+  host: 4e5e-193-205-210-73.eu.ngrok.io
+  port: 
   path: audio_converse
-  ssl: 0
+  ssl: 1
   inputFileName: input
   outputFileName: response
   SendButton: {fileID: 1673543508}

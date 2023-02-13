@@ -54,7 +54,7 @@ log
 *.DS_Store
 .DS_Store
 .vscode/*
-*.meta
+# *.meta
 #.gitmodules
 
 # Byte-compiled / optimized / DLL files
