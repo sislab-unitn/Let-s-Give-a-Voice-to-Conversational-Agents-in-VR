@@ -1,10 +1,10 @@
 [server]
-    wit_host = "localhost" 
-    wit_port = 8079
+    wit_host = "api.wit.ai" 
+    wit_port = 443
     wit_API = "USPKTAOSA557WRC6CKHQW6BZVSVLID6W"
-    wit_SSL = false
+    wit_SSL = true
     rasa_host = "localhost"
-    rasa_port = 5006
+    rasa_port = 5005
     rasa_API = ""
     rasa_SSL = false
     # tmdb_host = "localhost"

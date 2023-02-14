@@ -55,7 +55,7 @@ public class ServerConnection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        url = (ssl?"https://":"http://")+host+":"+port;
+        url = (ssl?"https://":"http://")+host+((port!="") ? ":"+port : "");
         UnityWebRequest request = UnityWebRequest.Get(url);
         request.SendWebRequest();
         if (request.result != UnityWebRequest.Result.Success) {
@@ -63,7 +63,8 @@ public class ServerConnection : MonoBehaviour
         }else {
             Debug.Log("Connection Successful!");
         }
-        url =  Path.Combine(url, path);
+        // url =  Path.Combine(url, path);
+        url = url + "/"+ path;
     }
 
     // Update is called once per frame
@@ -79,7 +80,7 @@ public class ServerConnection : MonoBehaviour
         byte [] fileContent= File.ReadAllBytes("Assets/Kumo/"+inputFileName+".wav");
         string content = System.Convert.ToBase64String(fileContent);
         // log the result
-        //Debug.Log("here");
+        // Debug.Log("here");
         // create a request with json
         string json = "{\"sender\":\"Unity\",\"audio\": \""+content+"\"}";
         UnityWebRequest request = UnityWebRequest.Put(url,json);
@@ -97,7 +98,8 @@ public class ServerConnection : MonoBehaviour
             File.WriteAllBytes("Assets/Kumo/"+outputFileName+".wav", System.Convert.FromBase64String(data.audio));
             Debug.Log("Response Saved Succesfully!");
             // refresh the asset database to show the new file
-            AssetDatabase.Refresh();
+            //AssetDatabase.Refresh();
+            Resources.Load("Assets/Kumo/"+outputFileName+".wav");
             // send event to play the audio
             requestDone.Invoke();
         }
