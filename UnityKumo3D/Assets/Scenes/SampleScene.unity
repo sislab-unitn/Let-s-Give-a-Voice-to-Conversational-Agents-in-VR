@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18018606, g: 0.22559257, b: 0.30678663, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -531,6 +531,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &782628376 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6350042560567463985, guid: 43e019843600345dd8a02612fbff1b9b, type: 3}
+  m_PrefabInstance: {fileID: 6350042560859141357}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 507b1e8665a6240c38707a021c812eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1738,9 +1749,53 @@ PrefabInstance:
       propertyPath: SaveButton
       value: 
       objectReference: {fileID: 1673543508}
+    - target: {fileID: 6350042560567463984, guid: 43e019843600345dd8a02612fbff1b9b, type: 3}
+      propertyPath: recorderSaved.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350042560567463984, guid: 43e019843600345dd8a02612fbff1b9b, type: 3}
+      propertyPath: recorderSaved.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350042560567463984, guid: 43e019843600345dd8a02612fbff1b9b, type: 3}
+      propertyPath: recorderDone.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 782628376}
+    - target: {fileID: 6350042560567463984, guid: 43e019843600345dd8a02612fbff1b9b, type: 3}
+      propertyPath: recorderSaved.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 782628376}
+    - target: {fileID: 6350042560567463984, guid: 43e019843600345dd8a02612fbff1b9b, type: 3}
+      propertyPath: recorderDone.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: startTimer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350042560567463984, guid: 43e019843600345dd8a02612fbff1b9b, type: 3}
+      propertyPath: recorderSaved.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350042560567463984, guid: 43e019843600345dd8a02612fbff1b9b, type: 3}
+      propertyPath: recorderSaved.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: sendAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350042560567463984, guid: 43e019843600345dd8a02612fbff1b9b, type: 3}
+      propertyPath: recorderSaved.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ServerConnection, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350042560567463984, guid: 43e019843600345dd8a02612fbff1b9b, type: 3}
+      propertyPath: recorderSaved.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350042560567463985, guid: 43e019843600345dd8a02612fbff1b9b, type: 3}
+      propertyPath: ssl
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6350042560567463985, guid: 43e019843600345dd8a02612fbff1b9b, type: 3}
       propertyPath: host
-      value: f928-31-44-167-251.eu.ngrok.io
+      value: localhost
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350042560567463985, guid: 43e019843600345dd8a02612fbff1b9b, type: 3}
+      propertyPath: port
+      value: 8081
       objectReference: {fileID: 0}
     - target: {fileID: 6350042560567463985, guid: 43e019843600345dd8a02612fbff1b9b, type: 3}
       propertyPath: SendButton

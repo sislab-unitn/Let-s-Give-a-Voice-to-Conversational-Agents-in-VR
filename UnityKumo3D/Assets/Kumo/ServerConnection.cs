@@ -6,6 +6,8 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.IO;
 using UnityEditor;
+using System;
+using System.Globalization;
 public class ServerConnection : MonoBehaviour
 {
     
@@ -51,7 +53,7 @@ public class ServerConnection : MonoBehaviour
     public Button SendButton;
     #endregion
     public UnityEvent requestDone = new UnityEvent();
-
+    public DateTime time;
     // Start is called before the first frame update
     void Start()
     {
@@ -75,6 +77,9 @@ public class ServerConnection : MonoBehaviour
     public void sendAudio(){
         StartCoroutine(postRequestAudio());
     }
+    public void startTimer(){
+        time = DateTime.Now;
+    }
     IEnumerator postRequestAudio()
     {
         byte [] fileContent= File.ReadAllBytes("Assets/Kumo/"+inputFileName+".wav");
@@ -84,6 +89,13 @@ public class ServerConnection : MonoBehaviour
         // create a request with json
         string json = "{\"sender\":\"Unity\",\"audio\": \""+content+"\"}";
         UnityWebRequest request = UnityWebRequest.Put(url,json);
+        
+        DateTime end = DateTime.Now;
+        TimeSpan duration = end.Subtract(time);
+        Debug.Log(duration.TotalMilliseconds);
+        Debug.Log(duration.TotalSeconds);
+        Debug.Log(((int)(duration.TotalMilliseconds)).ToString());
+        request.SetRequestHeader("UnityTime", ((int)(duration.TotalMilliseconds)).ToString());
         request.SetRequestHeader("Content-Type", "application/json");
         yield return request.SendWebRequest();
         if (request.result != UnityWebRequest.Result.Success) {

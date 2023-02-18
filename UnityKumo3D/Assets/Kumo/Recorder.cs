@@ -33,6 +33,7 @@ namespace Recorder
         const int HEADER_SIZE = 44;
         bool isRecording = false;
         public UnityEvent recorderDone = new UnityEvent();
+        public UnityEvent recorderSaved = new UnityEvent();
         #endregion
 
         #region Editor Exposed Variables
@@ -51,7 +52,6 @@ namespace Recorder
         /// </summary>
         [Tooltip("What should the saved file name be, the file will be saved in Streaming Assets Directory, Don't add .wav at the end")]
         public string fileName;
-
         #endregion
 
         #region MonoBehaviour Callbacks
@@ -77,11 +77,12 @@ namespace Recorder
                 }else {
                     //Microphone.End(Microphone.devices[0]);
                     isRecording = false;
+                    recorderDone.Invoke();
                     Save(fileName);
                     Microphone.End(Microphone.devices[0]);
                     // disable save button
                     SaveButton.interactable = false;
-                    recorderDone.Invoke();
+                    recorderSaved.Invoke();
                 }
             });
         }
@@ -97,10 +98,11 @@ namespace Recorder
                 }else {
                     //Microphone.End(Microphone.devices[0]);
                     isRecording = false;
+                    recorderDone.Invoke();
                     Save(fileName);
                     Microphone.End(Microphone.devices[0]);
                     SaveButton.interactable = false;
-                    recorderDone.Invoke();
+                    recorderSaved.Invoke();
 
                 }
             }

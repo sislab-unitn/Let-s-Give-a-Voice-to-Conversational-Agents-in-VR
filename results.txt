@@ -1,0 +1,56 @@
+rasa_tracker
+Number of elements 10
+Average: 0.013228106498713999
+Max: 0.01710796356201
+Min: 0.01044607162475
+Standard deviation: 0.0017762704433595203
+
+tmdb
+Number of elements 11
+Average: 0.03802069750698637
+Max: 0.15523195266723
+Min: 0.02193999290466
+Standard deviation: 0.037243618150471974
+
+total
+Number of elements 10
+Average: 5.689927792549126
+Max: 20.7503349781036
+Min: 2.93826293945312
+Standard deviation: 5.180547588481579
+
+Unity Times
+Number of elements 10
+Average: 0.1682
+Max: 0.182
+Min: 0.142
+Standard deviation: 0.012188519188154072
+
+dictation
+Number of elements 12
+Average: 3.342541853586828
+Max: 6.59076809883117
+Min: 2.11390113830566
+Standard deviation: 1.5780133353489738
+
+rasa
+Number of elements 11
+Average: 0.2540435140783091
+Max: 0.54105401039123
+Min: 0.03152585029602
+Standard deviation: 0.16327642178787838
+
+synthesize
+Number of elements 10
+Average: 2.483865070343011
+Max: 17.7692811489105
+Min: 0.22303390502929
+Standard deviation: 5.158428445875683
+
+rasa_actions
+Number of elements 11
+Average: 0.11947183175519999
+Max: 0.26275992393493
+Min: 0.07367300987243
+Standard deviation: 0.05475963265661519
+

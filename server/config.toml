@@ -1,8 +1,8 @@
 [server]
-    wit_host = "api.wit.ai" 
-    wit_port = 443
+    wit_host = "localhost"
+    wit_port = 444
     wit_API = "USPKTAOSA557WRC6CKHQW6BZVSVLID6W"
-    wit_SSL = true
+    wit_SSL = false
     rasa_host = "localhost"
     rasa_port = 5005
     rasa_API = ""
