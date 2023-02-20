@@ -47,11 +47,7 @@ with open(config_path,mode='rb') as f:
 
 # create session for rasa and wit in order to reuse the connection and reduce latency for successive connections
 wit_session = httpx.AsyncClient()
-wit_header = {'Authorization':f'Bearer {config["server"]["wit_API"]}'}
-wit_first = wit_session.get(f'http{"s" if config["server"]["wit_SSL"] else ""}://{config["server"]["wit_host"]}:{config["server"]["wit_port"]}/message?q=hello',headers=wit_header)
 rasa_session = httpx.AsyncClient()
-rasa_first = rasa_session.get(f'http{"s" if config["server"]["rasa_SSL"] else ""}://{config["server"]["rasa_host"]}:{config["server"]["rasa_port"]}')
-
 
 
 
@@ -75,14 +71,10 @@ async def text_converse(request : Request):
     url_rasa = f'http{"s" if config["server"]["rasa_SSL"] else ""}://{config["server"]["rasa_host"]}:{config["server"]["rasa_port"]}/webhooks/rest/webhook'
     response_rasa = await rasa_session.post(url = url_rasa ,data = request.stream())
     response_rasa.raise_for_status()
-    # if response_rasa.status_code != 200:
-    #     return Response(status_code = response_rasa.status_code, content = response_rasa.content, header = dict(response_rasa.headers))
     # get the tracker slot data
     url_tracker = f'http{"s" if config["server"]["rasa_SSL"] else ""}://{config["server"]["rasa_host"]}:{config["server"]["rasa_port"]}/conversations/{request.stream()}/tracker'
     response_tracker = await rasa_session.get(url = url_tracker)
     response_tracker.raise_for_status()
-    # if response_tracker.status_code != 200:
-    #     return Response(status_code = response_tracker.status_code, content = response_tracker.content, header = dict(response_tracker.headers))
     try:
         response = [response_rasa.json()[0], response_tracker.json()]
     except IndexError:
@@ -109,7 +101,7 @@ async def text_converse(request : Request):
 #     url_wit_speech_to_text = f'http{"s" if config["server"]["wit_SSL"] else ""}://{config["server"]["wit_host"]}:{config["server"]["wit_port"]}/dictation'
 #     wit_request_header_speech_to_text = dict()
 #     wit_request_header_speech_to_text['Authorization'] = f'Bearer {config["server"]["wit_API"]}'
-#     wit_request_header_speech_to_text['Content-Type'] = 'audio/mpeg'
+#     wit_request_header_speech_to_text['Content-Type'] = 'audio/wav'
 #     # TODO streaming request
 #     data = await request.body()
 #     data_dict = json.loads(data)
@@ -147,7 +139,7 @@ async def text_converse(request : Request):
 #     wit_request_header_text_to_speech = dict()
 #     wit_request_header_text_to_speech['Authorization'] = f'Bearer {config["server"]["wit_API"]}'
 #     wit_request_header_text_to_speech['Content-Type'] = 'application/json'
-#     wit_request_header_text_to_speech['Accept'] = 'audio/mpeg'
+#     wit_request_header_text_to_speech['Accept'] = 'audio/wav'
 #     response_rasa = response_rasa.json()
 #     wit_request = {
 #                 "q": response_rasa[0]['text'],
@@ -178,7 +170,7 @@ async def text_converse(request : Request):
 @app.get("/audio_converse_download")
 async def audio_converse_download( sender : str, request: Request):
     '''
-    This function is used to stream audio from the client to the server. Expecting the audio to be in mpeg format.
+    This function is used to stream audio from the client to the server. Expecting the audio to be in wav format.
     '''
     import requests
     wit_session = requests.Session()
@@ -189,7 +181,7 @@ async def audio_converse_download( sender : str, request: Request):
         url_wit_speech_to_text = f'http{"s" if config["server"]["wit_SSL"] else ""}://{config["server"]["wit_host"]}:{config["server"]["wit_port"]}/dictation'
         wit_request_header_speech_to_text = dict()
         wit_request_header_speech_to_text['Authorization'] = f'Bearer {config["server"]["wit_API"]}'
-        wit_request_header_speech_to_text['Content-Type'] = 'audio/mpeg'
+        wit_request_header_speech_to_text['Content-Type'] = 'audio/wav'
         data = await request.body()
         response_wit_speech_to_text = wit_session.post(url = url_wit_speech_to_text ,data = data ,headers= wit_request_header_speech_to_text)
         response_wit_speech_to_text.raise_for_status()
@@ -225,7 +217,7 @@ async def audio_converse_download( sender : str, request: Request):
         wit_request_header_text_to_speech = dict()
         wit_request_header_text_to_speech['Authorization'] = f'Bearer {config["server"]["wit_API"]}'
         wit_request_header_text_to_speech['Content-Type'] = 'application/json'
-        wit_request_header_text_to_speech['Accept'] = 'audio/mpeg'
+        wit_request_header_text_to_speech['Accept'] = 'audio/wav'
         wit_request = {
                     "q": text,
                     "voice": "Rebecca",
@@ -247,7 +239,7 @@ async def audio_converse_download( sender : str, request: Request):
     pprint(response)
     # synthesise the response
     audio = await text_to_speech(response)
-    return Response(status_code=200, content=audio, headers={'Content-Type': 'audio/mpeg'})
+    return Response(status_code=200, content=audio, headers={'Content-Type': 'audio/wav'})
 
 @app.post("/audio_converse_stream")
 @app.put("/audio_converse_stream")
@@ -262,7 +254,7 @@ async def audio_converse_stream( sender : str, request: Request):
         url_wit_speech_to_text = f'http{"s" if config["server"]["wit_SSL"] else ""}://{config["server"]["wit_host"]}:{config["server"]["wit_port"]}/dictation'
         wit_request_header_speech_to_text = dict()
         wit_request_header_speech_to_text['Authorization'] = f'Bearer {config["server"]["wit_API"]}'
-        wit_request_header_speech_to_text['Content-Type'] = 'audio/mpeg'
+        wit_request_header_speech_to_text['Content-Type'] = 'audio/wav'
         wit_request_header_speech_to_text['Transfer-Encoding'] = 'chunked'
         data = request.stream()
         response_wit_speech_to_text = await wit_session.post(url = url_wit_speech_to_text ,data = data ,headers= wit_request_header_speech_to_text)
@@ -299,7 +291,7 @@ async def audio_converse_stream( sender : str, request: Request):
         wit_request_header_text_to_speech = dict()
         wit_request_header_text_to_speech['Authorization'] = f'Bearer {config["server"]["wit_API"]}'
         wit_request_header_text_to_speech['Content-Type'] = 'application/json'
-        wit_request_header_text_to_speech['Accept'] = 'audio/mpeg'
+        wit_request_header_text_to_speech['Accept'] = 'audio/wav'
         wit_request = {
                     "q": text,
                     "voice": "Rebecca",
@@ -320,8 +312,39 @@ async def audio_converse_stream( sender : str, request: Request):
     response = await text_to_text(message, sender)
     pprint(response)
     # synthesise the response
-    return StreamingResponse(text_to_speech(response), media_type="audio/mpeg") 
+    return StreamingResponse(text_to_speech(response), media_type="audio/wav") 
 
+
+
+@app.get("/audio_stream")
+async def audio_converse_stream( sender : str,text:str, request: Request):
+    '''
+    This function is used to stream audio from the client to the server. Expecting the audio to be in mp3 format.
+    '''
+    
+    
+    async def text_to_speech( text : str ) -> AsyncGenerator:
+        # get the audio synthetisite from wit.ai
+        url_wit_text_to_speech = f'http{"s" if config["server"]["wit_SSL"] else ""}://{config["server"]["wit_host"]}:{config["server"]["wit_port"]}/synthesize'
+        wit_request_header_text_to_speech = dict()
+        wit_request_header_text_to_speech['Authorization'] = f'Bearer {config["server"]["wit_API"]}'
+        wit_request_header_text_to_speech['Content-Type'] = 'application/json'
+        wit_request_header_text_to_speech['Accept'] = 'audio/wav'
+        wit_request = {
+                    "q": text,
+                    "voice": "Rebecca",
+                    # "style": "soft",
+                    # "speed": 150,
+                    # "pitch": 110,
+                    # "gain": 95
+                    }
+        wit_request_body_text_to_speech = json.dumps(wit_request)
+        async with wit_session.stream('POST', url_wit_text_to_speech,headers=wit_request_header_text_to_speech,data=wit_request_body_text_to_speech) as response:
+            async for chunk in response.aiter_bytes():
+                yield chunk
+
+    # synthesise the response
+    return StreamingResponse(text_to_speech(text), media_type="audio/wav") 
 
 
 # main entry point
