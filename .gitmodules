@@ -1,3 +1,0 @@
-[submodule "rasa/tensorflow"]
-	path = rasa/tensorflow
-	url = https://github.com/tensorflow/tensorflow

@@ -33,10 +33,10 @@ public class ServerConnectionStream : MonoBehaviour
     [Tooltip("The path to post the audio file to")]
     public string path;
     /// <summary>
-    /// Synthesis test
+    /// The sender id for rasa to use
     /// </summary>
-    [Tooltip("Text to synthesize")]
-    public string synthesisText;
+    [Tooltip("The sender id for rasa to use")]
+    public string sender_id;
     /// <summary>
     /// Use SSL or not
     /// </summary>
@@ -72,7 +72,7 @@ public class ServerConnectionStream : MonoBehaviour
             Debug.Log("Connection Successful!");
         }
         // url =  Path.Combine(url, path);
-        url = url + "/" + path + "?sender=Unity&text=" + synthesisText;
+        url = url + "/" + path + "?sender=" + sender_id;
     }
 
     // Update is called once per frame
