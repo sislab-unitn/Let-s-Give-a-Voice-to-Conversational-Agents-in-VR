@@ -1,16 +1,21 @@
+# here place the host names, ports and API keys for the different services (rasa, asr, wit.ai, etc.)
 [server]
-    wit_host = "localhost"
-    wit_port = 444
+    wit_host = "api.wit.ai"
+    wit_port = 443
     wit_API = "USPKTAOSA557WRC6CKHQW6BZVSVLID6W"
-    wit_SSL = false
+    wit_SSL = true
+
     rasa_host = "localhost"
     rasa_port = 5005
     rasa_API = ""
     rasa_SSL = false
-    # tmdb_host = "localhost"
-    # tmdb_port = 5007
-    # tmdb_API = "c038a92e3fe9346f02feaf2d8ae2efab"
-    # tmdb_SSL = false
+
     self_host = "localhost"
     self_port = 8080
+    self_API = ""
     self_SSL = false
+
+    asr_host = "localhost"
+    asr_port = 8081
+    asr_API = ""
+    asr_SSL = false

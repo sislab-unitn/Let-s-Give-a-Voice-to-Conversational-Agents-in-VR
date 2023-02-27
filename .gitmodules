@@ -1,0 +1,6 @@
+[submodule "rasa/tensorflow"]
+	path = rasa/tensorflow
+	url = https://github.com/tensorflow/tensorflow
+[submodule "asr/esb/diagnostic-dataset"]
+	path = asr/esb/diagnostic-dataset
+	url = https://huggingface.co/datasets/esb/diagnostic-dataset

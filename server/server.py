@@ -3,14 +3,16 @@
 from typing import Generator, AsyncGenerator, Iterable
 from fastapi import FastAPI
 from fastapi import Depends, FastAPI, Request, Response, status 
-from pydantic import BaseModel
-import httpx
 from fastapi.responses import StreamingResponse
 import uvicorn
+import httpx
 import sys
 import os
 import argparse
-import tomllib
+try:
+    import tomllib
+except:
+    import toml as tomllib
 import pathlib
 from pprint import pprint
 import json
@@ -42,13 +44,14 @@ if not os.path.exists(config_path):
     sys.exit(1)
     
 # read config file
-with open(config_path,mode='rb') as f:
-    config = tomllib.load(f)
+with open(config_path,mode='r') as f:
+    config = tomllib.loads(f.read())
 
 
 # create session for rasa and wit in order to reuse the connection and reduce latency for successive connections
 wit_session = httpx.AsyncClient()
 rasa_session = httpx.AsyncClient()
+asr_session = httpx.AsyncClient()
 
 
 
@@ -83,89 +86,6 @@ async def text_converse(request : Request):
     return response
 
 
-
-# @app.post("/audio_converse")
-# @app.put("/audio_converse")
-# async def audio_converse(request : Request):
-#     '''
-#         expect a json object with sender and audio keys. The audio data should be a base64 to utf-8 encoded string for the audio file. 
-#         Both PUT and POST are accepted because Unity is not able to send a POST request without reEncoding the file.
-#     '''
-    
-#     wit_session = httpx.Client()
-#     wit_header = {'Authorization':f'Bearer {config["server"]["wit_API"]}'}
-#     wit_first = wit_session.get(f'http{"s" if config["server"]["wit_SSL"] else ""}://{config["server"]["wit_host"]}:{config["server"]["wit_port"]}/message?q=hello',headers=wit_header)
-#     rasa_session = httpx.Client()
-#     rasa_first = rasa_session.get(f'http{"s" if config["server"]["rasa_SSL"] else ""}://{config["server"]["rasa_host"]}:{config["server"]["rasa_port"]}')
-
-#     # get the audio file from the request and send it to wit.ai
-#     url_wit_speech_to_text = f'http{"s" if config["server"]["wit_SSL"] else ""}://{config["server"]["wit_host"]}:{config["server"]["wit_port"]}/dictation'
-#     wit_request_header_speech_to_text = dict()
-#     wit_request_header_speech_to_text['Authorization'] = f'Bearer {config["server"]["wit_API"]}'
-#     wit_request_header_speech_to_text['Content-Type'] = 'audio/wav'
-#     # TODO streaming request
-#     data = await request.body()
-#     data_dict = json.loads(data)
-#     wit_request_body_speech_to_text = base64.b64decode(data_dict['audio'])
-#     response_wit_speech_to_text = wit_session.post(url = url_wit_speech_to_text ,data =  wit_request_body_speech_to_text ,headers= wit_request_header_speech_to_text)
-#     if response_wit_speech_to_text.status_code != 200:
-#         return Response(status_code = response_wit_speech_to_text.status_code, content = response_wit_speech_to_text.content, headers = dict(response_wit_speech_to_text.headers))
-#     wit_content = response_wit_speech_to_text.content.decode('utf-8').split('\r\n')
-#     try:
-#         response_dict = json.loads(wit_content[-2])
-#     except IndexError:
-#         response_dict = json.loads(wit_content[-1])
-
-#     # forward the request to rasa server
-#     rasa_body = dict()
-#     rasa_body['sender'] = data_dict['sender']
-#     rasa_body['message'] = response_dict['text']
-#     url_rasa = f'http{"s" if config["server"]["rasa_SSL"] else ""}://{config["server"]["rasa_host"]}:{config["server"]["rasa_port"]}/webhooks/rest/webhook'
-#     rasa_request_header = dict()
-#     rasa_request_header['Content-Type'] = 'application/json'
-#     rasa_body = json.dumps(rasa_body)
-#     response_rasa = rasa_session.post(url = url_rasa ,data = rasa_body,headers=rasa_request_header)
-#     if response_rasa.status_code != 200:
-#         return Response(status_code = response_rasa.status_code, content = response_rasa.content, headers = dict(response_rasa.headers))
-    
-#     # get the tracker slot data
-#     url_tracker = f'http{"s" if config["server"]["rasa_SSL"] else ""}://{config["server"]["rasa_host"]}:{config["server"]["rasa_port"]}/conversations/{data_dict["sender"]}/tracker'
-#     response_tracker = rasa_session.get(url = url_tracker)
-#     if response_tracker.status_code != 200:
-#         return Response(status_code = response_tracker.status_code, content = response_tracker.content, headers = dict(response_tracker.headers))
-    
-    
-#     # get the audio synthetisite from wit.ai
-#     url_wit_text_to_speech = f'http{"s" if config["server"]["wit_SSL"] else ""}://{config["server"]["wit_host"]}:{config["server"]["wit_port"]}/synthesize'
-#     wit_request_header_text_to_speech = dict()
-#     wit_request_header_text_to_speech['Authorization'] = f'Bearer {config["server"]["wit_API"]}'
-#     wit_request_header_text_to_speech['Content-Type'] = 'application/json'
-#     wit_request_header_text_to_speech['Accept'] = 'audio/wav'
-#     response_rasa = response_rasa.json()
-#     wit_request = {
-#                 "q": response_rasa[0]['text'],
-#                 "voice": "Rebecca",
-#                 # "style": "soft",
-#                 # "speed": 150,
-#                 # "pitch": 110,
-#                 # "gain": 95
-#                 }
-#     wit_request_body_text_to_speech = json.dumps(wit_request)
-#     response_wit_text_to_speech = wit_session.post(url = url_wit_text_to_speech ,data = wit_request_body_text_to_speech ,headers= wit_request_header_text_to_speech)
-#     if response_wit_text_to_speech.status_code != 200:
-#         return Response(status_code = response_wit_text_to_speech.status_code, content = response_wit_text_to_speech.content, headers = dict(response_wit_text_to_speech.headers))
-#     # compose the final response
-#     response = dict()
-#     response['sender'] = data_dict['sender']
-#     response['message'] = response_dict['text']
-#     response['response'] = response_rasa[0]['text']
-#     response['audio'] = base64.b64encode(response_wit_text_to_speech.content).decode('utf-8')
-#     response['slots'] = response_tracker.json()['slots']
-#     # get audio wav final file
-#     return Response(status_code=200, content=json.dumps(response), headers={'Content-Type': 'application/json'})
-
-
-
 @app.post("/audio_converse_download")
 @app.put("/audio_converse_download")
 @app.get("/audio_converse_download")
@@ -174,23 +94,23 @@ async def audio_converse_download( sender : str, request: Request):
     This function is used to stream audio from the client to the server. Expecting the audio to be in wav format.
     '''
     import requests
-    wit_session = requests.Session()
+    asr_session = requests.Session()
     rasa_session = requests.Session()
 
     async def speech_to_text(request) -> str:
-       # get the audio file from the request and send it to wit.ai
-        url_wit_speech_to_text = f'http{"s" if config["server"]["wit_SSL"] else ""}://{config["server"]["wit_host"]}:{config["server"]["wit_port"]}/dictation'
-        wit_request_header_speech_to_text = dict()
-        wit_request_header_speech_to_text['Authorization'] = f'Bearer {config["server"]["wit_API"]}'
-        wit_request_header_speech_to_text['Content-Type'] = 'audio/wav'
+       # get the audio file from the request and send it to asr.ai
+        url_asr_speech_to_text = f'http{"s" if config["server"]["asr_SSL"] else ""}://{config["server"]["asr_host"]}:{config["server"]["asr_port"]}/asr'
+        asr_request_header_speech_to_text = dict()
+        #asr_request_header_speech_to_text['Authorization'] = f'Bearer {config["server"]["asr_API"]}'
+        asr_request_header_speech_to_text['Content-Type'] = 'audio/wav'
         data = await request.body()
-        response_wit_speech_to_text = wit_session.post(url = url_wit_speech_to_text ,data = data ,headers= wit_request_header_speech_to_text)
-        response_wit_speech_to_text.raise_for_status()
-        wit_content = response_wit_speech_to_text.content.decode('utf-8').split('\r\n')
+        response_asr_speech_to_text = asr_session.post(url = url_asr_speech_to_text ,data = data ,headers= asr_request_header_speech_to_text)
+        response_asr_speech_to_text.raise_for_status()
+        asr_content = response_asr_speech_to_text.content.decode('utf-8').split('\r\n')
         try:
-            response_dict = json.loads(wit_content[-2])
+            response_dict = json.loads(asr_content[-2])
         except IndexError:
-            response_dict = json.loads(wit_content[-1])
+            response_dict = json.loads(asr_content[-1])
         return response_dict['text']
     
     async def text_to_text( input : str, sender : str) -> str:
@@ -252,19 +172,19 @@ async def audio_converse_stream( sender : str, request: Request):
     
     async def speech_to_text(request) -> str:
        # get the audio file from the request and send it to wit.ai
-        url_wit_speech_to_text = f'http{"s" if config["server"]["wit_SSL"] else ""}://{config["server"]["wit_host"]}:{config["server"]["wit_port"]}/dictation'
-        wit_request_header_speech_to_text = dict()
-        wit_request_header_speech_to_text['Authorization'] = f'Bearer {config["server"]["wit_API"]}'
-        wit_request_header_speech_to_text['Content-Type'] = 'audio/wav'
-        wit_request_header_speech_to_text['Transfer-Encoding'] = 'chunked'
+        url_asr_speech_to_text = f'http{"s" if config["server"]["asr_SSL"] else ""}://{config["server"]["asr_host"]}:{config["server"]["asr_port"]}/asr'
+        asr_request_header_speech_to_text = dict()
+        #asr_request_header_speech_to_text['Authorization'] = f'Bearer {config["server"]["asr_API"]}'
+        asr_request_header_speech_to_text['Content-Type'] = 'audio/wav'
+        asr_request_header_speech_to_text['Transfer-Encoding'] = 'chunked'
         data = request.stream()
-        response_wit_speech_to_text = await wit_session.post(url = url_wit_speech_to_text ,data = data ,headers= wit_request_header_speech_to_text,timeout=10)
-        response_wit_speech_to_text.raise_for_status()
-        wit_content = response_wit_speech_to_text.content.decode('utf-8').split('\r\n')
+        response_asr_speech_to_text = await asr_session.post(url = url_asr_speech_to_text ,data = data ,headers= asr_request_header_speech_to_text,timeout=10)
+        response_asr_speech_to_text.raise_for_status()
+        asr_content = response_asr_speech_to_text.content.decode('utf-8').split('\r\n')
         try:
-            response_dict = json.loads(wit_content[-2])
+            response_dict = json.loads(asr_content[-2])
         except IndexError:
-            response_dict = json.loads(wit_content[-1])
+            response_dict = json.loads(asr_content[-1])
         return response_dict['text']
     
     async def text_to_text( input : str, sender : str) -> str:
@@ -391,7 +311,7 @@ async def get_tracker(sender:str, request : Request):
 #                     yield chunk
 
 #     # synthesise the response
-    return StreamingResponse(text_to_speech(text), media_type="audio/pcm") 
+#    return StreamingResponse(text_to_speech(text), media_type="audio/pcm") 
 
 # main entry point
 if __name__ == "__main__":
