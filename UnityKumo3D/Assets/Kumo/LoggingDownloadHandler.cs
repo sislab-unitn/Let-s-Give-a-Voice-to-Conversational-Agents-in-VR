@@ -38,7 +38,7 @@ public class LoggingDownloadHandler : DownloadHandlerScript {
     protected override byte[] GetData() { return null; }
 
     // Called once per frame when data has been received from the network.
-
+    // here i decode the audio and play it using the audio player
     protected override bool ReceiveData(byte[] data, int dataLength) {
         if(data == null || data.Length < 1) {
             Debug.Log("LoggingDownloadHandler :: ReceiveData - received a null/empty buffer");
@@ -56,6 +56,7 @@ public class LoggingDownloadHandler : DownloadHandlerScript {
             this.clip = AudioClip.Create("Response", this.f_decoding.Count, this.channels, this.sampleRate, false,false);
             this.clip.SetData(this.f_decoding.ToArray(), 0);
             this.f_decoding.Clear();
+            this.source.clip = this.clip;
             this.source.PlayOneShot(this.clip);
             this.timer = DateTime.Now;
         }
@@ -65,24 +66,25 @@ public class LoggingDownloadHandler : DownloadHandlerScript {
     }
 
     // Called when all data has been received from the server and delivered via ReceiveData.
-
+    // I call the audio player to empty the buffer here and play the audio
     protected override void CompleteContent() {
-        DateTime time2 = DateTime.Now;
-        TimeSpan timeSpan = time2.Subtract(this.timer);
-        Debug.Log(timeSpan.TotalMilliseconds);
-        Debug.Log(this.source.clip.length);
-        while(timeSpan.TotalSeconds < this.source.clip.length)
+        if (this.f_decoding.Count < 2)
         {
-            Debug.Log("LoggingDownloadHandler :: CompleteContent - waiting for audio to finish");
-            time2 = DateTime.Now;
-            timeSpan = time2.Subtract(this.timer);
-            
+            Debug.Log("LoggingDownloadHandler :: CompleteContent - no data to play");
+        }else{
+            DateTime time2 = DateTime.Now;
+            TimeSpan timeSpan = time2.Subtract(this.timer);
+            // missing time to wait before playing the audio
+            float missing =  this.clip.length - timeSpan.Seconds;
+           
+            Debug.Log("LoggingDownloadHandler :: CompleteContent - DOWNLOAD COMPLETE!");
+            this.clip = AudioClip.Create("Response", this.f_decoding.Count, this.channels, this.sampleRate, false,false);
+            this.clip.SetData(this.f_decoding.ToArray(), 0);
+            this.f_decoding.Clear();
+            this.source.clip = this.clip;
+            this.source.PlayDelayed(missing);
         }
-        Debug.Log("LoggingDownloadHandler :: CompleteContent - DOWNLOAD COMPLETE!");
-        this.clip = AudioClip.Create("Response", this.f_decoding.Count, this.channels, this.sampleRate, false,false);
-        this.clip.SetData(this.f_decoding.ToArray(), 0);
-        this.f_decoding.Clear();
-        this.source.PlayOneShot(this.clip);
+        
         // AudioClip clip = AudioClip.Create("Response", f_decoding.Count, channels, sampleRate, false,false);
         // clip.SetData(f_decoding.ToArray(), 0);
         // f_decoding.Clear();
