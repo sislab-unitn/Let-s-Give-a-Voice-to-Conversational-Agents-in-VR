@@ -5,11 +5,9 @@ using UnityEngine.Events;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.IO;
-using UnityEditor;
 using System;
 using System.Globalization;
 using System.Text;
-using System.Threading;
 public class ServerConnectionStream : MonoBehaviour
 {
 
@@ -103,12 +101,12 @@ public class ServerConnectionStream : MonoBehaviour
         Microphone.End(Microphone.devices[0]);
         isRecording = false;
         inputSource.clip = trimAudioClip(inputSource.clip, position);
-        
+
     }
     public void SendAndPlay()
     {
         requestStarted.Invoke();
-        StartCoroutine(PostStreamAndPlayStream(url, inputSource.clip));
+        StartCoroutine(PostStreamAndPlay(url));
     }
     private AudioClip trimAudioClip(AudioClip clip, int position)
     {
@@ -120,38 +118,20 @@ public class ServerConnectionStream : MonoBehaviour
         {
             newData[i] = soundData[i];
         }
-        var newClip = AudioClip.Create(clip.name,position,clip.channels,clip.frequency,false,false);
+        var newClip = AudioClip.Create(clip.name, position, clip.channels, clip.frequency, false, false);
         newClip.SetData(newData, 0);
         return newClip;
     }
 
-    private AudioClip LoadClip(byte [] receivedBytes)
+
+    IEnumerator PostStreamAndPlay(string url)
     {
-        List<float> f_decoding = new List<float>();
- 
-        for (int i = 0; i < receivedBytes.Length; i += 2)
-        {
-            int sample = BitConverter.ToInt16(receivedBytes, i);
-            f_decoding.Add(sample / 32768.0f);
-            // if (f_decoding.Count == 16000 * 1)
-            // {
-            //     yield return null;
-            // }
-        }
-       
-        int channels = 1;
-        int sampleRate = 16000;
-        AudioClip clip = AudioClip.Create("Response", f_decoding.Count, channels, sampleRate, false);
-        clip.SetData(f_decoding.ToArray(), 0);
- 
-        return clip;
-    }
-    IEnumerator PostStreamAndPlayStream(string url, AudioClip clip)
-    {
+        AudioClip clip = inputSource.clip;
         byte[] fileContent = ConvertWav(clip);
         UnityWebRequest request = new UnityWebRequest(url, "POST");
         UploadHandler uploader = new UploadHandlerRaw(fileContent);
-        DownloadHandler downloader = new DownloadHandlerBuffer();
+        // the download handler is a custom one that automatically plays the audio in streaming mode
+        LoggingDownloadHandler downloader = new LoggingDownloadHandler(outputSource);
         request.uploadHandler = uploader;
         request.downloadHandler = downloader;
         request.SetRequestHeader("Content-Type", "audio/wav");
@@ -163,40 +143,11 @@ public class ServerConnectionStream : MonoBehaviour
         }
         else
         {
-            Debug.Log("Upload complete!");
-            byte[] receivedBytes = request.downloadHandler.data;
-            outputSource.clip = LoadClip(receivedBytes);
-            outputSource.PlayOneShot( outputSource.clip);
             requestDone.Invoke();
         }
-
+        yield return null;
     }
-
-    IEnumerator PostStreamAndPlay(string url, AudioClip clip)
-    {
-        byte[] fileContent = ConvertWav(clip);
-        UnityWebRequest request = new UnityWebRequest(url, "POST");
-        UploadHandler uploader = new UploadHandlerRaw(fileContent);
-        DownloadHandlerAudioClip downloader = new DownloadHandlerAudioClip(url, AudioType.WAV);
-        downloader.streamAudio = true;
-        request.uploadHandler = uploader;
-        request.downloadHandler = downloader;
-        request.SetRequestHeader("Content-Type", "audio/wav");
-        request.chunkedTransfer = true;
-        yield return request.SendWebRequest();
-        if (request.result != UnityWebRequest.Result.Success)
-        {
-            Debug.Log(request.error);
-        }
-        else
-        {
-            Debug.Log("Upload complete!");
-            outputSource.PlayOneShot(DownloadHandlerAudioClip.GetContent(request));
-            requestDone.Invoke();
-        }
-
-    }
- // This comes from SoundWav module
+    // This comes from SoundWav module
     static byte[] ConvertWav(AudioClip clip)
     {
 
@@ -207,7 +158,7 @@ public class ServerConnectionStream : MonoBehaviour
         int numOfChannels = clip.channels;
         int samples = clip.samples;
         //Header
-        
+
         // Chunk ID
         byte[] riff = Encoding.ASCII.GetBytes("RIFF");
         Array.Copy(riff, 0, arr, 0, 4);

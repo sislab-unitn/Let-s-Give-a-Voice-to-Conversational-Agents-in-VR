@@ -75,7 +75,7 @@ app = FastAPI()
 # streaming for tts synthesis in chunks
 async def tts_synthesis_chunked(data : str)-> AsyncGenerator:
     io_buffer = io.BytesIO()
-    lines = re.split(r';|,|\*|\n|\\|\/|\?|\.|\=|\+|\!|\:|\'|\"', data)
+    lines = re.split(r';|,|\*|\n|\\|\/|\?|\.|\=|\+|\!|\:|\"', data)
     for line in lines:
         if line != '':
             timer = time.time()
