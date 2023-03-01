@@ -1,9 +1,9 @@
-# here place the host names, ports and API keys for the different services (rasa, asr, wit.ai, etc.)
+# here place the host names, ports and API keys for the different services (rasa, asr, tts.ai, etc.)
 [server]
-    wit_host = "api.wit.ai"
-    wit_port = 443
-    wit_API = "USPKTAOSA557WRC6CKHQW6BZVSVLID6W"
-    wit_SSL = true
+    tts_host = "localhost"
+    tts_port = 8082
+    tts_API = ""
+    tts_SSL = false
 
     rasa_host = "localhost"
     rasa_port = 5005

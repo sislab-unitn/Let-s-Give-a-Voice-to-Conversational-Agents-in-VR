@@ -9,6 +9,7 @@ using UnityEditor;
 using System;
 using System.Globalization;
 using System.Text;
+using System.Threading;
 public class ServerConnectionStream : MonoBehaviour
 {
 
@@ -71,7 +72,6 @@ public class ServerConnectionStream : MonoBehaviour
         {
             Debug.Log("Connection Successful!");
         }
-        // url =  Path.Combine(url, path);
         url = url + "/" + path + "?sender=" + sender_id;
     }
 
@@ -89,14 +89,13 @@ public class ServerConnectionStream : MonoBehaviour
         else
         {
             StopRecording();
-            // SendStreamAndPlay();
+            SendAndPlay();
         }
     }
     public void StartRecording()
     {
         inputSource.clip = Microphone.Start(Microphone.devices[0], true, 300, 44100);
         isRecording = true;
-        // timer = DateTime.Now;
     }
     public void StopRecording()
     {
@@ -104,13 +103,12 @@ public class ServerConnectionStream : MonoBehaviour
         Microphone.End(Microphone.devices[0]);
         isRecording = false;
         inputSource.clip = trimAudioClip(inputSource.clip, position);
-        // inputSource.PlayOneShot(inputSource.clip);
-        SendStreamAndPlay();
+        
     }
-    public void SendStreamAndPlay()
+    public void SendAndPlay()
     {
         requestStarted.Invoke();
-        StartCoroutine(PostStreamAndPlay(url, inputSource.clip));
+        StartCoroutine(PostStreamAndPlayStream(url, inputSource.clip));
     }
     private AudioClip trimAudioClip(AudioClip clip, int position)
     {
@@ -127,6 +125,52 @@ public class ServerConnectionStream : MonoBehaviour
         return newClip;
     }
 
+    private AudioClip LoadClip(byte [] receivedBytes)
+    {
+        List<float> f_decoding = new List<float>();
+ 
+        for (int i = 0; i < receivedBytes.Length; i += 2)
+        {
+            int sample = BitConverter.ToInt16(receivedBytes, i);
+            f_decoding.Add(sample / 32768.0f);
+            // if (f_decoding.Count == 16000 * 1)
+            // {
+            //     yield return null;
+            // }
+        }
+       
+        int channels = 1;
+        int sampleRate = 16000;
+        AudioClip clip = AudioClip.Create("Response", f_decoding.Count, channels, sampleRate, false);
+        clip.SetData(f_decoding.ToArray(), 0);
+ 
+        return clip;
+    }
+    IEnumerator PostStreamAndPlayStream(string url, AudioClip clip)
+    {
+        byte[] fileContent = ConvertWav(clip);
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
+        UploadHandler uploader = new UploadHandlerRaw(fileContent);
+        DownloadHandler downloader = new DownloadHandlerBuffer();
+        request.uploadHandler = uploader;
+        request.downloadHandler = downloader;
+        request.SetRequestHeader("Content-Type", "audio/wav");
+        request.chunkedTransfer = true;
+        yield return request.SendWebRequest();
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log(request.error);
+        }
+        else
+        {
+            Debug.Log("Upload complete!");
+            byte[] receivedBytes = request.downloadHandler.data;
+            outputSource.clip = LoadClip(receivedBytes);
+            outputSource.PlayOneShot( outputSource.clip);
+            requestDone.Invoke();
+        }
+
+    }
 
     IEnumerator PostStreamAndPlay(string url, AudioClip clip)
     {
@@ -152,7 +196,7 @@ public class ServerConnectionStream : MonoBehaviour
         }
 
     }
-
+ // This comes from SoundWav module
     static byte[] ConvertWav(AudioClip clip)
     {
 

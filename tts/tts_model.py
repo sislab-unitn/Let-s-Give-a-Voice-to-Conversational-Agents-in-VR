@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from fastapi import Depends, FastAPI, Request, Response, status 
 from fastapi.responses import StreamingResponse
 import uvicorn
+from uvicorn.config import LOGGING_CONFIG
 import httpx
 import sys
 import os
@@ -24,6 +25,7 @@ from datasets import load_dataset
 import io
 import soundfile as sf
 import json
+import re
 
 parser = argparse.ArgumentParser(
                     prog = 'TTS Server',
@@ -57,7 +59,7 @@ device = "cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.i
 
 # load xvector containing speaker's voice characteristics from a dataset
 embeddings_dataset = load_dataset("Matthijs/cmu-arctic-xvectors", split="validation")
-speaker_embeddings = torch.tensor(embeddings_dataset[7306]["xvector"]).unsqueeze(0)\
+speaker_embeddings = torch.tensor(embeddings_dataset[7306]["xvector"]).unsqueeze(0)
     
 processor = SpeechT5Processor.from_pretrained("microsoft/speecht5_tts")
 model = SpeechT5ForTextToSpeech.from_pretrained("microsoft/speecht5_tts")
@@ -70,20 +72,25 @@ vocoder = SpeechT5HifiGan.from_pretrained("microsoft/speecht5_hifigan")
 print (f"Running on device: {model.device}")
 app = FastAPI()
 
-
+# streaming for tts synthesis in chunks
 async def tts_synthesis_chunked(data : str)-> AsyncGenerator:
     io_buffer = io.BytesIO()
-    for line in data.split('.'):
-        inputs = processor(text=line, return_tensors="pt")
-        speech = model.generate_speech(inputs["input_ids"], speaker_embeddings, vocoder=vocoder)
-        # current position in the file
-        cursor = io_buffer.tell()
-        print(cursor)
-        sf.write(io_buffer, speech.numpy(), samplerate=16000,subtype="PCM_16",format = "RAW")
-        end = io_buffer.tell()
-        print (end)
-        io_buffer.seek(cursor)
-        yield io_buffer.read((end - cursor))
+    lines = re.split(r';|,|\*|\n|\\|\/|\?|\.|\=|\+|\!|\:|\'|\"', data)
+    for line in lines:
+        if line != '':
+            timer = time.time()
+            inputs = processor(text=line, return_tensors="pt")
+            speech = model.generate_speech(inputs["input_ids"], speaker_embeddings, vocoder=vocoder)
+            # current position in the file
+            cursor = io_buffer.tell()
+            # print(cursor)
+            sf.write(io_buffer, speech.numpy(), samplerate=16000,subtype="PCM_16",format = "RAW")
+            end = io_buffer.tell()
+            # print (end)
+            io_buffer.seek(cursor)
+            timer = time.time() - timer
+            pprint (f"Time taken for inference: {timer}")
+            yield io_buffer.read((end - cursor))
         # do something with the chunk
 
 async def tts_synthesis(data : str)-> AsyncGenerator:
@@ -105,15 +112,17 @@ async def tts(request : Request):
         return Response(status_code=status.HTTP_400_BAD_REQUEST, content="Empty request body")
     # perfom the inference
     text = data['text']
+    print(text)
     voice = tts_synthesis_chunked(text)
-    return StreamingResponse(status_code=status.HTTP_200_OK, content= voice, media_type="audio/raw")
+    return StreamingResponse(status_code=status.HTTP_200_OK, content = voice, media_type="audio/raw")
 
 @app.get("/tts_test")
 async def tts_test(text : str):
-    data = text
     voice = tts_synthesis_chunked(text)
-    return StreamingResponse(status_code=status.HTTP_200_OK, content= voice, media_type="audio/raw")
+    return StreamingResponse(status_code=status.HTTP_200_OK, content = voice, media_type="audio/raw")
 
 # main entry point
 if __name__ == "__main__":
+    LOGGING_CONFIG["formatters"]["default"]["fmt"] = "%(asctime)s [%(name)s] %(levelprefix)s %(message)s"
+    LOGGING_CONFIG["formatters"]["access"]["fmt"] = '%(asctime)s [%(name)s] %(levelprefix)s %(client_addr)s - "%(request_line)s" %(status_code)s'
     uvicorn.run("__main__:app", host=config['server']['self_host'], port=config['server']['self_port'], reload=True)

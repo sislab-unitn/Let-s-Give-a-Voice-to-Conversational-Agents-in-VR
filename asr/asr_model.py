@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from fastapi import Depends, FastAPI, Request, Response, status 
 from fastapi.responses import StreamingResponse
 import uvicorn
+from uvicorn.config import LOGGING_CONFIG
 import httpx
 import sys
 import os
@@ -52,7 +53,7 @@ with open(config_path,mode='r') as f:
         
 
 device = "cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu")
-model = EncoderDecoderASR.from_hparams(source="speechbrain/asr-wav2vec2-commonvoice-en", savedir="pretrained_models/asr-wav2vec2-commonvoice-en",run_opts={"device":device})
+model = EncoderDecoderASR.from_hparams(source="speechbrain/asr-wav2vec2-commonvoice-en", savedir="pretrained_models/asr-wav2vec2-commonvoice-en",run_opts={"device":'cpu'})
 model = torch.compile(model)
 print (f"Running on device: {model.device}")
 app = FastAPI()
@@ -80,11 +81,14 @@ async def asr(request : Request):
         return Response(status_code=status.HTTP_400_BAD_REQUEST, content="Empty request body")
     # perfom the inference
     text = asr_dictation(data)
-    
+    print (text)
     body = {'is_final' : True,
             'text' : text }
+    
     return Response(status_code=status.HTTP_200_OK, content= json.dumps(body), media_type="application/json")
 
 # main entry point
 if __name__ == "__main__":
+    LOGGING_CONFIG["formatters"]["default"]["fmt"] = "%(asctime)s [%(name)s] %(levelprefix)s %(message)s"
+    LOGGING_CONFIG["formatters"]["access"]["fmt"] = '%(asctime)s [%(name)s] %(levelprefix)s %(client_addr)s - "%(request_line)s" %(status_code)s'
     uvicorn.run("__main__:app", host=config['server']['self_host'], port=config['server']['self_port'], reload=True)
