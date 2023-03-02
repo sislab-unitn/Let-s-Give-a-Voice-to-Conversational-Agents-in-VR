@@ -84,7 +84,7 @@ async def tts_synthesis_chunked(data : str)-> AsyncGenerator:
             # current position in the file
             cursor = io_buffer.tell()
             # print(cursor)
-            sf.write(io_buffer, speech.numpy(), samplerate=16000,subtype="PCM_16",format = "RAW")
+            sf.write(io_buffer, speech.numpy(), samplerate=config["audio"]["sample_rate"],subtype="PCM_16",format = "RAW")
             end = io_buffer.tell()
             # print (end)
             io_buffer.seek(cursor)
@@ -97,7 +97,7 @@ async def tts_synthesis(data : str)-> AsyncGenerator:
     io_buffer = io.BytesIO()
     inputs = processor(text=data, return_tensors="pt")
     speech = model.generate_speech(inputs["input_ids"], speaker_embeddings, vocoder=vocoder)
-    sf.write(io_buffer, speech.numpy(), samplerate=16000,subtype="PCM_16",format = "WAV")
+    sf.write(io_buffer, speech.numpy(), samplerate=config["audio"]["sample_rate"],subtype="PCM_16",format = "WAV")
     return io_buffer.getbuffer()
 
 @app.get("/")

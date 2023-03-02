@@ -2,3 +2,5 @@
     self_host = "localhost"
     self_port = 8082
     self_SSL = false
+[audio]
+    sample_rate = 16000

@@ -8,7 +8,7 @@ using System.IO;
 using System;
 using System.Globalization;
 using System.Text;
-public class ServerConnectionStream : MonoBehaviour
+public class ServerConnectionStreamAuto : MonoBehaviour
 {
     #region Editor Exposed Variables
 
@@ -47,16 +47,33 @@ public class ServerConnectionStream : MonoBehaviour
     /// <summary>
     [Tooltip("output audio sample rate")]
     public int outputSampleRate;
-    /// <summary>
-    /// Set a Button to enable sending the audio file
-    /// </summary>
-    [Tooltip("Set a Button to enable sending the audio file")]
-    public Button SendButton;
+
     /// <summary>
     /// Set the outputsource
     /// <summary>
     [Tooltip("audiosource from where to play the response")]
     public AudioSource outputSource;
+
+    /// <summary>
+    /// Set the audiosource threshold noise level before starting recording
+    /// <summary>
+    [Tooltip("Sound noise level threshold before starting recording")]
+    public double audioLevelUpperThreshold = 0.05;
+    /// <summary>
+    /// Set the audiosource threshold noise level before stopping recording
+    /// <summary>
+    [Tooltip("Sound noise level threshold before stopping recording")]
+    public double audioLevelLowerThreshold = 0.01;
+    /// <summary>
+    /// How long to wait the sound level has to be below the lower threshold before stopping recording
+    /// <summary>
+    [Tooltip("How long to wait the sound level has to be below the lower threshold before stopping recording ( seconds )")]
+    public double audioPauseWindow = 1;
+    /// <summary>
+    /// Set the audiosource sampling time during which the recording is checked for noise level
+    /// <summary>
+    [Tooltip("Sound noise level sampling window ( seconds )")]
+    public double audioSamplingWindow = 0.1;
     #endregion
     public UnityEvent requestStarted = new UnityEvent();
     public UnityEvent requestDone = new UnityEvent();
@@ -65,6 +82,8 @@ public class ServerConnectionStream : MonoBehaviour
     private AudioClip clip;
     private bool isRecording = false;
     private int maxRecordingTime = 300;
+    private float timer = 0;
+    private int startPosition = 0;
     void Start()
     {
         this.url = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
@@ -79,36 +98,55 @@ public class ServerConnectionStream : MonoBehaviour
             Debug.Log("Connection Successful!");
         }
         this.url = this.url + "/" + this.path + "?sender=" + this.sender_id;
+        StartRecording();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (outputSource.isPlaying)
+        {
+            return;
+        }else
+        {
+            int position = Microphone.GetPosition(Microphone.devices[0]);
+            float audioLevel = Audio.getAudioLevel(this.clip, position, this.audioSamplingWindow);
+            if( !this.isRecording ){
+                if (audioLevel > this.audioLevelUpperThreshold) 
+                { 
+                    // StartRecording();
+                    this.startPosition = position - (int)(this.audioSamplingWindow * 5 * this.inputSampleRate) ;
+                    startPosition = startPosition < 0 ? 0 : startPosition;
+                    this.isRecording = true;
+                }
+            }
+            if (this.isRecording && audioLevel < this.audioLevelLowerThreshold)
+            {
+                timer += Time.deltaTime;
+                if (timer > this.audioPauseWindow)
+                {
+                    StopRecording();
+                    this.isRecording = false;
+                    SendAndPlay();
+                    timer = 0;
+                }
+            }
+        }
 
-    }
-    public void buttonClicked()
-    {
-        if (!this.isRecording)
-        {
-            StartRecording();
-        }
-        else
-        {
-            StopRecording();
-            SendAndPlay();
-        }
+        
     }
     public void StartRecording()
     {
         this.clip = Microphone.Start(Microphone.devices[0], true, this.maxRecordingTime, this.inputSampleRate);
-        this.isRecording = true;
+        // this.isRecording = true;
     }
     public void StopRecording()
     {
-        var position = Microphone.GetPosition(Microphone.devices[0]);
+        int  endPosition = Microphone.GetPosition(Microphone.devices[0]);
         Microphone.End(Microphone.devices[0]);
-        this.isRecording = false;
-        this.clip = Audio.trimAudioClip(this.clip, position);
+       
+        this.clip = Audio.trimAudioClip(this.clip, this.startPosition, endPosition);
+        // this.outputSource.PlayOneShot(this.clip);
 
     }
     public void SendAndPlay()
@@ -124,7 +162,7 @@ public class ServerConnectionStream : MonoBehaviour
         UnityWebRequest request = new UnityWebRequest(this.url, "POST");
         UploadHandler uploader = new UploadHandlerRaw(fileContent);
         // the download handler is a custom one that automatically plays the audio in streaming mode
-        LoggingDownloadHandler downloader = new LoggingDownloadHandler(this.outputSource, this.outputSampleRate,1);
+        LoggingDownloadHandler downloader = new LoggingDownloadHandler(this.outputSource, this.outputSampleRate, 1);
         request.uploadHandler = uploader;
         request.downloadHandler = downloader;
         request.SetRequestHeader("Content-Type", "audio/wav");
@@ -138,6 +176,12 @@ public class ServerConnectionStream : MonoBehaviour
         {
             requestDone.Invoke();
         }
+        // wait unitl the audio is done playing to avoid recording the response
+        while (this.outputSource.isPlaying)
+        {
+            yield return null;
+        }
+        StartRecording();
         yield return null;
     }
     // This comes from SoundWav module

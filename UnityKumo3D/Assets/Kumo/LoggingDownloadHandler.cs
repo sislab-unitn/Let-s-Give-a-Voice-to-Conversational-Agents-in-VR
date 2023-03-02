@@ -16,6 +16,8 @@ public class LoggingDownloadHandler : DownloadHandlerScript {
     private List<float> f_decoding;
     private AudioSource source;
     private DateTime timer;
+    private byte oddByte;
+    private bool oddByteSet = false;
     public LoggingDownloadHandler(): base() {
 
     }
@@ -27,9 +29,9 @@ public class LoggingDownloadHandler : DownloadHandlerScript {
     public LoggingDownloadHandler(byte[] buffer): base(buffer) {
     }
 
-     public LoggingDownloadHandler(AudioSource source): base() {
-        this.sampleRate = 16000;
-        this.channels = 1;
+     public LoggingDownloadHandler(AudioSource source, int sampleRate = 16000, int channels = 1): base() {
+        this.sampleRate = sampleRate;
+        this.channels = channels;
         this.f_decoding = new List<float>();
         this.source = source;
     }
@@ -44,16 +46,32 @@ public class LoggingDownloadHandler : DownloadHandlerScript {
             Debug.Log("LoggingDownloadHandler :: ReceiveData - received a null/empty buffer");
             return false;
         }
-        for(int i = 0; i < dataLength; i += 2)
+        if (this.oddByteSet)
+        {
+            byte[] data2 = new byte[dataLength + 1];
+            data2[0] = this.oddByte;
+            Array.Copy(data, 0, data2, 1, dataLength);
+            data = data2;
+            dataLength++;
+            this.oddByteSet = false;
+        }
+        // if the data is not a multiple of 2, we have a problem
+        for(int i = 0; i < dataLength -1; i += 2)
         {
             int sample = BitConverter.ToInt16(data, i);
             this.f_decoding.Add(sample / 32768.0f);
+        }
+        // if the data is not a multiple of 2
+        if(dataLength % 2 == 1)
+        {
+            this.oddByte = data[dataLength - 1];
+            this.oddByteSet = true;
         }
         if (this.source.isPlaying)
         {
             Debug.Log("LoggingDownloadHandler :: ReceiveData - received " + dataLength + " bytes, but source is playing");
         }else{
-            this.clip = AudioClip.Create("Response", this.f_decoding.Count, this.channels, this.sampleRate, false,false);
+            this.clip = AudioClip.Create("Response", this.f_decoding.Count, this.channels, this.sampleRate, stream : false);
             this.clip.SetData(this.f_decoding.ToArray(), 0);
             this.f_decoding.Clear();
             this.source.clip = this.clip;
@@ -68,7 +86,7 @@ public class LoggingDownloadHandler : DownloadHandlerScript {
     // Called when all data has been received from the server and delivered via ReceiveData.
     // I call the audio player to empty the buffer here and play the audio
     protected override void CompleteContent() {
-        if (this.f_decoding.Count < 2)
+        if (this.f_decoding.Count < 1)
         {
             Debug.Log("LoggingDownloadHandler :: CompleteContent - no data to play");
         }else{
@@ -78,12 +96,13 @@ public class LoggingDownloadHandler : DownloadHandlerScript {
             float missing =  this.clip.length - timeSpan.Seconds;
            
             Debug.Log("LoggingDownloadHandler :: CompleteContent - DOWNLOAD COMPLETE!");
-            this.clip = AudioClip.Create("Response", this.f_decoding.Count, this.channels, this.sampleRate, false,false);
+            this.clip = AudioClip.Create("Response", this.f_decoding.Count, this.channels, this.sampleRate,stream : false);
             this.clip.SetData(this.f_decoding.ToArray(), 0);
             this.f_decoding.Clear();
             this.source.clip = this.clip;
             this.source.PlayDelayed(missing);
-        }
+        } 
+    
         
         // AudioClip clip = AudioClip.Create("Response", f_decoding.Count, channels, sampleRate, false,false);
         // clip.SetData(f_decoding.ToArray(), 0);
