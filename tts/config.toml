@@ -3,4 +3,4 @@
     self_port = 8082
     self_SSL = false
 [audio]
-    sample_rate = 16000
+    sample_rate = 16000 # Speech_t5 does not work with other sample rates

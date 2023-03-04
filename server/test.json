@@ -1,0 +1,163 @@
+{
+  "sender_id": "unity",
+  "slots": {
+    "movie_or_tv": null,
+    "genre": null,
+    "genre_validated": null,
+    "suggested_genre": null,
+    "genres_available": null,
+    "top_names": null,
+    "results_data": null,
+    "requested_slot": null,
+    "session_started_metadata": null
+  },
+  "latest_message": {
+    "intent": { "name": "greet", "confidence": 0.999514102935791 },
+    "entities": [],
+    "text": "hello",
+    "message_id": "413c181303c24b1681a6c37d28c36e24",
+    "metadata": {},
+    "text_tokens": [[0, 5]],
+    "intent_ranking": [
+      { "name": "greet", "confidence": 0.999514102935791 },
+      { "name": "help", "confidence": 0.00013390649110078812 },
+      { "name": "deny", "confidence": 9.947640501195565e-5 },
+      { "name": "lookup_movie", "confidence": 7.629411993548274e-5 },
+      { "name": "goodbye", "confidence": 6.438796117436141e-5 },
+      { "name": "affirm", "confidence": 4.487123806029558e-5 },
+      { "name": "popular", "confidence": 2.2335121684591286e-5 },
+      { "name": "ask_movie", "confidence": 1.855693153629545e-5 },
+      { "name": "help_genres", "confidence": 1.4100373846304137e-5 },
+      { "name": "thank_you", "confidence": 6.685625066893408e-6 }
+    ],
+    "response_selector": {
+      "all_retrieval_intents": [],
+      "default": {
+        "response": {
+          "responses": null,
+          "confidence": 0.0,
+          "intent_response_key": null,
+          "utter_action": "utter_None"
+        },
+        "ranking": []
+      }
+    }
+  },
+  "latest_event_time": 1677926284.712438,
+  "followup_action": null,
+  "paused": false,
+  "events": [
+    {
+      "event": "action",
+      "timestamp": 1677926284.186361,
+      "metadata": { "model_id": "8acc684d0dc94307bbe8b1959a667a61" },
+      "name": "action_session_start",
+      "policy": null,
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "session_started",
+      "timestamp": 1677926284.186374,
+      "metadata": { "model_id": "8acc684d0dc94307bbe8b1959a667a61" }
+    },
+    {
+      "event": "action",
+      "timestamp": 1677926284.186381,
+      "metadata": { "model_id": "8acc684d0dc94307bbe8b1959a667a61" },
+      "name": "action_listen",
+      "policy": null,
+      "confidence": null,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "user",
+      "timestamp": 1677926284.4657779,
+      "metadata": { "model_id": "8acc684d0dc94307bbe8b1959a667a61" },
+      "text": "hello",
+      "parse_data": {
+        "intent": { "name": "greet", "confidence": 0.999514102935791 },
+        "entities": [],
+        "text": "hello",
+        "message_id": "413c181303c24b1681a6c37d28c36e24",
+        "metadata": {},
+        "text_tokens": [[0, 5]],
+        "intent_ranking": [
+          { "name": "greet", "confidence": 0.999514102935791 },
+          { "name": "help", "confidence": 0.00013390649110078812 },
+          { "name": "deny", "confidence": 9.947640501195565e-5 },
+          { "name": "lookup_movie", "confidence": 7.629411993548274e-5 },
+          { "name": "goodbye", "confidence": 6.438796117436141e-5 },
+          { "name": "affirm", "confidence": 4.487123806029558e-5 },
+          { "name": "popular", "confidence": 2.2335121684591286e-5 },
+          { "name": "ask_movie", "confidence": 1.855693153629545e-5 },
+          { "name": "help_genres", "confidence": 1.4100373846304137e-5 },
+          { "name": "thank_you", "confidence": 6.685625066893408e-6 }
+        ],
+        "response_selector": {
+          "all_retrieval_intents": [],
+          "default": {
+            "response": {
+              "responses": null,
+              "confidence": 0.0,
+              "intent_response_key": null,
+              "utter_action": "utter_None"
+            },
+            "ranking": []
+          }
+        }
+      },
+      "input_channel": "cmdline",
+      "message_id": "413c181303c24b1681a6c37d28c36e24"
+    },
+    {
+      "event": "user_featurization",
+      "timestamp": 1677926284.7086852,
+      "metadata": { "model_id": "8acc684d0dc94307bbe8b1959a667a61" },
+      "use_text_for_featurization": false
+    },
+    {
+      "event": "action",
+      "timestamp": 1677926284.708691,
+      "metadata": { "model_id": "8acc684d0dc94307bbe8b1959a667a61" },
+      "name": "utter_greet",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    },
+    {
+      "event": "bot",
+      "timestamp": 1677926284.708734,
+      "metadata": {
+        "utter_action": "utter_greet",
+        "model_id": "8acc684d0dc94307bbe8b1959a667a61"
+      },
+      "text": "Hi, I\u2019m Kumo, your personal movie and tv show assistant. Should I recommend you something?",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1677926284.712438,
+      "metadata": { "model_id": "8acc684d0dc94307bbe8b1959a667a61" },
+      "name": "action_listen",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    }
+  ],
+  "latest_input_channel": "cmdline",
+  "active_loop": {},
+  "latest_action": { "action_name": "action_listen" },
+  "latest_action_name": "action_listen"
+}

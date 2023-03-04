@@ -70,6 +70,11 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     [Tooltip("How long to wait the sound level has to be below the lower threshold before stopping recording ( seconds )")]
     public double audioPauseWindow = 1;
     /// <summary>
+    /// How long before the the clip is sent with the audio
+    /// <summary>
+    [Tooltip("Seconds before the clip that are sent with the audio ( seconds )")]
+    public double audioStartWindow = 0.2;
+    /// <summary>
     /// Set the audiosource sampling time during which the recording is checked for noise level
     /// <summary>
     [Tooltip("Sound noise level sampling window ( seconds )")]
@@ -115,7 +120,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
                 if (audioLevel > this.audioLevelUpperThreshold) 
                 { 
                     // StartRecording();
-                    this.startPosition = position - (int)(this.audioSamplingWindow * 5 * this.inputSampleRate) ;
+                    this.startPosition = position - (int)(this.audioStartWindow * this.inputSampleRate) ;
                     startPosition = startPosition < 0 ? 0 : startPosition;
                     this.isRecording = true;
                 }
@@ -162,7 +167,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         UnityWebRequest request = new UnityWebRequest(this.url, "POST");
         UploadHandler uploader = new UploadHandlerRaw(fileContent);
         // the download handler is a custom one that automatically plays the audio in streaming mode
-        LoggingDownloadHandler downloader = new LoggingDownloadHandler(this.outputSource, this.outputSampleRate, 1);
+        StreamingPCMDownloadHandler downloader = new StreamingPCMDownloadHandler(this.outputSource, this.outputSampleRate, 1);
         request.uploadHandler = uploader;
         request.downloadHandler = downloader;
         request.SetRequestHeader("Content-Type", "audio/wav");
@@ -176,6 +181,8 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         {
             requestDone.Invoke();
         }
+        ServerConnectionSlots slots = GetComponent<ServerConnectionSlots>();
+        StartCoroutine(slots.GetSlots());
         // wait unitl the audio is done playing to avoid recording the response
         while (this.outputSource.isPlaying)
         {

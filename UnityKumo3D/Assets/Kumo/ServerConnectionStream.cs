@@ -124,7 +124,7 @@ public class ServerConnectionStream : MonoBehaviour
         UnityWebRequest request = new UnityWebRequest(this.url, "POST");
         UploadHandler uploader = new UploadHandlerRaw(fileContent);
         // the download handler is a custom one that automatically plays the audio in streaming mode
-        LoggingDownloadHandler downloader = new LoggingDownloadHandler(this.outputSource, this.outputSampleRate,1);
+        StreamingPCMDownloadHandler downloader = new StreamingPCMDownloadHandler(this.outputSource, this.outputSampleRate,1);
         request.uploadHandler = uploader;
         request.downloadHandler = downloader;
         request.SetRequestHeader("Content-Type", "audio/wav");

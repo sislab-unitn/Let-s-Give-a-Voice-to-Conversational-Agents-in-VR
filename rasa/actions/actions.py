@@ -26,6 +26,8 @@ import argparse
 import pathlib
 import os, sys
 import toml
+import io
+import base64
 
 # check if config file exists
 current_path = pathlib.Path(__file__).parent.absolute()
@@ -125,7 +127,28 @@ class ActionDiscoverMovie(Action):
             top_names = ", ".join(top_names)
             print(top_names)
             evt = SlotSet("top_names",top_names)
-            ent = SlotSet("results_data",results)
+            # create a slot with the results
+            # containing the title, and poster downloaded as image
+            results_data = dict()
+            results_data['images'] = []
+            results_data['titles'] = []
+            for result in results[:3]:
+                try:
+                    title = result['title']
+                except KeyError:
+                    title = result['name']
+                results_data['titles'].append(title)
+                poster_path = result['poster_path']
+                if poster_path is not None:
+                    poster_url = f"https://image.tmdb.org/t/p/original{poster_path}"
+                    request = requests.get(poster_url,stream=False)
+                    request.raise_for_status()
+                    # encode in base64 and to utf-8 to get compatibility with json
+                    encoded = base64.b64encode(request.content)
+                    results_data['images'].append(encoded.decode('utf-8'))
+                else:
+                    results_data['images'].append(None)
+            ent = SlotSet("results_data",results_data)
             return [evt,ent]
 
 

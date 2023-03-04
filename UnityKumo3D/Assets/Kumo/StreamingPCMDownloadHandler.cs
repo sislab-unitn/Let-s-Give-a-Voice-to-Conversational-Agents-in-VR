@@ -7,7 +7,7 @@ using System.IO;
 using System;
 using System.Globalization;
 using System.Text;
-public class LoggingDownloadHandler : DownloadHandlerScript {
+public class StreamingPCMDownloadHandler : DownloadHandlerScript {
 
     // Standard scripted download handler - allocates memory on each ReceiveData callback
     public AudioClip clip;
@@ -18,7 +18,7 @@ public class LoggingDownloadHandler : DownloadHandlerScript {
     private DateTime timer;
     private byte oddByte;
     private bool oddByteSet = false;
-    public LoggingDownloadHandler(): base() {
+    public StreamingPCMDownloadHandler(): base() {
 
     }
 
@@ -26,10 +26,10 @@ public class LoggingDownloadHandler : DownloadHandlerScript {
     // reuses the supplied byte array to deliver data.
     // Eliminates memory allocation.
 
-    public LoggingDownloadHandler(byte[] buffer): base(buffer) {
+    public StreamingPCMDownloadHandler(byte[] buffer): base(buffer) {
     }
 
-     public LoggingDownloadHandler(AudioSource source, int sampleRate = 16000, int channels = 1): base() {
+     public StreamingPCMDownloadHandler(AudioSource source, int sampleRate = 16000, int channels = 1): base() {
         this.sampleRate = sampleRate;
         this.channels = channels;
         this.f_decoding = new List<float>();
@@ -43,7 +43,7 @@ public class LoggingDownloadHandler : DownloadHandlerScript {
     // here i decode the audio and play it using the audio player
     protected override bool ReceiveData(byte[] data, int dataLength) {
         if(data == null || data.Length < 1) {
-            Debug.Log("LoggingDownloadHandler :: ReceiveData - received a null/empty buffer");
+            Debug.Log("StreamingPCMDownloadHandler :: ReceiveData - received a null/empty buffer");
             return false;
         }
         if (this.oddByteSet)
@@ -69,7 +69,7 @@ public class LoggingDownloadHandler : DownloadHandlerScript {
         }
         if (this.source.isPlaying)
         {
-            Debug.Log("LoggingDownloadHandler :: ReceiveData - received " + dataLength + " bytes, but source is playing");
+            Debug.Log("StreamingPCMDownloadHandler :: ReceiveData - received " + dataLength + " bytes, but source is playing");
         }else{
             this.clip = AudioClip.Create("Response", this.f_decoding.Count, this.channels, this.sampleRate, stream : false);
             this.clip.SetData(this.f_decoding.ToArray(), 0);
@@ -79,7 +79,7 @@ public class LoggingDownloadHandler : DownloadHandlerScript {
             this.timer = DateTime.Now;
         }
        
-        Debug.Log(string.Format("LoggingDownloadHandler :: ReceiveData - received {0} bytes", dataLength));
+        Debug.Log(string.Format("StreamingPCMDownloadHandler :: ReceiveData - received {0} bytes", dataLength));
         return true;
     }
 
@@ -88,14 +88,14 @@ public class LoggingDownloadHandler : DownloadHandlerScript {
     protected override void CompleteContent() {
         if (this.f_decoding.Count < 1)
         {
-            Debug.Log("LoggingDownloadHandler :: CompleteContent - no data to play");
+            Debug.Log("StreamingPCMDownloadHandler :: CompleteContent - no data to play");
         }else{
             DateTime time2 = DateTime.Now;
             TimeSpan timeSpan = time2.Subtract(this.timer);
             // missing time to wait before playing the audio
             float missing =  this.clip.length - timeSpan.Seconds;
            
-            Debug.Log("LoggingDownloadHandler :: CompleteContent - DOWNLOAD COMPLETE!");
+            Debug.Log("StreamingPCMDownloadHandler :: CompleteContent - DOWNLOAD COMPLETE!");
             this.clip = AudioClip.Create("Response", this.f_decoding.Count, this.channels, this.sampleRate,stream : false);
             this.clip.SetData(this.f_decoding.ToArray(), 0);
             this.f_decoding.Clear();
@@ -114,7 +114,7 @@ public class LoggingDownloadHandler : DownloadHandlerScript {
     // Called when a Content-Length header is received from the server.
 
     protected override void ReceiveContentLengthHeader(ulong contentLength) {
-        Debug.Log(string.Format("LoggingDownloadHandler :: ReceiveContentLength - length {0}", contentLength));
+        Debug.Log(string.Format("StreamingPCMDownloadHandler :: ReceiveContentLength - length {0}", contentLength));
     }
 
 }
