@@ -104,8 +104,8 @@ public class ServerConnectionSlots : MonoBehaviour
                         // decode bytes from base64
                         byte[] bytes = Convert.FromBase64String((data["images"][j].ToString()));
                         // save the bytes to a file
-                        string path = Application.dataPath + "/Temp/" + "image_" +j + ".jpg";
-                        File.WriteAllBytes(path, bytes);
+                        // string path = Application.dataPath + "/Temp/" + "image_" +j + ".jpg";
+                        // File.WriteAllBytes(path, bytes);
                         Texture2D texture = new Texture2D(2, 2);
                         texture.LoadImage(bytes);
                         image[j].sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1491237378623107228
+--- !u!1 &982798902581523680
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4015502656969251914}
-  - component: {fileID: 4947489397274721671}
-  - component: {fileID: 4819666008157436864}
-  - component: {fileID: 3944123192524481164}
+  - component: {fileID: 4810534216210919109}
+  - component: {fileID: 2577720351961949976}
+  - component: {fileID: 4917895514207641963}
+  - component: {fileID: 288053674951391570}
+  - component: {fileID: 7035283187993899266}
   m_Layer: 0
-  m_Name: ServerConnectionStreamAuto
+  m_Name: ServerConnectionStreamAuto 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4015502656969251914
+--- !u!4 &4810534216210919109
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491237378623107228}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 982798902581523680}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 516, y: 65.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &4947489397274721671
+--- !u!82 &2577720351961949976
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491237378623107228}
+  m_GameObject: {fileID: 982798902581523680}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -130,25 +131,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4819666008157436864
+--- !u!114 &4917895514207641963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491237378623107228}
+  m_GameObject: {fileID: 982798902581523680}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38da1b978aa6843fe85f5a0bf7f65c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3944123192524481164
+--- !u!114 &288053674951391570
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491237378623107228}
+  m_GameObject: {fileID: 982798902581523680}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0ce4edb49f16498082b76f6a476aa40, type: 3}
@@ -161,10 +162,11 @@ MonoBehaviour:
   ssl: 0
   inputSampleRate: 44100
   outputSampleRate: 16000
-  outputSource: {fileID: 4947489397274721671}
-  audioLevelUpperThreshold: 0.1
+  outputSource: {fileID: 2577720351961949976}
+  audioLevelUpperThreshold: 0.05
   audioLevelLowerThreshold: 0.02
   audioPauseWindow: 1
+  audioStartWindow: 0.2
   audioSamplingWindow: 0.01
   requestStarted:
     m_PersistentCalls:
@@ -172,3 +174,30 @@ MonoBehaviour:
   requestDone:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7035283187993899266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982798902581523680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8504483b76e7c4a269e76c14c1ddff64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  host: localhost
+  port: 8080
+  path: get_tracker
+  sender_id: unity
+  ssl: 0
+  image:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  text:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  transcription: {fileID: 0}
+  response: {fileID: 0}
