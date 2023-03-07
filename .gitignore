@@ -108,4 +108,5 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
+# model bin
 *.bin

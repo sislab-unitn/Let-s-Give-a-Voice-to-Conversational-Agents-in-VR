@@ -166,80 +166,8 @@ async def get_tracker_data( sender : str) -> bytes:
         answer['response'] = ''
     # pprint(answer)
     return answer
-# # @app.post("/audio_converse_download")
-# # @app.put("/audio_converse_download")
-# # @app.get("/audio_converse_download")
-# # async def audio_converse_download( sender : str, request: Request):
-# #     '''
-# #     This function is used to stream audio from the client to the server. Expecting the audio to be in wav format.
-# #     '''
-# #     import requests
-# #     asr_session = requests.Session()
-# #     rasa_session = requests.Session()
-
-# #     async def speech_to_text(request) -> str:
-# #        # get the audio file from the request and send it to asr.ai
-# #         url_asr_speech_to_text = f'http{"s" if config["server"]["asr_SSL"] else ""}://{config["server"]["asr_host"]}:{config["server"]["asr_port"]}/asr'
-# #         asr_request_header_speech_to_text = dict()
-# #         #asr_request_header_speech_to_text['Authorization'] = f'Bearer {config["server"]["asr_API"]}'
-# #         asr_request_header_speech_to_text['Content-Type'] = 'audio/wav'
-# #         data = await request.body()
-# #         response_asr_speech_to_text = asr_session.post(url = url_asr_speech_to_text ,data = data ,headers= asr_request_header_speech_to_text)
-# #         response_asr_speech_to_text.raise_for_status()
-# #         asr_content = response_asr_speech_to_text.content.decode('utf-8').split('\r\n')
-# #         try:
-# #             response_dict = json.loads(asr_content[-2])
-# #         except IndexError:
-# #             response_dict = json.loads(asr_content[-1])
-# #         return response_dict['text']
-    
-# #     async def text_to_text( input : str, sender : str) -> str:
-# #         # forward the request to rasa server
-# #         rasa_body = dict()
-# #         rasa_body['sender'] = sender
-# #         rasa_body['message'] = input
-# #         url_rasa = f'http{"s" if config["server"]["rasa_SSL"] else ""}://{config["server"]["rasa_host"]}:{config["server"]["rasa_port"]}/webhooks/rest/webhook'
-# #         rasa_request_header = dict()
-# #         rasa_request_header['Content-Type'] = 'application/json'
-# #         rasa_body = json.dumps(rasa_body)
-# #         response_rasa = rasa_session.post(url = url_rasa ,data = rasa_body,headers=rasa_request_header)
-# #         response_rasa.raise_for_status()
-# #         # get the tracker slot data
-# #         url_tracker = f'http{"s" if config["server"]["rasa_SSL"] else ""}://{config["server"]["rasa_host"]}:{config["server"]["rasa_port"]}/conversations/{sender}/tracker'
-# #         response_tracker = rasa_session.get(url = url_tracker)
-# #         response_tracker.raise_for_status()
-        
-# #         response = response_rasa.json()[0]["text"]
-# #         return response
-    
-# #     async def text_to_speech( text : str ) -> bytes:
-# #         # get the audio synthetisite from tts.ai
-# #         url_tts_text_to_speech = f'http{"s" if config["server"]["tts_SSL"] else ""}://{config["server"]["tts_host"]}:{config["server"]["tts_port"]}/tts'
-# #         tts_request_header_text_to_speech = dict()
-# #         tts_request_header_text_to_speech['Content-Type'] = 'application/json'
-# #         tts_request_header_text_to_speech['Accept'] = 'audio/raw'
-# #         tts_request = {
-# #                     "text": text,
-# #                     }
-# #         tts_request_body_text_to_speech = json.dumps(tts_request)
-# #         response_tts_text_to_speech = tts_session.post(url = url_tts_text_to_speech ,data = tts_request_body_text_to_speech,headers=tts_request_header_text_to_speech)
-# #         return response_tts_text_to_speech.content
-    
-#     # get the audio file from the request and send it to tts.ai
-
-#     message = await speech_to_text(request)
-#     pprint(message)
-#     # rasa response
-#     response = await text_to_text(message, sender)
-#     pprint(response)
-#     # synthesise the response
-#     audio = await text_to_speech(response)
-#     return Response(status_code=200, content=audio, headers={'Content-Type': 'audio/wav'})
-
 
 @app.post("/audio_converse_stream")
-@app.put("/audio_converse_stream")
-@app.get("/audio_converse_stream")
 async def audio_converse_stream( sender : str, request: Request):
     '''
     This function is used to stream audio from the client to the server. Expecting the audio to be in mp3 format.
@@ -258,7 +186,6 @@ async def audio_converse_stream( sender : str, request: Request):
     pprint(response)
     # synthesise the response
     return StreamingResponse(text_to_speech(response), media_type="audio/wav") 
-
 @app.get( "/get_tracker" )
 async def get_tracker(sender:str, request : Request):
     return await get_tracker_data(sender)

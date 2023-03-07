@@ -116,7 +116,7 @@ async def tts(request : Request):
     voice = tts_synthesis_chunked(text)
     return StreamingResponse(status_code=status.HTTP_200_OK, content = voice, media_type="audio/raw")
 
-@app.get("/tts_test")
+@app.get("/tts_synthesis")
 async def tts_test(text : str):
     voice = tts_synthesis_chunked(text)
     return StreamingResponse(status_code=status.HTTP_200_OK, content = voice, media_type="audio/raw")
