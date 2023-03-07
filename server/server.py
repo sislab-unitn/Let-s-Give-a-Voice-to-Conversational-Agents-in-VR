@@ -17,9 +17,6 @@ except:
 import pathlib
 from pprint import pprint
 import json
-import base64
-import asyncio
-import re
 import time
 
 # parsing command line arguments for config file

@@ -1,0 +1,7 @@
+datasets==2.9.0
+fastapi==0.92.0
+soundfile==0.12.1
+toml==0.10.2
+torch==2.0.0.dev20230220
+transformers==4.27.0.dev0
+uvicorn==0.20.0

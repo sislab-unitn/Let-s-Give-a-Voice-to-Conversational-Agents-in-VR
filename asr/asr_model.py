@@ -4,7 +4,6 @@ from fastapi import Depends, FastAPI, Request, Response, status
 from fastapi.responses import StreamingResponse
 import uvicorn
 from uvicorn.config import LOGGING_CONFIG
-import httpx
 import sys
 import os
 import argparse
@@ -15,10 +14,6 @@ except:
 import pathlib
 from pprint import pprint
 import json
-import base64
-import asyncio
-import time
-import speechbrain
 import torch
 from speechbrain.pretrained import EncoderDecoderASR
 import io
@@ -54,7 +49,7 @@ with open(config_path,mode='r') as f:
 
 device = "cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu")
 model = EncoderDecoderASR.from_hparams(source="speechbrain/asr-wav2vec2-commonvoice-en", savedir="pretrained_models/asr-wav2vec2-commonvoice-en",run_opts={"device":'cpu'})
-model = torch.compile(model)
+# model = torch.compile(model)
 print (f"Running on device: {model.device}")
 app = FastAPI()
 

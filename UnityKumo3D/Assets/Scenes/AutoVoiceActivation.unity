@@ -585,7 +585,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: dbc23ba5b9ea849fb83fbc2ee5c68d2a, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1657,11 +1657,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 288053674951391570, guid: 7484ac679a1674bc682ddfcc11dbb6de, type: 3}
       propertyPath: host
-      value: 74c2-37-160-106-15.eu.ngrok.io
+      value: localhost
       objectReference: {fileID: 0}
     - target: {fileID: 288053674951391570, guid: 7484ac679a1674bc682ddfcc11dbb6de, type: 3}
       propertyPath: port
-      value: 80
+      value: 8080
       objectReference: {fileID: 0}
     - target: {fileID: 288053674951391570, guid: 7484ac679a1674bc682ddfcc11dbb6de, type: 3}
       propertyPath: m_Enabled
@@ -1733,11 +1733,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7035283187993899266, guid: 7484ac679a1674bc682ddfcc11dbb6de, type: 3}
       propertyPath: host
-      value: 74c2-37-160-106-15.eu.ngrok.io
+      value: localhost
       objectReference: {fileID: 0}
     - target: {fileID: 7035283187993899266, guid: 7484ac679a1674bc682ddfcc11dbb6de, type: 3}
       propertyPath: port
-      value: 80
+      value: 8080
       objectReference: {fileID: 0}
     - target: {fileID: 7035283187993899266, guid: 7484ac679a1674bc682ddfcc11dbb6de, type: 3}
       propertyPath: response
