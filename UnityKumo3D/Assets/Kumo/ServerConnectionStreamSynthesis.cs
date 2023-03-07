@@ -53,6 +53,7 @@ public class ServerConnectionStreamSynthesis : MonoBehaviour
     [Tooltip("Text to synthetise")]
     public string textToSynthetise;
     #endregion
+    public UnityEvent audioChanged = new UnityEvent();
     private string url;
     void Start()
     {
@@ -69,6 +70,7 @@ public class ServerConnectionStreamSynthesis : MonoBehaviour
         }
         this.url = this.url + "/" + this.path;
         this.sendButton.onClick.AddListener(SendRequest);
+        
     }
 
     // Update is called once per frame
@@ -78,6 +80,7 @@ public class ServerConnectionStreamSynthesis : MonoBehaviour
     }
     public void SendRequest()
     {
+        this.sendButton.interactable = false;
         StartCoroutine(GetStreamAndPlay());
     }
 
@@ -92,7 +95,6 @@ public class ServerConnectionStreamSynthesis : MonoBehaviour
         StreamingPCMDownloadHandler downloader = new StreamingPCMDownloadHandler(this.outputSource, this.outputSampleRate,1);
         request.downloadHandler = downloader;
         request.SetRequestHeader("Content-Type", "audio/wav");
-        request.chunkedTransfer = true;
         yield return request.SendWebRequest();
         if (request.result != UnityWebRequest.Result.Success)
         {
@@ -101,6 +103,11 @@ public class ServerConnectionStreamSynthesis : MonoBehaviour
         else
         {
         }
+        while (this.outputSource.isPlaying)
+        {
+            yield return null;
+        }
+        this.sendButton.interactable = true;
         yield return null;
     }
     // This comes from SoundWav module

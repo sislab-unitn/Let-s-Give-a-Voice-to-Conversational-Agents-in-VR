@@ -1664,6 +1664,10 @@ PrefabInstance:
       value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 288053674951391570, guid: 7484ac679a1674bc682ddfcc11dbb6de, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 288053674951391570, guid: 7484ac679a1674bc682ddfcc11dbb6de, type: 3}
       propertyPath: processingSource
       value: 
       objectReference: {fileID: 553745389}
@@ -1739,6 +1743,10 @@ PrefabInstance:
       propertyPath: response
       value: 
       objectReference: {fileID: 589687058}
+    - target: {fileID: 7035283187993899266, guid: 7484ac679a1674bc682ddfcc11dbb6de, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7035283187993899266, guid: 7484ac679a1674bc682ddfcc11dbb6de, type: 3}
       propertyPath: transcription
       value: 

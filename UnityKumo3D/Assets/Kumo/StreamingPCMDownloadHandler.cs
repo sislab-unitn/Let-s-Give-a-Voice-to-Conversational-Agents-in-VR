@@ -1,23 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.IO;
 using System;
 using System.Globalization;
 using System.Text;
+using System.Threading.Tasks;
 public class StreamingPCMDownloadHandler : DownloadHandlerScript {
 
     // Standard scripted download handler - allocates memory on each ReceiveData callback
     public AudioClip clip;
     public int sampleRate;
-    public int channels;
+    public int channels; 
     private List<float> f_decoding;
     private AudioSource source;
     private DateTime timer;
     private byte oddByte;
     private bool oddByteSet = false;
+    private UnityEvent audioChanged;
     public StreamingPCMDownloadHandler(): base() {
 
     }
@@ -29,12 +32,14 @@ public class StreamingPCMDownloadHandler : DownloadHandlerScript {
     public StreamingPCMDownloadHandler(byte[] buffer): base(buffer) {
     }
 
-     public StreamingPCMDownloadHandler(AudioSource source, int sampleRate = 16000, int channels = 1): base() {
+    public StreamingPCMDownloadHandler(AudioSource source, int sampleRate = 16000, int channels = 1, UnityEvent audioChanged = null): base() {
         this.sampleRate = sampleRate;
         this.channels = channels;
         this.f_decoding = new List<float>();
         this.source = source;
+        this.audioChanged = audioChanged;
     }
+
     // Required by DownloadHandler base class. Called when you address the 'bytes' property.
 
     protected override byte[] GetData() { return null; }
@@ -75,6 +80,10 @@ public class StreamingPCMDownloadHandler : DownloadHandlerScript {
             this.clip.SetData(this.f_decoding.ToArray(), 0);
             this.f_decoding.Clear();
             this.source.clip = this.clip;
+            if (this.audioChanged != null)
+            {
+                this.audioChanged.Invoke();
+            }
             this.source.PlayOneShot(this.clip);
             this.timer = DateTime.Now;
         }
@@ -100,14 +109,12 @@ public class StreamingPCMDownloadHandler : DownloadHandlerScript {
             this.clip.SetData(this.f_decoding.ToArray(), 0);
             this.f_decoding.Clear();
             this.source.clip = this.clip;
+            if (this.audioChanged != null)
+            {
+                Task.Delay((int) (1000*missing)).ContinueWith(t=> this.audioChanged.Invoke());
+            }
             this.source.PlayDelayed(missing);
         } 
-    
-        
-        // AudioClip clip = AudioClip.Create("Response", f_decoding.Count, channels, sampleRate, false,false);
-        // clip.SetData(f_decoding.ToArray(), 0);
-        // f_decoding.Clear();
-        // source.PlayOneShot(clip);
         
     }
 
