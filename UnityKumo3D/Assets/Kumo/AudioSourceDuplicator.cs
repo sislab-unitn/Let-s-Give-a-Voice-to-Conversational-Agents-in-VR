@@ -18,6 +18,5 @@ public class AudioSourceDuplicator : MonoBehaviour{
     public void DuplicateAudioSource()
     {
         this.audioDestination.clip =  Audio.duplicateAudioClip(this.audioSource.clip);
-        audioDestination.PlayDelayed((float)0.5);
     }
 }
