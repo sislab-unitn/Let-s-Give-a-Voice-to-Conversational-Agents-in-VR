@@ -55,6 +55,12 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     public AudioSource outputSource;
 
     /// <summary>
+    /// Set the playback of processing sound
+    /// <summary>
+    [Tooltip("Set the playback of processing sound")]
+    public AudioSource processingSource;
+    
+    /// <summary>
     /// Set the audiosource threshold noise level before starting recording
     /// <summary>
     [Tooltip("Sound noise level threshold before starting recording")]
@@ -158,6 +164,8 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     {
         requestStarted.Invoke();
         StartCoroutine(PostStreamAndPlay());
+        // play audioclip
+        processingSource.Play();
     }
 
 

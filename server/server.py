@@ -51,7 +51,6 @@ with open(config_path,mode='r') as f:
 
 
 # create session for rasa and tts in order to reuse the connection and reduce latency for successive connections
-
 rasa_session = httpx.AsyncClient()
 asr_session = httpx.AsyncClient()
 tts_session = httpx.AsyncClient()
