@@ -17,6 +17,6 @@ public class AudioSourceDuplicator : MonoBehaviour{
     }
     public void DuplicateAudioSource()
     {
-        this.audioDestination.clip =  this.audioSource.clip;
+        this.audioDestination.clip =  Audio.duplicateAudioClip(this.audioSource.clip);
     }
 }

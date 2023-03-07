@@ -54,6 +54,33 @@ public static class Audio
         newClip.SetData(newData, 0);
         return newClip;
     }
+    public static AudioClip duplicateAudioClip(AudioClip clip)
+    {
+         AudioClip newAudioClip = AudioClip.Create("Copy", clip.samples, clip.channels, clip.frequency, stream: false);
+         float[] copyData = new float[clip.samples * clip.channels];
+         clip.GetData(copyData, 0);
+         newAudioClip.SetData(copyData, 0);
+         return newAudioClip;
+    }
+    public static void WriteClipWav(AudioClip clip, string path)
+    {
+        byte[] bytes = ConvertWav(clip);
+        File.WriteAllBytes(path, bytes);
+    }
+    public static void WriteClipPCM(AudioClip clip, string path)
+    {
+        byte[] bytes = new byte[clip.samples * clip.channels];
+        float[] clipData = new float[clip.samples * clip.channels];
+        clip.GetData(clipData, 0);
+        for( int i = 0; i < clip.samples; i++ )
+        {
+            float sample = clipData[i];
+            byte[] two_bytes = BitConverter.GetBytes(sample);
+            // coopy two bytes to bytes
+            Array.Copy(two_bytes, 0, bytes, i * 2, 2);
+        }
+        File.WriteAllBytes(path, bytes);
+    }
     // from soundwav module
     public static byte[] ConvertWav(AudioClip clip)
     {

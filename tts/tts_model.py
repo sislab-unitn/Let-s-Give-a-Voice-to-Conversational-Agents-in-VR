@@ -77,6 +77,7 @@ async def tts_synthesis_chunked(data : str)-> AsyncGenerator:
     io_buffer = io.BytesIO()
     lines = re.split(r';|,|\*|\n|\\|\/|\?|\.|\=|\+|\!|\:|\"', data)
     for line in lines:
+        line = line.strip()
         if line != '':
             timer = time.time()
             inputs = processor(text=line, return_tensors="pt")
