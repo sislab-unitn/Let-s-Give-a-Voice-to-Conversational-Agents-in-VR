@@ -6,7 +6,8 @@ try:
     import tomllib
 except ImportError:
     import toml as tomllib
-def config_parser(argv : str):
+    
+def config_parser(argv : str, current_path: str = None):
     parser = argparse.ArgumentParser(
                             prog = 'Server',
                             description = 'Server',
@@ -16,9 +17,12 @@ def config_parser(argv : str):
     args = parser.parse_args(argv)
 
     # check if config file exists
-    current_path = pathlib.Path(__file__).parent.absolute()
-    config_toml = "config.toml"
-    config_path = os.path.join(current_path,config_toml)
+    if current_path is None:
+        current_path = pathlib.Path(__file__).parent.absolute()
+    # find config file in the current directory
+    config_toml = list(filter(lambda x: x.endswith('.toml'),os.listdir(current_path)))
+    config_path = os.path.join(current_path,config_toml[0])
+    print(f"Using config at :{config_path}")
     if args.config:
         # validate config file path
         if os.path.exists(args.config):

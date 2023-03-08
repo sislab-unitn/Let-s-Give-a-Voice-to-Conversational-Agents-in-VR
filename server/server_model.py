@@ -7,7 +7,7 @@ class ServerModel:
         Class to handle the server for asr, rasa and tts
     '''
     def __init__(self,config):
-        self.self.config = self.config     
+        self.config = config     
         # create session for rasa and tts in order to reuse the connection and reduce latency for successive connections
         self.rasa_session = httpx.AsyncClient()
         self.asr_session = httpx.AsyncClient()

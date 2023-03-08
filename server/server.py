@@ -4,13 +4,14 @@ from fastapi.responses import StreamingResponse
 import uvicorn
 from uvicorn.config import LOGGING_CONFIG
 import sys
+import os
 from pprint import pprint
 import time
 
 from config_parser import config_parser
 from server_model import ServerModel
 
-config = config_parser(sys.argv[1:])
+config = config_parser(sys.argv[1:], current_path = os.path.dirname(os.path.abspath(__file__)))
 server = ServerModel(config)
 
 
@@ -48,7 +49,7 @@ async def text_converse(request : Request):
 @app.post("/audio_converse_stream")
 async def audio_converse_stream( sender : str, request: Request):
     '''
-    This function is used to stream audio from the client to the server. Expecting the audio to be in mp3 format.
+        This function is used to stream audio from the client to the server. Expecting the audio to be in mp3 format.
     '''
     # get the audio file from the request and send it to tts.ai
     timer = time.time()

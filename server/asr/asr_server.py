@@ -10,7 +10,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from config_parser import config_parser
 from asr_model import ASRModel
 
-config = config_parser(sys.argv[1:])
+config = config_parser(sys.argv[1:],current_path = os.path.dirname(os.path.abspath(__file__)))
 asr_model = ASRModel(config)
 
 app = FastAPI()
