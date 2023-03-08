@@ -1,0 +1,7 @@
+[server]
+    self_host = "localhost"
+    self_port = 8081
+    self_SSL = false
+[model]
+    compile = false
+    device = "cpu"

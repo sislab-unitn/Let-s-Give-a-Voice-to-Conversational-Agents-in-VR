@@ -1,0 +1,36 @@
+import argparse
+import sys
+import os
+import pathlib
+try:
+    import tomllib
+except ImportError:
+    import toml as tomllib
+def config_parser(argv : str):
+    parser = argparse.ArgumentParser(
+                            prog = 'Server',
+                            description = 'Server',
+                            epilog = 'Enjoy the program! :)')       # positional argument
+    parser.add_argument('-c', '--config',required=False)      # option that takes a value
+    # parser.add_argument('-d','--device',required=False)
+    args = parser.parse_args(argv)
+
+    # check if config file exists
+    current_path = pathlib.Path(__file__).parent.absolute()
+    config_toml = "config.toml"
+    config_path = os.path.join(current_path,config_toml)
+    if args.config:
+        # validate config file path
+        if os.path.exists(args.config):
+            config_path = args.config
+        else:
+            print(f"'{args.config}' is not a file or does not exist")
+            sys.exit(1)
+    if not os.path.exists(config_path):
+        print(f"{config_toml} file not found in the default path in the server directory")
+        sys.exit(1)
+    print(config_path)
+    # read config file
+    with open(config_path,mode='r') as f:
+        config = tomllib.loads(f.read())
+    return config
