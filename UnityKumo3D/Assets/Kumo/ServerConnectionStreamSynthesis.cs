@@ -52,6 +52,11 @@ public class ServerConnectionStreamSynthesis : MonoBehaviour
     /// <summary>
     [Tooltip("Text to synthetise")]
     public string textToSynthetise;
+    /// <summary>
+    /// Length of the pause for pause detection
+    /// <summary>
+    [Tooltip("Length of the pause for pause detection")]
+    public int pauseLength = 100;
     #endregion
     public UnityEvent audioChanged = new UnityEvent();
     private string url;
@@ -92,7 +97,7 @@ public class ServerConnectionStreamSynthesis : MonoBehaviour
         encoded = this.url + "?text=" + encoded;
         UnityWebRequest request = new UnityWebRequest(encoded, "GET");
         // the download handler is a custom one that automatically plays the audio in streaming mode
-        StreamingPCMDownloadHandler downloader = new StreamingPCMDownloadHandler(this.outputSource, this.outputSampleRate,1);
+        StreamingPCMDownloadHandler downloader = new StreamingPCMDownloadHandler(this.outputSource, this.outputSampleRate,1, pauseLength : this.pauseLength);
         request.downloadHandler = downloader;
         request.SetRequestHeader("Content-Type", "audio/wav");
         yield return request.SendWebRequest();

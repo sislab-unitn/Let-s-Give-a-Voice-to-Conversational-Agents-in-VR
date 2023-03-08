@@ -1000,9 +1000,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1316454839101343302, guid: 06fea85c386fb474180779167db5d410, type: 3}
+      propertyPath: host
+      value: 7230-193-205-210-74.eu.ngrok.io
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316454839101343302, guid: 06fea85c386fb474180779167db5d410, type: 3}
+      propertyPath: port
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316454839101343302, guid: 06fea85c386fb474180779167db5d410, type: 3}
       propertyPath: sendButton
       value: 
       objectReference: {fileID: 1673543508}
+    - target: {fileID: 1316454839101343302, guid: 06fea85c386fb474180779167db5d410, type: 3}
+      propertyPath: textToSynthetise
+      value: Test. test
+      objectReference: {fileID: 0}
     - target: {fileID: 1356373520460667831, guid: 06fea85c386fb474180779167db5d410, type: 3}
       propertyPath: m_Name
       value: ServerConnectionSynthesis

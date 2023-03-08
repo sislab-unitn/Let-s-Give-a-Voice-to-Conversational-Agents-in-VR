@@ -73,19 +73,19 @@ async def tts_synthesis_chunked(data : str)-> AsyncGenerator:
     for line in lines:
         line = line.strip()
         if line != '':
+            print(line)
             timer = time.time()
             inputs = processor(text=line, return_tensors="pt")
             speech = model.generate_speech(inputs["input_ids"], speaker_embeddings, vocoder=vocoder)
             # current position in the file
             cursor = io_buffer.tell()
-            # print(cursor)
             sf.write(io_buffer, speech.numpy(), samplerate=config["audio"]["sample_rate"],subtype="PCM_16",format = "RAW")
             end = io_buffer.tell()
-            # print (end)
             io_buffer.seek(cursor)
             timer = time.time() - timer
             pprint (f"Time taken for inference: {timer}")
-            yield io_buffer.read((end - cursor))
+            yield io_buffer.read(end-cursor)
+                
         # do something with the chunk
 
 async def tts_synthesis(data : str)-> AsyncGenerator:
