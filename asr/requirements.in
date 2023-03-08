@@ -1,0 +1,7 @@
+datasets==2.9.0
+fastapi==0.92.0
+soundfile==0.12.1
+speechbrain==0.5.13
+toml==0.10.2
+torch==2.0.0.dev20230220
+uvicorn==0.20.0

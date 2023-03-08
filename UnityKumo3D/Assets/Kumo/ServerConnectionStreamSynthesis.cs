@@ -92,7 +92,7 @@ public class ServerConnectionStreamSynthesis : MonoBehaviour
         encoded = this.url + "?text=" + encoded;
         UnityWebRequest request = new UnityWebRequest(encoded, "GET");
         // the download handler is a custom one that automatically plays the audio in streaming mode
-        StreamingPCMDownloadHandler downloader = new StreamingPCMDownloadHandler(this.outputSource, this.outputSampleRate,1, this.audioChanged);
+        StreamingPCMDownloadHandler downloader = new StreamingPCMDownloadHandler(this.outputSource, this.outputSampleRate,1);
         request.downloadHandler = downloader;
         request.SetRequestHeader("Content-Type", "audio/wav");
         yield return request.SendWebRequest();

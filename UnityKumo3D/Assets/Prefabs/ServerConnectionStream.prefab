@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9199789372838429401}
   - component: {fileID: 8684875352035650114}
   - component: {fileID: 3149926894134726965}
-  - component: {fileID: 3477481343751374077}
   m_Layer: 0
   m_Name: ServerConnectionStream
   m_TagString: Untagged
@@ -153,7 +152,7 @@ MonoBehaviour:
   audioChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3477481343751374077}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AudioSourceDuplicator, Assembly-CSharp
         m_MethodName: DuplicateAudioSource
         m_Mode: 1
@@ -189,17 +188,3 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3477481343751374077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4232411202412041886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 273a4ad719bb845ea83ada4e561e3b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 8684875352035650114}
-  audioDestination: {fileID: 0}

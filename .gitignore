@@ -110,3 +110,6 @@ docs/_build/
 
 # model bin
 *.bin
+
+rasa-demo-main
+pokedex-demo-master
