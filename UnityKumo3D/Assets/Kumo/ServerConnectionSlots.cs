@@ -1,13 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.Networking;
 using UnityEngine.UI;
-using System.IO;
 using System;
-using System.Globalization;
-using System.Text;
 using TMPro;
 using LitJson;
 public class ServerConnectionSlots : MonoBehaviour
