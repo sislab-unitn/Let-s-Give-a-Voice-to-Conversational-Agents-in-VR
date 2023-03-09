@@ -2,6 +2,10 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
+/// <summary>
+/// This class is used to connect to a server and send a request to get a stream of audio data. 
+/// It will automatically start recording when the audio level is above a threshold and stop recording when the audio level is below a threshold.
+/// </summary>
 public class ServerConnectionStreamAuto : MonoBehaviour
 {
     #region Editor Exposed Variables
@@ -53,7 +57,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// <summary>
     [Tooltip("Set the playback of processing sound")]
     public AudioSource processingSource;
-    
+
     /// <summary>
     /// Set the audiosource threshold noise level before starting recording
     /// <summary>
@@ -80,18 +84,42 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     [Tooltip("Sound noise level sampling window ( seconds )")]
     public double audioSamplingWindow = 0.1;
     #endregion
+    /// <summary>
+    /// Event to be called when the request is started
+    /// </summary>
     public UnityEvent requestStarted = new UnityEvent();
+    /// <summary>
+    /// Event to be called when the request is done. May not match with the audio playback time
+    /// </summary>
     public UnityEvent requestDone = new UnityEvent();
+    /// <summary>
+    /// The url to post the audio file to
+    /// </summary>
     private string url;
-    // recorded clip
+    /// <summary>
+    /// The audio clip to record the microphone to
+    /// </summary>
     private AudioClip clip;
+    /// <summary>
+    /// Is the microphone currently actually recording audio to be sent to the server
+    /// </summary>
     private bool isRecording = false;
+    /// <summary>
+    /// The maximum time to record audio for. Once this time is reached, the recording will loop back to the start, overwriting the oldest audio.
+    /// </summary>
     private int maxRecordingTime = 300;
+    /// <summary>
+    /// Variable to keep track of the time
+    /// </summary>
     private float timer = 0;
+    /// <summary>
+    /// The start position of the recording. It may be changed according to the position specified by the audio noise level detection.
+    /// </summary>
     private int startPosition = 0;
     void Start()
     {
         this.url = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
+        // send a request to the server to check if it is running and the connection is successful
         UnityWebRequest request = UnityWebRequest.Get(this.url);
         request.SendWebRequest();
         if (request.result != UnityWebRequest.Result.Success)
@@ -103,30 +131,35 @@ public class ServerConnectionStreamAuto : MonoBehaviour
             Debug.Log("Connection Successful!");
         }
         this.url = this.url + "/" + this.path + "?sender=" + this.sender_id;
+        // start the recording for the audio noise level detection
         StartRecording();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // if the audio is playing, do nothing
         if (outputSource.isPlaying)
         {
             return;
-        }else
+        }
+        else
         {
+            // check the audio noise level over the sampling window is above the upper threshold
             int position = Microphone.GetPosition(Microphone.devices[0]);
             float audioLevel = Audio.getAudioLevel(this.clip, position, this.audioSamplingWindow);
-            if( !this.isRecording ){
-                if (audioLevel > this.audioLevelUpperThreshold) 
-                { 
-                    // StartRecording();
-                    this.startPosition = position - (int)(this.audioStartWindow * this.inputSampleRate) ;
-                    startPosition = startPosition < 0 ? 0 : startPosition;
-                    this.isRecording = true;
-                }
+            Debug.Log(audioLevel);
+            // start the recording if the audio level is above the upper threshold
+            if (!this.isRecording && (audioLevel > this.audioLevelUpperThreshold))
+            {
+                this.startPosition = position - (int)(this.audioStartWindow * this.inputSampleRate);
+                startPosition = startPosition < 0 ? 0 : startPosition;
+                this.isRecording = true;
+
             }
+            // stop the recording if the audio level is below the lower threshold
             if (this.isRecording && audioLevel < this.audioLevelLowerThreshold)
             {
+                // timer to wait for the audio level to be below the lower threshold for the pause window
                 timer += Time.deltaTime;
                 if (timer > this.audioPauseWindow)
                 {
@@ -138,42 +171,47 @@ public class ServerConnectionStreamAuto : MonoBehaviour
             }
         }
 
-        
+
     }
+    /// <summary>
+    /// Start recording audio from the microphone
+    /// </summary>
     public void StartRecording()
     {
         this.clip = Microphone.Start(Microphone.devices[0], true, this.maxRecordingTime, this.inputSampleRate);
-        // this.isRecording = true;
     }
+    /// <summary>
+    /// Stop recording audio from the microphone
+    /// </summary>
     public void StopRecording()
     {
-        int  endPosition = Microphone.GetPosition(Microphone.devices[0]);
+        int endPosition = Microphone.GetPosition(Microphone.devices[0]);
         Microphone.End(Microphone.devices[0]);
-       
         this.clip = Audio.trimAudioClip(this.clip, this.startPosition, endPosition);
-        // this.outputSource.PlayOneShot(this.clip);
 
     }
+    /// <summary>
+    /// Send the recorded audio to the server and play the response
+    /// </summary>
     public void SendAndPlay()
     {
         requestStarted.Invoke();
         StartCoroutine(PostStreamAndPlay());
-        // play audioclip
-        processingSource.Play();
     }
 
-
+    /// <summary>
+    /// Send the recorded audio to the server and play the response
+    /// </summary>
     IEnumerator PostStreamAndPlay()
     {
         byte[] fileContent = Audio.ConvertWav(this.clip);
         UnityWebRequest request = new UnityWebRequest(this.url, "POST");
         UploadHandler uploader = new UploadHandlerRaw(fileContent);
         // the download handler is a custom one that automatically plays the audio in streaming mode
-        StreamingPCMDownloadHandler downloader = new StreamingPCMDownloadHandler(this.outputSource, this.outputSampleRate, 1);
+        StreamingPCMDownloadHandler downloader = new StreamingPCMDownloadHandler(this.outputSource, this.outputSampleRate, 1, pauseLength : 100);
         request.uploadHandler = uploader;
         request.downloadHandler = downloader;
         request.SetRequestHeader("Content-Type", "audio/wav");
-        request.chunkedTransfer = true;
         yield return request.SendWebRequest();
         if (request.result != UnityWebRequest.Result.Success)
         {
@@ -193,7 +231,5 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         StartRecording();
         yield return null;
     }
-    // This comes from SoundWav module
-
 
 }

@@ -3,10 +3,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+/// <summary>
+/// This class is used to connect to a server and send a request to get a stream of audio data
+/// </summary>
 public class ServerConnectionStreamSynthesis : MonoBehaviour
 {
     #region Editor Exposed Variables
-
     /// <summary>
     /// The host to post the audio file to
     /// </summary>

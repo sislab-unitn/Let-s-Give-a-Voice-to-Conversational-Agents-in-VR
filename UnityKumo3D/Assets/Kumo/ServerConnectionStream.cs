@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+/// <summary>
+/// This class is used to connect to a server and send a request to get a stream of audio data
+/// </summary>
 public class ServerConnectionStream : MonoBehaviour
 {
     #region Editor Exposed Variables
@@ -53,7 +56,13 @@ public class ServerConnectionStream : MonoBehaviour
     [Tooltip("audiosource from where to play the response")]
     public AudioSource outputSource;
     #endregion
+    /// <summary>
+    /// UnityEvent that is invoked when the request is started
+    /// </summary>
     public UnityEvent requestStarted = new UnityEvent();
+    /// <summary>
+    /// UnityEvent that is invoked when the request is done
+    /// </summary>
     public UnityEvent requestDone = new UnityEvent();
     private string url;
     // recorded clip

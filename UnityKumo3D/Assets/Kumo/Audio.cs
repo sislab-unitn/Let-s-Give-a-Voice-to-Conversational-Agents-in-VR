@@ -20,15 +20,16 @@ public static class Audio
         float[] data = new float[clip.samples * clip.channels];
         clip.GetData(data, 0);
         int start = (int)(position - seconds * clip.frequency * clip.channels);
-        start = start < 0 ? 0 : start;
+        start = (start < 0) ? 0 : start;
         int end = (int)(position);
-        // Debug.Log("start: " + start + " end: " + end);
+        
+        Debug.Log("start: " + start + " end: " + end);
         float sum = 0;
         for (int i = start; i < end; i++)
         {
             sum += Mathf.Abs(data[i]);
         }
-        return sum / (end - start);
+        return sum / (float)(end - start);
     }
 
     /// <summary>

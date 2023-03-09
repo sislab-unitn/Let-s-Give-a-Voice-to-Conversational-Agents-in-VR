@@ -4,35 +4,61 @@ using UnityEngine.Events;
 using UnityEngine.Networking;
 using System;
 using System.Threading.Tasks;
+
+/// <summary>
+/// Class <c>StreamingPCMDownloadHandler</c> Download handler that decodes PCM data from a server response. It immediately plays the audio as it is received. 
+/// To avoid lag, a pause is detected whenever the audio is silent for a certain amount of time (pauseLength). The audio is played only when a chunk before a pause is completely received.
+/// The audioClip is updated in real time, and if played back again at the end of the transmission, it won't contain the whole audio.
+/// </summary> 
 public class StreamingPCMDownloadHandler : DownloadHandlerScript
 {
-
-    // Standard scripted download handler - allocates memory on each ReceiveData callback
+    #region Public Properties
+    /// <summary>
+    /// <c>AudioClip </c> that is played
+    /// </summary>
     public AudioClip clip;
-    public int sampleRate;
-    public int channels;
+    /// <summary>
+    /// <c>AudioSource </c> audio source that plays the audio clip
+    /// </summary>
+    public AudioSource source;
+    #endregion
+    #region Private Properties
+    /// <summary>
+    /// <c>int </c> sample rate of the audio in the clip
+    /// </summary>
+    private int sampleRate;
+    /// <summary>
+    /// <c>int </c> number of channels in the clip
+    /// </summary>
+    private int channels;
+    /// <summary>
+    /// <c>List<float> </c> list of float that contains a temporary buffer of the audio data to prevent lag
+    /// </summary>
     private List<float> f_decoding;
-    private AudioSource source;
+    /// <summary>
+    /// <c> DateTime </c> timer to measure the time between two calls of the ReceiveData function to play delayed audio
     private DateTime timer;
-    private byte oddByte;
+    /// <summary>
+    /// <c> bool </c> flag to indicate if the chunk of data is odd. This is used to fix the edge case when the data is not a multiple of 2 for the decoding
+    /// </summary>
     private bool oddByteSet = false;
+    /// <summary>
+    /// <c> byte </c> to store the odd byte. This is used to fix the edge case when the data is not a multiple of 2 for the decoding
+    /// </summary>
+    private byte oddByte;
+    /// <summary>
+    /// <c> UnityEvent </c> event to trigger when the audioClip is updated with new audio replacing the existing audio
+    /// </summary>
     private UnityEvent audioChanged;
+    /// <summary>
+    /// <c> int </c> number of 0 in the audio stream to detect a pause. Used to prevent lag
+    /// </summary>
     private int pauseLength = 100;
-    // private double downloadRate = 0;
-    // private double timeAsDouble = 0;
-    public StreamingPCMDownloadHandler() : base()
-    {
+    #endregion
 
-    }
-
-    // Pre-allocated scripted download handler
-    // reuses the supplied byte array to deliver data.
-    // Eliminates memory allocation.
-
-    public StreamingPCMDownloadHandler(byte[] buffer) : base(buffer)
-    {
-    }
-
+    /// <summary>
+    /// <c>StreamingPCMDownloadHandler</c> constructor
+    /// </summary>
     public StreamingPCMDownloadHandler(AudioSource source, int sampleRate = 16000, int channels = 1, UnityEvent audioChanged = null, int pauseLength = 100) : base()
     {
         this.sampleRate = sampleRate;
@@ -44,62 +70,8 @@ public class StreamingPCMDownloadHandler : DownloadHandlerScript
     }
 
     // Required by DownloadHandler base class. Called when you address the 'bytes' property.
-
     protected override byte[] GetData() { return null; }
 
-    // function to detect if a pause is detected in the audio, and stop the playing if the data is not received
-    // the pause is coded by a number of 0 in the audio stream
-    private int PauseDetector(byte[] data,int skip, int length)
-    {
-        bool pause = false;
-        int count = 0;
-        int position = -1;
-        for (int i = skip; i < length; i += 2)
-        {
-            int sample = BitConverter.ToInt16(data, i);
-            if (sample == 0)
-            {
-                count++;
-            }
-            else
-            {
-                count = 0;
-                position = i;
-            }
-        }
-
-        if (count == this.pauseLength)
-        {
-            pause = true;
-        }
-        return (pause ? position : -1);
-    }
-
-    // function to fix the very edge case when the data is not a multiple of 2
-    private  (int,int) OddByteFix(byte[] data, int length)
-    {
-        int skip = this.oddByteSet ? 1 : 0;
-        // if we have an odd byte from the last call, we need to prepend it to the data
-        if (this.oddByteSet)
-        {
-            byte[] first = new byte[2];
-            first[0] = this.oddByte;
-            first[1] = data[0];
-            int sample = BitConverter.ToInt16(first, 0);
-            this.f_decoding.Add(sample / 32768.0f);
-            this.oddByteSet = false;
-            skip = 1;
-        }
-        // if the data is not a multiple of 2, we need to save the last byte for the next call
-        if ( (length-skip) % 2 == 1)
-        {
-            this.oddByte = data[length - 1];
-            this.oddByteSet = true;
-            length -= 1;
-        }
-
-        return  (skip,length);
-    }
     // Called once per frame when data has been received from the network.
     // here i decode the audio and play it using the audio player
     protected override bool ReceiveData(byte[] data, int dataLength)
@@ -112,14 +84,8 @@ public class StreamingPCMDownloadHandler : DownloadHandlerScript
         }
         // if the data is not a multiple of 2, we have a problem
         int skip = 0;
-        // Debug.Log("StreamingPCMDownloadHandler :: ReceiveData - dataLength: " + dataLength);
-        // Debug.Log("StreamingPCMDownloadHandler :: ReceiveData - oddByteSet: " + this.oddByteSet);
-        // Debug.Log("StreamingPCMDownloadHandler :: ReceiveData - skip: " + skip);
-        (skip,dataLength) = this.OddByteFix(data, dataLength);
-        // Debug.Log("StreamingPCMDownloadHandler :: ReceiveData - dataLength: " + dataLength);
-        // Debug.Log("StreamingPCMDownloadHandler :: ReceiveData - oddByteSet: " + this.oddByteSet);
-        // Debug.Log("StreamingPCMDownloadHandler :: ReceiveData - skip: " + skip);
-        int pause = this.PauseDetector(data,skip, dataLength);
+        (skip, dataLength) = this.OddByteFix(data, dataLength);
+        int pause = this.PauseDetector(data, skip, dataLength);
         if (pause == -1)
         {
             for (int i = skip; i < dataLength; i += 2)
@@ -149,6 +115,7 @@ public class StreamingPCMDownloadHandler : DownloadHandlerScript
                 this.source.PlayOneShot(this.clip);
                 this.timer = DateTime.Now;
             }
+            // save the remaining data for the next call
             for (int i = pause; i < dataLength; i += 2)
             {
                 int sample = BitConverter.ToInt16(data, i);
@@ -156,15 +123,6 @@ public class StreamingPCMDownloadHandler : DownloadHandlerScript
             }
 
         }
-
-        // double delta = Time.timeAsDouble - this.timeAsDouble;
-        // this.downloadRate = this.downloadRate * 0.5 + 0.5* (double)dataLength / delta;
-        // this.timeAsDouble = Time.timeAsDouble;
-        // Debug.Log("StreamingPCMDownloadHandler :: ReceiveData - download rate: " + this.downloadRate);
-        // // check if i have enough data to play without stutteroing
-        // Debug.Log("StreamingPCMDownloadHandler :: ReceiveData - delta: " + (double) ((double)this.f_decoding.Count/(double)this.sampleRate));
-        // Debug.Log("StreamingPCMDownloadHandler :: ReceiveData - delta: " + delta);
-
 
         return true;
     }
@@ -180,7 +138,7 @@ public class StreamingPCMDownloadHandler : DownloadHandlerScript
         else
         {
             // i need to play the audio delayed by the amount of time it takes finish playing the current audio
-            if(this.clip != null && this.source.isPlaying)
+            if (this.clip != null && this.source.isPlaying)
             {
                 DateTime time2 = DateTime.Now;
                 TimeSpan timeSpan = time2.Subtract(this.timer);
@@ -223,4 +181,67 @@ public class StreamingPCMDownloadHandler : DownloadHandlerScript
         Debug.Log(string.Format("StreamingPCMDownloadHandler :: ReceiveContentLength - length {0}", contentLength));
     }
 
+    /// <summary>
+    /// Method <c>PauseDetector</c> function to detect if a pause is detected in the audio, and stop the playing if the data is not received
+    /// The pause is coded by a number of 0 in the audio stream
+    /// param <c>byte[] data</c> the audio data
+    /// param <c>int skip</c> the number of bytes to skip at the beginning of the data
+    /// param <c>int length</c> the number of bytes to read in the data
+    /// return <c>int</c> the position of the pause in the data
+    /// </summary>
+    private int PauseDetector(byte[] data, int skip, int length)
+    {
+        bool pause = false;
+        int count = 0;
+        int position = -1;
+        for (int i = skip; i < length; i += 2)
+        {
+            int sample = BitConverter.ToInt16(data, i);
+            if (sample == 0)
+            {
+                count++;
+            }
+            else
+            {
+                count = 0;
+                position = i;
+            }
+        }
+
+        if (count == this.pauseLength)
+        {
+            pause = true;
+        }
+        return (pause ? position : -1);
+    }
+    /// <summary>
+    /// Method <>OddByteFix</> function to fix the very edge case when the data is not a multiple of 2. 
+    /// Saved the last byte from the previous call and prepend it to the data.
+    /// param <c>byte[] data</c> the audio data
+    /// param <c>int length</c> the number of bytes to read in the data
+    /// return <c>(int,int)</c> start position and length of the data to read for the next call ( may increase or decrease the length of the data by 1 byte)
+    private (int, int) OddByteFix(byte[] data, int length)
+    {
+        int skip = this.oddByteSet ? 1 : 0;
+        // if we have an odd byte from the last call, we need to prepend it to the data
+        if (this.oddByteSet)
+        {
+            byte[] first = new byte[2];
+            first[0] = this.oddByte;
+            first[1] = data[0];
+            int sample = BitConverter.ToInt16(first, 0);
+            this.f_decoding.Add(sample / 32768.0f);
+            this.oddByteSet = false;
+            skip = 1;
+        }
+        // if the data is not a multiple of 2, we need to save the last byte for the next call
+        if ((length - skip) % 2 == 1)
+        {
+            this.oddByte = data[length - 1];
+            this.oddByteSet = true;
+            length -= 1;
+        }
+
+        return (skip, length);
+    }
 }
