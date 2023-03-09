@@ -33,9 +33,10 @@ def read_root():
 @app.post("/text_converse")
 async def text_converse(request: Request):
     """
-    expects a json object ttsh sender and message keys
-    example: {"sender":"user","message":"hello"}
-
+    Performs 1 step of the conversation using the rasa model.
+    - Expects a json object with 'sender' and 'message' keys
+    - example: {"sender":"user","message":"hello"}
+    - Returns a json object with the response from the rasa model and the tracker data
     """
     # forward the request to rasa server
     url_rasa = f'http{"s" if config["server"]["rasa_SSL"] else ""}://{config["server"]["rasa_host"]}:{config["server"]["rasa_port"]}/webhooks/rest/webhook'
@@ -55,7 +56,8 @@ async def text_converse(request: Request):
 @app.post("/audio_converse_stream")
 async def audio_converse_stream(sender: str, request: Request):
     """
-    This function is used to stream audio from the client to the server. Expecting the audio to be in mp3 format.
+    This function is used to stream audio from the client to the server. Expecting the audio to be in any format supported by the soundfile.read().
+    Returns a PCM_16 audio file in streaming format.
     """
     # get the audio file from the request and send it to tts.ai
     timer = time.time()
@@ -75,6 +77,9 @@ async def audio_converse_stream(sender: str, request: Request):
 
 @app.get("/get_tracker")
 async def get_tracker(sender: str, request: Request):
+    """
+    Get tracker information for a specific sender from the rasa server.
+    """
     return await server.get_tracker_data(sender)
 
 

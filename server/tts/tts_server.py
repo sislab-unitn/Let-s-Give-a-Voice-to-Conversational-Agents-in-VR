@@ -28,6 +28,11 @@ def read_root():
 
 @app.post("/tts")
 async def tts(request: Request):
+    """
+    Performs the inference on the TTS model from a POST request
+    - the request body should be a JSON object with the key "text" and the value being the text to be synthesized
+    - response is a PCM_16 audio file
+    """
     data = await request.json()
     # if body is empty
     if data == b"":
@@ -45,6 +50,11 @@ async def tts(request: Request):
 
 @app.get("/tts_synthesis")
 async def tts_test(text: str):
+    """
+    Performs the inference on the TTS model from a GET request
+    - the text encoded in the url is the text to be synthesized
+    - response is a PCM_16 audio file
+    """
     voice = tts_model.tts_synthesis_chunked(text)
     return StreamingResponse(
         status_code=status.HTTP_200_OK, content=voice, media_type="audio/raw"

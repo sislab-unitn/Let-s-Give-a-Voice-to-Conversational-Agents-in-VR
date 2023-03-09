@@ -27,6 +27,11 @@ def read_root():
 
 @app.post("/asr")
 async def asr(request: Request):
+    """
+    Performs the inference on the ASR model from a POST request
+    - the request body should be an audio file. Any soundfile accepted by soundfile.read() SHOULD supported
+    - response is a JSON object with the key "text" as the transcription of the audio file. It also has the key "is_final" which is always True
+    """
     data = await request.body()
     # if body is empty
     if data == b"":
