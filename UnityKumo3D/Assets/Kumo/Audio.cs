@@ -7,13 +7,24 @@ using System.IO;
 using System;
 using System.Globalization;
 using System.Text;
+
+/// <summary>
+/// Class <c>Audio</c> for audio processing
+/// </summary>
 public static class Audio
 {
+    /// <summary>
+    /// Method <c>getAudioLevel</c> returns the audio level of the given audio computed over the given seconds until the given position
+    /// <param name="clip">AudioClip input audioclip</param> 
+    /// <param name="position">int current position</param>
+    /// <param name="seconds">double seconds</param>
+    /// <returns>float audio level</returns>
+    /// </summary>
     public static float getAudioLevel(AudioClip clip, int position, double seconds)
     {
         float[] data = new float[clip.samples * clip.channels];
         clip.GetData(data, 0);
-        int start = (int)(position - seconds * clip.frequency*clip.channels);
+        int start = (int)(position - seconds * clip.frequency * clip.channels);
         start = start < 0 ? 0 : start;
         int end = (int)(position);
         // Debug.Log("start: " + start + " end: " + end);
@@ -24,7 +35,13 @@ public static class Audio
         }
         return sum / (end - start);
     }
-    // trims the audio clip to the given position from the beginning
+
+    /// <summary>
+    /// Method <c>trimAudioClp</c> trims the audio clip to the given position from the beginning
+    /// <param name="clip">AudioClip input audioclip</param>
+    /// <param name="position">int position</param>
+    /// <returns>AudioClip trimmed audioclip</returns>
+    /// </summary>
     public static AudioClip trimAudioClip(AudioClip clip, int position)
     {
 
@@ -38,9 +55,15 @@ public static class Audio
         AudioClip newClip = AudioClip.Create(clip.name, position, clip.channels, clip.frequency, stream: false);
         newClip.SetData(newData, 0);
         return newClip;
-    
+
     }
-    // trim audio clip from two positions
+    /// <summary>
+    /// Method <c>trimAudioClp</c> trims the audio clip to the given position from the a given start position
+    /// <param name="clip">AudioClip input audioclip</param>
+    /// <param name="startPosition">int start position</param>
+    /// <param name="endPosition">int end position</param>
+    /// <returns>AudioClip trimmed audioclip</returns>
+    /// </summary>
     public static AudioClip trimAudioClip(AudioClip clip, int startPosition, int endPosition)
     {
         var soundData = new float[clip.samples * clip.channels];
@@ -54,25 +77,40 @@ public static class Audio
         newClip.SetData(newData, 0);
         return newClip;
     }
+    /// <summary>
+    /// Method <c>duplicateAudioClip</c> duplicates the given audio clip
+    /// <param name="clip">AudioClip input audioclip</param>
+    /// <returns>AudioClip duplicate audioclip</returns>
+    /// </summary>
     public static AudioClip duplicateAudioClip(AudioClip clip)
     {
-         AudioClip newAudioClip = AudioClip.Create("Copy", clip.samples, clip.channels, clip.frequency, stream: false);
-         float[] copyData = new float[clip.samples * clip.channels];
-         clip.GetData(copyData, 0);
-         newAudioClip.SetData(copyData, 0);
-         return newAudioClip;
+        AudioClip newAudioClip = AudioClip.Create("Copy", clip.samples, clip.channels, clip.frequency, stream: false);
+        float[] copyData = new float[clip.samples * clip.channels];
+        clip.GetData(copyData, 0);
+        newAudioClip.SetData(copyData, 0);
+        return newAudioClip;
     }
+    /// <summary>
+    /// Method <c>WriteClipWav</c> writes the given audio clip to a wav file
+    /// <param name="clip">AudioClip input audioclip</param>
+    /// <param name="path">string path</param>
+    /// </summary>
     public static void WriteClipWav(AudioClip clip, string path)
     {
         byte[] bytes = ConvertWav(clip);
         File.WriteAllBytes(path, bytes);
     }
+    /// <summary>
+    /// Method <c>WriteClipPCM</c> writes the given audio clip to a pcm file
+    /// <param name="clip">AudioClip input audioclip</param>
+    /// <param name="path">string path</param>
+    /// </summary>
     public static void WriteClipPCM(AudioClip clip, string path)
     {
         byte[] bytes = new byte[clip.samples * clip.channels];
         float[] clipData = new float[clip.samples * clip.channels];
         clip.GetData(clipData, 0);
-        for( int i = 0; i < clip.samples; i++ )
+        for (int i = 0; i < clip.samples; i++)
         {
             float sample = clipData[i];
             byte[] two_bytes = BitConverter.GetBytes(sample);
@@ -81,7 +119,11 @@ public static class Audio
         }
         File.WriteAllBytes(path, bytes);
     }
-    // from soundwav module
+    /// <summary>
+    /// Method <c>ConvertWav</c> converts the given audio clip to a wav byte array. Comes from SoundWav module
+    /// <param name="clip">AudioClip input audioclip</param>
+    /// <returns>byte[] wav file</returns>
+    /// </summary>
     public static byte[] ConvertWav(AudioClip clip)
     {
         // wav file header size

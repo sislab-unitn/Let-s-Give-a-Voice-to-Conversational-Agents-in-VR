@@ -64,12 +64,12 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// Set the audiosource threshold noise level before starting recording
     /// <summary>
     [Tooltip("Sound noise level threshold before starting recording")]
-    public double audioLevelUpperThreshold = 0.05;
+    public double audioLevelUpperThreshold = 0.03;
     /// <summary>
     /// Set the audiosource threshold noise level before stopping recording
     /// <summary>
     [Tooltip("Sound noise level threshold before stopping recording")]
-    public double audioLevelLowerThreshold = 0.01;
+    public double audioLevelLowerThreshold = 0.02;
     /// <summary>
     /// How long to wait the sound level has to be below the lower threshold before stopping recording
     /// <summary>
