@@ -184,21 +184,39 @@ public class StreamingPCMDownloadHandler : DownloadHandlerScript
         }
         else
         {
-            DateTime time2 = DateTime.Now;
-            TimeSpan timeSpan = time2.Subtract(this.timer);
-            // missing time to wait before playing the audio
-            float missing = this.clip.length - timeSpan.Seconds;
-
-            Debug.Log("StreamingPCMDownloadHandler :: CompleteContent - DOWNLOAD COMPLETE!");
-            this.clip = AudioClip.Create("Response", this.f_decoding.Count, this.channels, this.sampleRate, stream: false);
-            this.clip.SetData(this.f_decoding.ToArray(), 0);
-            this.f_decoding.Clear();
-            this.source.clip = this.clip;
-            if (this.audioChanged != null)
+            // i need to play the audio delayed by the amount of time it takes finish playing the current audio
+            if(this.clip != null && this.source.isPlaying)
             {
-                Task.Delay((int)(1000 * missing)).ContinueWith(t => this.audioChanged.Invoke());
+                DateTime time2 = DateTime.Now;
+                TimeSpan timeSpan = time2.Subtract(this.timer);
+                // missing time to wait before playing the audio)
+                float missing = this.clip.length - timeSpan.Seconds;
+
+                Debug.Log("StreamingPCMDownloadHandler :: CompleteContent - DOWNLOAD COMPLETE!");
+                this.clip = AudioClip.Create("Response", this.f_decoding.Count, this.channels, this.sampleRate, stream: false);
+                this.clip.SetData(this.f_decoding.ToArray(), 0);
+                this.f_decoding.Clear();
+                this.source.clip = this.clip;
+                if (this.audioChanged != null)
+                {
+                    Task.Delay((int)(1000 * missing)).ContinueWith(t => this.audioChanged.Invoke());
+                }
+                this.source.PlayDelayed(missing);
             }
-            this.source.PlayDelayed(missing);
+            // otherwise i can play the audio immediately
+            else
+            {
+                Debug.Log("StreamingPCMDownloadHandler :: CompleteContent - DOWNLOAD COMPLETE!");
+                this.clip = AudioClip.Create("Response", this.f_decoding.Count, this.channels, this.sampleRate, stream: false);
+                this.clip.SetData(this.f_decoding.ToArray(), 0);
+                this.f_decoding.Clear();
+                this.source.clip = this.clip;
+                if (this.audioChanged != null)
+                {
+                    this.audioChanged.Invoke();
+                }
+                this.source.PlayOneShot(this.clip);
+            }
         }
 
     }

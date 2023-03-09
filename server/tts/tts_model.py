@@ -70,7 +70,7 @@ class TTSModel:
                 io_buffer.seek(cursor)
                 timer = time.time() - timer
                 print(f"Time taken for inference: {timer}")
-                yield io_buffer.read(end - cursor)
+                yield io_buffer.read(end - cursor) + b'\x00\x00' * self.config["audio"]["pause_length"]
 
             # do something with the chunk
 

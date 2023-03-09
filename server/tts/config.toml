@@ -6,3 +6,4 @@
     compile = false
 [audio]
     sample_rate = 16000 # Speech_t5 does not work with other sample rates
+    pause_length = 100 # pause length in between sentences, in samples (16000 samples per second, 100 samples = 0.00625 seconds)
