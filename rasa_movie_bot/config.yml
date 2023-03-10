@@ -22,28 +22,28 @@ pipeline:
     epochs: 100
     constrain_similarities: true
   - name: RegexEntityExtractor
-  - name: CRFEntityExtractor
-      # BILOU_flag determines whether to use BILOU tagging or not.
-    "BILOU_flag": True
-    # features to extract in the sliding window
-    "features": [
-      ["low", "title", "upper"],
-      [
-        "bias",
-        "low",
-        "prefix5",
-        "prefix2",
-        "suffix5",
-        "suffix3",
-        "suffix2",
-        "upper",
-        "title",
-        "digit",
-        "pattern",
-        "text_dense_features"
-      ],
-      ["low", "title", "upper"],
-    ]
+  # - name: CRFEntityExtractor
+  #     # BILOU_flag determines whether to use BILOU tagging or not.
+  #   "BILOU_flag": True
+  #   # features to extract in the sliding window
+  #   "features": [
+  #     ["low", "title", "upper"],
+  #     [
+  #       "bias",
+  #       "low",
+  #       "prefix5",
+  #       "prefix2",
+  #       "suffix5",
+  #       "suffix3",
+  #       "suffix2",
+  #       "upper",
+  #       "title",
+  #       "digit",
+  #       "pattern",
+  #       "text_dense_features"
+  #     ],
+  #     ["low", "title", "upper"],
+  #   ]
   - name: EntitySynonymMapper
   - name: ResponseSelector
     epochs: 100
