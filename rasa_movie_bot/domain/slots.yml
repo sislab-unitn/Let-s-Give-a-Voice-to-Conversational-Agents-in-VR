@@ -1,0 +1,15 @@
+version: "3.1"
+
+slots:
+  movie_or_tv:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: movie_or_tv
+      influence_conversation: true
+  genre:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: genre
+      influence_conversation: true

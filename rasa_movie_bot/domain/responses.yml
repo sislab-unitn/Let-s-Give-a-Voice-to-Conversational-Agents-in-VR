@@ -1,0 +1,37 @@
+version: "3.1"
+
+responses:
+
+  utter_greet:
+    - text: "Hey! I'm Kumo, a movie and tv show recommendation system"
+    - text: "Hi there, I'm Kumo, your personal movie and tv show assistant. What would you like to watch?"
+    - text: "Hi, I'm Kumo, your personal movie and tv show assistant. What would you like to watch?"
+    - text: "Hi, I'm Kumo, your personal movie and tv show assistant. Would you like to watch something?"
+    - text: "Hi, I'm Kumo, your personal movie and tv show assistant. Should I recommend you something?"
+  
+  utter_help:
+    - text: "I'm Kumo, a movie and tv show recommendation system. I can suggest you popular new shows or movies to watch"
+
+  utter_thanks:
+    - text: "I'm pleased to have helped you"
+    - text: "Ï'm happy to help you at anytime"
+    - text: "I'm happy to help you anytime."
+    - text: "I'm glad to help you anytime."
+    - text: "It's a pleasure."
+  
+  utter_rephrase:
+    - text: "I didn't understand. Could you rephrase please?"
+  
+  utter_goodbye:
+    - text: "Bye"
+    - text: "I'm happy to help you anytime."
+    - text: "I'm glad to help you anytime."
+    - text: "It's a pleasure."
+    - text: "Goodbye"
+  
+  utter_out_of_scope:
+  - text: "Sorry, I can't handle that request. I'm kumo, a movie and show recommendation system."
+  - text: "Sorry, but I'm a movie and show recommendation system."
+  - text: "Sorry, but I can only help you with movies and tv shows."
+  utter_discover:
+    - text: "In {genre} new {movie_or_tv} releases are:"

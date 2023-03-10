@@ -1,5 +1,8 @@
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Events;
+using System.Collections;
+
 public class ServerConnection : MonoBehaviour
 {
     #region Editor Exposed Variables
@@ -32,9 +35,17 @@ public class ServerConnection : MonoBehaviour
 
     #endregion
     /// <summary>
+    /// UnityEvent that is invoked when the request is started
+    /// </summary>
+    public UnityEvent requestStarted = new UnityEvent();
+    /// <summary>
+    /// UnityEvent that is invoked when the request is done
+    /// </summary>
+    public UnityEvent requestDone = new UnityEvent();
+    /// <summary>
     /// The complete url to post the data file to
     /// </summary>
-    private string url;
+    protected string url;
     void Start()
     {
         this.url = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
@@ -54,13 +65,13 @@ public class ServerConnection : MonoBehaviour
 
     void Update()
     {
-        
+
     }
-    void RequestServer()
+    IEnumerator RequestServer()
     {
         // do a post request to the server
         UnityWebRequest request = UnityWebRequest.Get(this.url);
-        request.SendWebRequest();
+        yield return request.SendWebRequest();
         if (request.result != UnityWebRequest.Result.Success)
         {
             Debug.Log(request.error);
@@ -69,5 +80,6 @@ public class ServerConnection : MonoBehaviour
         {
             Debug.Log("Request Successful!");
         }
+        yield return null;
     }
 }

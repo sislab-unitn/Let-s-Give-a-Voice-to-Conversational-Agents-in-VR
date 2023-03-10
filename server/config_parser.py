@@ -7,14 +7,14 @@ try:
 except ImportError:
     import toml as tomllib
     
-def config_parser(argv : str, current_path: str = None):
+def config_parser(argv : str = None, current_path: str = None) -> dict:
     parser = argparse.ArgumentParser(
                             prog = 'Server',
                             description = 'Server',
                             epilog = 'Enjoy the program! :)')       # positional argument
     parser.add_argument('-c', '--config',required=False)      # option that takes a value
     # parser.add_argument('-d','--device',required=False)
-    args = parser.parse_args(argv)
+    args, unknown = parser.parse_known_args(argv)
 
     # check if config file exists
     if current_path is None:

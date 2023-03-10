@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
+using TMPro;
 /// <summary>
 /// This class is used to connect to a server and send a request to get a stream of audio data. 
 /// It will automatically start recording when the audio level is above a threshold and stop recording when the audio level is below a threshold.
@@ -83,6 +84,10 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// <summary>
     [Tooltip("Sound noise level sampling window ( seconds )")]
     public double audioSamplingWindow = 0.1;
+
+    public TMP_Text transcription;
+    public TMP_Text response;
+    public TMP_Text noiseLevel;
     #endregion
     /// <summary>
     /// Event to be called when the request is started
@@ -148,6 +153,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
             int position = Microphone.GetPosition(Microphone.devices[0]);
             float audioLevel = Audio.getAudioLevel(this.clip, position, this.audioSamplingWindow);
             Debug.Log(audioLevel);
+            noiseLevel.text = audioLevel.ToString();
             // start the recording if the audio level is above the upper threshold
             if (!this.isRecording && (audioLevel > this.audioLevelUpperThreshold))
             {
@@ -197,6 +203,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     {
         requestStarted.Invoke();
         StartCoroutine(PostStreamAndPlay());
+        processingSource.Play();
     }
 
     /// <summary>

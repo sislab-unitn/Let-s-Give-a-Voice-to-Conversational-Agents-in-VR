@@ -1,0 +1,8 @@
+version: "3.1"
+
+responses:
+  utter_ask_movie_or_tv:
+    - text: "Would you like a movie or tv show?"
+  utter_ask_genre:
+    - text: "Would you prefer to watch what's popular or do you have a specific genre in mind?"
+  
