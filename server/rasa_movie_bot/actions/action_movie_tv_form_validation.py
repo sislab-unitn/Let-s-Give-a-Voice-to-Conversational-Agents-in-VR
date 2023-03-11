@@ -7,11 +7,12 @@ from rasa_sdk.types import DomainDict
 import Levenshtein
 
 from .enum_slots import MovieOrTv, Genre, Slots
+from .enum_actions import Actions
 
 
 class ValidateMovieTvForm(FormValidationAction):
     def name(self) -> Text:
-        return "validate_movie_tv_genre_form"
+        return Actions.ValidateMovieTvForm.value
 
     def validate_movie_tv(
         self,

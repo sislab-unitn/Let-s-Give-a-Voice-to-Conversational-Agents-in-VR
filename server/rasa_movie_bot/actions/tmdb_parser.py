@@ -61,6 +61,7 @@ class TMDBParser:
         """
         method to get the names of the movies or tv shows from the response
         :param response: the response from the discover method
+        :param quantity: the number of names to return
         :return: a list of the names of the movies or tv shows
         """
         names = list()

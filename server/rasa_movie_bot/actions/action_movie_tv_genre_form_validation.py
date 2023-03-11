@@ -7,12 +7,13 @@ from rasa_sdk.types import DomainDict
 import Levenshtein
 
 from .enum_slots import MovieOrTv, Genre, Slots
+from .enum_actions import Actions
 from .tmdb_parser import TMDBParser
 
 
 class ValidateMovieTvGenreForm(FormValidationAction):
     def name(self) -> Text:
-        return "validate_movie_tv_genre_form"
+        return Actions.ValidateMovieTvGenreForm.value
 
     def validate_movie_tv(
         self,
@@ -43,13 +44,10 @@ class ValidateMovieTvGenreForm(FormValidationAction):
         """Validate genre value."""
         print(f"slot_value {slot_value}")
         movie_or_tv = tracker.get_slot(Slots.movie_or_tv.value)
-        if movie_or_tv == None:
-            print("movie or tv not set")
-            return {"genre": None}
         # here i match to movie_or_tv
         genre, confidence = TMDBParser.genre_matcher(slot_value, movie_or_tv)
         if confidence < 0.8:
             print("confidence too low")
-            return {"genre": None}
+            return {Slots.genre.value: None}
         print(f"was mapped to {genre} with confidence {confidence}")
-        return {"genre": genre}
+        return {Slots.genre.value: genre}
