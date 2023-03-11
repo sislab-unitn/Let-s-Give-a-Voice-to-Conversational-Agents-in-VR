@@ -1,10 +1,10 @@
 # function to get the slot ids
-from typing import Dict, List
+from typing import Dict, List, Tuple
 import Levenshtein
 import requests
 import tmdbsimple as tmdb
 
-from enum_slots import MovieOrTv, Genre, Slots
+from .enum_slots import MovieOrTv, Genre, Slots
 
 
 class TMDBParser:
@@ -57,14 +57,14 @@ class TMDBParser:
         return response
 
     @staticmethod
-    def response_to_names(response: Dict) -> List[str]:
+    def response_to_names(response: Dict, quantity:int=-1) -> List[str]:
         """
         method to get the names of the movies or tv shows from the response
         :param response: the response from the discover method
         :return: a list of the names of the movies or tv shows
         """
         names = list()
-        for item in response["results"]:
+        for item in response["results"][:quantity]:
             try:
                 names.append(item["title"])
             except KeyError:
@@ -95,7 +95,7 @@ class TMDBParser:
         return genres
 
     @staticmethod
-    def genre_matcher(selected_genre: str, movie_or_tv: str) -> str:
+    def genre_matcher(selected_genre: str, movie_or_tv: str) -> Tuple[str,float]:
         """
         method to match the selected genre to the genres in the TMDB API
         Uses Jaro-Winkler distance to find the closest match
@@ -114,10 +114,10 @@ class TMDBParser:
             for word in genre_lower.split():
                 try:
                     if selected_genre == word:
-                        return inverse_genres[genres_lower[genre_lower]]
+                        return inverse_genres[genres_lower[genre_lower]], 1.0
                     similarity[genre_lower][0] = max(
                         Levenshtein.jaro(selected_genre, word),
-                        similarity[genre_lower][0],
+                        similarity[genre_lower][0]
                     )
                 except KeyError:
                     similarity[genre_lower] = [
@@ -129,4 +129,4 @@ class TMDBParser:
         inverse_similarity = {v[0]: k for k, v in similarity.items()}
         similarity_value = max(inverse_similarity, key=lambda x: x)
         similarity_id = similarity[similarity_mx][1]
-        return inverse_genres[similarity_id]
+        return inverse_genres[similarity_id], similarity_value

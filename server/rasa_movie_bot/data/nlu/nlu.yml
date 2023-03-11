@@ -88,3 +88,32 @@ nlu:
     examples: |
       - stop
       - quit
+  - intent: challenge_bot
+    examples: | 
+      - what are you ?
+      - are you a bot?
+      - are you human ?
+      - who are you?
+      - are you alive?
+      - do you think?
+      - do you have feelings?
+      - who do you like?
+      - do you like me?
+      - Can you think?
+      - Can you dream ?
+  - intent: anger
+    examples: |
+      - You are dumb
+      - I hate you
+      - You are stupid
+      - idiot
+      - you are a stupid bot
+      - useless bot
+      - fuck you
+      - bitch
+  - intent: restart
+    examples: |
+      - restart
+      - reset
+      - start over
+      - start again

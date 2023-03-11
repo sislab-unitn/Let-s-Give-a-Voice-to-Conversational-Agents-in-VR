@@ -54,3 +54,11 @@ responses:
     - text: "Some suggestions are: {top_results}."
     - text: "I'd suggest you: {top_results}."
     - text: "Some good {movie_or_tv} are: {top_results}."
+
+  utter_challenge:
+    - text: "I'm Kumo, a movie and tv show recommendation system. I don't have things such as feelings. I was programmed to help you find a enjoyable show to watch"
+
+  utter_anger:
+    - text: "Well, at least I'm a bot is smarter than you."
+    - text: "I know better than you who is smarter, the one that is not wasting their breath against an bot"
+    - text: "I can't say I like you either"

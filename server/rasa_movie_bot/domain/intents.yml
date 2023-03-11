@@ -11,3 +11,5 @@ intents:
   - help
   - out_of_scope
   - ask_genre
+  - challenge_bot
+  - anger

@@ -6,10 +6,10 @@ from rasa_sdk.types import DomainDict
 
 import Levenshtein
 
-from enum_slots import MovieOrTv, Genre, Slots
+from .enum_slots import MovieOrTv, Genre, Slots
 
 
-class ValidateMovieTvGenreForm(FormValidationAction):
+class ValidateMovieTvForm(FormValidationAction):
     def name(self) -> Text:
         return "validate_movie_tv_genre_form"
 
@@ -31,24 +31,3 @@ class ValidateMovieTvGenreForm(FormValidationAction):
             movie_or_tv = MovieOrTv.tv_show.value
         print(f"was mapped to {movie_or_tv}")
         return {Slots.movie_or_tv.value: movie_or_tv}
-
-    def validate_genre(
-        self,
-        slot_value: Any,
-        dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: DomainDict,
-    ) -> Dict[Text, Any]:
-        """Validate genre value."""
-        print(f"slot_value {slot_value}")
-        movie_or_tv = tracker.get_slot(Slots.movie_or_tv.value)
-        if movie_or_tv == None:
-            print("movie or tv not set")
-            return {"genre": None}
-        # here i match to movie_or_tv
-        genre, confidence = tmdb_parser.genre_matcher(slot_value, movie_or_tv)
-        if confidence < 0.8:
-            print("confidence too low")
-            return {"genre": None}
-        print(f"was mapped to {genre} with confidence {confidence}")
-        return {"genre": genre}

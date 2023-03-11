@@ -17,6 +17,11 @@ rules:
       - intent: help
       - action: utter_help
 
+  - rule : Challenge bot
+    steps: 
+      - intent: challenge_bot
+      - action: utter_challenge
+
   - rule : Out of scope
     steps: 
       - intent: out_of_scope
@@ -50,4 +55,11 @@ rules:
       - active_loop: null
       - action: action_genres_available
       - action: utter_genres
-    
+  - rule: angry
+    steps:
+      - intent: anger
+      - action: utter_anger
+  - rule: restart
+    steps:
+      - intent: restart
+      - action: action_restart
