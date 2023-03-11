@@ -31,6 +31,7 @@ from tmdb_parser import TMDBParser
 
 from validation_actions import ValidateMovieTvGenreForm
 
+
 class ActionDiscoverMovie(Action):
     """ActionDiscoverMovie Action to discover movies or tv shows"""
 
@@ -47,13 +48,13 @@ class ActionDiscoverMovie(Action):
         genre = tracker.get_slot(Slots.genre.value)
 
         genre = TMDBParser.genre_matcher(genre, movie_or_tv)
-        
+
         response = TMDBParser.discover(movie_or_tv, genre)[:3]
 
         top_names = TMDBParser.response_to_names(response)
 
         evt = SlotSet(Slots.top_results.value, TMDBParser.list_to_string(top_names))
-        
+
         return [evt]
 
 

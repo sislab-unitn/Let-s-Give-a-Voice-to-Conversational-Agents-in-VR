@@ -11,7 +11,7 @@ class TMDBParser:
     """
     Class that parses the TMDB API in order to get the information needed for the bot as strings or json
     """
-    
+
     @staticmethod
     def list_to_string(list: List[str]) -> str:
         """
@@ -25,7 +25,7 @@ class TMDBParser:
         return result
 
     @staticmethod
-    def discover_genres( movie_or_tv: str) -> List[str]:
+    def discover_genres(movie_or_tv: str) -> List[str]:
         """
         Method to get the genres available for either movies or tv shows
         :param movie_or_tv: either {MovieOrTv.movie.value} or {MovieOrTv.tv_show.value}
@@ -55,13 +55,14 @@ class TMDBParser:
                 f"movie_or_tv must be either {MovieOrTv.movie.value} or {MovieOrTv.tv_show.value}"
             )
         return response
+
     @staticmethod
-    def response_to_names( response: Dict) -> List[str]:
-        '''
+    def response_to_names(response: Dict) -> List[str]:
+        """
         method to get the names of the movies or tv shows from the response
         :param response: the response from the discover method
         :return: a list of the names of the movies or tv shows
-        '''
+        """
         names = list()
         for item in response["results"]:
             try:
@@ -71,7 +72,7 @@ class TMDBParser:
         return names
 
     @staticmethod
-    def get_slot_ids( movie_or_tv: str) -> Dict:
+    def get_slot_ids(movie_or_tv: str) -> Dict:
         """
         method to get the slot ids for the genres or either movies or tv shows
         :param movie_or_tv: either 'movie' or 'tv'
@@ -102,7 +103,6 @@ class TMDBParser:
         :param movie_or_tv: either 'movie' or 'tv'
         :return: the genre that is the closest match
         """
-        print(selected_genre)
         selected_genre = selected_genre.lower()
         genres_og = TMDBParser.get_slot_ids(movie_or_tv)
         inverse_genres = {v: k for k, v in genres_og.items()}
