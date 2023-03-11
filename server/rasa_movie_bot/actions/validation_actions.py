@@ -1,0 +1,55 @@
+from typing import Text, Any, Dict
+
+from rasa_sdk import Tracker, FormValidationAction
+from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.types import DomainDict
+
+import Levenshtein
+
+from movie_or_tv import MovieOrTv
+from slots import Slots
+import tmdb_parser
+
+class ValidateMovieTvGenreForm(FormValidationAction):
+    def name(self) -> Text:
+        return "validate_movie_tv_genre_form"
+
+    def validate_movie_tv(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate movie or tv value."""
+        print(f"slot_value {slot_value}")
+        movie_or_tv = tracker.get_slot(MovieOrTv.movie.value)
+        movie = Levenshtein.jaro(movie_or_tv, MovieOrTv.movie.value)
+        tv_show = Levenshtein.jaro(movie_or_tv, MovieOrTv.tv_show.value)
+        if movie > tv_show:
+            movie_or_tv = MovieOrTv.movie.value
+        else:
+            movie_or_tv = MovieOrTv.tv_show.value
+        print(f"was mapped to {movie_or_tv}")
+        return {Slots.movie_or_tv.value: movie_or_tv}
+
+    def validate_genre(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate genre value."""
+        print(f"slot_value {slot_value}")
+        movie_or_tv = tracker.get_slot(Slots.movie_or_tv.value)
+        if movie_or_tv == None:
+            print("movie or tv not set")
+            return {"genre": None}
+        # here i match to movie_or_tv
+        genre, confidence = tmdb_parser.genre_matcher(slot_value, movie_or_tv)
+        if confidence < 0.8:
+            print("confidence too low")
+            return {"genre": None}
+        print(f"was mapped to {genre} with confidence {confidence}")
+        return {"genre": genre}

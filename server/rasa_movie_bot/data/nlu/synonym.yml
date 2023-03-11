@@ -22,3 +22,9 @@ nlu:
       - a show
       - a serie
       - a series
+  - synonym: kids
+      - kids
+      - kid
+      - Kids
+      - children
+      - Child
