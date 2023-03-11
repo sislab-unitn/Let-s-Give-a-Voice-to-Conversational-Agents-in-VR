@@ -20,100 +20,92 @@ import base64
 import tmdbsimple as tmdb
 
 from config_parser import config_parser
+
 config = config_parser()
-tmdb.API_KEY = config['tmdb']['api_key']
+tmdb.API_KEY = config["tmdb"]["api_key"]
 
 from enum_actions import Actions
-from enum_slots import Slots
-from slots.enum_movie_or_tv import MovieOrTv
+from enum_slots import Slots, MovieOrTv, Genre
 from tmdb_parser import TMDBParser
 
+
 class ActionDiscoverMovie(Action):
+    """ActionDiscoverMovie Action to discover movies or tv shows"""
+
     def name(self) -> Text:
         return Actions.ActionDiscoverMovie.value
-    
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> Dict[Text, Any]:
-        movie_or_tv = tracker.get_slot(Slots.movie_or_tv.value)
-        
-        if movie_or_tv is None:
-            print(f'{Slots.movie_or_tv.value} not set')
-            return {}
 
-        genre_ids = TMDBParser.get_slot_ids(movie_or_tv)
-        
+    def run(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> List[Dict[Text, Any]]:
+        movie_or_tv = tracker.get_slot(Slots.movie_or_tv.value)
         genre = tracker.get_slot(Slots.genre.value)
-        if movie_or_tv == MovieOrTv.movie.value:
-            if genre is None:
-                discover = tmdb.Discover()
-                response = discover.movie()
-            else:   
-                discover = tmdb.Discover()
-                response = discover.movie(with_genres=genre_ids[genre])
-        elif movie_or_tv == MovieOrTv.tv_show.value:
-            if genre is None:
-                discover = tmdb.Discover()
-                response = discover.tv()
-            else:   
-                
-                discover = tmdb.Discover()
-                response = discover.tv(with_genres=genre_ids[genre])
+
+        response = TMDBParser.discover(movie_or_tv, genre)
+
         # top 3 results
-        if response['total_results'] == 0:
-            evt = SlotSet("top_names","")
-            return [evt]
+        if response[Slots.top_results.value] == 0:
+            evt = SlotSet(Slots.top_results.value, None)
+            return evt
         else:
-            results = response['results'][:3]
+            results = response["results"][:3]
             try:
-                top_names = [result['title'] for result in results]
+                top_names = [result["title"] for result in results]
             except KeyError:
-                top_names = [result['name'] for result in results]
+                top_names = [result["name"] for result in results]
+
             top_names[-1] = "and " + top_names[-1]
             top_names = ", ".join(top_names)
             print(top_names)
-            evt = SlotSet("top_names",top_names)
+            evt = SlotSet("top_names", top_names)
             # create a slot with the results
             # containing the title, and poster downloaded as image
             results_data = dict()
-            results_data['images'] = []
-            results_data['titles'] = []
+            results_data["images"] = []
+            results_data["titles"] = []
             for result in results[:3]:
                 try:
-                    title = result['title']
+                    title = result["title"]
                 except KeyError:
-                    title = result['name']
-                results_data['titles'].append(title)
-                poster_path = result['poster_path']
+                    title = result["name"]
+                results_data["titles"].append(title)
+                poster_path = result["poster_path"]
                 if poster_path is not None:
                     poster_url = f"https://image.tmdb.org/t/p/original{poster_path}"
-                    request = requests.get(poster_url,stream=False)
+                    request = requests.get(poster_url, stream=False)
                     request.raise_for_status()
                     # encode in base64 and to utf-8 to get compatibility with json
                     encoded = base64.b64encode(request.content)
-                    results_data['images'].append(encoded.decode('utf-8'))
+                    results_data["images"].append(encoded.decode("utf-8"))
                 else:
-                    results_data['images'].append(None)
-            ent = SlotSet("results_data",results_data)
-            return [evt,ent]
+                    results_data["images"].append(None)
+            ent = SlotSet("results_data", results_data)
+            return evt, ent
 
 
 # add fallback is results are empty
 class ActionGenresAvailable(Action):
-    def name(self) -> Text:
-        return "action_genres_available"
+    """
+    Class that runs the action to get the genres available
+    """
 
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        movie_or_tv = tracker.get_slot('movie_or_tv')
-        if movie_or_tv == None:
-            print('movie or tv not set')
-            return []
-        genres = get_slot_ids(movie_or_tv)
-        genres_available = list(genres.keys())
-        genres_available[-1] = "and " + genres_available[-1]
-        genres_available = ", ".join(genres_available)
-        print(genres_available)
-        evt = SlotSet("genres_available",genres_available)
+    def name(self) -> Text:
+        return Actions.ActionGenresAvailable.value
+
+    def run(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> List[Dict[Text, Any]]:
+        movie_or_tv = tracker.get_slot(Slots.movie_or_tv.value)
+        # get the genres available
+        genres_available = TMDBParser.discover_genres(movie_or_tv)
+        # convert to string
+        genres_available = TMDBParser.list_to_string(genres_available)
+        # create a slot with the genres available
+        evt = SlotSet(Slots.genres_available.value, genres_available)
         return [evt]

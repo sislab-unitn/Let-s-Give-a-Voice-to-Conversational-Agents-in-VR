@@ -10,6 +10,7 @@ from movie_or_tv import MovieOrTv
 from slots import Slots
 import tmdb_parser
 
+
 class ValidateMovieTvGenreForm(FormValidationAction):
     def name(self) -> Text:
         return "validate_movie_tv_genre_form"

@@ -18,10 +18,9 @@ class ServerModel:
         self.tts_session = httpx.AsyncClient()
 
     async def speech_to_text(self, request: Request) -> str:
-        """
-        Function to handle the speech to text request
-        :param request: the a Starlette Request object
-        :return: the text extracted from the audio file using asr server
+        """speech_to_text gets the audio file from the request and sends it to the asr server
+        :param Request request: the request from the client
+        :return str: the text from the audio file
         """
         # get the audio file from the request and send it to tts.ai
         url_asr_speech_to_text = f'http{"s" if self.config["server"]["asr_SSL"] else ""}://{self.config["server"]["asr_host"]}:{self.config["server"]["asr_port"]}/asr'
