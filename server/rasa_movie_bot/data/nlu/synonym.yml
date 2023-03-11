@@ -23,8 +23,10 @@ nlu:
       - a serie
       - a series
   - synonym: kids
+    examples: |
       - kids
       - kid
       - Kids
       - children
       - Child
+      - child

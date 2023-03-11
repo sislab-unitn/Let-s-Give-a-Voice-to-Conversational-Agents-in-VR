@@ -19,15 +19,17 @@ import base64
 
 import tmdbsimple as tmdb
 
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from config_parser import config_parser
 
 config = config_parser()
-tmdb.API_KEY = config["tmdb"]["api_key"]
+tmdb.API_KEY = config["server"]["tmdb_API"]
 
 from enum_actions import Actions
 from enum_slots import Slots, MovieOrTv, Genre
 from tmdb_parser import TMDBParser
 
+from validation_actions import ValidateMovieTvGenreForm
 
 class ActionDiscoverMovie(Action):
     """ActionDiscoverMovie Action to discover movies or tv shows"""
@@ -44,46 +46,15 @@ class ActionDiscoverMovie(Action):
         movie_or_tv = tracker.get_slot(Slots.movie_or_tv.value)
         genre = tracker.get_slot(Slots.genre.value)
 
-        response = TMDBParser.discover(movie_or_tv, genre)
+        genre = TMDBParser.genre_matcher(genre, movie_or_tv)
+        
+        response = TMDBParser.discover(movie_or_tv, genre)[:3]
 
-        # top 3 results
-        if response[Slots.top_results.value] == 0:
-            evt = SlotSet(Slots.top_results.value, None)
-            return evt
-        else:
-            results = response["results"][:3]
-            try:
-                top_names = [result["title"] for result in results]
-            except KeyError:
-                top_names = [result["name"] for result in results]
+        top_names = TMDBParser.response_to_names(response)
 
-            top_names[-1] = "and " + top_names[-1]
-            top_names = ", ".join(top_names)
-            print(top_names)
-            evt = SlotSet("top_names", top_names)
-            # create a slot with the results
-            # containing the title, and poster downloaded as image
-            results_data = dict()
-            results_data["images"] = []
-            results_data["titles"] = []
-            for result in results[:3]:
-                try:
-                    title = result["title"]
-                except KeyError:
-                    title = result["name"]
-                results_data["titles"].append(title)
-                poster_path = result["poster_path"]
-                if poster_path is not None:
-                    poster_url = f"https://image.tmdb.org/t/p/original{poster_path}"
-                    request = requests.get(poster_url, stream=False)
-                    request.raise_for_status()
-                    # encode in base64 and to utf-8 to get compatibility with json
-                    encoded = base64.b64encode(request.content)
-                    results_data["images"].append(encoded.decode("utf-8"))
-                else:
-                    results_data["images"].append(None)
-            ent = SlotSet("results_data", results_data)
-            return evt, ent
+        evt = SlotSet(Slots.top_results.value, TMDBParser.list_to_string(top_names))
+        
+        return [evt]
 
 
 # add fallback is results are empty

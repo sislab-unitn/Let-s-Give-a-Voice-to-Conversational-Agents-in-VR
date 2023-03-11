@@ -10,3 +10,4 @@ intents:
   - ask_watch
   - help
   - out_of_scope
+  - ask_genre

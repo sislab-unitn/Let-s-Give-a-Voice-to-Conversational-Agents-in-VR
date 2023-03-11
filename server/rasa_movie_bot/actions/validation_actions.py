@@ -6,9 +6,7 @@ from rasa_sdk.types import DomainDict
 
 import Levenshtein
 
-from movie_or_tv import MovieOrTv
-from slots import Slots
-import tmdb_parser
+from enum_slots import MovieOrTv, Genre, Slots
 
 
 class ValidateMovieTvGenreForm(FormValidationAction):

@@ -34,4 +34,20 @@ rules:
     steps:
      - action: movie_tv_genre_form
      - active_loop: null
+     - action: action_discover_movie
      - action: utter_discover
+
+  - rule: activate movie form
+    steps:
+      - intent: ask_genre
+      - action: movie_tv_form
+      - active_loop: movie_tv_form
+  - rule: submit movie form
+    condition:
+    - active_loop: movie_tv_form
+    steps:
+      - action: movie_tv_form
+      - active_loop: null
+      - action: action_genres_available
+      - action: utter_genres
+    

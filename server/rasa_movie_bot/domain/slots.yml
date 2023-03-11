@@ -13,3 +13,13 @@ slots:
     - type: from_entity
       entity: genre
       influence_conversation: true
+
+  genres_available:
+    type: text
+    mappings:
+    - type: custom
+  
+  top_results:
+    type: text
+    mappings:
+    - type: custom
