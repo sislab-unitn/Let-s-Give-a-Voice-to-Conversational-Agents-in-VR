@@ -63,3 +63,7 @@ rules:
     steps:
       - intent: restart
       - action: action_restart
+  - rule: thank you
+    steps:
+      - intent: thanks
+      - action: utter_thanks

@@ -15,7 +15,7 @@ class ValidateMovieTvGenreForm(FormValidationAction):
     def name(self) -> Text:
         return Actions.ValidateMovieTvGenreForm.value
 
-    def validate_movie_tv(
+    def validate_movie_or_tv(
         self,
         slot_value: Any,
         dispatcher: CollectingDispatcher,
@@ -24,7 +24,7 @@ class ValidateMovieTvGenreForm(FormValidationAction):
     ) -> Dict[Text, Any]:
         """Validate movie or tv value."""
         print(f"slot_value {slot_value}")
-        movie_or_tv = tracker.get_slot(MovieOrTv.movie.value)
+        movie_or_tv = tracker.get_slot(Slots.movie_or_tv.value)
         movie = Levenshtein.jaro(movie_or_tv, MovieOrTv.movie.value)
         tv_show = Levenshtein.jaro(movie_or_tv, MovieOrTv.tv_show.value)
         if movie > tv_show:
