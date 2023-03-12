@@ -14,3 +14,8 @@ responses:
     - text: "What genre would you like to watch?"
     - text: "Which genre is your favourite?"
     - text: "Which genre are you in the mood for?"
+  utter_ask_rephrase:
+    - text: "I didn't understand. Could you rephrase please?"
+    - text: "I didn't get that. Can you rephrase please?"
+    - text: "I didn't understand. Could you repeat please?"
+    - text: "Could you rephrase please?"

@@ -4,7 +4,7 @@ import Levenshtein
 import requests
 import tmdbsimple as tmdb
 
-from .enum_slots import MovieOrTv, Genre, Slots
+from enum_slots import MovieOrTv, Genre, Slots
 
 
 class TMDBParser:

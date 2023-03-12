@@ -1,17 +1,19 @@
 
 
-from typing import Any, Text, Dict, List
+import os
+import sys
+from typing import Any, Dict, List, Text
 
 from rasa_sdk import Action, Tracker
+from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.events import (
-    SlotSet,
-)
 
+# add this folder to the path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from enum_actions import Actions
+from enum_slots import Genre, MovieOrTv, Slots
+from tmdb_parser import TMDBParser
 
-from .enum_actions import Actions
-from .enum_slots import Slots, MovieOrTv, Genre
-from .tmdb_parser import TMDBParser
 
 class ActionGenresAvailable(Action):
     """

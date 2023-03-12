@@ -1,13 +1,16 @@
-from typing import Text, Any, Dict
+import os
+import sys
+from typing import Any, Dict, Text
 
-from rasa_sdk import Tracker, FormValidationAction
+import Levenshtein
+from rasa_sdk import FormValidationAction, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
 
-import Levenshtein
-
-from .enum_slots import MovieOrTv, Genre, Slots
-from .enum_actions import Actions
+# add this folder to the path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from enum_actions import Actions
+from enum_slots import Genre, MovieOrTv, Slots
 
 
 class ValidateMovieTvForm(FormValidationAction):

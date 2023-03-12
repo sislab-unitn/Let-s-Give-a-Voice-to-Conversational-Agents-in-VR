@@ -23,12 +23,6 @@ responses:
     - text: "I'm glad to help you anytime."
     - text: "It's a pleasure."
   
-  utter_rephrase:
-    - text: "I didn't understand. Could you rephrase please?"
-    - text: "I didn't get that. Can you rephrase please?"
-    - text: "I didn't understand. Could you repeat please?"
-    - text: "Could you rephrase please?"
-  
   utter_goodbye:
     - text: "Bye"
     - text: "I'm happy to help you anytime."

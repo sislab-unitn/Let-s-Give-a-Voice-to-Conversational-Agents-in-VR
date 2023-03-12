@@ -1,7 +1,7 @@
 import argparse
-import sys
 import os
 import pathlib
+import sys
 
 try:
     import tomllib
