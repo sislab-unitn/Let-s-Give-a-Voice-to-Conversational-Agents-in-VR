@@ -62,7 +62,9 @@ class ServerModel:
             url=url_rasa, data=rasa_body, headers=rasa_request_header
         )
         response_rasa.raise_for_status()
-        response = response_rasa.json()[0]["text"]
+        response = ""
+        for item in response_rasa.json():
+            response += item["text"]
         return response
 
     async def text_to_speech(self, text: str) -> AsyncGenerator:

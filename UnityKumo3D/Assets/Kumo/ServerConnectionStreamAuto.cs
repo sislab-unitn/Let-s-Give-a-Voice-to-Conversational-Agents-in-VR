@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using TMPro;
 /// <summary>
 /// This class is used to connect to a server and send a request to get a stream of audio data. 
@@ -85,9 +86,18 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     [Tooltip("Sound noise level sampling window ( seconds )")]
     public double audioSamplingWindow = 0.1;
 
+    /// <summary>
+    /// Set the button to start and stop recording
+    /// <summary>
+    [Tooltip("Set the button to start and stop recording")]
+    public Button startButton;
+
     public TMP_Text transcription;
     public TMP_Text response;
     public TMP_Text noiseLevel;
+
+
+
     #endregion
     /// <summary>
     /// Event to be called when the request is started
@@ -137,7 +147,22 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         }
         this.url = this.url + "/" + this.path + "?sender=" + this.sender_id;
         // start the recording for the audio noise level detection
-        StartRecording();
+        // StartRecording();
+        this.startButton.onClick.AddListener(StartStopRecording);
+        this.StartRecording();
+    }
+    void StartStopRecording()
+    {
+        if (Microphone.IsRecording(Microphone.devices[0]))
+        {
+            StopRecording();
+            this.startButton.GetComponentInChildren<TMP_Text>().text = "Start Recording";
+        }
+        else
+        {
+            StartRecording();
+            this.startButton.GetComponentInChildren<TMP_Text>().text = "Stop Recording";
+        }
     }
 
     void Update()
@@ -149,30 +174,32 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         }
         else
         {
-            // check the audio noise level over the sampling window is above the upper threshold
-            int position = Microphone.GetPosition(Microphone.devices[0]);
-            float audioLevel = Audio.getAudioLevel(this.clip, position, this.audioSamplingWindow);
-            // Debug.Log(audioLevel);
-            noiseLevel.text = audioLevel.ToString();
-            // start the recording if the audio level is above the upper threshold
-            if (!this.isRecording && (audioLevel > this.audioLevelUpperThreshold))
-            {
-                this.startPosition = position - (int)(this.audioStartWindow * this.inputSampleRate);
-                startPosition = startPosition < 0 ? 0 : startPosition;
-                this.isRecording = true;
-
-            }
-            // stop the recording if the audio level is below the lower threshold
-            if (this.isRecording && audioLevel < this.audioLevelLowerThreshold)
-            {
-                // timer to wait for the audio level to be below the lower threshold for the pause window
-                timer += Time.deltaTime;
-                if (timer > this.audioPauseWindow)
+            if (Microphone.IsRecording(Microphone.devices[0])) {
+                // check the audio noise level over the sampling window is above the upper threshold
+                int position = Microphone.GetPosition(Microphone.devices[0]);
+                float audioLevel = Audio.getAudioLevel(this.clip, position, this.audioSamplingWindow);
+                // Debug.Log(audioLevel);
+                noiseLevel.text = audioLevel.ToString();
+                // start the recording if the audio level is above the upper threshold
+                if (!this.isRecording && (audioLevel > this.audioLevelUpperThreshold))
                 {
-                    StopRecording();
-                    this.isRecording = false;
-                    SendAndPlay();
-                    timer = 0;
+                    this.startPosition = position - (int)(this.audioStartWindow * this.inputSampleRate);
+                    startPosition = startPosition < 0 ? 0 : startPosition;
+                    this.isRecording = true;
+
+                }
+                // stop the recording if the audio level is below the lower threshold
+                if (this.isRecording && audioLevel < this.audioLevelLowerThreshold)
+                {
+                    // timer to wait for the audio level to be below the lower threshold for the pause window
+                    timer += Time.deltaTime;
+                    if (timer > this.audioPauseWindow)
+                    {
+                        StopRecording();
+                        this.isRecording = false;
+                        SendAndPlay();
+                        timer = 0;
+                    }
                 }
             }
         }
@@ -262,4 +289,12 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         this.audioLevelLowerThreshold = float.Parse(value);
         Debug.Log("Deactivation Threshold changed to " + value);
     }
+    //     public void StartButton()
+    //     {
+    //         StartRecording();
+    //     }
+    //     public void StartButton()
+    //     {
+    //         StartRecording();
+    //     }
 }

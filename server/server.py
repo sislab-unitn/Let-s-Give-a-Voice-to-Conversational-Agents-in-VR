@@ -39,17 +39,19 @@ async def text_converse(request: Request):
     - Returns a json object with the response from the rasa model and the tracker data
     """
     # forward the request to rasa server
-    url_rasa = f'http{"s" if config["server"]["rasa_SSL"] else ""}://{config["server"]["rasa_host"]}:{config["server"]["rasa_port"]}/webhooks/rest/webhook'
-    response_rasa = await server.rasa_session.post(url=url_rasa, data=request.stream())
-    response_rasa.raise_for_status()
+    # url_rasa = f'http{"s" if config["server"]["rasa_SSL"] else ""}://{config["server"]["rasa_host"]}:{config["server"]["rasa_port"]}/webhooks/rest/webhook'
+    # response_rasa = await server.rasa_session.post(url=url_rasa, data=request.stream())
+    # response_rasa.raise_for_status()
+    response_json = request.json()
+    response = server.text_to_text(response_json["text"], response_json["sender"])
     # get the tracker slot data
     url_tracker = f'http{"s" if config["server"]["rasa_SSL"] else ""}://{config["server"]["rasa_host"]}:{config["server"]["rasa_port"]}/conversations/{request.stream()}/tracker'
     response_tracker = await server.rasa_session.get(url=url_tracker)
     response_tracker.raise_for_status()
     try:
-        response = [response_rasa.json()[0], response_tracker.json()]
+        response = [response, response_tracker.json()]
     except IndexError:
-        response = [response_rasa.json(), response_tracker.json()]
+        response = [response, response_tracker.json()]
     return response
 
 
