@@ -27,21 +27,6 @@ rules:
       - intent: out_of_scope
       - action: utter_out_of_scope
 
-  - rule: activate movie_or_tv and genre form
-    steps:
-      - intent: ask_watch
-      - action: movie_tv_genre_form
-      - active_loop: movie_tv_genre_form
-
-  - rule: submit movie_or_tv and genre form
-    condition:
-    - active_loop: movie_tv_genre_form
-    steps:
-     - action: movie_tv_genre_form
-     - active_loop: null
-     - action: action_discover_movie
-     - action: utter_discover
-
   - rule: activate movie form
     steps:
       - intent: ask_genre

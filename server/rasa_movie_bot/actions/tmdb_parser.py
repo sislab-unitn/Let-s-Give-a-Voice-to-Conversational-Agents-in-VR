@@ -1,6 +1,7 @@
 # function to get the slot ids
 from typing import Dict, List, Tuple
 import Levenshtein
+import base64
 import requests
 import tmdbsimple as tmdb
 
@@ -131,3 +132,26 @@ class TMDBParser:
         similarity_value = max(inverse_similarity, key=lambda x: x)
         similarity_id = similarity[similarity_mx][1]
         return inverse_genres[similarity_id], similarity_value
+    @staticmethod
+    def get_movie_poster(results: List[Dict], quantity: int = 3) -> Dict:
+        results_data = dict()
+        results_data["images"] = []
+        results_data["titles"] =  []
+
+        for result in results["results"][:quantity]:
+            try:
+                title = result["title"]
+            except KeyError:
+                title = result["name"]
+            results_data["titles"].append(title)
+            poster_path = result["poster_path"]
+            if poster_path is not None:
+                poster_url = f"https://image.tmdb.org/t/p/original{poster_path}"
+                request = requests.get(poster_url, stream=False)
+                request.raise_for_status()
+                # encode in base64 and to utf-8 to get compatibility with json
+                encoded = base64.b64encode(request.content)
+                results_data["images"].append(encoded.decode("utf-8"))
+            else:
+                results_data["images"].append(None)
+        return results_data

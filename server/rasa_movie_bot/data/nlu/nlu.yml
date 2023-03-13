@@ -74,6 +74,8 @@ nlu:
       - help me
       - what can you do?
       - what can you help me with?
+      - what can you do
+      - what can you help me with
   - intent: out_of_scope
     examples: |
       - I want to order food
@@ -101,6 +103,17 @@ nlu:
       - do you like me?
       - Can you think?
       - Can you dream ?
+      - what are you 
+      - are you a bot
+      - are you human 
+      - who are you
+      - are you alive
+      - do you think
+      - do you have feelings
+      - who do you like
+      - do you like me
+      - Can you think
+      - Can you dream 
   - intent: anger
     examples: |
       - You are dumb

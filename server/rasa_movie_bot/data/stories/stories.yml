@@ -1,32 +1,28 @@
 version: "3.1"
 
-# stories:
-#   - story: happy path movie first-popular
-#     steps:
-#       - intent: greet
-#       - action: utter_greet
-#       - intent: ask_watch
-#       - slot_was_set:
-#           - movie_or_tv
-#       - action: utter_popular_or_genre
-#       - intent: popular
-#       - action: utter_discover
-#       - intent: thanks
-#       - action: utter_thanks
+stories:
 
-#   - story: happy path movie_or_tv form
-#     steps:
-#       - intent: greet
-#       - action: utter_greet
-#       - intent: ask_watch
-#       - slot_was_set:
-#           - movie_or_tv: null
-#       - action: utter_movie_or_tv_show
-#       - intent: ask_watch
-#       - slot_was_set:
-#           - movie_or_tv
-#       - action: utter_popular_or_genre
-#       - intent: popular
-#       - action: utter_discover
-#       - intent: thanks
-#       - action: utter_thanks
+  - story: activate movie_or_tv and genre form closure
+    steps:
+      - intent: ask_watch
+      - action: movie_tv_genre_form
+      - active_loop: movie_tv_genre_form
+      - active_loop: null
+      - action: action_discover_movie
+      - action: utter_discover
+      - action: utter_continue
+      - intent: deny
+      - action: utter_closure
+      # - action: action_stop
+  - story: activate movie_or_tv and genre form
+    steps:
+      - intent: ask_watch
+      - action: movie_tv_genre_form
+      - active_loop: movie_tv_genre_form
+      - active_loop: null
+      - action: action_discover_movie
+      - action: utter_discover
+      - action: utter_continue
+      - intent: affirm
+      - action: utter_ask_movie_or_tv
+      - action: action_restart

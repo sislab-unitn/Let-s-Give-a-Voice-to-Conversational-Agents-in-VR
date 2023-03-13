@@ -23,7 +23,7 @@ public static class Audio
         start = (start < 0) ? 0 : start;
         int end = (int)(position);
         
-        Debug.Log("start: " + start + " end: " + end);
+        // Debug.Log("start: " + start + " end: " + end);
         float sum = 0;
         for (int i = start; i < end; i++)
         {

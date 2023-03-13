@@ -6,7 +6,7 @@ class Slots(Enum):
     genre = "genre"
     top_results = "top_results"
     genres_available = "genres_available"
-
+    results_data = "results_data"
 
 class MovieOrTv(Enum):
     movie = "movie"

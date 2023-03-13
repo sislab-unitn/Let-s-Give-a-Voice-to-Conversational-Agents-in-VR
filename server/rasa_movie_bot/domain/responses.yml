@@ -56,3 +56,11 @@ responses:
     - text: "Well, at least I'm a bot is smarter than you."
     - text: "I know better than you who is smarter, the one that is not wasting their breath against an bot"
     - text: "I can't say I like you either"
+  utter_continue:
+    - text: "Should I recommend you something else?"
+    - text: "Would you like to watch something else?"
+  utter_closure:
+    - text: "I'm to glad to have helped you. Thank you for having used Kumo, an AI powered movie and tv show recommendation system"
+    - text: "I'm happy to help you anytime. Thank you for using Kumo, an AI powered movie and tv show recommendation system"
+    - text: "It was a pleasure. Thank you for using Kumo, an AI powered movie and tv show recommendation system"
+    - text: "I'm happy to hear that. Thank you for having used Kumo, an AI powered movie and tv show recommendation system"

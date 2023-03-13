@@ -67,6 +67,13 @@ public class ServerConnection : MonoBehaviour
     {
 
     }
+    /// <summary>
+    /// Send a web request to the server
+    /// </summary>
+    void SendWebRequest(string message)
+    {
+        StartCoroutine(RequestServer());
+    }
     IEnumerator RequestServer()
     {
         // do a post request to the server

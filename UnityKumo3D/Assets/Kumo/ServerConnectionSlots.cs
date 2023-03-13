@@ -133,5 +133,18 @@ public class ServerConnectionSlots : MonoBehaviour
     }
     // This comes from SoundWav module
 
-
+        public void changeHost(string host)
+    {
+        this.host = host;
+        Debug.Log("Host changed to " + host);
+        this.url = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
+        this.url = this.url + "/" + this.path + "?sender=" + this.sender_id;
+    }
+    public void changePort(string port)
+    {
+        this.port = port;
+        Debug.Log("Port changed to " + port);
+        this.url = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
+        this.url = this.url + "/" + this.path + "?sender=" + this.sender_id;
+    }
 }

@@ -51,6 +51,10 @@ class ValidateMovieTvGenreForm(FormValidationAction):
         genre, confidence = TMDBParser.genre_matcher(slot_value, movie_or_tv)
         if confidence < 0.8:
             print("confidence too low")
+            genres_available = TMDBParser.discover_genres(movie_or_tv)
+            # convert to string
+            genres_available = TMDBParser.list_to_string(genres_available)
+            dispatcher.utter_message(text=f"I'm sorry, I didn't understand that. {slot_value} is not a valid genre for {movie_or_tv}. Valid genres are: {genres_available}.")
             return {Slots.genre.value: None}
         print(f"was mapped to {genre} with confidence {confidence}")
         return {Slots.genre.value: genre}

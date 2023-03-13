@@ -8,7 +8,7 @@ responses:
     - text: "Do you like a movie or a tv series?"
     - text: "Are you in the mood for a movie or a tv series?"
   utter_ask_genre:
-    - text: "Would you prefer to watch what's popular or do you have a specific genre in mind?"
+    - text: "What genre would like to watch?"
     - text: "What genre do you have in mind?"
     - text: "What kind of genre do you have in mind?"
     - text: "What genre would you like to watch?"

@@ -19,9 +19,9 @@ pipeline:
   - name: DIETClassifier # both intents and entities
     epochs: 100
     constrain_similarities: true
-  - name: RegexEntityExtractor
+
   - name: EntitySynonymMapper
-  
+  - name: RegexEntityExtractor
   - name: ResponseSelector
     epochs: 100
     constrain_similarities: true

@@ -152,7 +152,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
             // check the audio noise level over the sampling window is above the upper threshold
             int position = Microphone.GetPosition(Microphone.devices[0]);
             float audioLevel = Audio.getAudioLevel(this.clip, position, this.audioSamplingWindow);
-            Debug.Log(audioLevel);
+            // Debug.Log(audioLevel);
             noiseLevel.text = audioLevel.ToString();
             // start the recording if the audio level is above the upper threshold
             if (!this.isRecording && (audioLevel > this.audioLevelUpperThreshold))
@@ -215,7 +215,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         UnityWebRequest request = new UnityWebRequest(this.url, "POST");
         UploadHandler uploader = new UploadHandlerRaw(fileContent);
         // the download handler is a custom one that automatically plays the audio in streaming mode
-        StreamingPCMDownloadHandler downloader = new StreamingPCMDownloadHandler(this.outputSource, this.outputSampleRate, 1, pauseLength : 100);
+        StreamingPCMDownloadHandler downloader = new StreamingPCMDownloadHandler(this.outputSource, this.outputSampleRate, 1, pauseLength: 100);
         request.uploadHandler = uploader;
         request.downloadHandler = downloader;
         request.SetRequestHeader("Content-Type", "audio/wav");
@@ -238,5 +238,28 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         StartRecording();
         yield return null;
     }
-
+    public void changeHost(string host)
+    {
+        this.host = host;
+        Debug.Log("Host changed to " + host);
+        this.url = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
+        this.url = this.url + "/" + this.path + "?sender=" + this.sender_id;
+    }
+    public void changePort(string port)
+    {
+        this.port = port;
+        Debug.Log("Port changed to " + port);
+        this.url = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
+        this.url = this.url + "/" + this.path + "?sender=" + this.sender_id;
+    }
+    public void changeActivationThreshold(string value)
+    {
+        this.audioLevelUpperThreshold = float.Parse(value);
+        Debug.Log("Activation Threshold changed to " + value);
+    }
+    public void changeDeactivationThreshold(string value)
+    {
+        this.audioLevelLowerThreshold = float.Parse(value);
+        Debug.Log("Deactivation Threshold changed to " + value);
+    }
 }

@@ -36,4 +36,7 @@ class ActionDiscoverMovie(Action):
 
         evt = SlotSet(Slots.top_results.value, TMDBParser.list_to_string(top_names))
 
-        return [evt]
+        data = TMDBParser.get_movie_poster(response,3)
+        
+        evt2 = SlotSet(Slots.results_data.value, data)
+        return [evt,evt2]
