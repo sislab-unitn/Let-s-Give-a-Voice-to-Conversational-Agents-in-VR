@@ -1,0 +1,135 @@
+version: "3.1"
+
+nlu:
+- lookup: genre
+  examples: |
+    - Action
+    - action
+    - actions
+    - Adventure
+    - Adventure
+    - adventure
+    - adventures
+    - Animation
+    - Animation
+    - animation
+    - animations
+    - Comedy
+    - Comedy
+    - comedy
+    - comedys
+    - comedies
+    - comedic
+    - Crime
+    - Crime
+    - crime
+    - crimes
+    - Documentary
+    - Documentary
+    - documentary
+    - documentarys
+    - Drama
+    - Drama
+    - drama
+    - dramas
+    - Family
+    - Family
+    - family
+    - familys
+    - Fantasy
+    - Fantasy
+    - fantasy
+    - fantasys
+    - History
+    - History
+    - history
+    - historys
+    - historic
+    - Historic
+    - Horror
+    - Horror
+    - horror
+    - horrors
+    - Music
+    - Music
+    - music
+    - musics
+    - musical
+    - Musical
+    - Mystery
+    - Mystery
+    - mystery
+    - mysterys
+    - mysterious
+    - Mysterious
+    - Romance
+    - Romance
+    - romance
+    - romances
+    - romantic
+    - Romantic
+    - romantics
+    - Romantics
+    - romanctical
+    - Romanticals
+    - romanticals
+    - Romanticals
+    - Science Fiction
+    - Science Fiction
+    - science fiction
+    - science fictions
+    - science
+    - Science
+    - TV Movie
+    - TV Movie
+    - tv Movie
+    - tv movies
+    - Thriller
+    - Thriller
+    - thriller
+    - thrillers
+    - War
+    - War
+    - war
+    - wars
+    - Western
+    - Western
+    - western
+    - westerns
+    - Action & Adventure
+    - Action & Adventure
+    - action & adventure
+    - action & adventures
+    - Animation
+    - Animation
+    - animation
+    - animations
+    - Kids
+    - Kids
+    - kids
+    - kids
+    - News
+    - News
+    - news
+    - Reality
+    - Reality
+    - reality
+    - Sci-Fi & Fantasy
+    - Sci-Fi & Fantasy
+    - sci-Fi & Fantasy
+    - sci-Fi & fantasys
+    - Soap
+    - Soap
+    - soap
+    - soaps
+    - Talk
+    - Talk
+    - talk
+    - talks
+    - War & Politics
+    - War & Politics
+    - war & Politics
+    - war & politics
+    - popular
+    - Popular
+    - populars

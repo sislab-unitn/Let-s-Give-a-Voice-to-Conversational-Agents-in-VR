@@ -1,0 +1,15 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - thanks
+  - affirm
+  - deny
+  - stop
+  - ask_watch
+  - help
+  - out_of_scope
+  - ask_genre
+  - challenge_bot
+  - anger

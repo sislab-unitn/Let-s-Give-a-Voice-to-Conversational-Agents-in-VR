@@ -1,2 +1,2 @@
 [server]
-    tmdb_API = "c038a92e3fe9346f02feaf2d8ae2efab"
+    tmdb_API = "c038a92e3fe9346f02feaf2d8ae2efab" # Your TMDB API key
