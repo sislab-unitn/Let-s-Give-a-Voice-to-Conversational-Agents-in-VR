@@ -3,7 +3,10 @@
 Here is a movie and tv show recommendation system realized using several technologies.
 It is a Unity based conversational agent with future expandability planned right in the architecture. 
 ## Demo
-![Demo](movie_bot_demo.mp4)
+<figure class="video_container">
+  <iframe src="assets/movie_bot_demo.mp4" frameborder="0" allowfullscreen="true"> 
+</iframe>
+</figure>
 This is a demo of the current capabilities of the architecture
 
 ## Architecture
