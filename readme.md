@@ -3,10 +3,7 @@
 Here is a movie and tv show recommendation system realized using several technologies.
 It is a Unity based conversational agent with future expandability planned right in the architecture. 
 ## Demo
-<figure class="video_container">
-  <iframe src="assets/movie_bot_demo.mp4" frameborder="0" allowfullscreen="true"> 
-</iframe>
-</figure>
+![Demo](assets/movie_bot_demo.mp4)
 This is a demo of the current capabilities of the architecture
 
 ## Architecture
@@ -43,7 +40,7 @@ For now a request consists of the following steps:
 ## Credits
 - Unity for the engine
 - Speechbrain and Huggingface for the ASR model https://huggingface.co/speechbrain/asr-wav2vec2-commonvoice-en
-- Rasa for the creation of the custom agent https://rasa.com
+- Rasa for the creation of the custom agent 
 - Microsoft and Hugginface for the TTS model https://huggingface.co/microsoft/speecht5_tts
 - The Movie Database and celiao for the API and API wrapper for real movies data https://www.themoviedb.org https://github.com/celiao/tmdbsimple
 - uLipSync for the LipSync and the demo scene. https://github.com/hecomi/uLipSync
