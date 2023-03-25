@@ -1,0 +1,132 @@
+version: "3.1"
+
+nlu:
+  - intent: greet
+    examples: |
+      - hey
+      - hello
+      - hi
+      - hello there
+      - good morning
+      - good evening
+      - moin
+      - hey there
+      - let's go
+      - hey dude
+      - goodmorning
+      - goodevening
+      - good afternoon
+
+  - intent: goodbye
+    examples: |
+      - cu
+      - good by
+      - cee you later
+      - good night
+      - bye
+      - goodbye
+      - have a nice day
+      - see you around
+      - bye bye
+      - see you later
+
+  - intent: affirm
+    examples: |
+      - yeah
+      - correct
+      - ye
+      - uh yes
+      - let's do it
+      - yeah
+      - uh yes
+      - um yes
+      - yes knocking
+      - that's correct
+      - yes yes
+      - right
+      - yea
+      - yes
+      - yes right
+      - right on
+      - i love that
+
+  - intent: deny
+    examples: |
+      - no
+      - nope
+      - no thanks
+      - no thank you
+      - uh no
+      - breath no
+      - do you have something else
+      - no this does not work for me
+  - intent: thanks
+    examples: |
+      - thank you
+      - thanks
+      - ty
+      - love you
+      - thank you so much
+      - ty for your help
+  - intent: help
+    examples: |
+      - help
+      - help me
+      - what can you do?
+      - what can you help me with?
+      - what can you do
+      - what can you help me with
+  - intent: out_of_scope
+    examples: |
+      - I want to order food
+      - What is 2 + 2?
+      - Who's the US President?
+      - fuck you
+      - bitch
+      - Tell me the weather
+      - cheer me up please
+      - Call my mother
+  - intent: stop
+    examples: |
+      - stop
+      - quit
+  - intent: challenge_bot
+    examples: | 
+      - what are you ?
+      - are you a bot?
+      - are you human ?
+      - who are you?
+      - are you alive?
+      - do you think?
+      - do you have feelings?
+      - who do you like?
+      - do you like me?
+      - Can you think?
+      - Can you dream ?
+      - what are you 
+      - are you a bot
+      - are you human 
+      - who are you
+      - are you alive
+      - do you think
+      - do you have feelings
+      - who do you like
+      - do you like me
+      - Can you think
+      - Can you dream 
+  - intent: anger
+    examples: |
+      - You are dumb
+      - I hate you
+      - You are stupid
+      - idiot
+      - you are a stupid bot
+      - useless bot
+      - fuck you
+      - bitch
+  - intent: restart
+    examples: |
+      - restart
+      - reset
+      - start over
+      - start again

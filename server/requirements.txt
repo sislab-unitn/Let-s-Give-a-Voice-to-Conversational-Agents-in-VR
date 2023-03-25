@@ -1,4 +1,10 @@
 fastapi~=0.92.0
 httpx~=0.23.3
 toml~=0.10.2
+datasets~=2.9.0
+speechbrain~=0.5.13
+torch~=2.0.0.dev20230220
+datasets~=2.9.0
+soundfile~=0.12.1
+transformers~=4.27.0.dev0
 uvicorn~=0.20.0

@@ -4,6 +4,3 @@
 [submodule "asr/esb/diagnostic-dataset"]
 	path = asr/esb/diagnostic-dataset
 	url = https://huggingface.co/datasets/esb/diagnostic-dataset
-[submodule "server/tmdbsimple"]
-	path = server/tmdbsimple
-	url = https://github.com/celiao/tmdbsimple

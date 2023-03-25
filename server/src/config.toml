@@ -1,0 +1,73 @@
+# here place the host names, ports and API keys for the different services (rasa_actions, asr, tts.ai, etc.)
+[server]
+
+    self_host = "localhost"
+    self_port = 8080
+    self_API = ""
+    self_SSL = false
+
+    asr_host = "localhost"
+    asr_port = 8081
+    asr_API = ""
+    asr_SSL = false
+    autostart_asr = true # if true the main process will not start an asr server, but will use the one specified in the settings
+    asr_path = "src/asr/asr_server.py" # path to the asr server
+    asr_args = "" # arguments to pass to the asr server
+
+    tts_host = "localhost"
+    tts_port = 8082
+    tts_API = ""
+    tts_SSL = false
+    autostart_tts = true # if true the main process will not start a tts server, but will use the one specified in the settings
+    tts_path = "src/tts/tts_server.py" # path to the tts server
+    tts_args = "" # arguments to pass to the tts server
+
+    [[bots]]
+        name = "movie_bot"
+        rasa_host = "localhost"
+        rasa_port = 5005
+        rasa_API = ""
+        rasa_SSL = false
+        autostart_rasa = false  # if true the main process will not start a rasa server, but will use the one specified in the settings
+        rasa_path = "rasa_bots/rasa_movie_bot" # path to the rasa server
+        rasa_args = "--enable-api" # arguments to pass to the rasa server
+        autostart_rasa_actions = false  # if true the main process will not start a rasa_actions server, but will use the one specified in the settings
+        rasa_actions_args = "" # arguments to pass to the rasa action server
+    
+    [[bots]]
+        name = "triage_bot"
+        rasa_host = "localhost"
+        rasa_port = 5005
+        rasa_API = ""
+        rasa_SSL = false
+        autostart_rasa = false  # if true the main process will not start a rasa server, but will use the one specified in the settings
+        rasa_path = "rasa_bots/rasa_movie_bot" # path to the rasa server
+        rasa_args = "--enable-api" # arguments to pass to the rasa server
+        autostart_rasa_actions = false  # if true the main process will not start a rasa_actions server, but will use the one specified in the settings
+        rasa_actions_args = "" # arguments to pass to the rasa action server
+
+    [[bots]]
+        name = "anamnesi_bot"
+        rasa_host = "localhost"
+        rasa_port = 5005
+        rasa_API = ""
+        rasa_SSL = false
+        autostart_rasa = false  # if true the main process will not start a rasa server, but will use the one specified in the settings
+        rasa_path = "rasa_bots/rasa_movie_bot" # path to the rasa server
+        rasa_args = "--enable-api" # arguments to pass to the rasa server
+        autostart_rasa_actions = false  # if true the main process will not start a rasa_actions server, but will use the one specified in the settings
+        rasa_actions_args = "" # arguments to pass to the rasa action server
+    [[bots]]
+        name = "surgery_bot"
+        rasa_host = "localhost"
+        rasa_port = 5005
+        rasa_API = ""
+        rasa_SSL = false
+        autostart_rasa = false  # if true the main process will not start a rasa server, but will use the one specified in the settings
+        rasa_path = "rasa_bots/rasa_movie_bot" # path to the rasa server
+        rasa_args = "--enable-api" # arguments to pass to the rasa server
+        autostart_rasa_actions = false  # if true the main process will not start a rasa_actions server, but will use the one specified in the settings
+        rasa_actions_args = "" # arguments to pass to the rasa action server
+
+[settings]
+    timeout = 10 # timeout for the server to respond

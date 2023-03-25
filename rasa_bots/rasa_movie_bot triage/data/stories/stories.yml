@@ -1,0 +1,15 @@
+version: "3.1"
+
+stories:
+
+  - story: Lung example
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_instructions
+      - action: utter_inquire
+      - action: investigate_symptoms_form
+      - active_loop: investigate_symptoms_form
+      - active_loop: null
+      - action: utter_esi
+      - action: utter_closure
