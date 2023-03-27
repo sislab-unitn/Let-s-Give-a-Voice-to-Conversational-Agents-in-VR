@@ -1,35 +1,6 @@
 version: "3.1"
 
 responses:
-  utter_ask_name:
-    - text: "Let's start from your name."
-    - text: "What's your name"
-  utter_ask_symptoms:
-    - text: "To double check, can you repeat your symptoms?"
-    - text: "Can you repeat your symptoms?"
-  utter_ask_first_time:
-    - text: "Is it the first time you experience something like this?"
-    - text: "Has this ever happened to you before?"
-  utter_ask_drink:
-    - text: "Do you drink alcohol regularly?"
-    - text: "Do you drink alcohol?"
-  utter_ask_smoke:
-    - text: "Do you smoke?"
-    - text: "Have you ever smoked in you life?"
-  utter_ask_pregnant:
-    - text: "Are you pregnant?"
-  utter_ask_medications:
-    - text: "Are you on medications?"
-    - text: "Do you take medications?"
-    - text: "Are you under medications?"
-  utter_ask_diseases:
-    - text: "Do you have any diseases?"
-    - text: "Are you ill in any other way?"
-  utter_ask_family_diseases:
-    - text: "Are you aware of family members with similar conditions?"
-    - text: "Do you have family members with similar conditions?"
-  utter_ask_allergies:
-    - text: "Do you have any allergy?"
-    - text: "Is there any substance you are allergic to?"
+
   utter_ask_rephrase:
     - text: "Sorry, I didn't understand that. Can you rephrase please"

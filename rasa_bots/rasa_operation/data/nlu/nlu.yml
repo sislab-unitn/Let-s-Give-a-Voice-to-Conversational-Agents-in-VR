@@ -65,6 +65,9 @@ nlu:
       - fine
       - i m done
       - finished
+      - i'm ready
+      - ready
+      - let's start
   - intent: deny
     examples: |
       - no

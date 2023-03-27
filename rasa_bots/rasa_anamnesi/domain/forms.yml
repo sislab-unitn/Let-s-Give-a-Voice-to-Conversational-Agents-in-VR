@@ -7,7 +7,7 @@ forms:
       - first_time
       - drink
       - smoke
-      - pregnant
+      # - pregnant
       - medications
       - diseases
       - family_diseases

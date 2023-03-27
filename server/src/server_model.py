@@ -16,7 +16,11 @@ class ServerModel:
         self.rasa_session = httpx.AsyncClient()
         self.asr_session = httpx.AsyncClient()
         self.tts_session = httpx.AsyncClient()
-
+        self.bots = dict()
+        for bot in self.config["bots"]:
+            self.bots[bot["name"]] = bot
+        print(f"ServerModel initialized with {self.bots.keys()}")
+        
     async def speech_to_text(self, request: Request) -> str:
         """speech_to_text gets the audio file from the request and sends it to the asr server
         :param Request request: the request from the client
@@ -43,9 +47,10 @@ class ServerModel:
             response_dict = json.loads(asr_content[-1])
         return response_dict["text"]
 
-    async def text_to_text(self, input: str, sender: str) -> str:
+    async def text_to_text(self, bot: str, input: str, sender: str) -> str:
         """
         Function to handle the text to text request for rasa
+        :param bot: the bot to be used
         :param input: the text to be sent to rasa
         :param sender: the sender id to be sent to rasa
         :return: the response from rasa
@@ -54,7 +59,11 @@ class ServerModel:
         rasa_body = dict()
         rasa_body["sender"] = sender
         rasa_body["message"] = input
-        url_rasa = f'http{"s" if self.config["server"]["rasa_SSL"] else ""}://{self.config["server"]["rasa_host"]}:{self.config["server"]["rasa_port"]}/webhooks/rest/webhook'
+        try:
+            bot_config = self.bots[bot]
+        except KeyError:
+            return f"{bot} is not a valid bot"
+        url_rasa = f'http{"s" if bot_config["rasa_SSL"] else ""}://{bot_config["rasa_host"]}:{bot_config["rasa_port"]}/webhooks/rest/webhook'
         rasa_request_header = dict()
         rasa_request_header["Content-Type"] = "application/json"
         rasa_body = json.dumps(rasa_body)
@@ -67,14 +76,14 @@ class ServerModel:
             response += item["text"]
         return response
 
-    async def text_to_speech(self, text: str) -> AsyncGenerator:
+    async def text_to_speech(self,speaker:str, text: str) -> AsyncGenerator:
         """
         Function to handle the text to speech request for tts using the tts model
         :param text: the text to be sent to tts
         :return: the audio file from tts
         """
         # get the audio synthetisite from tts.ai
-        url_tts_text_to_speech = f'http{"s" if self.config["server"]["tts_SSL"] else ""}://{self.config["server"]["tts_host"]}:{self.config["server"]["tts_port"]}/tts'
+        url_tts_text_to_speech = f'http{"s" if self.config["server"]["tts_SSL"] else ""}://{self.config["server"]["tts_host"]}:{self.config["server"]["tts_port"]}/tts?speaker={speaker}'
         tts_request_header_text_to_speech = dict()
         tts_request_header_text_to_speech["Content-Type"] = "application/json"
         tts_request_header_text_to_speech["Accept"] = "audio/raw"
@@ -92,11 +101,15 @@ class ServerModel:
             async for chunk in response.aiter_bytes():
                 yield chunk
 
-    async def get_tracker_data(self, sender: str) -> bytes:
+    async def get_tracker_data(self, bot: str, sender: str) -> bytes:
         # forward the request to rasa server
         rasa_request_header = dict()
         rasa_request_header["Content-Type"] = "application/json"
-        url_tracker = f'http{"s" if self.config["server"]["rasa_SSL"] else ""}://{self.config["server"]["rasa_host"]}:{self.config["server"]["rasa_port"]}/conversations/{sender}/tracker'
+        try:
+            bot_config = self.bots[bot]
+        except KeyError:
+            return f"{bot} is not a valid bot"
+        url_tracker = f'http{"s" if bot_config["rasa_SSL"] else ""}://{bot_config["rasa_host"]}:{bot_config["rasa_port"]}/conversations/{sender}/tracker'
         response_tracker = await self.rasa_session.get(url=url_tracker)
         response_tracker.raise_for_status()
 

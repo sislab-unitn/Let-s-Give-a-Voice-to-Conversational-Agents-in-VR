@@ -33,6 +33,11 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     [Tooltip("The sender id for rasa to use")]
     public string sender_id;
     /// <summary>
+    /// The bot to use
+    /// </summary>
+    [Tooltip("Bot to use")]
+    public string bot;
+    /// <summary>
     /// Use SSL or not
     /// </summary>
     [Tooltip("Use SSL or not")]
@@ -145,7 +150,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         {
             Debug.Log("Connection Successful!");
         }
-        this.url = this.url + "/" + this.path + "?sender=" + this.sender_id;
+        this.url = this.url + "/" + this.path + "?bot="+this.bot +"&sender=" + this.sender_id;
         // start the recording for the audio noise level detection
         // StartRecording();
         this.startButton.onClick.AddListener(StartStopRecording);

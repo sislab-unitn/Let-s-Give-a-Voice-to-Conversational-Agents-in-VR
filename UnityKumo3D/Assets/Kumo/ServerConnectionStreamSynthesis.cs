@@ -25,6 +25,11 @@ public class ServerConnectionStreamSynthesis : MonoBehaviour
     [Tooltip("The path to post the audio file to")]
     public string path;
     /// <summary>
+    /// The speaker to use
+    /// </summary>
+    [Tooltip("Speaker to use")]
+    public string speaker;
+    /// <summary>
     /// Use SSL or not
     /// </summary>
     [Tooltip("Use SSL or not")]
@@ -70,7 +75,7 @@ public class ServerConnectionStreamSynthesis : MonoBehaviour
         {
             Debug.Log("Connection Successful!");
         }
-        this.url = this.url + "/" + this.path;
+        this.url = this.url + "/" + this.path + "?" + "speaker=" + this.speaker;
         this.sendButton.onClick.AddListener(SendRequest);
         
     }
@@ -91,7 +96,7 @@ public class ServerConnectionStreamSynthesis : MonoBehaviour
     IEnumerator GetStreamAndPlay()
     {
         string encoded = System.Uri.EscapeUriString(this.textToSynthetise);
-        encoded = this.url + "?text=" + encoded;
+        encoded = this.url + "&text=" + encoded;
         UnityWebRequest request = new UnityWebRequest(encoded, "GET");
         // the download handler is a custom one that automatically plays the audio in streaming mode
         StreamingPCMDownloadHandler downloader = new StreamingPCMDownloadHandler(this.outputSource, this.outputSampleRate,1, pauseLength : this.pauseLength);

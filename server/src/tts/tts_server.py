@@ -7,9 +7,9 @@ from fastapi import Depends, FastAPI, Request, Response, status
 from fastapi.responses import StreamingResponse
 from uvicorn.config import LOGGING_CONFIG
 
-
-from ...src.config_parser import config_parser
-from tts_model import TTSModel
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname((os.path.abspath(__file__))))))
+from src.config_parser import config_parser
+from src.tts.tts_model import TTSModel
 
 config = config_parser(
     sys.argv[1:], current_path=os.path.dirname(os.path.abspath(__file__))
@@ -27,12 +27,16 @@ def read_root():
 
 
 @app.post("/tts")
-async def tts(request: Request):
+async def tts(speaker:str,request: Request):
     """
     Performs the inference on the TTS model from a POST request
     - the request body should be a JSON object with the key "text" and the value being the text to be synthesized
     - response is a PCM_16 audio file
     """
+    if speaker not in tts_model.speaker_embeddings.keys():
+        return Response(
+            status_code=status.HTTP_400_BAD_REQUEST, content="Speaker not available"
+        )
     data = await request.json()
     # if body is empty
     if data == b"":
@@ -42,24 +46,34 @@ async def tts(request: Request):
     # perfom the inference
     text = data["text"]
     print(text)
-    voice = tts_model.tts_synthesis_chunked(text)
+    voice = tts_model.tts_synthesis_chunked(speaker,text)
     return StreamingResponse(
         status_code=status.HTTP_200_OK, content=voice, media_type="audio/raw"
     )
 
 
 @app.get("/tts_synthesis")
-async def tts_test(text: str):
+async def tts_synthesis(speaker:str,text: str):
     """
     Performs the inference on the TTS model from a GET request
     - the text encoded in the url is the text to be synthesized
     - response is a PCM_16 audio file
     """
-    voice = tts_model.tts_synthesis_chunked(text)
+    if speaker not in tts_model.speaker_embeddings.keys():
+        return Response(
+            status_code=status.HTTP_400_BAD_REQUEST, content="Speaker not available"
+        )
+    voice = tts_model.tts_synthesis_chunked(speaker,text)
     return StreamingResponse(
         status_code=status.HTTP_200_OK, content=voice, media_type="audio/raw"
     )
-
+@app.get("/tts_speakers")
+async def tts_speakers():
+    """
+    Returns a list of available speakers
+    """
+    speakers = await tts_model.speakers_available()
+    return speakers
 
 # main entry point
 if __name__ == "__main__":

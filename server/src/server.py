@@ -26,14 +26,15 @@ app = FastAPI()
 @app.get("/")
 def read_root():
     return {
-        "KumoVoice": "Hi, I am KumoVoice, a voice to voice assistant. Check the documentation for more info on what API endpoints are available."
+        "Server": "Check the documentation for more info on what API endpoints are available."
     }
 
 
 @app.post("/text_converse")
-async def text_converse(request: Request):
+async def text_converse(bot: str, request: Request):
     """
     Performs 1 step of the conversation using the rasa model.
+    - use bot param to specify which bot to use
     - Expects a json object with 'sender' and 'message' keys
     - example: {"sender":"user","message":"hello"}
     - Returns a json object with the response from the rasa model and the tracker data
@@ -42,21 +43,21 @@ async def text_converse(request: Request):
     # url_rasa = f'http{"s" if config["server"]["rasa_SSL"] else ""}://{config["server"]["rasa_host"]}:{config["server"]["rasa_port"]}/webhooks/rest/webhook'
     # response_rasa = await server.rasa_session.post(url=url_rasa, data=request.stream())
     # response_rasa.raise_for_status()
-    response_json = request.json()
-    response = server.text_to_text(response_json["text"], response_json["sender"])
-    # get the tracker slot data
-    url_tracker = f'http{"s" if config["server"]["rasa_SSL"] else ""}://{config["server"]["rasa_host"]}:{config["server"]["rasa_port"]}/conversations/{request.stream()}/tracker'
-    response_tracker = await server.rasa_session.get(url=url_tracker)
-    response_tracker.raise_for_status()
+    response_json = await request.json()
     try:
-        response = [response, response_tracker.json()]
-    except IndexError:
-        response = [response, response_tracker.json()]
-    return response
+        text = response_json["message"]
+        sender = response_json["sender"]
+    except KeyError:
+        return {"error": "Invalid request body"}
+    response = await server.text_to_text(bot, text, sender)
+    # get the tracker slot data
+    tracker = await server.get_tracker_data(bot, sender)
+
+    return {"response": response, "tracker": tracker}
 
 
 @app.post("/audio_converse_stream")
-async def audio_converse_stream(sender: str, request: Request):
+async def audio_converse_stream(bot: str, sender: str, request: Request):
     """
     This function is used to stream audio from the client to the server. Expecting the audio to be in any format supported by the soundfile.read().
     Returns a PCM_16 audio file in streaming format.
@@ -69,20 +70,21 @@ async def audio_converse_stream(sender: str, request: Request):
     pprint(message)
     # rasa response
     timer = time.time()
-    response = await server.text_to_text(message, sender)
+    response = await server.text_to_text(bot, message, sender)
     timer = time.time() - timer
     pprint(f"text_to_text: {timer}")
     pprint(response)
     # synthesise the response
-    return StreamingResponse(server.text_to_speech(response), media_type="audio/wav")
+    speaker = server.bots[bot]['speaker_voice']
+    return StreamingResponse(server.text_to_speech(speaker,response), media_type="audio/wav")
 
 
 @app.get("/get_tracker")
-async def get_tracker(sender: str, request: Request):
+async def get_tracker(bot: str, sender: str, request: Request):
     """
     Get tracker information for a specific sender from the rasa server.
     """
-    return await server.get_tracker_data(sender)
+    return await server.get_tracker_data(bot, sender)
 
 
 # main entry point

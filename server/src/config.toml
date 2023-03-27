@@ -13,7 +13,7 @@
     autostart_asr = true # if true the main process will not start an asr server, but will use the one specified in the settings
     asr_path = "src/asr/asr_server.py" # path to the asr server
     asr_args = "" # arguments to pass to the asr server
-
+    
     tts_host = "localhost"
     tts_port = 8082
     tts_API = ""
@@ -22,52 +22,41 @@
     tts_path = "src/tts/tts_server.py" # path to the tts server
     tts_args = "" # arguments to pass to the tts server
 
-    [[bots]]
-        name = "movie_bot"
-        rasa_host = "localhost"
-        rasa_port = 5005
-        rasa_API = ""
-        rasa_SSL = false
-        autostart_rasa = false  # if true the main process will not start a rasa server, but will use the one specified in the settings
-        rasa_path = "rasa_bots/rasa_movie_bot" # path to the rasa server
-        rasa_args = "--enable-api" # arguments to pass to the rasa server
-        autostart_rasa_actions = false  # if true the main process will not start a rasa_actions server, but will use the one specified in the settings
-        rasa_actions_args = "" # arguments to pass to the rasa action server
-    
-    [[bots]]
-        name = "triage_bot"
-        rasa_host = "localhost"
-        rasa_port = 5005
-        rasa_API = ""
-        rasa_SSL = false
-        autostart_rasa = false  # if true the main process will not start a rasa server, but will use the one specified in the settings
-        rasa_path = "rasa_bots/rasa_movie_bot" # path to the rasa server
-        rasa_args = "--enable-api" # arguments to pass to the rasa server
-        autostart_rasa_actions = false  # if true the main process will not start a rasa_actions server, but will use the one specified in the settings
-        rasa_actions_args = "" # arguments to pass to the rasa action server
+# [[bots]]
+    # name = "movie_bot"
+    # rasa_host = "localhost"
+    # rasa_port = 5004
+    # rasa_API = ""
+    # rasa_SSL = false
+    # rasa_voice = "slt" # voice to use for the rasa server. By deafault bdl, slt, jmk, awb, rms, clb, ksp are available
+    # rasa_env = "rasa" # name of the environment to use for the rasa server
+    # autostart_rasa = true  # if true the main process will not start a rasa server, but will use the one specified in the settings
+    # rasa_path = "../rasa_bots/rasa_movie_bot" # path to the rasa server
+    # rasa_args = "--enable-api" # arguments to pass to the rasa server
+    # autostart_rasa_actions = false  # if true the main process will not start a rasa_actions server, but will use the one specified in the settings
+    # rasa_actions_args = "" # arguments to pass to the rasa action server
 
-    [[bots]]
-        name = "anamnesi_bot"
-        rasa_host = "localhost"
-        rasa_port = 5005
-        rasa_API = ""
-        rasa_SSL = false
-        autostart_rasa = false  # if true the main process will not start a rasa server, but will use the one specified in the settings
-        rasa_path = "rasa_bots/rasa_movie_bot" # path to the rasa server
-        rasa_args = "--enable-api" # arguments to pass to the rasa server
-        autostart_rasa_actions = false  # if true the main process will not start a rasa_actions server, but will use the one specified in the settings
-        rasa_actions_args = "" # arguments to pass to the rasa action server
-    [[bots]]
-        name = "surgery_bot"
-        rasa_host = "localhost"
-        rasa_port = 5005
-        rasa_API = ""
-        rasa_SSL = false
-        autostart_rasa = false  # if true the main process will not start a rasa server, but will use the one specified in the settings
-        rasa_path = "rasa_bots/rasa_movie_bot" # path to the rasa server
-        rasa_args = "--enable-api" # arguments to pass to the rasa server
-        autostart_rasa_actions = false  # if true the main process will not start a rasa_actions server, but will use the one specified in the settings
-        rasa_actions_args = "" # arguments to pass to the rasa action server
+[[bots]]
+    name = "triage_bot"
+    rasa_host = "localhost"
+    rasa_port = 5005
+    rasa_API = ""
+    rasa_SSL = false
+    speaker_voice = "slt" # voice to use for the rasa server. By deafault bdl, slt, jmk, awb, rms, clb, ksp are available
+[[bots]]
+    name = "anamnesi_bot"
+    rasa_host = "localhost"
+    rasa_port = 5006
+    rasa_API = ""
+    rasa_SSL = false
+    speaker_voice = "bdl" # voice to use for the rasa server. By deafault bdl, slt, jmk, awb, rms, clb, ksp are available
+[[bots]]
+    name = "operation_bot"
+    rasa_host = "localhost"
+    rasa_port = 5007
+    rasa_API = ""
+    rasa_SSL = false
+    speaker_voice = "clb" # voice to use for the rasa server. By deafault bdl, slt, jmk, awb, rms, clb, ksp are available
 
 [settings]
-    timeout = 10 # timeout for the server to respond
+timeout = 10 # timeout for the server to respond

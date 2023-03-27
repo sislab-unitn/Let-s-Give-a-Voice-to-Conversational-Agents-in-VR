@@ -12,8 +12,7 @@ responses:
     - text: "Hello, I'm Lisa, a virtual assistant that will help you for a better healthcare experience"
   
   utter_instructions:
-    - text: "To get a better diagnosis we will take your vital signs during this conversation through the wearable device next to you. Follow the instructions on the screen to wear it correctly. Tell me when you're done"
-
+    - text: "We will take your vital signs through the wearable device next to you. Follow the instructions on the screen to wear it correctly. Tell me when you're done"
 
   utter_inquire:
     - text: "How can I help you today?"
@@ -25,10 +24,8 @@ responses:
     - text: "I'm Lisa, a virtual assistant designed for healthcare. I can help you with an initial triage before a human takes care of you"
     - text: "I'm Lisa, a virtual assistant designed to help people in healthcare. I can help people with an initial triage before a human."
   utter_thanks:
-    - text: "I'm pleased to have helped you."
-    - text: "Ï'm happy to help you at anytime."
-    - text: "I'm happy to help you anytime."
-    - text: "I'm glad to help you anytime."
+    - text: "You're welcome"
+    - text: "I'm glad to have helped you"
     - text: "It's a pleasure."
   
   utter_goodbye:
@@ -51,7 +48,7 @@ responses:
     - text: "I'm sorry to hear that. I'm designed to help you. Can you tell me more about your frustrations?"
 
   utter_closure:
-    - text: "Please come in the waiting room. You will be checked as soon as possible"
+    - text: "Please come in the Anamnesis room. You will be checked as soon as possible"
   # utter_closure:
   #   - text: "I'm to glad to have helped you. Thank you for having used Lisa,  a healthcare oriented virtual assistant"
   #   - text: "I'm happy to help you anytime. Thank you for using Lisa,  a healthcare oriented virtual assistant"

@@ -6,8 +6,9 @@ import uvicorn
 from fastapi import FastAPI, Request, Response, status
 from uvicorn.config import LOGGING_CONFIG
 
-from asr_model import ASRModel
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname((os.path.abspath(__file__))))))
 from src.config_parser import config_parser
+from src.asr.asr_model import ASRModel
 
 config = config_parser(
     sys.argv[1:], current_path=os.path.dirname(os.path.abspath(__file__))

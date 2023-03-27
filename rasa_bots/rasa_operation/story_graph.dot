@@ -3,15 +3,11 @@ digraph  {
 "-1" [class=end, fillcolor=red, fontsize=12, label=END, style=filled];
 1 [class=active, fontsize=12, label=action_session_start];
 2 [class=active, fontsize=12, label=utter_greet];
-3 [class=active, fontsize=12, label=utter_instructions];
-4 [class=active, fontsize=12, label=utter_inquire];
-5 [class="dashed active", fontsize=12, label=investigate_symptoms_form];
-6 [class="intent active", fillcolor=lightblue, label="/greet", shape=rect, style=filled];
+3 [class="dashed active", fontsize=12, label=action_default_fallback];
+4 [class="intent active", fillcolor=lightblue, label="/greet", shape=rect, style=filled];
 0 -> "-1"  [class="", key=NONE, label=""];
 0 -> 1  [class=active, key=NONE, label=""];
-1 -> 6  [class=active, key=0];
+1 -> 4  [class=active, key=0];
 2 -> 3  [class=active, key=NONE, label=""];
-3 -> 4  [class=active, key=NONE, label=""];
-4 -> 5  [class=active, key=NONE, label=""];
-6 -> 2  [class=active, key=0];
+4 -> 2  [class=active, key=0];
 }

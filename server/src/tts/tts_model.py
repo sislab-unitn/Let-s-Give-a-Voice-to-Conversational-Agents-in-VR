@@ -24,10 +24,15 @@ class TTSModel:
         embeddings_dataset = load_dataset(
             "Matthijs/cmu-arctic-xvectors", split="validation"
         )
-        self.speaker_embeddings = torch.tensor(
-            embeddings_dataset[7306]["xvector"]
-        ).unsqueeze(0)
-
+        self.speaker_embeddings = dict()
+        
+        for i in range(len(embeddings_dataset)):
+            speaker_name = embeddings_dataset[i]["filename"].split("_")[2]
+            if speaker_name not in self.speaker_embeddings.keys():
+                self.speaker_embeddings[speaker_name] = torch.tensor(
+                    embeddings_dataset[i]["xvector"]
+                ).unsqueeze(0)
+        print(f"Loaded speaker embeddings for {self.speaker_embeddings.keys()}")
         self.processor = SpeechT5Processor.from_pretrained("microsoft/speecht5_tts")
         self.model = SpeechT5ForTextToSpeech.from_pretrained("microsoft/speecht5_tts")
         self.vocoder = SpeechT5HifiGan.from_pretrained("microsoft/speecht5_hifigan")
@@ -38,16 +43,17 @@ class TTSModel:
             self.vocoder = torch.compile(self.vocoder)
 
         print(f"Running on device: {self.model.device}")
-
+    async def speakers_available(self):
+        return list(self.speaker_embeddings.keys())
     # streaming for tts synthesis in chunks
-    async def tts_synthesis_chunked(self, data: str) -> AsyncGenerator:
+    async def tts_synthesis_chunked(self,speaker : str, data: str) -> AsyncGenerator:
         """
         Performs the inference on the TTS model, by chunking the input text and returning the audio in chunks according to punctuation marks
         :param data: the input text
         :return: the audio in chunks in PCM_16 format
         """
         io_buffer = io.BytesIO()
-        lines = re.split(r"[;,\*\n\\\/\?\.\=\+\!\:\"]", data)
+        lines = re.split(r"[;,\*\n\\\/\.\=\+\:\"]", data)
         for line in lines:
             line = line.strip()
             if line != "":
@@ -55,7 +61,7 @@ class TTSModel:
                 timer = time.time()
                 inputs = self.processor(text=line, return_tensors="pt")
                 speech = self.model.generate_speech(
-                    inputs["input_ids"], self.speaker_embeddings, vocoder=self.vocoder
+                    inputs["input_ids"], self.speaker_embeddings[speaker], vocoder=self.vocoder
                 )
                 # current position in the file
                 cursor = io_buffer.tell()
@@ -74,9 +80,8 @@ class TTSModel:
                     "pause_length"
                 ]
 
-            # do something with the chunk
 
-    async def tts_synthesis(self, data: str) -> AsyncGenerator:
+    async def tts_synthesis(self, speaker:str,data: str) -> AsyncGenerator:
         """
         Performs the inference on the TTS model and returns the audio in WAV format in a single chunk
         :data: the input text
@@ -85,7 +90,7 @@ class TTSModel:
         io_buffer = io.BytesIO()
         inputs = self.processor(text=data, return_tensors="pt")
         speech = self.model.generate_speech(
-            inputs["input_ids"], self.speaker_embeddings, vocoder=self.vocoder
+            inputs["input_ids"], self.speaker_embeddings[speaker], vocoder=self.vocoder
         )
         sf.write(
             io_buffer,
