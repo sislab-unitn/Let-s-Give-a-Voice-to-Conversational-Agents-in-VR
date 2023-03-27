@@ -7,6 +7,9 @@ stories:
       - intent: greet
       - action: utter_greet
       - action: utter_instructions
+      - or:
+        - intent: affirm
+        - intent: done
       - action: utter_inquire
       - action: investigate_symptoms_form
       - active_loop: investigate_symptoms_form

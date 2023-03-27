@@ -3,23 +3,10 @@ version: "3.1"
 responses:
 
   utter_greet:
-    - text: "Hello, I'm Lisa, a virtual assistant that will help you through this healthcare experience."
-    - text: "Hi, I'm Lisa, a virtual assistant that will help you through this healthcare experience."
-    - text: "Hello, I'm Lisa, a virtual assistant that will help you today."
-    - text: "Hi, I'm Lisa, a virtual assistant that will help you today"
-    - text: "Hello, I'm Lisa, a virtual assistant that will help you with your health"
-    - text: "Hello, I'm Lisa, a virtual assistant that will help you with your health today"
-    - text: "Hello, I'm Lisa, a virtual assistant that will help you for a better healthcare experience"
+    - text: "Hello, I'm Laura from the Anamnesis room. I will ask you some questions about your personal and medical history information."
+    - text: "Hi, I'm Laura, from the Anamnesis room. I will ask you some questions about your medical history."
+    - text: "Hello, I'm Laura. I will ask you some questions about your medical history in order to get a better picture of what's going on with you."
   
-  utter_instructions:
-    - text: "To get a better diagnosis we will take your vital signs during this conversation through the wearable device next to you. Follow the instructions on the screen to wear it correctly. Tell me when you're done"
-
-
-  utter_inquire:
-    - text: "How can I help you today?"
-    - text: "Can you describe what brings you here today?"
-  utter_esi:
-    - text: "Based on you symptoms you are assigned a code yellow"
 
   utter_help:
     - text: "I'm Lisa, a virtual assistant designed for healthcare. I can help you with an initial triage before a human takes care of you"
@@ -47,6 +34,9 @@ responses:
     - text: "I'm Lisa, a healthcare oriented virtual assistant. I'm not a human. I was designed to help you with your health"
     - text: "I'm Lisa, a healthcare oriented virtual assistant. I'm a bot designed to help you in your healthcare"
  
+  utter_exam:
+    - text: "Alright. Now you are going to undergo the Lung Ultrasound test. Please follow Ari to reach Diagnostics Lab as a basic diagnostic measure for your condition."
+
   utter_anger:
     - text: "I'm sorry to hear that. I'm designed to help you. Can you tell me more about your frustrations?"
 

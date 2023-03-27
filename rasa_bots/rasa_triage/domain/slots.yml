@@ -42,7 +42,7 @@ slots:
     mappings:
     - type: from_entity
       entity: pain_level
-      intent:
-        - symptoms
-        - pain_level
+      conditions:
+        - active_loop: investigate_symptoms_form
+          requested_slot: pain_level
       influence_conversation: true
