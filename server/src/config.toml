@@ -44,7 +44,7 @@
     rasa_SSL = false
     speaker_voice = "slt" # voice to use for the rasa server. By deafault bdl, slt, jmk, awb, rms, clb, ksp are available
 [[bots]]
-    name = "anamnesi_bot"
+    name = "anamnesis_bot"
     rasa_host = "localhost"
     rasa_port = 5006
     rasa_API = ""

@@ -1,0 +1,4 @@
+curl -XPOST 'http://localhost:8080/text_converse?bot=triage_bot' \
+  -H "Content-Type: application/json" \
+  -d '{"sender":"test","message":"Hi"}'
+curl -XGET 'http://localhost:8080/test_synthesis=speaker=bdl&'

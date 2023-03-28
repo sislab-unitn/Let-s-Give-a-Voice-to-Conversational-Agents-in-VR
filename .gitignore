@@ -111,8 +111,8 @@ docs/_build/
 # model bin
 *.bin
 
-*/model_checkpoints/*
-*/pretrained_models/*
+model_checkpoints/*
+pretrained_models/*
 
 *.ipynb_checkpoints
 
@@ -120,3 +120,5 @@ archive
 hospital_triage
 
 INTERSPEECH_2023_Paper_Kit
+
+New_lab_vis

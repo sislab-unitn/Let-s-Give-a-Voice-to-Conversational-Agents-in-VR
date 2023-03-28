@@ -109,5 +109,3 @@ coverage.xml
 docs/_build/
 
 
-model_checkpoints/
-pretrained_models/
