@@ -18,6 +18,8 @@ Register the TMDB and get a API KEY one at this link https://developers.themovie
 
 ### Set up Rasa bots
 
+#### Movie Bot
+
 After you are done installing Rasa, install the other requirements from `rasa_bots/rasa_movie_bot/actions/short requirements.txt`.
 Since this model uses sapcy `en_core_web_lg` you will need to install that as well.
 You can use `python -m spacy download en_core_web_lg` to download that.
@@ -44,7 +46,7 @@ Test that the Rasa is working by writing on the second terminal simple questions
 ![](assets/Screenshot%202023-03-18%20at%2010.53.48.png)
 
 
-### Hospital Rasa
+#### Hospital Rasa
 
 For the hospital scene, you can do almost the same instructions, with a few key differences. 
 There are three bots
@@ -62,7 +64,7 @@ python -m spacy download en_core_web_lg
 to download those.
 
 Once that is done, you will need to train and activate each bot.
-#### rasa_triage
+##### rasa_triage
 ```
 cd rasa_bots/rasa_triage
 rasa train --domain ./domain --data ./data
@@ -74,7 +76,7 @@ rasa shell --enable-api -p 5005
 This will turn on the shell, with the REST API, on port 5005
 Do not close the shell, you will require the shell running in order to accept incoming request
 
-#### rasa_anamnesis
+##### rasa_anamnesis
 ```
 cd rasa_bots/rasa_anamnesis
 
@@ -86,7 +88,7 @@ rasa shell --enable-api -p 5006
 ```
 This will turn on the shell, with the REST API, on port 5006
 Do not close the shell, you will require the shell running in order to accept incoming request
-#### rasa_operation
+##### rasa_operation
 ```
 cd rasa_bots/rasa_operation
 rasa train --domain ./domain --data ./data
