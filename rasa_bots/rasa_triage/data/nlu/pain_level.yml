@@ -1,10 +1,10 @@
-version: "3.1"
+# version: "3.1"
 
-nlu:
-- intent: pain_level
-  examples: |
-    - [0](pain_level)
-    - I feel [zero](pain_level)
-    - I think [zero](pain_level)
-    - It hurts a lot, [10](pain_level)
-    - It doesn't hurt much, I would say a [5](pain_level)
+# nlu:
+# - intent: pain_level
+#   examples: |
+#     - [0](pain_level)
+#     - I feel [zero](pain_level)
+#     - I think [zero](pain_level)
+#     - It hurts a lot, [10](pain_level)
+#     - It doesn't hurt much, I would say a [5](pain_level)

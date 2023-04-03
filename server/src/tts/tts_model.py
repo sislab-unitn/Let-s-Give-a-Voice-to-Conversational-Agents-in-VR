@@ -43,6 +43,8 @@ class TTSModel:
             self.vocoder = torch.compile(self.vocoder)
 
         print(f"Running on device: {self.model.device}")
+        self.time = 0
+        self.count = 0
     async def speakers_available(self):
         return list(self.speaker_embeddings.keys())
     # streaming for tts synthesis in chunks
@@ -57,7 +59,6 @@ class TTSModel:
         for line in lines:
             line = line.strip()
             if line != "":
-                print(line)
                 timer = time.time()
                 inputs = self.processor(text=line, return_tensors="pt")
                 speech = self.model.generate_speech(
@@ -76,17 +77,28 @@ class TTSModel:
                 io_buffer.seek(cursor)
                 timer = time.time() - timer
                 print(f"Time taken for inference: {timer}")
+                self.time += timer
+                self.count += 1
+                print (f"Average time taken for TTS inference: {self.time/self.count}")
+                samples = len(io_buffer.getbuffer().tobytes())/2
+                play_time = samples / (self.config["audio"]["sample_rate"] * 1)
+                print(f"Play time: {play_time}")
+                if play_time < (timer):
+                    # print("Warning: play time is less than inference time")
+                    raise Warning("Play time is less than inference time")
+                    # exit()
                 yield io_buffer.read(end - cursor) + b"\x00\x00" * self.config["audio"][
                     "pause_length"
                 ]
 
 
-    async def tts_synthesis(self, speaker:str,data: str) -> AsyncGenerator:
+    async def tts_synthesis(self, speaker:str,data: str) -> bytes:
         """
         Performs the inference on the TTS model and returns the audio in WAV format in a single chunk
         :data: the input text
         :return: the audio in WAV format
         """
+        t = time.time()
         io_buffer = io.BytesIO()
         inputs = self.processor(text=data, return_tensors="pt")
         speech = self.model.generate_speech(
@@ -99,4 +111,15 @@ class TTSModel:
             subtype="PCM_16",
             format="WAV",
         )
-        return io_buffer.getbuffer()
+        t2 = time.time()
+        self.time += t2 - t
+        self.count += 1
+        print(f"Time taken for inference: {t2 - t}")
+        print(f"Average time taken for TTS inference: {self.time/self.count}")
+        samples = len(io_buffer.getbuffer().tobytes())
+        play_time = samples / (self.config["audio"]["sample_rate"] * 1)
+        print(f"Play time: {play_time}")
+        if play_time < (t2-t):
+            # print("Warning: play time is less than inference time")
+            Warning("Play time is less than inference time")
+        return io_buffer.getbuffer().tobytes()

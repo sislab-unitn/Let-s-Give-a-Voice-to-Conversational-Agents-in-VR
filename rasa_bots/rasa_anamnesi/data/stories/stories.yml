@@ -6,7 +6,148 @@ stories:
     steps:
       - intent: greet
       - action: utter_greet
-      - action: investigate_form
-      - active_loop: investigate_form
-      - active_loop: null
-      - action: utter_exam
+      - action: utter_ask_name
+      - or: 
+        - intent: greet
+        - intent: goodbye
+        # - intent: thanks
+        # - intent: affirm
+        # - intent: deny
+        # - intent: stop
+        # - intent: help
+        # - intent: out_of_scope
+        # - intent: challenge_bot
+        # - intent: anger
+        # - intent: symptoms 
+        # - intent: date
+        # - intent: pain_level
+        # - intent: done
+      - action: utter_ask_symptoms
+      - or: 
+        - intent: greet
+        - intent: goodbye
+        # - intent: thanks
+        # - intent: affirm
+        # - intent: deny
+        # - intent: stop
+        # - intent: help
+        # - intent: out_of_scope
+        # - intent: challenge_bot
+        # - intent: anger
+        # - intent: symptoms 
+        # - intent: date
+        # - intent: pain_level
+        # - intent: done
+      - action: utter_ask_first_time
+      - or: 
+        - intent: greet
+        - intent: goodbye
+        # - intent: thanks
+        # - intent: affirm
+        # - intent: deny
+        # - intent: stop
+        # - intent: help
+        # - intent: out_of_scope
+        # - intent: challenge_bot
+        # - intent: anger
+        # - intent: symptoms 
+        # - intent: date
+        # - intent: pain_level
+        # - intent: done
+      - action: utter_ask_drink
+      - or: 
+        - intent: greet
+        - intent: goodbye
+        # - intent: thanks
+        # - intent: affirm
+        # - intent: deny
+        # - intent: stop
+        # - intent: help
+        # - intent: out_of_scope
+        # - intent: challenge_bot
+        # - intent: anger
+        # - intent: symptoms 
+        # - intent: date
+        # - intent: pain_level
+        # - intent: done
+      - action: utter_ask_smoke
+      - or: 
+        - intent: greet
+        - intent: goodbye
+        # - intent: thanks
+        # - intent: affirm
+        # - intent: deny
+        # - intent: stop
+        # - intent: help
+        # - intent: out_of_scope
+        # - intent: challenge_bot
+        # - intent: anger
+        # - intent: symptoms 
+        # - intent: date
+        # - intent: pain_level
+        # - intent: done
+      - action: utter_ask_medications
+      - or: 
+        - intent: greet
+        - intent: goodbye
+        # - intent: thanks
+        # - intent: affirm
+        # - intent: deny
+        # - intent: stop
+        # - intent: help
+        # - intent: out_of_scope
+        # - intent: challenge_bot
+        # - intent: anger
+        # - intent: symptoms 
+        # - intent: date
+        # - intent: pain_level
+        # - intent: done
+      - action: utter_ask_diseases
+      - or: 
+        - intent: greet
+        - intent: goodbye
+        # - intent: thanks
+        # - intent: affirm
+        # - intent: deny
+        # - intent: stop
+        # - intent: help
+        # - intent: out_of_scope
+        # - intent: challenge_bot
+        # - intent: anger
+        # - intent: symptoms 
+        # - intent: date
+        # - intent: pain_level
+        # - intent: done
+      - action: utter_ask_family_diseases
+      - or: 
+        - intent: greet
+        - intent: goodbye
+        # - intent: thanks
+        # - intent: affirm
+        # - intent: deny
+        # - intent: stop
+        # - intent: help
+        # - intent: out_of_scope
+        # - intent: challenge_bot
+        # - intent: anger
+        # - intent: symptoms 
+        # - intent: date
+        # - intent: pain_level
+        # - intent: done
+      - action: utter_ask_allergies
+      - or: 
+        - intent: greet
+        - intent: goodbye
+        # - intent: thanks
+        # - intent: affirm
+        # - intent: deny
+        # - intent: stop
+        # - intent: help
+        # - intent: out_of_scope
+        # - intent: challenge_bot
+        # - intent: anger
+        # - intent: symptoms 
+        # - intent: date
+        # - intent: pain_level
+        # - intent: done
+      - action: utter_closure

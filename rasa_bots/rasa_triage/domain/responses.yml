@@ -3,19 +3,20 @@ version: "3.1"
 responses:
 
   utter_greet:
-    - text: "Hello, I'm Lisa, a virtual assistant that will help you through this healthcare experience."
-    - text: "Hi, I'm Lisa, a virtual assistant that will help you through this healthcare experience."
-    - text: "Hello, I'm Lisa, a virtual assistant that will help you today."
-    - text: "Hi, I'm Lisa, a virtual assistant that will help you today"
-    - text: "Hello, I'm Lisa, a virtual assistant that will help you with your health"
-    - text: "Hello, I'm Lisa, a virtual assistant that will help you with your health today"
-    - text: "Hello, I'm Lisa, a virtual assistant that will help you for a better healthcare experience"
+    - text: "Hello, I'm Lisa, a virtual assistant, that will help you through this healthcare experience."
+    - text: "Hi, I'm Lisa, a virtual assistant, that will help you through this healthcare experience."
+    - text: "Hello, I'm Lisa, a virtual assistant, that will help you today."
+    - text: "Hi, I'm Lisa, a virtual assistant, that will help you today"
+    - text: "Hello, I'm Lisa, a virtual assistant, that will help you with your health"
+    - text: "Hello, I'm Lisa, a virtual assistant, that will help you with your health today"
+    - text: "Hello, I'm Lisa, a virtual assistant, that will help you for a better healthcare experience"
   
   utter_instructions:
-    - text: "We will take your vital signs through the wearable device next to you. Follow the instructions on the screen to wear it correctly. Tell me when you're done"
+    - text: "We will take your vital signs, wear the wearable device next to you, and tell me once you're done"
+    # Follow the instructions on the screen to wear it correctly. Tell me when you're done"
 
   utter_inquire:
-    - text: "How can I help you today?"
+    # - text: "How can I help you today?"
     - text: "Can you describe what brings you here today?"
   utter_esi:
     - text: "Based on you symptoms you are assigned a code yellow"

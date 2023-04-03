@@ -3249,7 +3249,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1113592574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6500,7 +6500,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1425977673912199048}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0ce4edb49f16498082b76f6a476aa40, type: 3}
   m_Name: 
@@ -6514,13 +6514,33 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 127190644038908318, guid: 27709f2529f064bdd83acfc04168a459, type: 3}
+      propertyPath: path
+      value: tts_synthesis_full
+      objectReference: {fileID: 0}
+    - target: {fileID: 127190644038908318, guid: 27709f2529f064bdd83acfc04168a459, type: 3}
+      propertyPath: speaker
+      value: slt
+      objectReference: {fileID: 0}
+    - target: {fileID: 127190644038908318, guid: 27709f2529f064bdd83acfc04168a459, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 127190644038908318, guid: 27709f2529f064bdd83acfc04168a459, type: 3}
       propertyPath: sendButton
       value: 
       objectReference: {fileID: 251733653}
+    - target: {fileID: 127190644038908318, guid: 27709f2529f064bdd83acfc04168a459, type: 3}
+      propertyPath: textToSynthetise
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2266497436043634941, guid: 27709f2529f064bdd83acfc04168a459, type: 3}
       propertyPath: response
       value: 
       objectReference: {fileID: 1472537828}
+    - target: {fileID: 2266497436043634941, guid: 27709f2529f064bdd83acfc04168a459, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2266497436043634941, guid: 27709f2529f064bdd83acfc04168a459, type: 3}
       propertyPath: transcription
       value: 
@@ -6594,9 +6614,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2655106632571863751, guid: 27709f2529f064bdd83acfc04168a459, type: 3}
+      propertyPath: bot
+      value: triage_bot
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655106632571863751, guid: 27709f2529f064bdd83acfc04168a459, type: 3}
       propertyPath: response
       value: 
       objectReference: {fileID: 1472537828}
+    - target: {fileID: 2655106632571863751, guid: 27709f2529f064bdd83acfc04168a459, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2655106632571863751, guid: 27709f2529f064bdd83acfc04168a459, type: 3}
       propertyPath: noiseLevel
       value: 
@@ -6604,7 +6632,7 @@ PrefabInstance:
     - target: {fileID: 2655106632571863751, guid: 27709f2529f064bdd83acfc04168a459, type: 3}
       propertyPath: startButton
       value: 
-      objectReference: {fileID: 1385438576}
+      objectReference: {fileID: 251733653}
     - target: {fileID: 2655106632571863751, guid: 27709f2529f064bdd83acfc04168a459, type: 3}
       propertyPath: outputSource
       value: 
@@ -6614,9 +6642,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 726980677}
     - target: {fileID: 2655106632571863751, guid: 27709f2529f064bdd83acfc04168a459, type: 3}
+      propertyPath: audioPauseWindow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655106632571863751, guid: 27709f2529f064bdd83acfc04168a459, type: 3}
       propertyPath: processingSource
       value: 
       objectReference: {fileID: 1459969099}
+    - target: {fileID: 2655106632571863751, guid: 27709f2529f064bdd83acfc04168a459, type: 3}
+      propertyPath: audioLevelLowerThreshold
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655106632571863751, guid: 27709f2529f064bdd83acfc04168a459, type: 3}
+      propertyPath: audioLevelUpperThreshold
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4377628441823201556, guid: 27709f2529f064bdd83acfc04168a459, type: 3}
       propertyPath: m_Name
       value: ServerConnectionStreamAuto
@@ -6632,7 +6672,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1425977673912199048}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8504483b76e7c4a269e76c14c1ddff64, type: 3}
   m_Name: 

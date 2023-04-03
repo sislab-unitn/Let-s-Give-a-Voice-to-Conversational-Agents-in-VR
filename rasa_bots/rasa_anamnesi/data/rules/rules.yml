@@ -7,35 +7,35 @@ rules:
   #     - intent: greet
   #     - action: utter_greet
 
-  - rule: Ask the user to rephrase whenever they send a message with low NLU confidence
-    steps:
-      - intent: nlu_fallback
-      - action: utter_ask_rephrase
+  # - rule: Ask the user to rephrase whenever they send a message with low NLU confidence
+  #   steps:
+  #     - intent: nlu_fallback
+  #     - action: utter_ask_rephrase
 
-  - rule : Answer with help
-    steps: 
-      - intent: help
-      - action: utter_help
+  # - rule : Answer with help
+  #   steps: 
+  #     - intent: help
+  #     - action: utter_help
 
-  - rule : Challenge bot
-    steps: 
-      - intent: challenge_bot
-      - action: utter_challenge
+  # - rule : Challenge bot
+  #   steps: 
+  #     - intent: challenge_bot
+  #     - action: utter_challenge
 
-  - rule : Out of scope
-    steps: 
-      - intent: out_of_scope
-      - action: utter_out_of_scope
+  # - rule : Out of scope
+  #   steps: 
+  #     - intent: out_of_scope
+  #     - action: utter_out_of_scope
 
-  - rule: angry
-    steps:
-      - intent: anger
-      - action: utter_anger
-  - rule: restart
-    steps:
-      - intent: restart
-      - action: action_restart
-  - rule: thank you
-    steps:
-      - intent: thanks
-      - action: utter_thanks
+  # - rule: angry
+  #   steps:
+  #     - intent: anger
+  #     - action: utter_anger
+  # - rule: restart
+  #   steps:
+  #     - intent: restart
+  #     - action: action_restart
+  # - rule: thank you
+  #   steps:
+  #     - intent: thanks
+  #     - action: utter_thanks

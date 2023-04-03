@@ -67,6 +67,19 @@ async def tts_synthesis(speaker:str,text: str):
     return StreamingResponse(
         status_code=status.HTTP_200_OK, content=voice, media_type="audio/raw"
     )
+@app.get("/tts_synthesis_full")
+async def tts_synthesis(speaker:str,text: str):
+    """
+    Performs the inference on the TTS model from a GET request
+    - the text encoded in the url is the text to be synthesized
+    - response is a PCM_16 audio file
+    """
+    if speaker not in tts_model.speaker_embeddings.keys():
+        return Response(
+            status_code=status.HTTP_400_BAD_REQUEST, content="Speaker not available"
+        )
+    voice = await tts_model.tts_synthesis(speaker,text)
+    return Response(status_code=status.HTTP_200_OK, content=voice, media_type="audio/raw")
 @app.get("/tts_speakers")
 async def tts_speakers():
     """

@@ -1,11 +1,13 @@
-version: "3.1"
+# version: "3.1"
 
-nlu:
-- intent: symptoms
-  examples: |
-    - I feel [dizzy](symptoms)
-    - I have [chest](body_part) pain
-    - I [can't breathe](symptoms) well
-    - Since [yesterday](start_date) I [can't breathe](symptoms)
-    - Since [a month ago](start_date) I have [issues breathing](symptoms). [Everyday](frequency) I'm in pain
-    - I have significant [chest]{"entity":"body_part"}
+# nlu:
+# - intent: symptoms
+#   examples: |
+#     - My [chest hurts](symptoms)
+#     - I feel [dizzy](symptoms)
+#     - I feel [dizzy](symptoms)
+#     - I have [chest](body_part) pain
+#     - I [can't breathe](symptoms) well
+#     - Since [yesterday](start_date) I [can't breathe](symptoms)
+#     - Since [a month ago](start_date) I have [issues breathing](symptoms). [Everyday](frequency) I'm in pain
+#     - I have significant [chest]{"entity":"body_part"}

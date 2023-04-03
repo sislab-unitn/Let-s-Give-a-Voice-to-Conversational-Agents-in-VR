@@ -101,7 +101,7 @@ This will turn on the shell, with the REST API, on port 5007
 Do not close the shell, you will require the shell running in order to accept incoming request
 ### Set up the server
 
-Now you will need to run three other servers:
+Now you will need to run three other servers:       
 - ASR server
 - TTS server
 - A server that ties everything toghever
