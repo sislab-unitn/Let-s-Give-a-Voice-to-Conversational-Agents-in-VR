@@ -126,7 +126,15 @@ class ServerModel:
         except KeyError:
             answer["transcription"] = ""
         try:
-            answer["response"] = response["events"][-2]["text"]
+            answer["response"] = ''
+            idxes = [i for i, elem in enumerate(response['events']) if elem['event'] == 'user' ] 
+            if len(idxes) > 0:
+                idx = idxes[-1]
+            else:
+                idx = 0
+            for item in response['events'][idx:]:
+                if item['event'] == 'bot':       
+                    answer["response"] += item['text']
         except KeyError:
             answer["response"] = ""
         return answer

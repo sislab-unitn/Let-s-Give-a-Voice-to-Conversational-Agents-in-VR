@@ -1,0 +1,649 @@
+{
+  "sender_id": "t",
+  "slots": {
+    "movie_or_tv": "movie",
+    "genre": "Action",
+    "genres_available": null,
+    "top_results": "Avatar: The Way of Water, Creed III and John Wick: Chapter 4",
+    "requested_slot": null,
+    "session_started_metadata": null
+  },
+  "latest_message": {
+    "intent": { "name": "ask_watch", "confidence": 0.9954171180725098 },
+    "entities": [],
+    "text": "i want to watch something please",
+    "message_id": "d8f6e56036d14deca7af609ac54f2fee",
+    "metadata": {},
+    "text_tokens": [
+      [0, 1],
+      [2, 6],
+      [7, 9],
+      [10, 15],
+      [16, 25],
+      [26, 32]
+    ],
+    "intent_ranking": [
+      { "name": "ask_watch", "confidence": 0.9954171180725098 },
+      { "name": "out_of_scope", "confidence": 0.001257535652257502 },
+      { "name": "deny", "confidence": 0.0007520074723288417 },
+      { "name": "thanks", "confidence": 0.0007363249314948916 },
+      { "name": "stop", "confidence": 0.00048630477976985276 },
+      { "name": "greet", "confidence": 0.00039711580029688776 },
+      { "name": "ask_genre", "confidence": 0.00028695593937300146 },
+      { "name": "help", "confidence": 0.00023533932107966393 },
+      { "name": "affirm", "confidence": 0.00017744244541972876 },
+      { "name": "restart", "confidence": 0.00014173940871842206 }
+    ],
+    "response_selector": {
+      "all_retrieval_intents": [],
+      "default": {
+        "response": {
+          "responses": null,
+          "confidence": 0.0,
+          "intent_response_key": null,
+          "utter_action": "utter_None"
+        },
+        "ranking": []
+      }
+    }
+  },
+  "latest_event_time": 1680856880.5677462,
+  "followup_action": null,
+  "paused": false,
+  "events": [
+    {
+      "event": "action",
+      "timestamp": 1680854498.8472729,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "action_session_start",
+      "policy": null,
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "session_started",
+      "timestamp": 1680854498.8472881,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" }
+    },
+    {
+      "event": "action",
+      "timestamp": 1680854498.847296,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "action_listen",
+      "policy": null,
+      "confidence": null,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "user",
+      "timestamp": 1680854499.1223738,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "text": "hello",
+      "parse_data": {
+        "intent": { "name": "greet", "confidence": 0.9928553700447083 },
+        "entities": [],
+        "text": "hello",
+        "message_id": "f7fef01868224a2fb37903e080b80a33",
+        "metadata": {},
+        "text_tokens": [[0, 5]],
+        "intent_ranking": [
+          { "name": "greet", "confidence": 0.9928553700447083 },
+          { "name": "goodbye", "confidence": 0.0029684097971767187 },
+          { "name": "stop", "confidence": 0.0018772183684632182 },
+          { "name": "restart", "confidence": 0.0003889224899467081 },
+          { "name": "challenge_bot", "confidence": 0.00033826444996520877 },
+          { "name": "ask_genre", "confidence": 0.00030647290986962616 },
+          { "name": "deny", "confidence": 0.00030347867868840694 },
+          { "name": "help", "confidence": 0.0002785028191283345 },
+          { "name": "thanks", "confidence": 0.00023908799630589783 },
+          { "name": "affirm", "confidence": 0.000159494171384722 }
+        ],
+        "response_selector": {
+          "all_retrieval_intents": [],
+          "default": {
+            "response": {
+              "responses": null,
+              "confidence": 0.0,
+              "intent_response_key": null,
+              "utter_action": "utter_None"
+            },
+            "ranking": []
+          }
+        }
+      },
+      "input_channel": "cmdline",
+      "message_id": "f7fef01868224a2fb37903e080b80a33"
+    },
+    {
+      "event": "user_featurization",
+      "timestamp": 1680854499.3108401,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "use_text_for_featurization": false
+    },
+    {
+      "event": "action",
+      "timestamp": 1680854499.310847,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "utter_greet",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    },
+    {
+      "event": "bot",
+      "timestamp": 1680854499.31087,
+      "metadata": {
+        "utter_action": "utter_greet",
+        "model_id": "1a09fb1a7e85417aa53775dba66eb262"
+      },
+      "text": "Hi, I'm Kumo, your personal movie and tv show assistant. What would you like to watch?",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1680854499.3142521,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "action_listen",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    },
+    {
+      "event": "user",
+      "timestamp": 1680854621.15796,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "text": "hey",
+      "parse_data": {
+        "intent": { "name": "greet", "confidence": 0.9980005621910095 },
+        "entities": [],
+        "text": "hey",
+        "message_id": "709cd72e150c44919dbeb89324d3964c",
+        "metadata": {},
+        "text_tokens": [[0, 3]],
+        "intent_ranking": [
+          { "name": "greet", "confidence": 0.9980005621910095 },
+          { "name": "stop", "confidence": 0.0007751701050437987 },
+          { "name": "goodbye", "confidence": 0.0002510471094865352 },
+          { "name": "restart", "confidence": 0.00024550140369683504 },
+          { "name": "deny", "confidence": 0.00021610780095215887 },
+          { "name": "help", "confidence": 0.00017259300511796027 },
+          { "name": "anger", "confidence": 8.312951104016975e-5 },
+          { "name": "affirm", "confidence": 8.216251444537193e-5 },
+          { "name": "ask_genre", "confidence": 4.654026633943431e-5 },
+          { "name": "ask_watch", "confidence": 4.243528746883385e-5 }
+        ],
+        "response_selector": {
+          "all_retrieval_intents": [],
+          "default": {
+            "response": {
+              "responses": null,
+              "confidence": 0.0,
+              "intent_response_key": null,
+              "utter_action": "utter_None"
+            },
+            "ranking": []
+          }
+        }
+      },
+      "input_channel": "cmdline",
+      "message_id": "709cd72e150c44919dbeb89324d3964c"
+    },
+    {
+      "event": "user_featurization",
+      "timestamp": 1680854621.169479,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "use_text_for_featurization": false
+    },
+    {
+      "event": "action",
+      "timestamp": 1680854621.169489,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "utter_greet",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    },
+    {
+      "event": "bot",
+      "timestamp": 1680854621.1695209,
+      "metadata": {
+        "utter_action": "utter_greet",
+        "model_id": "1a09fb1a7e85417aa53775dba66eb262"
+      },
+      "text": "Hi, I'm Kumo, your personal movie and tv show assistant. Would you like to watch something?",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1680854621.172632,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "action_listen",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    },
+    {
+      "event": "user",
+      "timestamp": 1680854629.437664,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "text": "i hate you",
+      "parse_data": {
+        "intent": { "name": "anger", "confidence": 0.8623830080032349 },
+        "entities": [],
+        "text": "i hate you",
+        "message_id": "9a1699b9c7ad461581a200fc0647d082",
+        "metadata": {},
+        "text_tokens": [
+          [0, 1],
+          [2, 6],
+          [7, 10]
+        ],
+        "intent_ranking": [
+          { "name": "anger", "confidence": 0.8623830080032349 },
+          { "name": "affirm", "confidence": 0.06728039681911469 },
+          { "name": "out_of_scope", "confidence": 0.023185718804597855 },
+          { "name": "ask_genre", "confidence": 0.015181537717580795 },
+          { "name": "thanks", "confidence": 0.010858730413019657 },
+          { "name": "deny", "confidence": 0.006511399522423744 },
+          { "name": "restart", "confidence": 0.003567619016394019 },
+          { "name": "goodbye", "confidence": 0.002895600628107786 },
+          { "name": "greet", "confidence": 0.002891927259042859 },
+          { "name": "challenge_bot", "confidence": 0.00266310409642756 }
+        ],
+        "response_selector": {
+          "all_retrieval_intents": [],
+          "default": {
+            "response": {
+              "responses": null,
+              "confidence": 0.0,
+              "intent_response_key": null,
+              "utter_action": "utter_None"
+            },
+            "ranking": []
+          }
+        }
+      },
+      "input_channel": "cmdline",
+      "message_id": "9a1699b9c7ad461581a200fc0647d082"
+    },
+    {
+      "event": "user_featurization",
+      "timestamp": 1680854629.444661,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "use_text_for_featurization": false
+    },
+    {
+      "event": "action",
+      "timestamp": 1680854629.4446678,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "utter_anger",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    },
+    {
+      "event": "bot",
+      "timestamp": 1680854629.444706,
+      "metadata": {
+        "utter_action": "utter_anger",
+        "model_id": "1a09fb1a7e85417aa53775dba66eb262"
+      },
+      "text": "Well, at least I'm a bot is smarter than you.",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1680854629.44892,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "action_listen",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    },
+    {
+      "event": "user",
+      "timestamp": 1680855625.590185,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "text": "i want to watch something please",
+      "parse_data": {
+        "intent": { "name": "ask_watch", "confidence": 0.9954171180725098 },
+        "entities": [],
+        "text": "i want to watch something please",
+        "message_id": "d8f6e56036d14deca7af609ac54f2fee",
+        "metadata": {},
+        "text_tokens": [
+          [0, 1],
+          [2, 6],
+          [7, 9],
+          [10, 15],
+          [16, 25],
+          [26, 32]
+        ],
+        "intent_ranking": [
+          { "name": "ask_watch", "confidence": 0.9954171180725098 },
+          { "name": "out_of_scope", "confidence": 0.001257535652257502 },
+          { "name": "deny", "confidence": 0.0007520074723288417 },
+          { "name": "thanks", "confidence": 0.0007363249314948916 },
+          { "name": "stop", "confidence": 0.00048630477976985276 },
+          { "name": "greet", "confidence": 0.00039711580029688776 },
+          { "name": "ask_genre", "confidence": 0.00028695593937300146 },
+          { "name": "help", "confidence": 0.00023533932107966393 },
+          { "name": "affirm", "confidence": 0.00017744244541972876 },
+          { "name": "restart", "confidence": 0.00014173940871842206 }
+        ],
+        "response_selector": {
+          "all_retrieval_intents": [],
+          "default": {
+            "response": {
+              "responses": null,
+              "confidence": 0.0,
+              "intent_response_key": null,
+              "utter_action": "utter_None"
+            },
+            "ranking": []
+          }
+        }
+      },
+      "input_channel": "cmdline",
+      "message_id": "d8f6e56036d14deca7af609ac54f2fee"
+    },
+    {
+      "event": "user_featurization",
+      "timestamp": 1680855625.747972,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "use_text_for_featurization": false
+    },
+    {
+      "event": "action",
+      "timestamp": 1680855625.747978,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "movie_tv_genre_form",
+      "policy": "MemoizationPolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "active_loop",
+      "timestamp": 1680855625.748001,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "movie_tv_genre_form"
+    },
+    {
+      "event": "slot",
+      "timestamp": 1680855625.748003,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "requested_slot",
+      "value": "movie_or_tv"
+    },
+    {
+      "event": "bot",
+      "timestamp": 1680855625.7480042,
+      "metadata": {
+        "utter_action": "utter_ask_movie_or_tv",
+        "model_id": "1a09fb1a7e85417aa53775dba66eb262"
+      },
+      "text": "Are you in the mood for a movie or a tv series?",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1680855625.751489,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "action_listen",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    },
+    {
+      "event": "user",
+      "timestamp": 1680856878.973205,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "text": "i want an action movie please",
+      "parse_data": {
+        "intent": { "name": "ask_watch", "confidence": 0.9996011853218079 },
+        "entities": [
+          {
+            "entity": "genre",
+            "start": 10,
+            "end": 16,
+            "confidence_entity": 0.9975737929344177,
+            "value": "action",
+            "extractor": "DIETClassifier"
+          },
+          {
+            "entity": "movie_or_tv",
+            "start": 17,
+            "end": 22,
+            "confidence_entity": 0.9982491731643677,
+            "value": "movie",
+            "extractor": "DIETClassifier"
+          },
+          {
+            "entity": "genre",
+            "start": 10,
+            "end": 16,
+            "value": "action",
+            "extractor": "RegexEntityExtractor"
+          }
+        ],
+        "text": "i want an action movie please",
+        "message_id": "74b11725e001458c94566010f3f3450b",
+        "metadata": {},
+        "text_tokens": [
+          [0, 1],
+          [2, 6],
+          [7, 9],
+          [10, 16],
+          [17, 22],
+          [23, 29]
+        ],
+        "intent_ranking": [
+          { "name": "ask_watch", "confidence": 0.9996011853218079 },
+          { "name": "deny", "confidence": 0.00011675525456666946 },
+          { "name": "thanks", "confidence": 7.477832696167752e-5 },
+          { "name": "greet", "confidence": 4.635084042092785e-5 },
+          { "name": "stop", "confidence": 4.591545803123154e-5 },
+          { "name": "affirm", "confidence": 2.3944596250657924e-5 },
+          { "name": "restart", "confidence": 2.3756831069476902e-5 },
+          { "name": "out_of_scope", "confidence": 1.7803940863814205e-5 },
+          { "name": "help", "confidence": 1.7615189790376462e-5 },
+          { "name": "ask_genre", "confidence": 1.3307996596267913e-5 }
+        ],
+        "response_selector": {
+          "all_retrieval_intents": [],
+          "default": {
+            "response": {
+              "responses": null,
+              "confidence": 0.0,
+              "intent_response_key": null,
+              "utter_action": "utter_None"
+            },
+            "ranking": []
+          }
+        }
+      },
+      "input_channel": "cmdline",
+      "message_id": "74b11725e001458c94566010f3f3450b"
+    },
+    {
+      "event": "slot",
+      "timestamp": 1680856878.973612,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "movie_or_tv",
+      "value": "movie"
+    },
+    {
+      "event": "slot",
+      "timestamp": 1680856878.9736161,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "genre",
+      "value": "action"
+    },
+    {
+      "event": "user_featurization",
+      "timestamp": 1680856879.2301178,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "use_text_for_featurization": false
+    },
+    {
+      "event": "action",
+      "timestamp": 1680856879.2301261,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "movie_tv_genre_form",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    },
+    {
+      "event": "slot",
+      "timestamp": 1680856879.230133,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "movie_or_tv",
+      "value": "movie"
+    },
+    {
+      "event": "slot",
+      "timestamp": 1680856879.230135,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "genre",
+      "value": "Action"
+    },
+    {
+      "event": "slot",
+      "timestamp": 1680856879.2301362,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "requested_slot",
+      "value": null
+    },
+    {
+      "event": "active_loop",
+      "timestamp": 1680856879.230137,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": null
+    },
+    {
+      "event": "action",
+      "timestamp": 1680856880.5391748,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "action_discover_movie",
+      "policy": "TEDPolicy",
+      "confidence": 0.9149376749992371,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "slot",
+      "timestamp": 1680856880.549372,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "top_results",
+      "value": "Avatar: The Way of Water, Creed III and John Wick: Chapter 4"
+    },
+    {
+      "event": "action",
+      "timestamp": 1680856880.561496,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "utter_discover",
+      "policy": "TEDPolicy",
+      "confidence": 0.9515184760093689,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "bot",
+      "timestamp": 1680856880.561513,
+      "metadata": {
+        "utter_action": "utter_discover",
+        "model_id": "1a09fb1a7e85417aa53775dba66eb262"
+      },
+      "text": "Some good suggestions in movie are: Avatar: The Way of Water, Creed III and John Wick: Chapter 4",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1680856880.564569,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "utter_continue",
+      "policy": "TEDPolicy",
+      "confidence": 0.899713933467865,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "bot",
+      "timestamp": 1680856880.564586,
+      "metadata": {
+        "utter_action": "utter_continue",
+        "model_id": "1a09fb1a7e85417aa53775dba66eb262"
+      },
+      "text": "Would you like to watch something else?",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1680856880.5677462,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "action_listen",
+      "policy": "TEDPolicy",
+      "confidence": 0.9473555684089661,
+      "action_text": null,
+      "hide_rule_turn": false
+    }
+  ],
+  "latest_input_channel": "cmdline",
+  "active_loop": {},
+  "latest_action": { "action_name": "action_listen" },
+  "latest_action_name": "action_listen"
+}

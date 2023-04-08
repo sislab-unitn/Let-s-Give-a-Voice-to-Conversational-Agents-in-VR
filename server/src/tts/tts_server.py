@@ -100,5 +100,5 @@ if __name__ == "__main__":
         "__main__:app",
         host=config["server"]["self_host"],
         port=config["server"]["self_port"],
-        reload=True,
+        reload=False,
     )

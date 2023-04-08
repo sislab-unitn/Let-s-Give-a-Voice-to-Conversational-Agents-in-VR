@@ -1,0 +1,8 @@
+# conda requirements, create the environment automagically
+# conda env create -f environment.yml
+name: server
+dependencies:
+  - python>=3.10
+  - pip==23.0.1
+  - pip:
+    - -r requirements.txt

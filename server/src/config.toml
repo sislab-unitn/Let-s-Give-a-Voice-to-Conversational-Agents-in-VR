@@ -22,19 +22,13 @@
     tts_path = "src/tts/tts_server.py" # path to the tts server
     tts_args = "" # arguments to pass to the tts server
 
-# [[bots]]
-    # name = "movie_bot"
-    # rasa_host = "localhost"
-    # rasa_port = 5004
-    # rasa_API = ""
-    # rasa_SSL = false
-    # rasa_voice = "slt" # voice to use for the rasa server. By deafault bdl, slt, jmk, awb, rms, clb, ksp are available
-    # rasa_env = "rasa" # name of the environment to use for the rasa server
-    # autostart_rasa = true  # if true the main process will not start a rasa server, but will use the one specified in the settings
-    # rasa_path = "../rasa_bots/rasa_movie_bot" # path to the rasa server
-    # rasa_args = "--enable-api" # arguments to pass to the rasa server
-    # autostart_rasa_actions = false  # if true the main process will not start a rasa_actions server, but will use the one specified in the settings
-    # rasa_actions_args = "" # arguments to pass to the rasa action server
+[[bots]]
+    name = "movie_bot"
+    rasa_host = "localhost"
+    rasa_port = 5004
+    rasa_API = ""
+    rasa_SSL = false
+    speaker_voice = "clb" # voice to use for the rasa server. By deafault bdl, slt, jmk, awb, rms, clb, ksp are available
 
 [[bots]]
     name = "triage_bot"

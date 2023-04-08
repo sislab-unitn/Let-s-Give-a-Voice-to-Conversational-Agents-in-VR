@@ -29,7 +29,24 @@ def read_root():
         "Server": "Check the documentation for more info on what API endpoints are available."
     }
 
+@app.get("/text_converse")
+async def text_converse(bot: str,sender:str,message:str):
+    """
+    Performs 1 step of the conversation using the rasa model.
+    - use bot param to specify which bot to use
+    - Expects a json object with 'sender' and 'message' keys
+    - example: {"sender":"user","message":"hello"}
+    - Returns a json object with the response from the rasa model and the tracker data
+    """
+    # forward the request to rasa server
+    # url_rasa = f'http{"s" if config["server"]["rasa_SSL"] else ""}://{config["server"]["rasa_host"]}:{config["server"]["rasa_port"]}/webhooks/rest/webhook'
+    # response_rasa = await server.rasa_session.post(url=url_rasa, data=request.stream())
+    # response_rasa.raise_for_status()
+    response = await server.text_to_text(bot, message, sender)
+    # get the tracker slot data
+    tracker = await server.get_tracker_data(bot, sender)
 
+    return {"response": response, "tracker": tracker}
 @app.post("/text_converse")
 async def text_converse(bot: str, request: Request):
     """
@@ -99,5 +116,5 @@ if __name__ == "__main__":
         "__main__:app",
         host=config["server"]["self_host"],
         port=config["server"]["self_port"],
-        reload=True,
+        reload=False,
     )

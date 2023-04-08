@@ -1,9 +1,0 @@
-# version: "3.1"
-# forms:
-#   investigate_symptoms_form:
-#     required_slots:
-#       - body_part
-#       - start_date
-#       - frequency
-#       - symptoms
-#       - pain_level

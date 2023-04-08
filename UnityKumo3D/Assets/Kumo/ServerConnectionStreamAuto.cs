@@ -154,7 +154,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         // start the recording for the audio noise level detection
         // StartRecording();
         this.startButton.onClick.AddListener(StartStopRecording);
-        // this.StartRecording();
+        this.StartRecording();
     }
     void StartStopRecording()
     {

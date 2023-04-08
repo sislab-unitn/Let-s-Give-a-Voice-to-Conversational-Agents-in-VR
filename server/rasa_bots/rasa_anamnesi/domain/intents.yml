@@ -1,0 +1,18 @@
+version: "3.1"
+
+intents:
+  - name
+  - greet
+  - goodbye
+  - thanks
+  - affirm
+  - deny
+  - stop
+  - help
+  - out_of_scope
+  - challenge_bot
+  - anger
+  - symptoms 
+  - date
+  - pain_level
+  - done

@@ -1,9 +1,0 @@
-# version: "3.1"
-
-# nlu:
-# - intent: name
-#   examples: |
-#     - My name is [Michele](name)
-#     - I go by [Michele](name)
-#     - my name is [Michele](name)
-#     - [Michele](name)

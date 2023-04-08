@@ -1,0 +1,30 @@
+version: "3.1"
+
+nlu:
+- lookup: symptoms
+  examples: |
+    - dizzyness
+    - dizzy
+    - headache
+    - high fever
+    - stomachache
+    - arm pain
+    - chest pain
+    - lungs pain
+    - heavy breathing
+    - can't breathe
+    - respiratory breathing
+    - respiratory issues
+    - heart attack
+    - fever
+    - diarrea
+    - sickness
+    - sore throat
+    - coughing
+    - eye injury
+    - arm injury
+    - head injury
+    - vomit
+    - vomiting
+    - skin vescicle
+    - skin infection

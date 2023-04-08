@@ -1,8 +1,3 @@
-# import subprocess
-
-# subprocess.run("cd asr/ && python asr_server.py", shell=True)
-# subprocess.run("cd tts/ && python tts_server.py", shell=True)
-
 from multiprocessing import Process
 import os
 import sys
@@ -11,8 +6,6 @@ from subprocess import Popen
 
 from src.config_parser import config_parser
 
-# from subprocess import call
-# call(["python", "your_file.py"])
 
 def run_command(path: str, args: str = ""):
     print(f"Running {path} {args}")

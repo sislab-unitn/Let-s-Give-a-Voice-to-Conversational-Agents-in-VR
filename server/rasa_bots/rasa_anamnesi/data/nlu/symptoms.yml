@@ -1,0 +1,12 @@
+version: "3.1"
+
+nlu:
+- intent: symptoms
+  examples: |
+    - My [chest hurts](symptoms)
+    - I feel [dizzy](symptoms)
+    - I feel [dizzy](symptoms)
+    - I [can't breathe](symptoms) well
+    - Since yesterday I [can't breathe](symptoms)
+    - Since a month ago I have [issues breathing](symptoms). Everyday I'm in pain
+    - I have significant pain

@@ -1,0 +1,269 @@
+{
+  "sender_id": "l",
+  "slots": {
+    "movie_or_tv": "movie",
+    "genre": null,
+    "genres_available": null,
+    "top_results": null,
+    "results_data": null,
+    "requested_slot": "genre",
+    "session_started_metadata": null
+  },
+  "latest_message": {
+    "intent": { "name": "ask_watch", "confidence": 0.9587041735649109 },
+    "entities": [
+      {
+        "entity": "movie_or_tv",
+        "start": 10,
+        "end": 15,
+        "confidence_entity": 0.9984386563301086,
+        "value": "movie",
+        "extractor": "DIETClassifier"
+      }
+    ],
+    "text": "id like a movie",
+    "message_id": "caebfece50d1485ea160181002436222",
+    "metadata": {},
+    "text_tokens": [
+      [0, 1],
+      [1, 2],
+      [3, 7],
+      [8, 9],
+      [10, 15]
+    ],
+    "intent_ranking": [
+      { "name": "ask_watch", "confidence": 0.9587041735649109 },
+      { "name": "ask_genre", "confidence": 0.010597096756100655 },
+      { "name": "anger", "confidence": 0.007491829805076122 },
+      { "name": "affirm", "confidence": 0.00662305299192667 },
+      { "name": "thanks", "confidence": 0.004316751379519701 },
+      { "name": "deny", "confidence": 0.002892859512940049 },
+      { "name": "challenge_bot", "confidence": 0.0027463091537356377 },
+      { "name": "restart", "confidence": 0.002391878515481949 },
+      { "name": "out_of_scope", "confidence": 0.0016347041819244623 },
+      { "name": "greet", "confidence": 0.001011502230539918 }
+    ],
+    "response_selector": {
+      "all_retrieval_intents": [],
+      "default": {
+        "response": {
+          "responses": null,
+          "confidence": 0.0,
+          "intent_response_key": null,
+          "utter_action": "utter_None"
+        },
+        "ranking": []
+      }
+    }
+  },
+  "latest_event_time": 1680858274.911789,
+  "followup_action": null,
+  "paused": false,
+  "events": [
+    {
+      "event": "action",
+      "timestamp": 1680858274.8459818,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "action_session_start",
+      "policy": null,
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "session_started",
+      "timestamp": 1680858274.845994,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" }
+    },
+    {
+      "event": "action",
+      "timestamp": 1680858274.8460019,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "action_listen",
+      "policy": null,
+      "confidence": null,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "user",
+      "timestamp": 1680858274.869077,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "text": "id like a movie",
+      "parse_data": {
+        "intent": { "name": "ask_watch", "confidence": 0.9587041735649109 },
+        "entities": [
+          {
+            "entity": "movie_or_tv",
+            "start": 10,
+            "end": 15,
+            "confidence_entity": 0.9984386563301086,
+            "value": "movie",
+            "extractor": "DIETClassifier"
+          }
+        ],
+        "text": "id like a movie",
+        "message_id": "caebfece50d1485ea160181002436222",
+        "metadata": {},
+        "text_tokens": [
+          [0, 1],
+          [1, 2],
+          [3, 7],
+          [8, 9],
+          [10, 15]
+        ],
+        "intent_ranking": [
+          { "name": "ask_watch", "confidence": 0.9587041735649109 },
+          { "name": "ask_genre", "confidence": 0.010597096756100655 },
+          { "name": "anger", "confidence": 0.007491829805076122 },
+          { "name": "affirm", "confidence": 0.00662305299192667 },
+          { "name": "thanks", "confidence": 0.004316751379519701 },
+          { "name": "deny", "confidence": 0.002892859512940049 },
+          { "name": "challenge_bot", "confidence": 0.0027463091537356377 },
+          { "name": "restart", "confidence": 0.002391878515481949 },
+          { "name": "out_of_scope", "confidence": 0.0016347041819244623 },
+          { "name": "greet", "confidence": 0.001011502230539918 }
+        ],
+        "response_selector": {
+          "all_retrieval_intents": [],
+          "default": {
+            "response": {
+              "responses": null,
+              "confidence": 0.0,
+              "intent_response_key": null,
+              "utter_action": "utter_None"
+            },
+            "ranking": []
+          }
+        }
+      },
+      "input_channel": "cmdline",
+      "message_id": "caebfece50d1485ea160181002436222"
+    },
+    {
+      "event": "slot",
+      "timestamp": 1680858274.869204,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "movie_or_tv",
+      "value": "movie"
+    },
+    {
+      "event": "user_featurization",
+      "timestamp": 1680858274.907892,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "use_text_for_featurization": false
+    },
+    {
+      "event": "action",
+      "timestamp": 1680858274.907902,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "movie_tv_genre_form",
+      "policy": "TEDPolicy",
+      "confidence": 0.9475404620170593,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "active_loop",
+      "timestamp": 1680858274.9079309,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "movie_tv_genre_form"
+    },
+    {
+      "event": "slot",
+      "timestamp": 1680858274.907934,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "movie_or_tv",
+      "value": "movie"
+    },
+    {
+      "event": "slot",
+      "timestamp": 1680858274.907936,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "requested_slot",
+      "value": "genre"
+    },
+    {
+      "event": "bot",
+      "timestamp": 1680858274.907937,
+      "metadata": {
+        "utter_action": "utter_ask_genre",
+        "model_id": "1a09fb1a7e85417aa53775dba66eb262"
+      },
+      "text": "What kind of genre do you have in mind?",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1680858274.911789,
+      "metadata": { "model_id": "1a09fb1a7e85417aa53775dba66eb262" },
+      "name": "action_listen",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    }
+  ],
+  "latest_input_channel": "cmdline",
+  "active_loop": {
+    "name": "movie_tv_genre_form",
+    "is_interrupted": false,
+    "rejected": false,
+    "trigger_message": {
+      "intent": { "name": "ask_watch", "confidence": 0.9587041735649109 },
+      "entities": [
+        {
+          "entity": "movie_or_tv",
+          "start": 10,
+          "end": 15,
+          "confidence_entity": 0.9984386563301086,
+          "value": "movie",
+          "extractor": "DIETClassifier"
+        }
+      ],
+      "text": "id like a movie",
+      "message_id": "caebfece50d1485ea160181002436222",
+      "metadata": {},
+      "text_tokens": [
+        [0, 1],
+        [1, 2],
+        [3, 7],
+        [8, 9],
+        [10, 15]
+      ],
+      "intent_ranking": [
+        { "name": "ask_watch", "confidence": 0.9587041735649109 },
+        { "name": "ask_genre", "confidence": 0.010597096756100655 },
+        { "name": "anger", "confidence": 0.007491829805076122 },
+        { "name": "affirm", "confidence": 0.00662305299192667 },
+        { "name": "thanks", "confidence": 0.004316751379519701 },
+        { "name": "deny", "confidence": 0.002892859512940049 },
+        { "name": "challenge_bot", "confidence": 0.0027463091537356377 },
+        { "name": "restart", "confidence": 0.002391878515481949 },
+        { "name": "out_of_scope", "confidence": 0.0016347041819244623 },
+        { "name": "greet", "confidence": 0.001011502230539918 }
+      ],
+      "response_selector": {
+        "all_retrieval_intents": [],
+        "default": {
+          "response": {
+            "responses": null,
+            "confidence": 0.0,
+            "intent_response_key": null,
+            "utter_action": "utter_None"
+          },
+          "ranking": []
+        }
+      }
+    }
+  },
+  "latest_action": { "action_name": "action_listen" },
+  "latest_action_name": "action_listen"
+}

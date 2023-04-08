@@ -1,0 +1,5 @@
+# here place the host names, ports and API keys for the different services (rasa_actions, asr, tts.ai, etc.)
+[DB]
+db_path = "/Users/micheleyin/Documents/AI_DBMovie/server/db/test.sqlite3"
+[settings]
+timeout = 10 # timeout for the server to respond
