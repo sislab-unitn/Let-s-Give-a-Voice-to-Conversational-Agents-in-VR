@@ -89,7 +89,7 @@ class RetrieveDBAllSync(Action):
         slots = db.get_slots(sender_id)
         events = []
         for slot_name, value in slots.items():
-            if tracker.get_slot(slot_name) is None:
+            if tracker.get_slot(slot_name) is None and slot_name in tracker.slots.keys():
                 evt = SlotSet(slot_name, value)
                 events.append(evt)
         return events

@@ -41,11 +41,7 @@ class DBTracker:
         """Track conversation from a given starting index"""
         sender_id = tracker["sender_id"]
         # prevent unbound exceptions
-        user_text = ""
-        system_text = ""
-        start_timestamp = ""
         end_timestamp = ""
-        user_message_id = ""
         unique_slots_idx = dict()
         for item in tracker["events"][idx:]:
             if item["event"] == "user":
@@ -81,7 +77,8 @@ class DBTracker:
         self.track_conversation_from_index(tracker,0)
         
     def track_from_latest_message(self, message_id:str, tracker: dict) -> None:
-        """Track conversation from the latest message that has been tracked"""
+        """Track conversation from the latest message that has been tracked. If no ID is found, track the whole conversation"""
+        self.add_slots_to_table(tracker)
         # get the index of the latest message
         idxes = [
             i for i, elem in enumerate(tracker["events"]) if elem["event"] == "user" and elem["message_id"] == message_id
@@ -95,8 +92,13 @@ class DBTracker:
                 i for i, elem in enumerate(sliced_events) if elem["event"] == "user"
             ]
             if usr_idx:
-                # track the conversation from the next message
+            # track the conversation from the next message
                 self.track_conversation_from_index(tracker, idx+usr_idx[0])
+        else:
+            # if no message id is found, track the whole conversation
+            self.track_conversation_from_index(tracker, 0)
+        
+
     
     def track_user(self, tracker: dict) -> None:
         """Track user's conversation and slot values"""
@@ -148,16 +150,16 @@ class DBTracker:
         return tracker_dict
 if __name__ == "__main__":
     import sys
-    # with open(sys.argv[1]) as f:
-    #     tracker = json.load(f)
-    # from pprint import pprint
+    with open(sys.argv[1]) as f:
+        tracker = json.load(f)
+    from pprint import pprint
 
-    # pprint(tracker)
-    # for k in tracker.keys():
-    #     print(k)
+    pprint(tracker)
+    for k in tracker.keys():
+        print(k)
 
     db_tracker = DBTracker("test.sqlite3")
-    # db_tracker.track_user(tracker)
+    db_tracker.track_user(tracker)
 
     # a = db_tracker.get_conversation("s")
     # print(len(a))
@@ -166,5 +168,5 @@ if __name__ == "__main__":
     # print(a)
     # a = db_tracker.get_conversation("l")
     # print(db_tracker.slots)
-    b = db_tracker.get_slots("18d4256d96a1417fb6cac957e6744d4b")
-    print(b)
+    # b = db_tracker.get_slots("18d4256d96a1417fb6cac957e6744d4b")
+    # print(b)

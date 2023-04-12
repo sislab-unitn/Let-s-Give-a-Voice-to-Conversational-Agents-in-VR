@@ -1,0 +1,1354 @@
+{
+  "sender_id": "test",
+  "slots": {
+    "symptoms": "i have chest pain",
+    "body_part": "chest",
+    "start_date": "yesterday",
+    "frequency": "very often",
+    "pain_level": "10",
+    "requested_slot": null,
+    "session_started_metadata": null
+  },
+  "latest_message": {
+    "intent": { "name": "done", "confidence": 0.9708149433135986 },
+    "entities": [],
+    "text": "im done",
+    "message_id": "ec7bbaabcfd3447c994ee79def413889",
+    "metadata": {},
+    "text_tokens": [
+      [0, 1],
+      [1, 2],
+      [3, 7]
+    ],
+    "intent_ranking": [
+      { "name": "done", "confidence": 0.9708149433135986 },
+      { "name": "pain_level", "confidence": 0.007399349473416805 },
+      { "name": "anger", "confidence": 0.004837440326809883 },
+      { "name": "stop", "confidence": 0.002901871921494603 },
+      { "name": "symptoms", "confidence": 0.0022341522853821516 },
+      { "name": "restart", "confidence": 0.002044729422777891 },
+      { "name": "thanks", "confidence": 0.001650795224122703 },
+      { "name": "deny", "confidence": 0.001525051542557776 },
+      { "name": "out_of_scope", "confidence": 0.0014020141679793596 },
+      { "name": "date", "confidence": 0.001150897121988237 }
+    ],
+    "response_selector": {
+      "all_retrieval_intents": [],
+      "default": {
+        "response": {
+          "responses": null,
+          "confidence": 0.0,
+          "intent_response_key": null,
+          "utter_action": "utter_None"
+        },
+        "ranking": []
+      }
+    }
+  },
+  "latest_event_time": 1681304931.202793,
+  "followup_action": null,
+  "paused": false,
+  "events": [
+    {
+      "event": "action",
+      "timestamp": 1681303830.5847611,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "action_session_start",
+      "policy": null,
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "session_started",
+      "timestamp": 1681303830.584776,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" }
+    },
+    {
+      "event": "action",
+      "timestamp": 1681303830.584786,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "action_listen",
+      "policy": null,
+      "confidence": null,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "user",
+      "timestamp": 1681303830.594819,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "text": "hello",
+      "parse_data": {
+        "intent": { "name": "greet", "confidence": 0.9880810976028442 },
+        "entities": [],
+        "text": "hello",
+        "message_id": "0848b353a829434e9e54818e336b6012",
+        "metadata": {},
+        "text_tokens": [[0, 5]],
+        "intent_ranking": [
+          { "name": "greet", "confidence": 0.9880810976028442 },
+          { "name": "goodbye", "confidence": 0.003757960395887494 },
+          { "name": "help", "confidence": 0.0022219817619770765 },
+          { "name": "date", "confidence": 0.001294443616643548 },
+          { "name": "challenge_bot", "confidence": 0.0011016177013516426 },
+          { "name": "anger", "confidence": 0.0005335970781743526 },
+          { "name": "restart", "confidence": 0.0005093343206681311 },
+          { "name": "affirm", "confidence": 0.0004329031507950276 },
+          { "name": "stop", "confidence": 0.00042755072354339063 },
+          { "name": "out_of_scope", "confidence": 0.00041724322363734245 }
+        ],
+        "response_selector": {
+          "all_retrieval_intents": [],
+          "default": {
+            "response": {
+              "responses": null,
+              "confidence": 0.0,
+              "intent_response_key": null,
+              "utter_action": "utter_None"
+            },
+            "ranking": []
+          }
+        }
+      },
+      "input_channel": "cmdline",
+      "message_id": "0848b353a829434e9e54818e336b6012"
+    },
+    {
+      "event": "user_featurization",
+      "timestamp": 1681303830.6007302,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "use_text_for_featurization": false
+    },
+    {
+      "event": "action",
+      "timestamp": 1681303830.600738,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "utter_greet",
+      "policy": "MemoizationPolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "bot",
+      "timestamp": 1681303830.60076,
+      "metadata": {
+        "utter_action": "utter_greet",
+        "model_id": "8bc5445c31714407a0e10e443013fb0b"
+      },
+      "text": "Hi, I'm Lisa, a virtual assistant, that will help you through this healthcare experience.",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1681303830.604136,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "utter_instructions",
+      "policy": "MemoizationPolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "bot",
+      "timestamp": 1681303830.604161,
+      "metadata": {
+        "utter_action": "utter_instructions",
+        "model_id": "8bc5445c31714407a0e10e443013fb0b"
+      },
+      "text": "We will take your vital signs, wear the wearable device next to you, and tell me once you're done",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1681303830.607218,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "action_listen",
+      "policy": "MemoizationPolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "user",
+      "timestamp": 1681304897.855006,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "text": "hello",
+      "parse_data": {
+        "intent": { "name": "greet", "confidence": 0.9880810976028442 },
+        "entities": [],
+        "text": "hello",
+        "message_id": "304b76766a224941be358129ee1e777b",
+        "metadata": {},
+        "text_tokens": [[0, 5]],
+        "intent_ranking": [
+          { "name": "greet", "confidence": 0.9880810976028442 },
+          { "name": "goodbye", "confidence": 0.003757960395887494 },
+          { "name": "help", "confidence": 0.0022219817619770765 },
+          { "name": "date", "confidence": 0.001294443616643548 },
+          { "name": "challenge_bot", "confidence": 0.0011016177013516426 },
+          { "name": "anger", "confidence": 0.0005335970781743526 },
+          { "name": "restart", "confidence": 0.0005093343206681311 },
+          { "name": "affirm", "confidence": 0.0004329031507950276 },
+          { "name": "stop", "confidence": 0.00042755072354339063 },
+          { "name": "out_of_scope", "confidence": 0.00041724322363734245 }
+        ],
+        "response_selector": {
+          "all_retrieval_intents": [],
+          "default": {
+            "response": {
+              "responses": null,
+              "confidence": 0.0,
+              "intent_response_key": null,
+              "utter_action": "utter_None"
+            },
+            "ranking": []
+          }
+        }
+      },
+      "input_channel": "cmdline",
+      "message_id": "304b76766a224941be358129ee1e777b"
+    },
+    {
+      "event": "user_featurization",
+      "timestamp": 1681304897.863111,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "use_text_for_featurization": false
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304897.8631208,
+      "metadata": {
+        "query_intent": {
+          "name": "greet",
+          "score": -0.9753268957138062,
+          "threshold": -0.9753268361091614,
+          "severity": 5.960464477539063e-8
+        },
+        "ranking": [
+          {
+            "name": "done",
+            "score": 0.6074447631835938,
+            "threshold": -0.6040470600128174,
+            "severity": -1.2114918231964111
+          },
+          {
+            "name": "session_start",
+            "score": -0.8970696926116943,
+            "threshold": null,
+            "severity": null
+          },
+          {
+            "name": "greet",
+            "score": -0.9753268957138062,
+            "threshold": -0.9753268361091614,
+            "severity": 5.960464477539063e-8
+          },
+          {
+            "name": "date",
+            "score": -1.0394246578216553,
+            "threshold": null,
+            "severity": null
+          },
+          {
+            "name": "restart",
+            "score": -1.1925814151763916,
+            "threshold": null,
+            "severity": null
+          },
+          {
+            "name": "symptoms",
+            "score": -1.2281032800674438,
+            "threshold": null,
+            "severity": null
+          },
+          {
+            "name": "anger",
+            "score": -1.4991438388824463,
+            "threshold": null,
+            "severity": null
+          },
+          {
+            "name": "thanks",
+            "score": -1.5273420810699463,
+            "threshold": null,
+            "severity": null
+          },
+          {
+            "name": "stop",
+            "score": -1.5295300483703613,
+            "threshold": null,
+            "severity": null
+          },
+          {
+            "name": "nlu_fallback",
+            "score": -1.5857324600219727,
+            "threshold": null,
+            "severity": null
+          }
+        ],
+        "model_id": "8bc5445c31714407a0e10e443013fb0b"
+      },
+      "name": "action_unlikely_intent",
+      "policy": "UnexpecTEDIntentPolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304897.866625,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "utter_greet",
+      "policy": "TEDPolicy",
+      "confidence": 0.6086395978927612,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "bot",
+      "timestamp": 1681304897.86665,
+      "metadata": {
+        "utter_action": "utter_greet",
+        "model_id": "8bc5445c31714407a0e10e443013fb0b"
+      },
+      "text": "Hi, I'm Lisa, a virtual assistant, that will help you today",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304897.870133,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "utter_instructions",
+      "policy": "TEDPolicy",
+      "confidence": 0.5979750156402588,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "bot",
+      "timestamp": 1681304897.870155,
+      "metadata": {
+        "utter_action": "utter_instructions",
+        "model_id": "8bc5445c31714407a0e10e443013fb0b"
+      },
+      "text": "We will take your vital signs, wear the wearable device next to you, and tell me once you're done",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304897.873099,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "action_listen",
+      "policy": "TEDPolicy",
+      "confidence": 0.9280338287353516,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "user",
+      "timestamp": 1681304900.584123,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "text": "uim done",
+      "parse_data": {
+        "intent": { "name": "done", "confidence": 0.9732206463813782 },
+        "entities": [],
+        "text": "uim done",
+        "message_id": "6795d69b909b433da0db14cbc4abbe5f",
+        "metadata": {},
+        "text_tokens": [
+          [0, 3],
+          [4, 8]
+        ],
+        "intent_ranking": [
+          { "name": "done", "confidence": 0.9732206463813782 },
+          { "name": "deny", "confidence": 0.011442449875175953 },
+          { "name": "challenge_bot", "confidence": 0.0037751372437924147 },
+          { "name": "stop", "confidence": 0.003058508737012744 },
+          { "name": "restart", "confidence": 0.0021325263660401106 },
+          { "name": "date", "confidence": 0.0011225318303331733 },
+          { "name": "thanks", "confidence": 0.0009999951580539346 },
+          { "name": "out_of_scope", "confidence": 0.0007135698688216507 },
+          { "name": "greet", "confidence": 0.000692609348334372 },
+          { "name": "symptoms", "confidence": 0.0006524382624775171 }
+        ],
+        "response_selector": {
+          "all_retrieval_intents": [],
+          "default": {
+            "response": {
+              "responses": null,
+              "confidence": 0.0,
+              "intent_response_key": null,
+              "utter_action": "utter_None"
+            },
+            "ranking": []
+          }
+        }
+      },
+      "input_channel": "cmdline",
+      "message_id": "6795d69b909b433da0db14cbc4abbe5f"
+    },
+    {
+      "event": "user_featurization",
+      "timestamp": 1681304900.593447,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "use_text_for_featurization": false
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304900.5934532,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "investigate_symptoms_form",
+      "policy": "TEDPolicy",
+      "confidence": 0.8922489881515503,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "active_loop",
+      "timestamp": 1681304900.593488,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "investigate_symptoms_form"
+    },
+    {
+      "event": "slot",
+      "timestamp": 1681304900.59349,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "requested_slot",
+      "value": "symptoms"
+    },
+    {
+      "event": "bot",
+      "timestamp": 1681304900.593492,
+      "metadata": {
+        "utter_action": "utter_ask_symptoms",
+        "model_id": "8bc5445c31714407a0e10e443013fb0b"
+      },
+      "text": "Can you provide me details of what you are experiencing now",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304900.597606,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "action_listen",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    },
+    {
+      "event": "user",
+      "timestamp": 1681304904.3691678,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "text": "i have chest pain",
+      "parse_data": {
+        "intent": { "name": "symptoms", "confidence": 0.9945237636566162 },
+        "entities": [
+          {
+            "entity": "body_part",
+            "start": 7,
+            "end": 12,
+            "confidence_entity": 0.9581981301307678,
+            "value": "chest",
+            "extractor": "DIETClassifier"
+          },
+          {
+            "entity": "body_part",
+            "start": 7,
+            "end": 12,
+            "value": "chest",
+            "extractor": "RegexEntityExtractor"
+          }
+        ],
+        "text": "i have chest pain",
+        "message_id": "5d60b318b15a4440b28fff6c7de2c9ca",
+        "metadata": {},
+        "text_tokens": [
+          [0, 1],
+          [2, 6],
+          [7, 12],
+          [13, 17]
+        ],
+        "intent_ranking": [
+          { "name": "symptoms", "confidence": 0.9945237636566162 },
+          { "name": "help", "confidence": 0.004039305727928877 },
+          { "name": "restart", "confidence": 0.00026026705745607615 },
+          { "name": "done", "confidence": 0.0002538658445701003 },
+          { "name": "pain_level", "confidence": 0.0002125930186593905 },
+          { "name": "goodbye", "confidence": 0.00014370173448696733 },
+          { "name": "affirm", "confidence": 0.00013843298074789345 },
+          { "name": "deny", "confidence": 9.638702613301575e-5 },
+          { "name": "date", "confidence": 7.895455928519368e-5 },
+          { "name": "stop", "confidence": 7.658641698071733e-5 }
+        ],
+        "response_selector": {
+          "all_retrieval_intents": [],
+          "default": {
+            "response": {
+              "responses": null,
+              "confidence": 0.0,
+              "intent_response_key": null,
+              "utter_action": "utter_None"
+            },
+            "ranking": []
+          }
+        }
+      },
+      "input_channel": "cmdline",
+      "message_id": "5d60b318b15a4440b28fff6c7de2c9ca"
+    },
+    {
+      "event": "slot",
+      "timestamp": 1681304904.396551,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "symptoms",
+      "value": "i have chest pain"
+    },
+    {
+      "event": "slot",
+      "timestamp": 1681304904.3965561,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "body_part",
+      "value": "chest"
+    },
+    {
+      "event": "user_featurization",
+      "timestamp": 1681304904.4049978,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "use_text_for_featurization": false
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304904.405004,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "investigate_symptoms_form",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    },
+    {
+      "event": "slot",
+      "timestamp": 1681304904.4050272,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "requested_slot",
+      "value": "start_date"
+    },
+    {
+      "event": "bot",
+      "timestamp": 1681304904.405028,
+      "metadata": {
+        "utter_action": "utter_ask_start_date",
+        "model_id": "8bc5445c31714407a0e10e443013fb0b"
+      },
+      "text": "Do you remember when your symptoms have started?",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304904.408538,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "action_listen",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    },
+    {
+      "event": "user",
+      "timestamp": 1681304907.867199,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "text": "since yesterday",
+      "parse_data": {
+        "intent": { "name": "date", "confidence": 0.9900137186050415 },
+        "entities": [
+          {
+            "entity": "start_date",
+            "start": 6,
+            "end": 15,
+            "confidence_entity": 0.9682299494743347,
+            "value": "yesterday",
+            "extractor": "DIETClassifier"
+          },
+          {
+            "entity": "start_date",
+            "start": 6,
+            "end": 15,
+            "value": "yesterday",
+            "extractor": "RegexEntityExtractor"
+          }
+        ],
+        "text": "since yesterday",
+        "message_id": "592e6029beed4c7894b6a25c6b8278ba",
+        "metadata": {},
+        "text_tokens": [
+          [0, 5],
+          [6, 15]
+        ],
+        "intent_ranking": [
+          { "name": "date", "confidence": 0.9900137186050415 },
+          { "name": "stop", "confidence": 0.003959305118769407 },
+          { "name": "pain_level", "confidence": 0.0010652245255187154 },
+          { "name": "deny", "confidence": 0.0007780590676702559 },
+          { "name": "restart", "confidence": 0.0007135331397876143 },
+          { "name": "affirm", "confidence": 0.0007127710268832743 },
+          { "name": "done", "confidence": 0.0005822585080750287 },
+          { "name": "symptoms", "confidence": 0.0005381928058341146 },
+          { "name": "goodbye", "confidence": 0.0004844809591304511 },
+          { "name": "out_of_scope", "confidence": 0.0003847380285151303 }
+        ],
+        "response_selector": {
+          "all_retrieval_intents": [],
+          "default": {
+            "response": {
+              "responses": null,
+              "confidence": 0.0,
+              "intent_response_key": null,
+              "utter_action": "utter_None"
+            },
+            "ranking": []
+          }
+        }
+      },
+      "input_channel": "cmdline",
+      "message_id": "592e6029beed4c7894b6a25c6b8278ba"
+    },
+    {
+      "event": "slot",
+      "timestamp": 1681304907.867352,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "start_date",
+      "value": "yesterday"
+    },
+    {
+      "event": "user_featurization",
+      "timestamp": 1681304907.874901,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "use_text_for_featurization": false
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304907.8749068,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "investigate_symptoms_form",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    },
+    {
+      "event": "slot",
+      "timestamp": 1681304907.874924,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "requested_slot",
+      "value": "frequency"
+    },
+    {
+      "event": "bot",
+      "timestamp": 1681304907.874926,
+      "metadata": {
+        "utter_action": "utter_ask_frequency",
+        "model_id": "8bc5445c31714407a0e10e443013fb0b"
+      },
+      "text": "Do you experience this often?",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304907.8784692,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "action_listen",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    },
+    {
+      "event": "user",
+      "timestamp": 1681304909.8680801,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "text": "very often",
+      "parse_data": {
+        "intent": { "name": "date", "confidence": 0.9597204923629761 },
+        "entities": [
+          {
+            "entity": "frequency",
+            "start": 0,
+            "end": 10,
+            "confidence_entity": 0.8623033165931702,
+            "value": "very often",
+            "extractor": "DIETClassifier"
+          },
+          {
+            "entity": "frequency",
+            "start": 0,
+            "end": 10,
+            "value": "very often",
+            "extractor": "RegexEntityExtractor"
+          }
+        ],
+        "text": "very often",
+        "message_id": "0f9b0c9e5b0341edb9803ff26b7b2c31",
+        "metadata": {},
+        "text_tokens": [
+          [0, 4],
+          [5, 10]
+        ],
+        "intent_ranking": [
+          { "name": "date", "confidence": 0.9597204923629761 },
+          { "name": "pain_level", "confidence": 0.00872925017029047 },
+          { "name": "stop", "confidence": 0.005605312995612621 },
+          { "name": "goodbye", "confidence": 0.005170247983187437 },
+          { "name": "challenge_bot", "confidence": 0.003515486605465412 },
+          { "name": "greet", "confidence": 0.0034603849053382874 },
+          { "name": "deny", "confidence": 0.002998042618855834 },
+          { "name": "affirm", "confidence": 0.002674344228580594 },
+          { "name": "symptoms", "confidence": 0.0017472099279984832 },
+          { "name": "done", "confidence": 0.0016193452756851912 }
+        ],
+        "response_selector": {
+          "all_retrieval_intents": [],
+          "default": {
+            "response": {
+              "responses": null,
+              "confidence": 0.0,
+              "intent_response_key": null,
+              "utter_action": "utter_None"
+            },
+            "ranking": []
+          }
+        }
+      },
+      "input_channel": "cmdline",
+      "message_id": "0f9b0c9e5b0341edb9803ff26b7b2c31"
+    },
+    {
+      "event": "slot",
+      "timestamp": 1681304909.868278,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "frequency",
+      "value": "very often"
+    },
+    {
+      "event": "user_featurization",
+      "timestamp": 1681304909.877698,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "use_text_for_featurization": false
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304909.877704,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "investigate_symptoms_form",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    },
+    {
+      "event": "slot",
+      "timestamp": 1681304909.877724,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "requested_slot",
+      "value": "pain_level"
+    },
+    {
+      "event": "bot",
+      "timestamp": 1681304909.877727,
+      "metadata": {
+        "utter_action": "utter_ask_pain_level",
+        "model_id": "8bc5445c31714407a0e10e443013fb0b"
+      },
+      "text": "In a scale from zero to ten, with ten being unbearable pain, how would you rate the pain you are experiencing now?",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304909.882178,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "action_listen",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    },
+    {
+      "event": "user",
+      "timestamp": 1681304911.2746902,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "text": "10",
+      "parse_data": {
+        "intent": { "name": "nlu_fallback", "confidence": 0.7 },
+        "entities": [
+          {
+            "entity": "pain_level",
+            "start": 0,
+            "end": 2,
+            "confidence_entity": 0.8786590695381165,
+            "value": "10",
+            "extractor": "DIETClassifier"
+          },
+          {
+            "entity": "pain_level",
+            "start": 0,
+            "end": 2,
+            "value": "10",
+            "extractor": "RegexEntityExtractor"
+          }
+        ],
+        "text": "10",
+        "message_id": "23dccec731044267a8032e5f46c1c73a",
+        "metadata": {},
+        "text_tokens": [[0, 2]],
+        "intent_ranking": [
+          { "name": "nlu_fallback", "confidence": 0.7 },
+          { "name": "pain_level", "confidence": 0.4589841961860657 },
+          { "name": "out_of_scope", "confidence": 0.3465622365474701 },
+          { "name": "stop", "confidence": 0.0606035515666008 },
+          { "name": "date", "confidence": 0.0290779247879982 },
+          { "name": "help", "confidence": 0.026455923914909363 },
+          { "name": "thanks", "confidence": 0.021306822076439857 },
+          { "name": "restart", "confidence": 0.01427027489989996 },
+          { "name": "symptoms", "confidence": 0.012000971473753452 },
+          { "name": "done", "confidence": 0.009696831926703453 },
+          { "name": "anger", "confidence": 0.0048202937468886375 }
+        ],
+        "response_selector": {
+          "all_retrieval_intents": [],
+          "default": {
+            "response": {
+              "responses": null,
+              "confidence": 0.0,
+              "intent_response_key": null,
+              "utter_action": "utter_None"
+            },
+            "ranking": []
+          }
+        }
+      },
+      "input_channel": "cmdline",
+      "message_id": "23dccec731044267a8032e5f46c1c73a"
+    },
+    {
+      "event": "slot",
+      "timestamp": 1681304911.2748291,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "pain_level",
+      "value": "10"
+    },
+    {
+      "event": "user_featurization",
+      "timestamp": 1681304911.2846239,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "use_text_for_featurization": false
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304911.284636,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "investigate_symptoms_form",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    },
+    {
+      "event": "slot",
+      "timestamp": 1681304911.2846432,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "requested_slot",
+      "value": null
+    },
+    {
+      "event": "active_loop",
+      "timestamp": 1681304911.2846458,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": null
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304911.289848,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "utter_esi",
+      "policy": "TEDPolicy",
+      "confidence": 0.7939203977584839,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "bot",
+      "timestamp": 1681304911.2898712,
+      "metadata": {
+        "utter_action": "utter_esi",
+        "model_id": "8bc5445c31714407a0e10e443013fb0b"
+      },
+      "text": "Based on you symptoms you are assigned a code yellow",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304911.294743,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "utter_closure",
+      "policy": "TEDPolicy",
+      "confidence": 0.579181432723999,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "bot",
+      "timestamp": 1681304911.294762,
+      "metadata": {
+        "utter_action": "utter_closure",
+        "model_id": "8bc5445c31714407a0e10e443013fb0b"
+      },
+      "text": "Please come in the Anamnesis room. You will be checked as soon as possible",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304911.3227289,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "action_db_sync",
+      "policy": "TEDPolicy",
+      "confidence": 0.5934581756591797,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304911.327202,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "action_listen",
+      "policy": "TEDPolicy",
+      "confidence": 0.949738621711731,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "user",
+      "timestamp": 1681304926.958802,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "text": "thank you",
+      "parse_data": {
+        "intent": { "name": "thanks", "confidence": 0.9664271473884583 },
+        "entities": [],
+        "text": "thank you",
+        "message_id": "248e91b5ec434397a84db46f6deba32d",
+        "metadata": {},
+        "text_tokens": [
+          [0, 5],
+          [6, 9]
+        ],
+        "intent_ranking": [
+          { "name": "thanks", "confidence": 0.9664271473884583 },
+          { "name": "goodbye", "confidence": 0.011354913003742695 },
+          { "name": "challenge_bot", "confidence": 0.00575485872104764 },
+          { "name": "out_of_scope", "confidence": 0.0037186862900853157 },
+          { "name": "pain_level", "confidence": 0.003166481386870146 },
+          { "name": "affirm", "confidence": 0.002946514403447509 },
+          { "name": "deny", "confidence": 0.0023010645527392626 },
+          { "name": "anger", "confidence": 0.0015922661405056715 },
+          { "name": "done", "confidence": 0.0014733063289895654 },
+          { "name": "restart", "confidence": 0.00048143064486794174 }
+        ],
+        "response_selector": {
+          "all_retrieval_intents": [],
+          "default": {
+            "response": {
+              "responses": null,
+              "confidence": 0.0,
+              "intent_response_key": null,
+              "utter_action": "utter_None"
+            },
+            "ranking": []
+          }
+        }
+      },
+      "input_channel": "cmdline",
+      "message_id": "248e91b5ec434397a84db46f6deba32d"
+    },
+    {
+      "event": "user_featurization",
+      "timestamp": 1681304926.9678059,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "use_text_for_featurization": false
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304926.967812,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "utter_thanks",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    },
+    {
+      "event": "bot",
+      "timestamp": 1681304926.967833,
+      "metadata": {
+        "utter_action": "utter_thanks",
+        "model_id": "8bc5445c31714407a0e10e443013fb0b"
+      },
+      "text": "I'm glad to have helped you",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304926.9728599,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "action_listen",
+      "policy": "RulePolicy",
+      "confidence": 1.0,
+      "action_text": null,
+      "hide_rule_turn": true
+    },
+    {
+      "event": "user",
+      "timestamp": 1681304928.408632,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "text": "hi",
+      "parse_data": {
+        "intent": { "name": "greet", "confidence": 0.9788652658462524 },
+        "entities": [],
+        "text": "hi",
+        "message_id": "9707db070a614bc5ab20a2070aa2b531",
+        "metadata": {},
+        "text_tokens": [[0, 2]],
+        "intent_ranking": [
+          { "name": "greet", "confidence": 0.9788652658462524 },
+          { "name": "help", "confidence": 0.00779223907738924 },
+          { "name": "goodbye", "confidence": 0.0026755633298307657 },
+          { "name": "challenge_bot", "confidence": 0.0019610265735536814 },
+          { "name": "anger", "confidence": 0.0013638067757710814 },
+          { "name": "done", "confidence": 0.0011455542407929897 },
+          { "name": "date", "confidence": 0.000992374960333109 },
+          { "name": "stop", "confidence": 0.0009798860410228372 },
+          { "name": "deny", "confidence": 0.0009720773668959737 },
+          { "name": "restart", "confidence": 0.0008028175216168165 }
+        ],
+        "response_selector": {
+          "all_retrieval_intents": [],
+          "default": {
+            "response": {
+              "responses": null,
+              "confidence": 0.0,
+              "intent_response_key": null,
+              "utter_action": "utter_None"
+            },
+            "ranking": []
+          }
+        }
+      },
+      "input_channel": "cmdline",
+      "message_id": "9707db070a614bc5ab20a2070aa2b531"
+    },
+    {
+      "event": "user_featurization",
+      "timestamp": 1681304928.41854,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "use_text_for_featurization": false
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304928.418547,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "utter_greet",
+      "policy": "TEDPolicy",
+      "confidence": 0.6216341257095337,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "bot",
+      "timestamp": 1681304928.418571,
+      "metadata": {
+        "utter_action": "utter_greet",
+        "model_id": "8bc5445c31714407a0e10e443013fb0b"
+      },
+      "text": "Hello, I'm Lisa, a virtual assistant, that will help you today.",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304928.424672,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "utter_instructions",
+      "policy": "TEDPolicy",
+      "confidence": 0.6140755414962769,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "bot",
+      "timestamp": 1681304928.4246972,
+      "metadata": {
+        "utter_action": "utter_instructions",
+        "model_id": "8bc5445c31714407a0e10e443013fb0b"
+      },
+      "text": "We will take your vital signs, wear the wearable device next to you, and tell me once you're done",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304928.430499,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "action_listen",
+      "policy": "TEDPolicy",
+      "confidence": 0.929928719997406,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "user",
+      "timestamp": 1681304931.151139,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "text": "im done",
+      "parse_data": {
+        "intent": { "name": "done", "confidence": 0.9708149433135986 },
+        "entities": [],
+        "text": "im done",
+        "message_id": "ec7bbaabcfd3447c994ee79def413889",
+        "metadata": {},
+        "text_tokens": [
+          [0, 1],
+          [1, 2],
+          [3, 7]
+        ],
+        "intent_ranking": [
+          { "name": "done", "confidence": 0.9708149433135986 },
+          { "name": "pain_level", "confidence": 0.007399349473416805 },
+          { "name": "anger", "confidence": 0.004837440326809883 },
+          { "name": "stop", "confidence": 0.002901871921494603 },
+          { "name": "symptoms", "confidence": 0.0022341522853821516 },
+          { "name": "restart", "confidence": 0.002044729422777891 },
+          { "name": "thanks", "confidence": 0.001650795224122703 },
+          { "name": "deny", "confidence": 0.001525051542557776 },
+          { "name": "out_of_scope", "confidence": 0.0014020141679793596 },
+          { "name": "date", "confidence": 0.001150897121988237 }
+        ],
+        "response_selector": {
+          "all_retrieval_intents": [],
+          "default": {
+            "response": {
+              "responses": null,
+              "confidence": 0.0,
+              "intent_response_key": null,
+              "utter_action": "utter_None"
+            },
+            "ranking": []
+          }
+        }
+      },
+      "input_channel": "cmdline",
+      "message_id": "ec7bbaabcfd3447c994ee79def413889"
+    },
+    {
+      "event": "user_featurization",
+      "timestamp": 1681304931.162005,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "use_text_for_featurization": false
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304931.1620102,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "investigate_symptoms_form",
+      "policy": "TEDPolicy",
+      "confidence": 0.8907536864280701,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "active_loop",
+      "timestamp": 1681304931.162014,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "investigate_symptoms_form"
+    },
+    {
+      "event": "slot",
+      "timestamp": 1681304931.162016,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "requested_slot",
+      "value": null
+    },
+    {
+      "event": "active_loop",
+      "timestamp": 1681304931.162017,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": null
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304931.167516,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "utter_esi",
+      "policy": "TEDPolicy",
+      "confidence": 0.8032830953598022,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "bot",
+      "timestamp": 1681304931.167535,
+      "metadata": {
+        "utter_action": "utter_esi",
+        "model_id": "8bc5445c31714407a0e10e443013fb0b"
+      },
+      "text": "Based on you symptoms you are assigned a code yellow",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304931.173447,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "utter_closure",
+      "policy": "TEDPolicy",
+      "confidence": 0.5646321773529053,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "bot",
+      "timestamp": 1681304931.1734662,
+      "metadata": {
+        "utter_action": "utter_closure",
+        "model_id": "8bc5445c31714407a0e10e443013fb0b"
+      },
+      "text": "Please come in the Anamnesis room. You will be checked as soon as possible",
+      "data": {
+        "elements": null,
+        "quick_replies": null,
+        "buttons": null,
+        "attachment": null,
+        "image": null,
+        "custom": null
+      }
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304931.1974669,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "action_db_sync",
+      "policy": "TEDPolicy",
+      "confidence": 0.5933915972709656,
+      "action_text": null,
+      "hide_rule_turn": false
+    },
+    {
+      "event": "action",
+      "timestamp": 1681304931.202793,
+      "metadata": { "model_id": "8bc5445c31714407a0e10e443013fb0b" },
+      "name": "action_listen",
+      "policy": "TEDPolicy",
+      "confidence": 0.9502944946289062,
+      "action_text": null,
+      "hide_rule_turn": false
+    }
+  ],
+  "latest_input_channel": "cmdline",
+  "active_loop": {},
+  "latest_action": { "action_name": "action_listen" },
+  "latest_action_name": "action_listen"
+}
