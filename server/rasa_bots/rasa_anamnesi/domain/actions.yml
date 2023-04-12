@@ -1,12 +1,9 @@
 version: "3.1"
 
 actions:
-  - action_db_sync
-  - action_retrieve_db_sync
+  - action_db_sync # sync everything to the db
+  - action_retrieve_db_sync # retrieves next slot from db during form
   - action_retrieve_db_all_sync # retrieves all slots
-  - validate_investigate_form
-  - action_extract_whole_utterance
-  # - action_discover_movie
-  # - action_genres_available
-  # - validate_movie_tv_genre_form
-  # - validate_movie_tv_form
+  - action_retrieve_symptoms_db_sync # retrieves only symptoms
+  - validate_investigate_form # fake slot validation, used for drink and smoke times
+  - action_extract_whole_utterance # saves the whole utterance as next slow for form

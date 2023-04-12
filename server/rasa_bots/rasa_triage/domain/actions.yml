@@ -1,11 +1,5 @@
 version: "3.1"
 
 actions:
-  - action_db_sync
-  # - validate_investigate_symptoms_form
-  - action_extract_whole_utterance
-  # - action_symptoms_slot
-  # - action_discover_movie
-  # - action_genres_available
-  # - validate_movie_tv_genre_form
-  # - validate_movie_tv_form
+  - action_db_sync # sync the conversation on the db
+  - action_extract_whole_utterance # extracts the whole utterance as slot for the next slow in a form

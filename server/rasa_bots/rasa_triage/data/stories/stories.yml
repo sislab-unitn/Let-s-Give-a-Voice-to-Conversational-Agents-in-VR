@@ -14,7 +14,7 @@ stories:
         - requested_slot: null
       - action: utter_esi
       - action: utter_closure
-      - action: action_db_sync
+      - action: action_db_sync # sync the conversation to the db
 
   # - story: Lung example
   #   steps:

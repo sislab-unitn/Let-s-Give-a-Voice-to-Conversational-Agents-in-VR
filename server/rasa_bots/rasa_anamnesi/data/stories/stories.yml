@@ -5,14 +5,14 @@ stories:
     steps:
       - intent: greet
       - action: utter_greet
-      - action: action_retrieve_db_all_sync # retrieves all slots
+      - action: action_retrieve_symptoms_db_sync # get the symptoms
       - action: investigate_form
       - active_loop: investigate_form
       - active_loop: null
       - slot_was_set:
         - requested_slot: null
       - action: utter_exam
-      - action: action_db_sync
+      - action: action_db_sync # sync the conversation to the db
 
   # - story: Lung example
   #   steps:

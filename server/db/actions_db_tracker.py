@@ -67,9 +67,9 @@ class RetrieveDBSync(Action):
         if requested_slot is not None and tracker.get_slot(requested_slot) is None:
             evt = SlotSet(requested_slot, value)
             print(evt)
-        print(tracker.slots)
+        # print(tracker.slots)
         print("action_retrieve_db_sync")
-        print(requested_slot, value)
+        # print(requested_slot, value)
         return [evt]
 class RetrieveDBAllSync(Action):
     """Retrieves all the slots from the custom sqlite database if present and sets it in the tracker"""
@@ -93,3 +93,26 @@ class RetrieveDBAllSync(Action):
                 evt = SlotSet(slot_name, value)
                 events.append(evt)
         return events
+class RetrieveDBSyncSymptoms(Action):
+    """Retrieves symptoms slots from the custom sqlite database if present and sets it in the tracker"""
+
+    def name(self) -> Text:
+        return "action_retrieve_symptoms_db_sync"
+
+    def run(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> List[Dict[Text, Any]]:
+        print ("action_retrieve_symptoms_db_sync")
+        db = DBTracker(db_path)
+        tracker_dict = DBTracker.tracker_to_dict(tracker)
+        sender_id = tracker_dict["sender_id"]
+        slots = db.get_slots(sender_id)
+        try:
+            symptoms = slots["symptoms"]
+        except KeyError:
+            symptoms = None
+        evt = SlotSet("symptoms", symptoms)
+        return [evt]
