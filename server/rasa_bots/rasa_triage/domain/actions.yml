@@ -2,6 +2,9 @@ version: "3.1"
 
 actions:
   - action_db_sync
+  # - validate_investigate_symptoms_form
+  - action_extract_symptoms
+  # - action_symptoms_slot
   # - action_discover_movie
   # - action_genres_available
   # - validate_movie_tv_genre_form

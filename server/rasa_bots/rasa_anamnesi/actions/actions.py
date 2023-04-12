@@ -18,3 +18,5 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
 
 
 from db.actions_db_tracker import ActionDBSync
+from .action_symptoms_slot import ActionExtractSymptoms
+from .action_affirm_frequency import ValidateInvestigateForm

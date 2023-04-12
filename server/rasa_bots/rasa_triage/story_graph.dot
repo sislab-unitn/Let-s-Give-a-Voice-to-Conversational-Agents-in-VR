@@ -4,14 +4,18 @@ digraph  {
 1 [class=active, fontsize=12, label=action_session_start];
 2 [class=active, fontsize=12, label=utter_greet];
 3 [class=active, fontsize=12, label=utter_instructions];
-4 [class=active, fontsize=12, label=utter_inquire];
-5 [class="dashed active", fontsize=12, label=investigate_symptoms_form];
+4 [class=active, fontsize=12, label=utter_ask_symptoms];
+5 [class="dashed active", fontsize=12, label=action_extract_symptoms];
 6 [class="intent active", fillcolor=lightblue, label="/greet", shape=rect, style=filled];
+7 [class="intent active", fillcolor=lightblue, label="/done", shape=rect, style=filled];
+8 [class="intent active", fillcolor=lightblue, label="/symptoms", shape=rect, style=filled];
 0 -> "-1"  [class="", key=NONE, label=""];
 0 -> 1  [class=active, key=NONE, label=""];
 1 -> 6  [class=active, key=0];
 2 -> 3  [class=active, key=NONE, label=""];
-3 -> 4  [class=active, key=NONE, label=""];
-4 -> 5  [class=active, key=NONE, label=""];
+3 -> 7  [class=active, key=0];
+4 -> 8  [class=active, key=0];
 6 -> 2  [class=active, key=0];
+7 -> 4  [class=active, key=0];
+8 -> 5  [class=active, key=0];
 }

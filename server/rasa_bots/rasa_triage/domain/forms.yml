@@ -5,5 +5,4 @@ forms:
       - body_part
       - start_date
       - frequency
-      - symptoms
       - pain_level

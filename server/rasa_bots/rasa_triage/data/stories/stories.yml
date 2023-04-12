@@ -7,11 +7,14 @@ stories:
       - action: utter_greet
       - action: utter_instructions
       - intent: done
-      # - action: action_db_sync
+      - action: utter_ask_symptoms
+      - intent: symptoms
+      - action: action_extract_symptoms
       - action: investigate_symptoms_form
       - active_loop: investigate_symptoms_form
       - active_loop: null
-      # - action: action_db_sync
+      - slot_was_set:
+        - requested_slot: null
       - action: utter_esi
       - action: utter_closure
       - action: action_db_sync

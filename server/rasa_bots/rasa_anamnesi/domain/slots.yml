@@ -4,21 +4,19 @@ slots:
   name:
     type: text
     mappings:
-    - type: from_entity
-      entity: name
-      conditions:
-        - active_loop: investigate_form
-          requested_slot: name
-      influence_conversation: true
+      - type: from_entity
+        entity: name
+        conditions:
+          - active_loop: name_form
+            requested_slot: name
+        influence_conversation: true
   symptoms:
     type: text
     mappings:
-    - type: from_entity
-      entity: symptoms
-      conditions:
-        - active_loop: investigate_form
-          requested_slot: symptoms
-      influence_conversation: true
+      - type: custom
+        intent: symptoms
+        # action: action_extract_symptoms
+        # influence_conversation: true
   first_time:
     type: bool
     mappings:
@@ -49,6 +47,15 @@ slots:
         conditions:
           - active_loop: investigate_form
             requested_slot: drink
+  drink_frequency:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: frequency
+        conditions:
+          - active_loop: investigate_form
+            requested_slot: drink_frequency
+        influence_conversation: true
   smoke:
     type: bool
     mappings:
@@ -64,6 +71,15 @@ slots:
         conditions:
           - active_loop: investigate_form
             requested_slot: smoke
+  smoke_frequency:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: frequency
+        conditions:
+          - active_loop: investigate_form
+            requested_slot: smoke_frequency
+        influence_conversation: true
   pregnant:
     type: bool
     mappings:

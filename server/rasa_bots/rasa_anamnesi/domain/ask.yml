@@ -33,3 +33,7 @@ responses:
     # - text: "Is there any substance you are allergic to?"
   utter_ask_rephrase:
     - text: "Sorry, I didn't understand that. Can you rephrase please"
+  utter_ask_drink_frequency:
+    - text: "How frequently do you drink?"
+  utter_ask_smoke_frequency:
+    - text: "How frequently do you smoke?"

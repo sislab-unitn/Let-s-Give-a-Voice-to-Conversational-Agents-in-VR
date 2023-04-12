@@ -38,6 +38,13 @@ class DBTracker:
     def track_conversation_from_index(self, tracker: dict, idx: int = 0, blacklist:list[str] = ['requested_slot','session_started_metadata','results_data'] ) -> None:
         """Track conversation from a given starting index"""
         sender_id = tracker["sender_id"]
+        # prevent unbound exceptions
+        user_text = ""
+        system_text = ""
+        start_timestamp = ""
+        end_timestamp = ""
+        user_message_id = ""
+        unique_slots_idx = dict()
         for item in tracker["events"][idx:]:
             if item["event"] == "user":
                 # if there is a user message, insert the previous message
@@ -49,6 +56,7 @@ class DBTracker:
                         self.conn,
                     )
                 system_text = ""
+                end_timestamp  = ""
                 unique_slots_idx = dict()
                 user_text = item["text"]
                 user_message_id = item["message_id"]

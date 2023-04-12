@@ -19,7 +19,6 @@ pipeline:
   - name: RegexFeaturizer
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
-  - name: CountVectorsFeaturizer
     analyzer: char_wb
     min_ngram: 1
     max_ngram: 4
@@ -29,7 +28,6 @@ pipeline:
     constrain_similarities: true
   - name: EntitySynonymMapper
   - name: RegexEntityExtractor
-  # - name: RegexEntityExtractor
   - name: ResponseSelector
     epochs: 100
     constrain_similarities: true
@@ -45,10 +43,10 @@ policies:
 # # See https://rasa.com/docs/rasa/policies for more information.
   - name: MemoizationPolicy
   - name: RulePolicy
-  # - name: UnexpecTEDIntentPolicy
-  #   max_history: 50
-  #   epochs: 100
+  - name: UnexpecTEDIntentPolicy
+    max_history: 200
+    epochs: 100
   - name: TEDPolicy
-    max_history: 50
+    max_history: 200
     epochs: 100
     constrain_similarities: true

@@ -5,17 +5,30 @@ stories:
     steps:
       - intent: greet
       - action: utter_greet
+      - action: name_form
+      - active_loop: name_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: utter_ask_symptoms
+      - intent: symptoms
+      - action: action_extract_symptoms
+      - slot_was_set:
+          - symptoms
       - action: investigate_form
       - active_loop: investigate_form
       - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
       - action: utter_exam
+      - action: action_db_sync
 
   # - story: Lung example
   #   steps:
   #     - intent: greet
   #     - action: utter_greet
   #     - action: utter_ask_name
-  #     - or: 
+  #     - or:
   #       - intent: greet
   #       - intent: goodbye
   #       # - intent: thanks
@@ -26,12 +39,12 @@ stories:
   #       # - intent: out_of_scope
   #       # - intent: challenge_bot
   #       # - intent: anger
-  #       # - intent: symptoms 
+  #       # - intent: symptoms
   #       # - intent: date
   #       # - intent: pain_level
   #       # - intent: done
   #     - action: utter_ask_symptoms
-  #     - or: 
+  #     - or:
   #       - intent: greet
   #       - intent: goodbye
   #       # - intent: thanks
@@ -42,12 +55,12 @@ stories:
   #       # - intent: out_of_scope
   #       # - intent: challenge_bot
   #       # - intent: anger
-  #       # - intent: symptoms 
+  #       # - intent: symptoms
   #       # - intent: date
   #       # - intent: pain_level
   #       # - intent: done
   #     - action: utter_ask_first_time
-  #     - or: 
+  #     - or:
   #       - intent: greet
   #       - intent: goodbye
   #       # - intent: thanks
@@ -58,12 +71,12 @@ stories:
   #       # - intent: out_of_scope
   #       # - intent: challenge_bot
   #       # - intent: anger
-  #       # - intent: symptoms 
+  #       # - intent: symptoms
   #       # - intent: date
   #       # - intent: pain_level
   #       # - intent: done
   #     - action: utter_ask_drink
-  #     - or: 
+  #     - or:
   #       - intent: greet
   #       - intent: goodbye
   #       # - intent: thanks
@@ -74,12 +87,12 @@ stories:
   #       # - intent: out_of_scope
   #       # - intent: challenge_bot
   #       # - intent: anger
-  #       # - intent: symptoms 
+  #       # - intent: symptoms
   #       # - intent: date
   #       # - intent: pain_level
   #       # - intent: done
   #     - action: utter_ask_smoke
-  #     - or: 
+  #     - or:
   #       - intent: greet
   #       - intent: goodbye
   #       # - intent: thanks
@@ -90,12 +103,12 @@ stories:
   #       # - intent: out_of_scope
   #       # - intent: challenge_bot
   #       # - intent: anger
-  #       # - intent: symptoms 
+  #       # - intent: symptoms
   #       # - intent: date
   #       # - intent: pain_level
   #       # - intent: done
   #     - action: utter_ask_medications
-  #     - or: 
+  #     - or:
   #       - intent: greet
   #       - intent: goodbye
   #       # - intent: thanks
@@ -106,12 +119,12 @@ stories:
   #       # - intent: out_of_scope
   #       # - intent: challenge_bot
   #       # - intent: anger
-  #       # - intent: symptoms 
+  #       # - intent: symptoms
   #       # - intent: date
   #       # - intent: pain_level
   #       # - intent: done
   #     - action: utter_ask_diseases
-  #     - or: 
+  #     - or:
   #       - intent: greet
   #       - intent: goodbye
   #       # - intent: thanks
@@ -122,12 +135,12 @@ stories:
   #       # - intent: out_of_scope
   #       # - intent: challenge_bot
   #       # - intent: anger
-  #       # - intent: symptoms 
+  #       # - intent: symptoms
   #       # - intent: date
   #       # - intent: pain_level
   #       # - intent: done
   #     - action: utter_ask_family_diseases
-  #     - or: 
+  #     - or:
   #       - intent: greet
   #       - intent: goodbye
   #       # - intent: thanks
@@ -138,12 +151,12 @@ stories:
   #       # - intent: out_of_scope
   #       # - intent: challenge_bot
   #       # - intent: anger
-  #       # - intent: symptoms 
+  #       # - intent: symptoms
   #       # - intent: date
   #       # - intent: pain_level
   #       # - intent: done
   #     - action: utter_ask_allergies
-  #     - or: 
+  #     - or:
   #       - intent: greet
   #       - intent: goodbye
   #       # - intent: thanks
@@ -154,7 +167,7 @@ stories:
   #       # - intent: out_of_scope
   #       # - intent: challenge_bot
   #       # - intent: anger
-  #       # - intent: symptoms 
+  #       # - intent: symptoms
   #       # - intent: date
   #       # - intent: pain_level
   #       # - intent: done

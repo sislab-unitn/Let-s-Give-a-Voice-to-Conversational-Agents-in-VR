@@ -1,0 +1,13 @@
+version: "3.1"
+
+nlu:
+- intent: date
+  examples: |
+    - Since [yesterday](start_date)
+    - Since [a month ago](start_date)
+    - A [week](start_date) ago
+    - [two days](start_date)
+    - [every two days](frequency)
+    - [everyday](frequency)
+    - [every day](frequency)
+    - [very often](frequency)

@@ -1,6 +1,6 @@
 version: "3.1"
 entities:
-- symptoms
+# - symptoms
 - body_part
 - start_date
 - frequency

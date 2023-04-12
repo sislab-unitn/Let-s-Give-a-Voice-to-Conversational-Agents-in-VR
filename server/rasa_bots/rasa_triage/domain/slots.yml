@@ -4,12 +4,9 @@ slots:
   symptoms:
     type: text
     mappings:
-    - type: from_entity
-      entity: symptoms
-      intent:
-        - symptoms
-      influence_conversation: true
-  
+    - type: custom
+      intent: symptoms
+      # action: action_extract_symptoms
   body_part:
     type: text
     mappings:
@@ -37,6 +34,7 @@ slots:
         - symptoms
         - date
       influence_conversation: true
+
   pain_level:
     type: text
     mappings:
