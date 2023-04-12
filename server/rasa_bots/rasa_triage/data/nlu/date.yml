@@ -11,3 +11,8 @@ nlu:
     - [everyday](frequency)
     - [every day](frequency)
     - [very often](frequency)
+    - it started a  [week](start_date) ago
+    - it was a [week](start_date) ago
+    - i have been experiencing this since  [week](start_date) ago
+    - i have been experiencing this since  [week](start_date)
+    - i had this since  [week](start_date) ago

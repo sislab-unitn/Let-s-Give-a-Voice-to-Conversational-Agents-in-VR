@@ -5,21 +5,11 @@ stories:
     steps:
       - intent: greet
       - action: utter_greet
-      - action: name_form
-      - active_loop: name_form
-      - active_loop: null
-      - slot_was_set:
-          - requested_slot: null
-      - action: utter_ask_symptoms
-      - intent: symptoms
-      - action: action_extract_symptoms
-      - slot_was_set:
-          - symptoms
       - action: investigate_form
       - active_loop: investigate_form
       - active_loop: null
       - slot_was_set:
-          - requested_slot: null
+        - requested_slot: null
       - action: utter_exam
       - action: action_db_sync
 

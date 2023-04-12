@@ -9,11 +9,13 @@
 
 import os
 import sys
-from typing import Any, Dict, List, Text
+from typing import List, Text
 
-from rasa_sdk import Action, Tracker
+from rasa_sdk import FormValidationAction, Tracker
 from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.forms import FormValidationAction
+from rasa_sdk.types import DomainDict
 
 sys.path.append(
     os.path.dirname(
@@ -22,13 +24,7 @@ sys.path.append(
 )
 
 
-from rasa_sdk import Tracker, FormValidationAction
-from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.types import DomainDict
 
-from typing import Text, List, Optional
-
-from rasa_sdk.forms import FormValidationAction
 
 
 class ValidateInvestigateForm(FormValidationAction):
@@ -45,26 +41,11 @@ class ValidateInvestigateForm(FormValidationAction):
         print ("required_slots")
         additional_slots =  domain_slots.copy()
         print (additional_slots)
-        if tracker.slots.get("drink") is True:
+        if tracker.slots.get("drink") is True and "drink_frequency" not in additional_slots:
             idx = additional_slots.index("drink")
             additional_slots.insert(idx+1, "drink_frequency")
-        if tracker.slots.get("smoke") is True:
+        if tracker.slots.get("smoke") is True and "smoke_frequency" not in additional_slots:
             idx = additional_slots.index("smoke")
             additional_slots.insert(idx+1, "smoke_frequency")
         print (additional_slots)
         return additional_slots
-
-    def validate_drink(
-        self,
-        slot_value: Any,
-        dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: DomainDict,
-    ) -> Dict[Text, Any]:
-        print("validate_drink")
-        
-        return {"drink": slot_value}
-        if slot_value is True:
-            return {"drink_frequency": None}
-        else:
-            return {"drink_frequency": None}

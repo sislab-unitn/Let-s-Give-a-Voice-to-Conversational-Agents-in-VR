@@ -2,6 +2,7 @@ version: "3.1"
 forms:
   investigate_symptoms_form:
     required_slots:
+      - symptoms
       - body_part
       - start_date
       - frequency

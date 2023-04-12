@@ -4,9 +4,11 @@ slots:
   symptoms:
     type: text
     mappings:
-    - type: custom
-      intent: symptoms
-      # action: action_extract_symptoms
+      - type: custom
+        action: action_extract_whole_utterance
+        conditions:
+          - active_loop: investigate_symptoms_form
+            requested_slot: symptoms
   body_part:
     type: text
     mappings:
@@ -14,7 +16,6 @@ slots:
       entity: body_part
       intent:
         - symptoms
-      influence_conversation: true
 
   start_date:
     type: text
@@ -24,7 +25,6 @@ slots:
       intent:
         - symptoms
         - date
-      influence_conversation: true
   frequency:
     type: text
     mappings:
@@ -33,7 +33,6 @@ slots:
       intent:
         - symptoms
         - date
-      influence_conversation: true
 
   pain_level:
     type: text
@@ -43,4 +42,3 @@ slots:
       conditions:
         - active_loop: investigate_symptoms_form
           requested_slot: pain_level
-      influence_conversation: true

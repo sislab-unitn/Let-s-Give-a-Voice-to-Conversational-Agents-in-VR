@@ -58,6 +58,8 @@ nlu:
       - fine
       - sure
       - please
+      - yes, [everyday](frequency)
+      - yeah, [everyday](frequency)
   - intent: done
     examples: | 
       - i'm done

@@ -19,23 +19,17 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
 
 
 
-from rasa_sdk import Tracker, FormValidationAction
-from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.types import DomainDict
 
-class ActionExtractSymptoms(Action):
+class ActionExtractWholeUtterance(Action):
     def name(self) -> Text:
-        return "action_extract_symptoms"
-    def run(
-        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict
+        return "action_extract_whole_utterance"
+    def run( self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict
     ) -> List[Dict[Text, Any]]:
-        print ("action_extract_symptoms")
-        # dispatcher.utter_message(text="Can you please tell me your symptoms?")
+        print ("action_extract_whole_utterance")
         text = tracker.latest_message.get("text")
-        previous_symptoms = tracker.get_slot("symptoms")
-        try:
-            concat_symptoms = previous_symptoms + ". "+text
-        except TypeError:
-            concat_symptoms = text
-        evt = SlotSet("symptoms", concat_symptoms)
+        requested_slot = tracker.get_slot("requested_slot")
+        if requested_slot is not None and tracker.get_slot(requested_slot) is None:
+            evt = SlotSet(requested_slot, text)
+            print (evt)
+        print(tracker.slots)
         return [evt]

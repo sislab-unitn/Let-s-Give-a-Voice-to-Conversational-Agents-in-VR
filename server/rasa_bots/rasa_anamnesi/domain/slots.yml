@@ -7,16 +7,18 @@ slots:
       - type: from_entity
         entity: name
         conditions:
-          - active_loop: name_form
+          - active_loop: investigate_form
             requested_slot: name
         influence_conversation: true
   symptoms:
     type: text
     mappings:
       - type: custom
-        intent: symptoms
-        # action: action_extract_symptoms
-        # influence_conversation: true
+        # intent: symptoms
+        action: action_extract_whole_utterance
+        conditions:
+          - active_loop: investigate_form
+            requested_slot: symptoms
   first_time:
     type: bool
     mappings:
@@ -55,7 +57,9 @@ slots:
         conditions:
           - active_loop: investigate_form
             requested_slot: drink_frequency
-        influence_conversation: true
+          - active_loop: investigate_form
+            requested_slot: drink
+        # influence_conversation: true
   smoke:
     type: bool
     mappings:
@@ -79,7 +83,9 @@ slots:
         conditions:
           - active_loop: investigate_form
             requested_slot: smoke_frequency
-        influence_conversation: true
+          - active_loop: investigate_form
+            requested_slot: smoke
+        # influence_conversation: true
   pregnant:
     type: bool
     mappings:
@@ -96,62 +102,94 @@ slots:
           - active_loop: investigate_form
             requested_slot: pregnant
   medications:
-    type: bool
+    type: text
     mappings:
-      - type: from_intent
-        intent: affirm
-        value: true
-        conditions:
-          - active_loop: investigate_form
-            requested_slot: medications
-      - type: from_intent
-        intent: deny
-        value: false
+      - type: custom
+        action: action_extract_whole_utterance
         conditions:
           - active_loop: investigate_form
             requested_slot: medications
   diseases:
-    type: bool
+    type: text
     mappings:
-      - type: from_intent
-        intent: affirm
-        value: true
-        conditions:
-          - active_loop: investigate_form
-            requested_slot: diseases
-      - type: from_intent
-        intent: deny
-        value: false
+      - type: custom
+        action: action_extract_whole_utterance
         conditions:
           - active_loop: investigate_form
             requested_slot: diseases
   family_diseases:
-    type: bool
+    type: text
     mappings:
-      - type: from_intent
-        intent: affirm
-        value: true
-        conditions:
-          - active_loop: investigate_form
-            requested_slot: family_diseases
-      - type: from_intent
-        intent: deny
-        value: false
+      - type: custom
+        action: action_extract_whole_utterance
         conditions:
           - active_loop: investigate_form
             requested_slot: family_diseases
   allergies:
-    type: bool
+    type: text
     mappings:
-      - type: from_intent
-        intent: affirm
-        value: true
+      - type: custom
+        action: action_extract_whole_utterance
         conditions:
           - active_loop: investigate_form
             requested_slot: allergies
-      - type: from_intent
-        intent: deny
-        value: false
-        conditions:
-          - active_loop: investigate_form
-            requested_slot: allergies
+  # medications:
+  #   type: bool
+  #   mappings:
+  #     - type: from_intent
+  #       intent: affirm
+  #       value: true
+  #       conditions:
+  #         - active_loop: investigate_form
+  #           requested_slot: medications
+  #     - type: from_intent
+  #       intent: deny
+  #       value: false
+  #       conditions:
+  #         - active_loop: investigate_form
+  #           requested_slot: medications
+  # diseases:
+  #   type: bool
+  #   mappings:
+  #     - type: from_intent
+  #       intent: affirm
+  #       value: true
+  #       conditions:
+  #         - active_loop: investigate_form
+  #           requested_slot: diseases
+  #     - type: from_intent
+  #       intent: deny
+  #       value: false
+  #       conditions:
+  #         - active_loop: investigate_form
+  #           requested_slot: diseases
+  # family_diseases:
+  #   type: bool
+  #   mappings:
+  #     - type: from_intent
+  #       intent: affirm
+  #       value: true
+  #       conditions:
+  #         - active_loop: investigate_form
+  #           requested_slot: family_diseases
+  #     - type: from_intent
+  #       intent: deny
+  #       value: false
+  #       conditions:
+  #         - active_loop: investigate_form
+  #           requested_slot: family_diseases
+  # allergies:
+  #   type: bool
+  #   mappings:
+  #     - type: from_intent
+  #       intent: affirm
+  #       value: true
+  #       conditions:
+  #         - active_loop: investigate_form
+  #           requested_slot: allergies
+  #     - type: from_intent
+  #       intent: deny
+  #       value: false
+  #       conditions:
+  #         - active_loop: investigate_form
+  #           requested_slot: allergies

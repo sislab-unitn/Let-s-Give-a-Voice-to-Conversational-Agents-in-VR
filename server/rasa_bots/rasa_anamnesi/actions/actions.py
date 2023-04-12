@@ -9,14 +9,11 @@
 
 import os
 import sys
-from typing import Any, Dict, List, Text
 
-from rasa_sdk import Action, Tracker
-from rasa_sdk.executor import CollectingDispatcher
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname((os.path.abspath(__file__)))))))
 
 
 from db.actions_db_tracker import ActionDBSync
-from .action_symptoms_slot import ActionExtractSymptoms
+from .action_extract_whole_utterance import ActionExtractWholeUtterance
 from .action_affirm_frequency import ValidateInvestigateForm

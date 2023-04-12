@@ -1,10 +1,15 @@
 version: "3.1"
 forms:
-  name_form:
-    required_slots:
-      - name
+  # name_form:
+  #   required_slots:
+
+  # symptoms_form:
+  #   required_slots:
+
   investigate_form:
     required_slots:
+      - name
+      - symptoms
       - first_time
       - drink
       - smoke
