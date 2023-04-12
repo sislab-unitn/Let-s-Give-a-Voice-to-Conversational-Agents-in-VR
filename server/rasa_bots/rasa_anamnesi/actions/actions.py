@@ -14,6 +14,6 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname((os.path.abspath(__file__)))))))
 
 
-from db.actions_db_tracker import ActionDBSync
+from db.actions_db_tracker import ActionDBSync, RetrieveDBSync
 from .action_extract_whole_utterance import ActionExtractWholeUtterance
 from .action_affirm_frequency import ValidateInvestigateForm

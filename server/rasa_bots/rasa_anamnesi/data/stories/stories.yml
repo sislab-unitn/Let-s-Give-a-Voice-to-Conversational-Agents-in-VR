@@ -5,6 +5,7 @@ stories:
     steps:
       - intent: greet
       - action: utter_greet
+      - action: action_retrieve_db_all_sync # retrieves all slots
       - action: investigate_form
       - active_loop: investigate_form
       - active_loop: null

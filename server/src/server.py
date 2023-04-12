@@ -34,8 +34,6 @@ async def text_converse(bot: str,sender:str,message:str):
     """
     Performs 1 step of the conversation using the rasa model.
     - use bot param to specify which bot to use
-    - Expects a json object with 'sender' and 'message' keys
-    - example: {"sender":"user","message":"hello"}
     - Returns a json object with the response from the rasa model and the tracker data
     """
     # forward the request to rasa server

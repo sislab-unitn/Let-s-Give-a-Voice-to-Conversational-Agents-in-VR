@@ -6,6 +6,8 @@ responses:
     - text: "What's your name"
   utter_ask_symptoms:
     - text: "To double check, can you repeat your symptoms?"
+  utter_ask_symptoms_confirmation:
+    - text: "You said that you have '{symptoms}', is that correct?"
     # - text: "Can you repeat your symptoms?"
   utter_ask_first_time:
     - text: "Is it the first time you experience something like this?"

@@ -9,7 +9,8 @@ forms:
   investigate_form:
     required_slots:
       - name
-      - symptoms
+      # - symptoms
+      - symptoms_confirmation
       - first_time
       - drink
       - smoke

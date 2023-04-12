@@ -31,5 +31,5 @@ class ActionExtractWholeUtterance(Action):
         if requested_slot is not None and tracker.get_slot(requested_slot) is None:
             evt = SlotSet(requested_slot, text)
             print (evt)
-        print(tracker.slots)
+        # print(tracker.slots)
         return [evt]

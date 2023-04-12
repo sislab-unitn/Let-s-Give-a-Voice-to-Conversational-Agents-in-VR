@@ -23,6 +23,8 @@ class DBTracker:
             ],
             self.conn,
         )
+        columns = DBUtils.get_table_fields("conversations", self.conn)
+        self.slots = [ l[1] for l in columns if l[1] not in ['id','sender_id','user_text','system_text','start_timestamp','end_timestamp','user_message_id']]
     def __del__(self) -> None:
         self.conn.close()
     
@@ -34,7 +36,7 @@ class DBTracker:
         for slot_name, slot_value in tracker["slots"].items():
             if slot_name not in fields and slot_name not in blacklist:
                 DBUtils.update_table("conversations", [f"{slot_name} TEXT"], self.conn)
-        
+                self.slots.append(slot_name)
     def track_conversation_from_index(self, tracker: dict, idx: int = 0, blacklist:list[str] = ['requested_slot','session_started_metadata','results_data'] ) -> None:
         """Track conversation from a given starting index"""
         sender_id = tracker["sender_id"]
@@ -122,6 +124,21 @@ class DBTracker:
         start_timestamp = "start_timestamp"
         query = f'SELECT {",".join(fields)} FROM {table} WHERE {condition} ORDER BY {start_timestamp} ASC'
         return DBUtils.return_query(query, [sender_id], self.conn)
+    def get_slots(self, sender_id: str) -> dict:
+        """Get slot values of a user"""
+        fields = self.slots
+        print (fields)
+        table = "conversations"
+        condition = "sender_id=?"
+        start_timestamp = "start_timestamp"
+        query = f'SELECT {",".join(fields)} FROM {table} WHERE {condition} ORDER BY {start_timestamp} ASC'
+        tuples = DBUtils.return_query(query, [sender_id], self.conn)
+        result = dict()
+        for tup in tuples:
+            for i, slot in enumerate(fields):
+                if tup[i] != None:
+                    result[slot] = tup[i]
+        return result
     @staticmethod
     def tracker_to_dict(tracker) -> dict:
         """Converts a tracker to a dictionary"""
@@ -131,21 +148,23 @@ class DBTracker:
         return tracker_dict
 if __name__ == "__main__":
     import sys
-    with open(sys.argv[1]) as f:
-        tracker = json.load(f)
-    from pprint import pprint
+    # with open(sys.argv[1]) as f:
+    #     tracker = json.load(f)
+    # from pprint import pprint
 
-    pprint(tracker)
-    for k in tracker.keys():
-        print(k)
+    # pprint(tracker)
+    # for k in tracker.keys():
+    #     print(k)
 
     db_tracker = DBTracker("test.sqlite3")
-    db_tracker.track_user(tracker)
+    # db_tracker.track_user(tracker)
 
     # a = db_tracker.get_conversation("s")
     # print(len(a))
     # print(a)
     # a = db_tracker.get_conversation("a")
     # print(a)
-    a = db_tracker.get_conversation("l")
-    print(a)
+    # a = db_tracker.get_conversation("l")
+    # print(db_tracker.slots)
+    b = db_tracker.get_slots("18d4256d96a1417fb6cac957e6744d4b")
+    print(b)

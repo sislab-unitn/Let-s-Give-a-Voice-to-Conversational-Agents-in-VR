@@ -2,6 +2,8 @@ version: "3.1"
 
 actions:
   - action_db_sync
+  - action_retrieve_db_sync
+  - action_retrieve_db_all_sync # retrieves all slots
   - validate_investigate_form
   - action_extract_whole_utterance
   # - action_discover_movie
