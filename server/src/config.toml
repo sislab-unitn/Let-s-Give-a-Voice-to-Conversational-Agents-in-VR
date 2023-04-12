@@ -10,7 +10,7 @@
     asr_port = 8081
     asr_API = ""
     asr_SSL = false
-    autostart_asr = true # if true the main process will not start an asr server, but will use the one specified in the settings
+    autostart_asr = true # if true the main process will start an asr server
     asr_path = "src/asr/asr_server.py" # path to the asr server
     asr_args = "" # arguments to pass to the asr server
     
@@ -18,7 +18,7 @@
     tts_port = 8082
     tts_API = ""
     tts_SSL = false
-    autostart_tts = true # if true the main process will not start a tts server, but will use the one specified in the settings
+    autostart_tts = true # if true the main process will start a tts server
     tts_path = "src/tts/tts_server.py" # path to the tts server
     tts_args = "" # arguments to pass to the tts server
 
