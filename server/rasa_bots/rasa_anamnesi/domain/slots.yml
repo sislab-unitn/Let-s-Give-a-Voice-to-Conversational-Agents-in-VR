@@ -13,7 +13,12 @@ slots:
   symptoms:
     type: text
     mappings:
-      - type: custom
+      - type: custom        
+        action: action_extract_whole_utterance
+        conditions:
+          - active_loop: investigate_form
+            requested_slot: symptoms
+        influence_conversation: true
   symptoms_confirmation:
     type: bool
     mappings:

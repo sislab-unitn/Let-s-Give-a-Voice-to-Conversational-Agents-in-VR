@@ -66,7 +66,7 @@ class RetrieveDBSync(Action):
             value = None
         if requested_slot is not None and tracker.get_slot(requested_slot) is None:
             evt = SlotSet(requested_slot, value)
-            print(evt)
+            # print(evt)
         # print(tracker.slots)
         print("action_retrieve_db_sync")
         # print(requested_slot, value)

@@ -9,7 +9,7 @@
 
 import os
 import sys
-from typing import List, Text
+from typing import List, Text, Dict, Any
 
 from rasa_sdk import FormValidationAction, Tracker
 from rasa_sdk.events import SlotSet
@@ -47,5 +47,25 @@ class ValidateInvestigateForm(FormValidationAction):
         if tracker.slots.get("smoke") is True and "smoke_frequency" not in additional_slots:
             idx = additional_slots.index("smoke")
             additional_slots.insert(idx+1, "smoke_frequency")
+        if tracker.slots.get("symptoms") is not None and "symptoms_confirmation" not in additional_slots:
+            additional_slots.insert(1, "symptoms_confirmation")
+            
+            # dispatcher.utter_template("utter_ask_symptoms", tracker)
+            
         # print (additional_slots)
         return additional_slots
+    # def extract_symptoms(self, dispatcher, tracker, domain):
+    #     print ("extract_symptoms")
+
+    def validate_symptoms_confirmation(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        print ("validate_symptoms_confirmation")
+        if slot_value is False:
+            return {"symptoms_confirmation": slot_value, "symptoms": None}
+        else:
+            return {"symptoms_confirmation": slot_value}
