@@ -31,7 +31,24 @@ public static class Audio
         }
         return sum / (float)(end - start);
     }
-
+    /// <summary>
+    /// Method <c>calibration</c> returns the maximum and average audio level of the given audio as a tuple
+    public static (float,float) Calibration(AudioClip clip)
+    {
+        float[] data = new float[clip.samples * clip.channels];
+        clip.GetData(data, 0);
+        int start = 0;
+        int end = (int)(clip.samples * clip.channels);
+        float sum = 0;
+        float max = 0;
+        for (int i = start; i < end; i++)
+        {
+            sum += Mathf.Abs(data[i]);
+            max = (max < Mathf.Abs(data[i])) ? Mathf.Abs(data[i]) : max;
+        }
+        float average = sum / (float)(end - start);
+        return (max, average);
+    }
     /// <summary>
     /// Method <c>trimAudioClp</c> trims the audio clip to the given position from the beginning
     /// <param name="clip">AudioClip input audioclip</param>
@@ -115,6 +132,7 @@ public static class Audio
         }
         File.WriteAllBytes(path, bytes);
     }
+
     /// <summary>
     /// Method <c>ConvertWav</c> converts the given audio clip to a wav byte array. Comes from SoundWav module
     /// <param name="clip">AudioClip input audioclip</param>

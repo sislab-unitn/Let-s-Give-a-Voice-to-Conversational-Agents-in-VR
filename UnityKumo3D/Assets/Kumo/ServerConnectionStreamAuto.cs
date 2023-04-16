@@ -1,9 +1,13 @@
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using TMPro;
+using LitJson;
+using System.Collections.Generic;
+using System;
 /// <summary>
 /// This class is used to connect to a server and send a request to get a stream of audio data. 
 /// It will automatically start recording when the audio level is above a threshold and stop recording when the audio level is below a threshold.
@@ -16,22 +20,22 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// The host to post the audio file to
     /// </summary>
     [Tooltip("The host to post the audio file to")]
-    public string host;
+    public string host = "localhost";
     /// <summary>
     /// The port to post the audio file to
     /// </summary>
     [Tooltip("The port to post the audio file to")]
-    public string port;
+    public string port = "8080";
     /// <summary>
     /// The path to post the audio file to
     /// </summary>
     [Tooltip("The path to post the audio file to")]
-    public string path;
+    public string path = "audio_converse_stream";
     /// <summary>
     /// The sender id for rasa to use
     /// </summary>
     [Tooltip("The sender id for rasa to use")]
-    public string sender_id;
+    public string sender_id = "Unity";
     /// <summary>
     /// The bot to use
     /// </summary>
@@ -41,17 +45,17 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// Use SSL or not
     /// </summary>
     [Tooltip("Use SSL or not")]
-    public bool ssl;
+    public bool ssl = false;
     /// <summary>
     /// input audio sample rate
     /// <summary>
     [Tooltip("input audio sample rate")]
-    public int inputSampleRate;
+    public int inputSampleRate = 44100;
     /// <summary>
     /// output audio sample rate
     /// <summary>
     [Tooltip("output audio sample rate")]
-    public int outputSampleRate;
+    public int outputSampleRate = 16000;
 
     /// <summary>
     /// Set the outputsource
@@ -62,9 +66,12 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// <summary>
     /// Set the playback of processing sound
     /// <summary>
-    [Tooltip("Set the playback of processing sound")]
+    [Tooltip("Set the playback of processing sound when input is detected")]
     public AudioSource processingSource;
-
+    /// <summary>
+    /// autostart recording when the scene is loaded without pressing the button
+    /// </summary>
+    public bool autoStart = false;
     /// <summary>
     /// Set the audiosource threshold noise level before starting recording
     /// <summary>
@@ -96,13 +103,40 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// <summary>
     [Tooltip("Set the button to start and stop recording")]
     public Button startButton;
-
+    /// <summary>
+    /// Set the button to calibrate the noise level for automatic recording
+    /// <summary>
+    public Button calibrationButton;
+    /// <summary>
+    /// Transcription text
+    /// <summary>
     public TMP_Text transcription;
+    /// <summary>
+    /// Response text
+    /// <summary>
     public TMP_Text response;
+    /// <summary>
+    /// Noise level text
+    /// <summary>
     public TMP_Text noiseLevel;
+    /// <summary>
+    /// Set the host input field
+    /// <summary>
+    public TMP_InputField hostInput;
+    /// <summary>
+    /// Set the port input field
+    /// <summary>
+    public TMP_InputField portInput;
 
 
-
+    /// <summary>
+    /// Set the image in the slots
+    /// <summary>
+    public Image[] image;
+    /// <summary>
+    /// Set the text in the slots
+    /// <summary>
+    public TMP_Text[] text;
     #endregion
     /// <summary>
     /// Event to be called when the request is started
@@ -125,6 +159,10 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// </summary>
     private bool isRecording = false;
     /// <summary>
+    /// Is the microphone activated by this script
+    /// </summary>
+    private bool isMicrophoneActivated = false;
+    /// <summary>
     /// The maximum time to record audio for. Once this time is reached, the recording will loop back to the start, overwriting the oldest audio.
     /// </summary>
     private int maxRecordingTime = 300;
@@ -136,6 +174,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// The start position of the recording. It may be changed according to the position specified by the audio noise level detection.
     /// </summary>
     private int startPosition = 0;
+
     void Start()
     {
         this.url = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
@@ -150,60 +189,86 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         {
             Debug.Log("Connection Successful!");
         }
-        this.url = this.url + "/" + this.path + "?bot="+this.bot +"&sender=" + this.sender_id;
+        this.url = this.url + "/" + this.path + "?bot=" + this.bot + "&sender=" + this.sender_id;
         // start the recording for the audio noise level detection
         // StartRecording();
-        this.startButton.onClick.AddListener(StartStopRecording);
-        this.StartRecording();
+        if (this.startButton != null)
+            this.startButton.onClick.AddListener(StartStopRecording);
+        if (this.calibrationButton != null)
+            this.calibrationButton.onClick.AddListener(autoCalibration);
+        if (this.autoStart)
+            this.StartRecording();
+        if (this.hostInput != null)
+            this.hostInput.text = this.host;
+            this.hostInput.onEndEdit.AddListener(delegate { this.changeHost(this.hostInput.text); });
+        if (this.portInput != null)
+            this.portInput.text = this.port;
+            this.portInput.onEndEdit.AddListener(delegate { this.changePort(this.portInput.text); });
     }
     void StartStopRecording()
     {
-        if (Microphone.IsRecording(Microphone.devices[0]))
+        if (this.isMicrophoneActivated)
         {
-            StopRecording();
-            this.startButton.GetComponentInChildren<TMP_Text>().text = "Start Recording";
+            this.StopRecording();
+            if (this.startButton != null)
+                this.startButton.GetComponentInChildren<TMP_Text>().text = "Start Recording";
+            else
+                Debug.Log("Button not linked");
         }
         else
         {
-            StartRecording();
-            this.startButton.GetComponentInChildren<TMP_Text>().text = "Stop Recording";
+            this.StartRecording();
+            if (this.startButton != null)
+                this.startButton.GetComponentInChildren<TMP_Text>().text = "Stop Recording";
+            else
+                Debug.Log("Button not linked");
+
         }
     }
 
     void Update()
     {
-        // if the audio is playing, do nothing
-        if (outputSource.isPlaying)
+
+        if (this.outputSource == null)
         {
-            return;
+            Debug.Log("No output source");
         }
         else
         {
-            if (Microphone.IsRecording(Microphone.devices[0])) {
-                // check the audio noise level over the sampling window is above the upper threshold
-                int position = Microphone.GetPosition(Microphone.devices[0]);
-                float audioLevel = Audio.getAudioLevel(this.clip, position, this.audioSamplingWindow);
-                // Debug.Log(audioLevel);
-                noiseLevel.text = audioLevel.ToString();
-                // start the recording if the audio level is above the upper threshold
-                if (!this.isRecording && (audioLevel > this.audioLevelUpperThreshold))
+            // if the audio is playing, do nothing
+            if (this.outputSource.isPlaying)
+            {
+                return;
+            }
+            else
+            {
+                if (this.isMicrophoneActivated)
                 {
-                    this.startPosition = position - (int)(this.audioStartWindow * this.inputSampleRate);
-                    startPosition = startPosition < 0 ? 0 : startPosition;
-                    this.isRecording = true;
-
-                }
-                // stop the recording if the audio level is below the lower threshold
-                if (this.isRecording && audioLevel < this.audioLevelLowerThreshold)
-                {
-                    // timer to wait for the audio level to be below the lower threshold for the pause window
-                    timer += Time.deltaTime;
-                    if (timer > this.audioPauseWindow)
+                    // check the audio noise level over the sampling window is above the upper threshold
+                    int position = Microphone.GetPosition(Microphone.devices[0]);
+                    float audioLevel = Audio.getAudioLevel(this.clip, position, this.audioSamplingWindow);
+                    // Debug.Log(audioLevel);
+                    this.noiseLevel.text = audioLevel.ToString();
+                    // start the recording if the audio level is above the upper threshold
+                    if (!this.isRecording && (audioLevel > this.audioLevelUpperThreshold))
                     {
-                        StopRecording();
-                        this.isRecording = false;
-                        SendAndPlay();
-                        timer = 0;
+                        this.startPosition = position - (int)(this.audioStartWindow * this.inputSampleRate);
+                        this.startPosition = this.startPosition < 0 ? 0 : this.startPosition;
+                        this.isRecording = true;
+
+                    }
+                    // stop the recording if the audio level is below the lower threshold
+                    if (this.isRecording && audioLevel < this.audioLevelLowerThreshold)
+                    {
+                        // timer to wait for the audio level to be below the lower threshold for the pause window
+                        this.timer += Time.deltaTime;
+                        if (this.timer > this.audioPauseWindow)
+                        {
+                            this.StopRecording();
+                            this.isRecording = false;
+                            this.SendAndPlay();
+                            this.timer = 0;
+                        }
                     }
                 }
             }
@@ -212,11 +277,43 @@ public class ServerConnectionStreamAuto : MonoBehaviour
 
     }
     /// <summary>
+    /// Starts and stops the calibration process
+    /// </summary>
+    public void autoCalibration()
+    {
+        if (this.isMicrophoneActivated)
+        {
+            this.StopRecording();
+            float max; 
+            float avg;
+            (max, avg) = Audio.Calibration(this.clip);
+            max = max * 0.8f;
+            avg = avg * 0.8f;
+            this.audioLevelUpperThreshold = max;
+            this.audioLevelLowerThreshold = avg;
+            if (this.calibrationButton != null)
+                this.calibrationButton.GetComponentInChildren<TMP_Text>().text = "Re-Calibrate";
+            else
+                Debug.Log("Button not linked");
+            if (this.autoStart)
+                this.StartRecording();
+        }
+        else
+        {
+            this.StartRecording();
+            if (this.calibrationButton != null)
+                this.calibrationButton.GetComponentInChildren<TMP_Text>().text = "Stop Calibration";
+            else
+                Debug.Log("Button not linked");
+        }
+    }
+    /// <summary>
     /// Start recording audio from the microphone
     /// </summary>
     public void StartRecording()
     {
         this.clip = Microphone.Start(Microphone.devices[0], true, this.maxRecordingTime, this.inputSampleRate);
+        this.isMicrophoneActivated = true;
     }
     /// <summary>
     /// Stop recording audio from the microphone
@@ -226,6 +323,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         int endPosition = Microphone.GetPosition(Microphone.devices[0]);
         Microphone.End(Microphone.devices[0]);
         this.clip = Audio.trimAudioClip(this.clip, this.startPosition, endPosition);
+        this.isMicrophoneActivated = false;
 
     }
     /// <summary>
@@ -233,9 +331,10 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// </summary>
     public void SendAndPlay()
     {
-        requestStarted.Invoke();
-        StartCoroutine(PostStreamAndPlay());
-        processingSource.Play();
+        this.requestStarted.Invoke();
+        this.StartCoroutine(PostStreamAndPlay());
+        if (this.processingSource != null)
+            this.processingSource.Play();
     }
 
     /// <summary>
@@ -260,14 +359,80 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         {
             requestDone.Invoke();
         }
-        ServerConnectionSlots slots = GetComponent<ServerConnectionSlots>();
-        StartCoroutine(slots.GetSlots());
+        // ServerConnectionSlots slots = GetComponent<ServerConnectionSlots>();
+        StartCoroutine(this.GetSlots());
         // wait unitl the audio is done playing to avoid recording the response
         while (this.outputSource.isPlaying)
         {
             yield return null;
         }
-        StartRecording();
+        this.StartRecording();
+        yield return null;
+    }
+
+    public IEnumerator GetSlots()
+    {
+        UnityWebRequest request = new UnityWebRequest(this.url, "GET");
+        // the download handler is a custom one that automatically plays the audio in streaming mode
+        DownloadHandlerBuffer downloader = new DownloadHandlerBuffer();
+        request.downloadHandler = downloader;
+        yield return request.SendWebRequest();
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log(request.error);
+        }
+        else
+        {
+            
+            JsonData data = JsonMapper.ToObject(request.downloadHandler.text);
+            
+            for (int i = 0; i < data.Count; i++)
+            {
+                try{
+                    for (int j = 0; j < data["titles"].Count; j++)
+                    {
+                        this.text[j].text = data["titles"][j].ToString();
+                    }
+                }
+                catch (KeyNotFoundException e)
+                {
+                    Debug.Log(e);
+                }
+                try{
+                    for (int j = 0; j < data["images"].Count; j++)
+                    {
+                        // decode bytes from base64
+                        byte[] bytes = Convert.FromBase64String((data["images"][j].ToString()));
+                        // save the bytes to a file
+                        // string path = Application.dataPath + "/Temp/" + "image_" +j + ".jpg";
+                        // File.WriteAllBytes(path, bytes);
+                        Texture2D texture = new Texture2D(2, 2);
+                        texture.LoadImage(bytes);
+                        this.image[j].sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+                    }
+                }
+                catch (KeyNotFoundException e)
+                {
+                    Debug.Log(e);
+                }
+                try{
+                    this.transcription.text = data["transcription"].ToString();
+                }
+                catch (KeyNotFoundException e)
+                {
+                    Debug.Log(e);
+                } 
+                try{
+                    this.response.text = data["response"].ToString();
+        
+                }
+                catch (KeyNotFoundException e)
+                {
+                    Debug.Log(e);
+                }
+            }
+            Debug.Log("Slots Received!");
+        }
         yield return null;
     }
     public void changeHost(string host)
@@ -294,12 +459,4 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         this.audioLevelLowerThreshold = float.Parse(value);
         Debug.Log("Deactivation Threshold changed to " + value);
     }
-    //     public void StartButton()
-    //     {
-    //         StartRecording();
-    //     }
-    //     public void StartButton()
-    //     {
-    //         StartRecording();
-    //     }
 }
