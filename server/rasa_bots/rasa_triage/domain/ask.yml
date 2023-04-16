@@ -6,8 +6,8 @@ responses:
     # - text: "what are you symptoms?"
   utter_ask_body_part:
     - text: "What body parts are you you feeling unwell?"
-    - text: "Does it hurt anywhere?"
-    - text: "Do you have a body part that aches?"
+    # - text: "Does it hurt anywhere?"
+    # - text: "Do you have a body part that aches?"
   utter_ask_start_date:
     - text: "Do you remember when your symptoms have started?"
     - text: "Can you tell me when your symptoms have started?"

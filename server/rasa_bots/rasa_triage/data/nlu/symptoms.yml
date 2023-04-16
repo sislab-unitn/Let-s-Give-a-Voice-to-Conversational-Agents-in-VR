@@ -14,4 +14,7 @@ nlu:
     - I feel nauseated
     - I feel nausea
     - I have nausea
+    - [chest](body_part)
+    - my [chest](body_part)
+    - only my [chest](body_part)
     

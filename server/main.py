@@ -16,7 +16,6 @@ if __name__ == "__main__":
     sys.path.append(os.path.dirname(os.path.abspath(__file__)))
     print(os.path.dirname(os.path.abspath(__file__)))
     config = config_parser(sys.argv[1:])
-
     if config["server"]["autostart_tts"]:
         tts_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),config["server"]["tts_path"])
         p_tts = Process(target=call, args=(["python", tts_path],), name="tts")

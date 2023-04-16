@@ -6,13 +6,10 @@ nlu:
       - hey
       - hello
       - hi
-      - hello there
       - good morning
       - good evening
       - moin
       - hey there
-      - let's go
-      - hey dude
       - goodmorning
       - goodevening
       - good afternoon
@@ -34,11 +31,6 @@ nlu:
     examples: |
       - yeah
       - correct
-      - ye
-      - uh yes
-      - let's do it
-      - yeah
-      - uh yes
       - um yes
       - yes knocking
       - that's correct
@@ -48,7 +40,6 @@ nlu:
       - yes
       - yes right
       - right on
-      - i love that
       - ok
       - oks
       - okey
