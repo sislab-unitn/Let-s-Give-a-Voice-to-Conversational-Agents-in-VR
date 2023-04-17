@@ -33,21 +33,22 @@ public static class Audio
     }
     /// <summary>
     /// Method <c>calibration</c> returns the maximum and average audio level of the given audio as a tuple
-    public static (float,float) Calibration(AudioClip clip)
+    public static (float,float) Calibration(AudioClip clip, double seconds)
     {
-        float[] data = new float[clip.samples * clip.channels];
-        clip.GetData(data, 0);
-        int start = 0;
-        int end = (int)(clip.samples * clip.channels);
-        float sum = 0;
+        int times = (int) (clip.samples * clip.frequency * clip.channels / seconds);
+        int sample_size = (int)(clip.samples / times);
         float max = 0;
-        for (int i = start; i < end; i++)
-        {
-            sum += Mathf.Abs(data[i]);
-            max = (max < Mathf.Abs(data[i])) ? Mathf.Abs(data[i]) : max;
+        float avg = 0;
+        for( int i=0; i< times; i++)
+        {   
+            int currentposition = i * sample_size;
+            currentposition = (currentposition > clip.samples) ? clip.samples : currentposition;
+            float l = Audio.getAudioLevel(clip, currentposition, seconds);
+            if (l > max) max = l;
+            avg += l;
         }
-        float average = sum / (float)(end - start);
-        return (max, average);
+        avg /= times;
+        return (max, avg);
     }
     /// <summary>
     /// Method <c>trimAudioClp</c> trims the audio clip to the given position from the beginning

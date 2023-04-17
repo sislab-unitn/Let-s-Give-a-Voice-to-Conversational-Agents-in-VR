@@ -127,6 +127,10 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// Set the port input field
     /// <summary>
     public TMP_InputField portInput;
+    /// <summary>
+    /// Set the bot input field
+    /// <summary>
+    public TMP_InputField botInput;
 
 
     /// <summary>
@@ -146,6 +150,9 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// Event to be called when the request is done. May not match with the audio playback time
     /// </summary>
     public UnityEvent requestDone = new UnityEvent();
+    public TMP_Text urlText;
+    public TMP_Text upperThresholdText;
+    public TMP_Text lowerThresholdText;
     /// <summary>
     /// The url to post the audio file to
     /// </summary>
@@ -162,6 +169,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// Is the microphone activated by this script
     /// </summary>
     private bool isMicrophoneActivated = false;
+    private bool isCalibrating = false;
     /// <summary>
     /// The maximum time to record audio for. Once this time is reached, the recording will loop back to the start, overwriting the oldest audio.
     /// </summary>
@@ -197,13 +205,24 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         if (this.calibrationButton != null)
             this.calibrationButton.onClick.AddListener(autoCalibration);
         if (this.autoStart)
-            this.StartRecording();
+            this.StartStopRecording();
         if (this.hostInput != null)
             this.hostInput.text = this.host;
-            this.hostInput.onEndEdit.AddListener(delegate { this.changeHost(this.hostInput.text); });
+        this.hostInput.onEndEdit.AddListener(delegate { this.changeHost(this.hostInput.text); });
         if (this.portInput != null)
             this.portInput.text = this.port;
-            this.portInput.onEndEdit.AddListener(delegate { this.changePort(this.portInput.text); });
+        this.portInput.onEndEdit.AddListener(delegate { this.changePort(this.portInput.text); });
+        if (this.urlText != null)
+            this.urlText.text = this.url;
+        if (this.upperThresholdText != null)
+            this.upperThresholdText.text = this.audioLevelUpperThreshold.ToString();
+        if (this.lowerThresholdText != null)
+            this.lowerThresholdText.text = this.audioLevelLowerThreshold.ToString();
+        if (this.botInput != null)
+        {
+            this.botInput.text = this.bot;
+            this.botInput.onEndEdit.AddListener(delegate { this.changeBot(this.botInput.text); });
+        }
     }
     void StartStopRecording()
     {
@@ -242,7 +261,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
             }
             else
             {
-                if (this.isMicrophoneActivated)
+                if (this.isMicrophoneActivated && !(this.isCalibrating))
                 {
                     // check the audio noise level over the sampling window is above the upper threshold
                     int position = Microphone.GetPosition(Microphone.devices[0]);
@@ -271,6 +290,26 @@ public class ServerConnectionStreamAuto : MonoBehaviour
                         }
                     }
                 }
+                else if (this.isCalibrating && this.isMicrophoneActivated)
+                {
+                    // check the audio noise level over the sampling window is above the upper threshold
+                    int position = Microphone.GetPosition(Microphone.devices[0]);
+                    float audioLevel = Audio.getAudioLevel(this.clip, position, this.audioSamplingWindow);
+                    // Debug.Log(audioLevel);
+                    this.noiseLevel.text = audioLevel.ToString();
+                    this.audioLevelUpperThreshold = (audioLevel * 0.8f > this.audioLevelUpperThreshold) ? audioLevel * 0.8f : this.audioLevelUpperThreshold;
+                    if (this.upperThresholdText != null)
+                        this.upperThresholdText.text = this.audioLevelUpperThreshold.ToString();
+                    else
+                        Debug.Log("Upper threshold text not linked");
+                    // this.audioLevelUpperThreshold = this.audioLevelUpperThreshold * 0.8f;
+                    this.audioLevelLowerThreshold = 1.2f * audioLevel;
+                    if (this.lowerThresholdText != null)
+                        this.lowerThresholdText.text = this.audioLevelLowerThreshold.ToString();
+                    else
+                        Debug.Log("Lower threshold text not linked");
+                    // this.audioLevelLowerThreshold = this.audioLevelLowerThreshold * 1.2f;
+                }
             }
         }
 
@@ -281,26 +320,24 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// </summary>
     public void autoCalibration()
     {
-        if (this.isMicrophoneActivated)
+        if (this.isCalibrating)
         {
             this.StopRecording();
-            float max; 
-            float avg;
-            (max, avg) = Audio.Calibration(this.clip);
-            max = max * 0.8f;
-            avg = avg * 0.8f;
-            this.audioLevelUpperThreshold = max;
-            this.audioLevelLowerThreshold = avg;
             if (this.calibrationButton != null)
                 this.calibrationButton.GetComponentInChildren<TMP_Text>().text = "Re-Calibrate";
             else
                 Debug.Log("Button not linked");
             if (this.autoStart)
                 this.StartRecording();
+            this.isCalibrating = false;
         }
         else
         {
+            this.audioLevelLowerThreshold = 1.0f;
+            this.audioLevelUpperThreshold = 0.0f;
             this.StartRecording();
+            this.isCalibrating = true;
+
             if (this.calibrationButton != null)
                 this.calibrationButton.GetComponentInChildren<TMP_Text>().text = "Stop Calibration";
             else
@@ -383,12 +420,13 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         }
         else
         {
-            
+
             JsonData data = JsonMapper.ToObject(request.downloadHandler.text);
-            
+
             for (int i = 0; i < data.Count; i++)
             {
-                try{
+                try
+                {
                     for (int j = 0; j < data["titles"].Count; j++)
                     {
                         this.text[j].text = data["titles"][j].ToString();
@@ -398,7 +436,8 @@ public class ServerConnectionStreamAuto : MonoBehaviour
                 {
                     Debug.Log(e);
                 }
-                try{
+                try
+                {
                     for (int j = 0; j < data["images"].Count; j++)
                     {
                         // decode bytes from base64
@@ -415,16 +454,18 @@ public class ServerConnectionStreamAuto : MonoBehaviour
                 {
                     Debug.Log(e);
                 }
-                try{
+                try
+                {
                     this.transcription.text = data["transcription"].ToString();
                 }
                 catch (KeyNotFoundException e)
                 {
                     Debug.Log(e);
-                } 
-                try{
+                }
+                try
+                {
                     this.response.text = data["response"].ToString();
-        
+
                 }
                 catch (KeyNotFoundException e)
                 {
@@ -440,14 +481,16 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         this.host = host;
         Debug.Log("Host changed to " + host);
         this.url = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
-        this.url = this.url + "/" + this.path + "?sender=" + this.sender_id;
+        this.url = this.url + "/" + this.path + "?bot=" + this.bot + "&sender=" + this.sender_id;
+        this.urlText.text = this.url;
     }
     public void changePort(string port)
     {
         this.port = port;
         Debug.Log("Port changed to " + port);
         this.url = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
-        this.url = this.url + "/" + this.path + "?sender=" + this.sender_id;
+        this.url = this.url + "/" + this.path + "?bot=" + this.bot + "&sender=" + this.sender_id;
+        this.urlText.text = this.url;
     }
     public void changeActivationThreshold(string value)
     {
@@ -458,5 +501,13 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     {
         this.audioLevelLowerThreshold = float.Parse(value);
         Debug.Log("Deactivation Threshold changed to " + value);
+    }
+    public void changeBot(string bot)
+    {
+        this.bot = bot;
+        Debug.Log("Bot changed to " + bot);
+        this.url = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
+        this.url = this.url + "/" + this.path + "?bot=" + this.bot + "&sender=" + this.sender_id;
+        this.urlText.text = this.url;
     }
 }
