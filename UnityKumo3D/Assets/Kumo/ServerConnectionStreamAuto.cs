@@ -122,6 +122,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// <summary>
     /// Set the host input field
     /// <summary>
+    /// <summary>
     public TMP_InputField hostInput;
     /// <summary>
     /// Set the port input field
@@ -233,6 +234,10 @@ public class ServerConnectionStreamAuto : MonoBehaviour
                 this.startButton.GetComponentInChildren<TMP_Text>().text = "Start Recording";
             else
                 Debug.Log("Button not linked");
+            if (this.calibrationButton != null)
+                this.calibrationButton.enabled = true;
+            else
+                Debug.Log("Button not linked"  );
         }
         else
         {
@@ -241,6 +246,10 @@ public class ServerConnectionStreamAuto : MonoBehaviour
                 this.startButton.GetComponentInChildren<TMP_Text>().text = "Stop Recording";
             else
                 Debug.Log("Button not linked");
+            if (this.calibrationButton != null)
+                this.calibrationButton.enabled = false;
+            else
+                Debug.Log("Button not linked"  );
 
         }
     }
@@ -312,6 +321,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
                 }
             }
         }
+        // this.hostInput.isFocused
 
 
     }
@@ -327,6 +337,10 @@ public class ServerConnectionStreamAuto : MonoBehaviour
                 this.calibrationButton.GetComponentInChildren<TMP_Text>().text = "Re-Calibrate";
             else
                 Debug.Log("Button not linked");
+            if (this.startButton != null)
+                this.startButton.enabled = true;
+            else
+                Debug.Log("Button not linked"  );
             if (this.autoStart)
                 this.StartRecording();
             this.isCalibrating = false;
@@ -342,6 +356,10 @@ public class ServerConnectionStreamAuto : MonoBehaviour
                 this.calibrationButton.GetComponentInChildren<TMP_Text>().text = "Stop Calibration";
             else
                 Debug.Log("Button not linked");
+            if (this.startButton != null)
+                this.startButton.enabled = false;
+            else
+                Debug.Log("Button not linked"  );
         }
     }
     /// <summary>
