@@ -10,11 +10,11 @@ responses:
     - text: "Hi, I'm Kumo, your personal movie and tv show assistant. Should I recommend you something?"
   
   utter_help:
-    - text: "I'm Kumo, a movie and tv show recommendation system. I can suggest you popular new shows or movies to watch"
-    - text: "Hi there, I'm Kumo, your personal movie and tv show assistant. I can recommend you movies and tv shows"
-    - text: "Hi, I'm Kumo, your personal movie and tv show assistant. I'm able to recommend you movies and tv shows"
-    - text: "Hi, I'm Kumo, your personal movie and tv show assistant. I can suggest you movies and tv shows"
-    - text: "Hi, I'm Kumo, your personal movie and tv show assistant. I can recommend you movies and tv shows"
+    - text: "I'm Kumo, a movie and tv show recommendation system. I can suggest you popular new shows or movies to watch based on genre or popularity"
+    - text: "Hi there, I'm Kumo, your personal movie and tv show assistant. I can recommend you movies and tv shows based on genre or popularity"
+    - text: "Hi, I'm Kumo, your personal movie and tv show assistant. I'm able to recommend you movies and tv shows based on genre or popularity"
+    - text: "Hi, I'm Kumo, your personal movie and tv show assistant. I can suggest you movies and tv shows based on genre or popularity"
+    - text: "Hi, I'm Kumo, your personal movie and tv show assistant. I can recommend you movies and tv shows based on genre or popularity."
  
   utter_thanks:
     - text: "I'm pleased to have helped you"
@@ -31,23 +31,22 @@ responses:
     - text: "Goodbye"
   
   utter_out_of_scope:
-  - text: "Sorry, I can't handle that request. I'm kumo, a movie and show recommendation system."
-  - text: "Sorry, but I'm a movie and show recommendation system."
-  - text: "Sorry, but I can only help you with movies and tv shows."
-
+  - text: "Sorry, I can't handle that request. I'm kumo, a movie and show recommendation system. I can suggest you popular new shows or movies to watch based on genre or popularity"
+  - text: "Sorry, but I'm a movie and show recommendation system. I can suggest you popular new shows or movies to watch based on genre or popularity"
+  - text: "Sorry, but I can only help you with movies and tv shows. I can suggest you movies and tv shows based on genre or popularity"
   utter_genres:
   - text: "There are: {genres_available} in {movie_or_tv}"
   - text: "You can watch these {movie_or_tv} genres: {genres_available}"
   
   utter_discover:
-    - text: "In {genre} new {movie_or_tv} releases are: {top_results}"
-    - text: "Some good suggestions in {movie_or_tv} are: {top_results}"
-    - text: "Sure, new releases are: {top_results}."
-    - text: "Sure, new {movie_or_tv} are: {top_results}."
-    - text: "Popular new releases are: {top_results}."
-    - text: "Some suggestions are: {top_results}."
-    - text: "I'd suggest you: {top_results}."
-    - text: "Some good {movie_or_tv} are: {top_results}."
+    - text: "In {genre} new {movie_or_tv} releases are: {top_results}. "
+    - text: "Some good suggestions in {movie_or_tv} are: {top_results}. "
+    - text: "Sure, new releases are: {top_results}. "
+    - text: "Sure, new {movie_or_tv} are: {top_results}. "
+    - text: "Popular new releases are: {top_results}. "
+    - text: "Some suggestions are: {top_results}. "
+    - text: "I'd suggest you: {top_results}. "
+    - text: "Some good {movie_or_tv} are: {top_results}. "
 
   utter_challenge:
     - text: "I'm Kumo, a movie and tv show recommendation system. I don't have things such as feelings. I was programmed to help you find a enjoyable show to watch"

@@ -32,6 +32,12 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     [Tooltip("The path to post the audio file to")]
     public string path = "audio_converse_stream";
     /// <summary>
+    /// The slot path to post the audio file to
+    /// </summary>
+    [Tooltip("The path to retrive the slots")]
+    public string slotpath = "get_tracker";
+    
+    /// <summary>
     /// The sender id for rasa to use
     /// </summary>
     [Tooltip("The sender id for rasa to use")]
@@ -415,7 +421,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
             requestDone.Invoke();
         }
         // ServerConnectionSlots slots = GetComponent<ServerConnectionSlots>();
-        StartCoroutine(this.GetSlots());
+        this.StartCoroutine(this.GetSlots());
         // wait unitl the audio is done playing to avoid recording the response
         while (this.outputSource.isPlaying)
         {
@@ -427,7 +433,9 @@ public class ServerConnectionStreamAuto : MonoBehaviour
 
     public IEnumerator GetSlots()
     {
-        UnityWebRequest request = new UnityWebRequest(this.url, "GET");
+        string sloturl = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
+        sloturl = sloturl + "/" + this.slotpath + "?bot=" + this.bot + "&sender=" + this.sender_id;
+        UnityWebRequest request = new UnityWebRequest(sloturl, "GET");
         // the download handler is a custom one that automatically plays the audio in streaming mode
         DownloadHandlerBuffer downloader = new DownloadHandlerBuffer();
         request.downloadHandler = downloader;

@@ -8,12 +8,12 @@ responses:
     - text: "Do you like a movie or a tv series?"
     - text: "Are you in the mood for a movie or a tv series?"
   utter_ask_genre:
-    - text: "What genre would like to watch?"
-    - text: "What genre do you have in mind?"
-    - text: "What kind of genre do you have in mind?"
-    - text: "What genre would you like to watch?"
-    - text: "Which genre is your favourite?"
-    - text: "Which genre are you in the mood for?"
+    - text: "And what genre would like to watch?"
+    - text: "And what genre do you have in mind?"
+    - text: "And what kind of genre do you have in mind?"
+    - text: "And what genre would you like to watch?"
+    - text: "And which genre is your favourite?"
+    - text: "And which genre are you in the mood for?"
   utter_ask_rephrase:
     - text: "I didn't understand. Could you rephrase please?"
     - text: "I didn't get that. Can you rephrase please?"

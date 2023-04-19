@@ -17,3 +17,5 @@ nlu:
     - What [movie](movie_or_tv) genre can I watch
     - What [tv_show](movie_or_tv) can I watch
     - Which genres can I watch 
+    - Which genres can you suggest me
+    - Which genres can you suggest me?
