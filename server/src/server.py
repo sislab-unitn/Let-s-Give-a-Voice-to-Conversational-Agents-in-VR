@@ -6,22 +6,56 @@ from pprint import pprint
 
 import uvicorn
 from fastapi import FastAPI, Request
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, Response
 from uvicorn.config import LOGGING_CONFIG
 
 
 from config_parser import config_parser
 from server_model import ServerModel
+from pydantic import BaseModel
 
 config = config_parser(
     sys.argv[1:], current_path=os.path.dirname(os.path.abspath(__file__))
 )
 server = ServerModel(config)
 
+description = """ This server is the standard communication server that perfoms the following tasks:
+                    - ASR transcription
+                    - Text to text conversation with the rasa model
+                    - TTS synthesis
+            """
 
 # start the server
-app = FastAPI()
+app = FastAPI(description=description)
 
+class TextResponse(BaseModel):
+    response: str
+    tracker: dict
+    class Config:
+        schema_extra = {
+            "example": {
+                "response": "Hey, I'm Kumo, a movie and tv show assistant. I can help you find movies and tv shows to watch. What would you like to do?",
+                "tracker" :
+                {
+                    "transcription" : "Hello",
+                    "response" : "Hey, I'm Kumo, a movie and tv show assistant. I can help you find movies and tv shows to watch. What would you like to do?"
+                }
+            }
+        }
+class TrackerResponse(BaseModel):
+    trascrition: str
+    response: str
+    other: dict
+    class Config:
+        schema_extra = {
+            "example": {
+                "transcription" : "Hello",
+                "response" : "Hey, I'm Kumo, a movie and tv show assistant. I can help you find movies and tv shows to watch. What would you like to do?"
+
+            }
+        }
+class AudioResponse(Response):
+    media_type = "audio/raw"
 
 @app.get("/")
 def read_root():
@@ -29,7 +63,7 @@ def read_root():
         "Server": "Check the documentation for more info on what API endpoints are available."
     }
 
-@app.get("/text_converse")
+@app.get("/text_converse", response_model=TextResponse)
 async def text_converse(bot: str,sender:str,message:str):
     """
     Performs 1 step of the conversation using the rasa model.
@@ -45,13 +79,19 @@ async def text_converse(bot: str,sender:str,message:str):
     tracker = await server.get_tracker_data(bot, sender)
 
     return {"response": response, "tracker": tracker}
-@app.post("/text_converse")
+@app.post("/text_converse", response_model=TextResponse )
 async def text_converse(bot: str, request: Request):
     """
     Performs 1 step of the conversation using the rasa model.
     - use bot param to specify which bot to use
     - Expects a json object with 'sender' and 'message' keys
-    - example: {"sender":"user","message":"hello"}
+    - example: 
+        ```json
+        {
+            "sender":"user",
+            "message":"hello"
+        }
+        ```
     - Returns a json object with the response from the rasa model and the tracker data
     """
     # forward the request to rasa server
@@ -71,11 +111,18 @@ async def text_converse(bot: str, request: Request):
     return {"response": response, "tracker": tracker}
 
 
-@app.post("/audio_converse_stream")
-async def audio_converse_stream(bot: str, sender: str, request: Request):
+@app.post("/audio_converse_stream", response_class=AudioResponse)
+async def audio_converse_stream(bot: str, sender: str, request: Request) -> StreamingResponse:
     """
     This function is used to stream audio from the client to the server. Expecting the audio to be in any format supported by the soundfile.read().
-    Returns a PCM_16 audio file in streaming format.
+    Returns a PCM_16 audio file in streaming format. The file is:
+    - `PCM_16`
+    - `signed integer 16 bit`
+    - `16000Hz` sampling rate
+    - `mono` channel
+    
+    The audio has chunks delimited by 100 16bit zeros of silence that delimit the chunks for punctuation.
+    
     """
     # get the audio file from the request and send it to tts.ai
     timer = time.time()
@@ -94,7 +141,7 @@ async def audio_converse_stream(bot: str, sender: str, request: Request):
     return StreamingResponse(server.text_to_speech(speaker,response), media_type="audio/wav")
 
 
-@app.get("/get_tracker")
+@app.get("/get_tracker", response_model=TrackerResponse)
 async def get_tracker(bot: str, sender: str, request: Request):
     """
     Get tracker information for a specific sender from the rasa server.
@@ -114,5 +161,5 @@ if __name__ == "__main__":
         "__main__:app",
         host=config["server"]["self_host"],
         port=config["server"]["self_port"],
-        reload=False,
+        reload=True,
     )

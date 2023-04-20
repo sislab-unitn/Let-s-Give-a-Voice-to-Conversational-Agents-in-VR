@@ -4,6 +4,7 @@ import sys
 
 import uvicorn
 from fastapi import FastAPI, Request, Response, status
+from pydantic import BaseModel
 from uvicorn.config import LOGGING_CONFIG
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname((os.path.abspath(__file__))))))
@@ -15,8 +16,19 @@ config = config_parser(
 )
 asr_model = ASRModel(config)
 
-app = FastAPI()
+description = """ This is the ASR model used. Check the documentation for more info. Link to the pretrained model on 🤗 https://huggingface.co/speechbrain/asr-wav2vec2-commonvoice-en """
+app = FastAPI(description=description)
 
+class ASRResponse(BaseModel):
+    text: str
+    is_final: bool
+    class Config:
+        schema_extra = {
+            "example": {
+                "text" : "Hello",
+                "is_final" : True
+            }
+        }
 
 @app.get("/")
 def read_root():
@@ -25,7 +37,7 @@ def read_root():
     }
 
 
-@app.post("/asr")
+@app.post("/asr", response_model=ASRResponse)
 async def asr(request: Request):
     """
     Performs the inference on the ASR model from a POST request
@@ -62,5 +74,5 @@ if __name__ == "__main__":
         "__main__:app",
         host=config["server"]["self_host"],
         port=config["server"]["self_port"],
-        reload=False,
+        reload=True,
     )

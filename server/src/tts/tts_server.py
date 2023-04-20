@@ -5,6 +5,7 @@ import soundfile as sf
 import uvicorn
 from fastapi import Depends, FastAPI, Request, Response, status
 from fastapi.responses import StreamingResponse
+from pydantic import BaseModel
 from uvicorn.config import LOGGING_CONFIG
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname((os.path.abspath(__file__))))))
@@ -16,9 +17,17 @@ config = config_parser(
 )
 tts_model = TTSModel(config)
 
-app = FastAPI()
-
-
+description = """ This server is the standard TTS server that perfoms the speech synthesis from text. Check the documentation for more info. Link to the pretrained model on 🤗 https://huggingface.co/microsoft/speecht5_tts """
+app = FastAPI(description=description)
+class AudioResponse(Response):
+    media_type = "audio/raw"
+class SpeakersResponse(BaseModel):
+    list[str]
+    class Config:
+        schema_extra = {
+            "example": 
+                ["awb","bdl","clb","jmk","ksp","rms","slt"]
+        }
 @app.get("/")
 def read_root():
     return {
@@ -26,12 +35,20 @@ def read_root():
     }
 
 
-@app.post("/tts")
+@app.post("/tts", response_class=AudioResponse)
 async def tts(speaker:str,request: Request):
     """
     Performs the inference on the TTS model from a POST request
     - the request body should be a JSON object with the key "text" and the value being the text to be synthesized
-    - response is a PCM_16 audio file
+    
+    Returns a PCM_16 audio file in streaming format. The file is:
+    - `PCM_16`
+    - `signed integer 16 bit`
+    - `16000Hz` sampling rate
+    - `mono` channel
+    
+    The audio has chunks delimited by 100 16bit zeros of silence that delimit the chunks for punctuation.
+    
     """
     if speaker not in tts_model.speaker_embeddings.keys():
         return Response(
@@ -52,12 +69,20 @@ async def tts(speaker:str,request: Request):
     )
 
 
-@app.get("/tts_synthesis")
+@app.get("/tts_synthesis", response_class=AudioResponse)
 async def tts_synthesis(speaker:str,text: str):
     """
     Performs the inference on the TTS model from a GET request
     - the text encoded in the url is the text to be synthesized
-    - response is a PCM_16 audio file
+    
+    Returns a PCM_16 audio file in streaming format. The file is:
+    - `PCM_16`
+    - `signed integer 16 bit`
+    - `16000Hz` sampling rate
+    - `mono` channel
+    
+    The audio has chunks delimited by 100 16bit zeros of silence that delimit the chunks for punctuation.
+    
     """
     if speaker not in tts_model.speaker_embeddings.keys():
         return Response(
@@ -67,12 +92,17 @@ async def tts_synthesis(speaker:str,text: str):
     return StreamingResponse(
         status_code=status.HTTP_200_OK, content=voice, media_type="audio/raw"
     )
-@app.get("/tts_synthesis_full")
+@app.get("/tts_synthesis_full", response_class=AudioResponse)
 async def tts_synthesis(speaker:str,text: str):
     """
     Performs the inference on the TTS model from a GET request
     - the text encoded in the url is the text to be synthesized
-    - response is a PCM_16 audio file
+    Returns a PCM_16 audio file in streaming format. The file is:
+    - `PCM_16`
+    - `signed integer 16 bit`
+    - `16000Hz` sampling rate
+    - `mono` channel
+    
     """
     if speaker not in tts_model.speaker_embeddings.keys():
         return Response(
@@ -80,7 +110,7 @@ async def tts_synthesis(speaker:str,text: str):
         )
     voice = await tts_model.tts_synthesis(speaker,text)
     return Response(status_code=status.HTTP_200_OK, content=voice, media_type="audio/raw")
-@app.get("/tts_speakers")
+@app.get("/tts_speakers", response_model=SpeakersResponse)
 async def tts_speakers():
     """
     Returns a list of available speakers
@@ -100,5 +130,5 @@ if __name__ == "__main__":
         "__main__:app",
         host=config["server"]["self_host"],
         port=config["server"]["self_port"],
-        reload=False,
+        reload=True,
     )
