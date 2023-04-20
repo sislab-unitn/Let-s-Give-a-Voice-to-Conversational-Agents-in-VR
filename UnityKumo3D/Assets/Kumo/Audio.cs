@@ -82,6 +82,9 @@ public static class Audio
     {
         var soundData = new float[clip.samples * clip.channels];
         clip.GetData(soundData, 0);
+
+        if (startPosition > endPosition) startPosition = endPosition;
+        if (startPosition < 0) startPosition = 0;
         var newData = new float[(endPosition - startPosition) * clip.channels];
         for (int i = 0; i < newData.Length; i++)
         {

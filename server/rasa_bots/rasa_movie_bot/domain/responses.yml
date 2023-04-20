@@ -3,9 +3,8 @@ version: "3.1"
 responses:
 
   utter_greet:
-    - text: "Hey! I'm Kumo, a movie and tv show recommendation system"
-    - text: "Hi there, I'm Kumo, your personal movie and tv show assistant. What would you like to watch?"
-    - text: "Hi, I'm Kumo, your personal movie and tv show assistant. What would you like to watch?"
+    - text: "Hi there, I'm Kumo, your personal movie and tv show assistant. What should I recommend you?"
+    - text: "Hi, I'm Kumo, your personal movie and tv show assistant. What should I recommend you?"
     - text: "Hi, I'm Kumo, your personal movie and tv show assistant. Would you like to watch something?"
     - text: "Hi, I'm Kumo, your personal movie and tv show assistant. Should I recommend you something?"
   
@@ -35,8 +34,8 @@ responses:
   - text: "Sorry, but I'm a movie and show recommendation system. I can suggest you popular new shows or movies to watch based on genre or popularity"
   - text: "Sorry, but I can only help you with movies and tv shows. I can suggest you movies and tv shows based on genre or popularity"
   utter_genres:
-  - text: "There are: {genres_available} in {movie_or_tv}"
-  - text: "You can watch these {movie_or_tv} genres: {genres_available}"
+  - text: "There are: {genres_available} in {movie_or_tv}. Which one would you prefer?"
+  - text: "You can watch these {movie_or_tv} genres: {genres_available}. Which one would you prefer?"
   
   utter_discover:
     - text: "In {genre} new {movie_or_tv} releases are: {top_results}. "

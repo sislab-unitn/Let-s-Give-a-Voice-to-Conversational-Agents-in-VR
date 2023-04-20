@@ -16,6 +16,11 @@ nlu:
       - goodmorning
       - goodevening
       - good afternoon
+      - Hei
+      - Hey
+      - hei
+      - ehi
+      - Ehi
 
   - intent: goodbye
     examples: |
@@ -49,6 +54,8 @@ nlu:
       - yes right
       - right on
       - i love that
+      - please
+      - yes please
 
   - intent: deny
     examples: |

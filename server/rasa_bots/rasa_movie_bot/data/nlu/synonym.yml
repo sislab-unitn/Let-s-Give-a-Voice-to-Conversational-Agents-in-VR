@@ -30,3 +30,9 @@ nlu:
       - children
       - Child
       - child
+  - synonym: popular
+    examples: |
+      - popular
+      - common
+      - famous
+      - any genre

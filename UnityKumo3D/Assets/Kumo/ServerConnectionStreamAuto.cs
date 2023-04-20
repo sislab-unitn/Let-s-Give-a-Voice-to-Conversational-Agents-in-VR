@@ -113,6 +113,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// Set the button to calibrate the noise level for automatic recording
     /// <summary>
     public Button calibrationButton;
+    
     /// <summary>
     /// Transcription text
     /// <summary>
@@ -208,9 +209,9 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         // start the recording for the audio noise level detection
         // StartRecording();
         if (this.startButton != null)
-            this.startButton.onClick.AddListener(StartStopRecording);
+            this.startButton.onClick.AddListener(this.StartStopRecording);
         if (this.calibrationButton != null)
-            this.calibrationButton.onClick.AddListener(autoCalibration);
+            this.calibrationButton.onClick.AddListener(this.autoCalibration);
         if (this.autoStart)
             this.StartStopRecording();
         if (this.hostInput != null)
