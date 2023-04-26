@@ -421,7 +421,6 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         {
             requestDone.Invoke();
         }
-        // ServerConnectionSlots slots = GetComponent<ServerConnectionSlots>();
         this.StartCoroutine(this.GetSlots());
         // wait unitl the audio is done playing to avoid recording the response
         while (this.outputSource.isPlaying)
@@ -447,58 +446,57 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         }
         else
         {
-
-            JsonData data = JsonMapper.ToObject(request.downloadHandler.text);
-
-            for (int i = 0; i < data.Count; i++)
+            while (request.downloadHandler.isDone == false)
             {
-                try
+                yield return null;
+            }
+            JsonData data = JsonMapper.ToObject(request.downloadHandler.text);
+            try{
+                for (int j = 0; j < data["titles"].Count; j++)
                 {
-                    for (int j = 0; j < data["titles"].Count; j++)
-                    {
-                        this.text[j].text = data["titles"][j].ToString();
-                    }
-                }
-                catch (KeyNotFoundException e)
-                {
-                    Debug.Log(e);
-                }
-                try
-                {
-                    for (int j = 0; j < data["images"].Count; j++)
-                    {
-                        // decode bytes from base64
-                        byte[] bytes = Convert.FromBase64String((data["images"][j].ToString()));
-                        // save the bytes to a file
-                        // string path = Application.dataPath + "/Temp/" + "image_" +j + ".jpg";
-                        // File.WriteAllBytes(path, bytes);
-                        Texture2D texture = new Texture2D(2, 2);
-                        texture.LoadImage(bytes);
-                        this.image[j].sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-                    }
-                }
-                catch (KeyNotFoundException e)
-                {
-                    Debug.Log(e);
-                }
-                try
-                {
-                    this.transcription.text = data["transcription"].ToString();
-                }
-                catch (KeyNotFoundException e)
-                {
-                    Debug.Log(e);
-                }
-                try
-                {
-                    this.response.text = data["response"].ToString();
-
-                }
-                catch (KeyNotFoundException e)
-                {
-                    Debug.Log(e);
+                    this.text[j].text = data["titles"][j].ToString();
                 }
             }
+            catch (KeyNotFoundException e)
+            {
+                Debug.Log(e);
+            }
+            try
+            {
+                for (int j = 0; j < data["images"].Count; j++)
+                {
+                    // decode bytes from base64
+                    byte[] bytes = Convert.FromBase64String((data["images"][j].ToString()));
+                    // save the bytes to a file
+                    // string path = Application.dataPath + "/Temp/" + "image_" +j + ".jpg";
+                    // File.WriteAllBytes(path, bytes);
+                    Texture2D texture = new Texture2D(2, 2);
+                    texture.LoadImage(bytes);
+                    this.image[j].sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+                }
+            }
+            catch (KeyNotFoundException e)
+            {
+                Debug.Log(e);
+            }
+            try
+            {
+                this.transcription.text = data["transcription"].ToString();
+            }
+            catch (KeyNotFoundException e)
+            {
+                Debug.Log(e);
+            }
+            try
+            {
+                this.response.text = data["response"].ToString();
+
+            }
+            catch (KeyNotFoundException e)
+            {
+                Debug.Log(e);
+            }
+            
             Debug.Log("Slots Received!");
         }
         yield return null;

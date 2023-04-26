@@ -121,4 +121,6 @@ class ServerModel:
 
         response = response_tracker.json()
         answer = self.bots_responses[sender] | response["slots"]["results_data"] if response["slots"]["results_data"] is not None else self.bots_responses[sender]
+        from pprint import pprint
+        pprint (answer) 
         return answer
