@@ -15,7 +15,7 @@ responses:
     - text: "And which genre is your favourite?"
     - text: "And which genre are you in the mood for?"
   utter_ask_rephrase:
-    - text: "I didn't understand. Could you rephrase please?"
-    - text: "I didn't get that. Can you rephrase please?"
-    - text: "I didn't understand. Could you repeat please?"
-    - text: "Could you rephrase please?"
+    - text: "I didn't understand. Could you rephrase in simpler tersm please?"
+    - text: "I didn't get that. Can you rephrase in simpler tersm please?"
+    - text: "I didn't understand. Could you repeat in simpler tersm please?"
+    - text: "Could you rephrase in simpler tersm please?"

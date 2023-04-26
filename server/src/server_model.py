@@ -19,6 +19,10 @@ class ServerModel:
         self.bots = dict()
         for bot in self.config["bots"]:
             self.bots[bot["name"]] = bot
+        # stores the latest input response from each bot for each sender
+        self.bots_responses = dict()
+        for bot in self.bots.keys():
+            self.bots_responses[bot] = dict()
         print(f"ServerModel initialized with {self.bots.keys()}")
         
     async def speech_to_text(self, request: Request) -> str:
@@ -75,6 +79,7 @@ class ServerModel:
         # for item in response_rasa.json():
         #     response += item["text"]
         response = '. '.join([item["text"] for item in response_rasa.json()])
+        self.bots_responses[sender] = {"transcription":input,"response":response}
         return response
 
     async def text_to_speech(self,speaker:str, text: str) -> AsyncGenerator:
@@ -115,27 +120,5 @@ class ServerModel:
         response_tracker.raise_for_status()
 
         response = response_tracker.json()
-
-        try:
-            answer = response["slots"]["results_data"]
-            if answer == None:
-                answer = dict()
-        except KeyError:
-            answer = dict()
-        try:
-            answer["transcription"] = response["latest_message"]["text"]
-        except KeyError:
-            answer["transcription"] = ""
-        try:
-            answer["response"] = ''
-            idxes = [i for i, elem in enumerate(response['events']) if elem['event'] == 'user' ] 
-            if len(idxes) > 0:
-                idx = idxes[-1]
-            else:
-                idx = 0
-            for item in response['events'][idx:]:
-                if item['event'] == 'bot':       
-                    answer["response"] += item['text']
-        except KeyError:
-            answer["response"] = ""
+        answer = self.bots_responses[sender] | response["slots"]["results_data"] if response["slots"]["results_data"] is not None else self.bots_responses[sender]
         return answer

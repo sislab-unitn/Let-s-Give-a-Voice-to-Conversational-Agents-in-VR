@@ -43,9 +43,10 @@ class TextResponse(BaseModel):
             }
         }
 class TrackerResponse(BaseModel):
-    trascrition: str
+    
+    transcription: str
     response: str
-    other: dict
+    other : dict | None
     class Config:
         schema_extra = {
             "example": {
