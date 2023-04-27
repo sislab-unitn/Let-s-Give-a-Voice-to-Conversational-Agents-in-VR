@@ -1,3 +1,8 @@
 UnityHospital3D/Assets/MODELS/Human[[:space:]]models/doctor[[:space:]]standing/MODEL/032M_02SET_03SHOT.ZTL filter=lfs diff=lfs merge=lfs -text
 UnityHospital3D/Assets/MODELS/Human[[:space:]]models/doctor[[:space:]]standing/MODEL/С4D/032M_02SET_03SHOT/tex/032M_02SET_03SHOT_Diffuse.tif filter=lfs diff=lfs merge=lfs -text
 UnityHospital3D/Assets/MODELS/Human[[:space:]]models/doctor[[:space:]]standing/MODEL/С4D/032M_02SET_03SHOT/tex/032M_02SET_03SHOT_Normal.tif filter=lfs diff=lfs merge=lfs -text
+UnityHospital3D/Assets/MODELS/Lab[[:space:]]model[[:space:]]with[[:space:]]chair/pianta3D.obj filter=lfs diff=lfs merge=lfs -text
+UnityHospital3D/Assets/MODELS/Human[[:space:]]models/Nurse[[:space:]]animate[[:space:]]FBX/nurse_pose1.blend filter=lfs diff=lfs merge=lfs -text
+UnityHospital3D/Assets/MODELS/Human[[:space:]]models/Nurse[[:space:]]animate[[:space:]]FBX/nurse_pose1.blend1 filter=lfs diff=lfs merge=lfs -text
+UnityHospital3D/Assets/MODELS/Human[[:space:]]models/Nurse[[:space:]]animate[[:space:]]FBX/nurse_pose2.blend1 filter=lfs diff=lfs merge=lfs -text
+UnityHospital3D/Assets/MODELS/Human[[:space:]]models/Nurse[[:space:]]animate[[:space:]]FBX/nurse_pose2.blend filter=lfs diff=lfs merge=lfs -text
