@@ -4,6 +4,11 @@ Here is a movie and tv show recommendation system realized using several technol
 It is a Unity based conversational agent with future expandability planned right in the architecture. 
 ## Demo
 ![](assets/movie_bot_demo_v2.mp4)
+
+
+https://github.com/sislab-unitn/Let-s-Give-a-Voice-to-Conversational-Agents-in-VR/assets/12775524/af01d66b-b94a-45b5-91f7-1590ab013e00
+
+
 This is a demo of the current capabilities of the architecture for MovieBot
 
 
