@@ -1,3 +1,9 @@
+using System.Threading.Tasks;
+using System.Threading;
+// using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Globalization;
+// using System.Diagnostics;
 
 using System.Collections;
 using UnityEngine;
@@ -31,12 +37,6 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// </summary>
     [Tooltip("The path to post the audio file to")]
     public string path = "audio_converse_stream";
-    /// <summary>
-    /// The slot path to post the audio file to
-    /// </summary>
-    [Tooltip("The path to retrive the slots")]
-    public string slotpath = "get_tracker";
-    
     /// <summary>
     /// The sender id for rasa to use
     /// </summary>
@@ -113,7 +113,6 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// Set the button to calibrate the noise level for automatic recording
     /// <summary>
     public Button calibrationButton;
-    
     /// <summary>
     /// Transcription text
     /// <summary>
@@ -128,7 +127,6 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     public TMP_Text noiseLevel;
     /// <summary>
     /// Set the host input field
-    /// <summary>
     /// <summary>
     public TMP_InputField hostInput;
     /// <summary>
@@ -193,6 +191,8 @@ public class ServerConnectionStreamAuto : MonoBehaviour
 
     void Start()
     {
+        this.loadSettings();
+        Debug.Log("SSL: " + this.ssl);
         this.url = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
         // send a request to the server to check if it is running and the connection is successful
         UnityWebRequest request = UnityWebRequest.Get(this.url);
@@ -209,9 +209,9 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         // start the recording for the audio noise level detection
         // StartRecording();
         if (this.startButton != null)
-            this.startButton.onClick.AddListener(this.StartStopRecording);
+            this.startButton.onClick.AddListener(StartStopRecording);
         if (this.calibrationButton != null)
-            this.calibrationButton.onClick.AddListener(this.autoCalibration);
+            this.calibrationButton.onClick.AddListener(autoCalibration);
         if (this.autoStart)
             this.StartStopRecording();
         if (this.hostInput != null)
@@ -260,7 +260,26 @@ public class ServerConnectionStreamAuto : MonoBehaviour
 
         }
     }
-
+    void loadSettings(){
+        this.ssl = (PlayerPrefs.GetInt("ssl", 0) == 1);
+        this.host = PlayerPrefs.GetString("host", "localhost");
+        this.port = PlayerPrefs.GetString("port", "8000");
+        this.bot = PlayerPrefs.GetString("bot", "bot");
+        this.sender_id = PlayerPrefs.GetString("sender_id", "user");
+        this.path = PlayerPrefs.GetString("path", "api");
+        this.audioLevelUpperThreshold = PlayerPrefs.GetFloat("audioLevelUpperThreshold", 0.03f);
+        this.audioLevelLowerThreshold = PlayerPrefs.GetFloat("audioLevelLowerThreshold", 0.02f);
+    }
+    void saveSettings(){
+        PlayerPrefs.SetInt("ssl", (this.ssl ? 1 : 0));
+        PlayerPrefs.SetString("host", this.host);
+        PlayerPrefs.SetString("port", this.port);
+        PlayerPrefs.SetString("bot", this.bot);
+        PlayerPrefs.SetString("sender_id", this.sender_id);
+        PlayerPrefs.SetString("path", this.path);
+        PlayerPrefs.SetFloat("audioLevelUpperThreshold", (float)this.audioLevelUpperThreshold);
+        PlayerPrefs.SetFloat("audioLevelLowerThreshold", (float)this.audioLevelLowerThreshold);
+    }
     void Update()
     {
 
@@ -421,7 +440,8 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         {
             requestDone.Invoke();
         }
-        this.StartCoroutine(this.GetSlots());
+        // ServerConnectionSlots slots = GetComponent<ServerConnectionSlots>();
+        StartCoroutine(this.GetSlots());
         // wait unitl the audio is done playing to avoid recording the response
         while (this.outputSource.isPlaying)
         {
@@ -433,9 +453,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
 
     public IEnumerator GetSlots()
     {
-        string sloturl = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
-        sloturl = sloturl + "/" + this.slotpath + "?bot=" + this.bot + "&sender=" + this.sender_id;
-        UnityWebRequest request = new UnityWebRequest(sloturl, "GET");
+        UnityWebRequest request = new UnityWebRequest(this.url, "GET");
         // the download handler is a custom one that automatically plays the audio in streaming mode
         DownloadHandlerBuffer downloader = new DownloadHandlerBuffer();
         request.downloadHandler = downloader;
@@ -446,57 +464,58 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         }
         else
         {
-            while (request.downloadHandler.isDone == false)
-            {
-                yield return null;
-            }
-            JsonData data = JsonMapper.ToObject(request.downloadHandler.text);
-            try{
-                for (int j = 0; j < data["titles"].Count; j++)
-                {
-                    this.text[j].text = data["titles"][j].ToString();
-                }
-            }
-            catch (KeyNotFoundException e)
-            {
-                Debug.Log(e);
-            }
-            try
-            {
-                for (int j = 0; j < data["images"].Count; j++)
-                {
-                    // decode bytes from base64
-                    byte[] bytes = Convert.FromBase64String((data["images"][j].ToString()));
-                    // save the bytes to a file
-                    // string path = Application.dataPath + "/Temp/" + "image_" +j + ".jpg";
-                    // File.WriteAllBytes(path, bytes);
-                    Texture2D texture = new Texture2D(2, 2);
-                    texture.LoadImage(bytes);
-                    this.image[j].sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-                }
-            }
-            catch (KeyNotFoundException e)
-            {
-                Debug.Log(e);
-            }
-            try
-            {
-                this.transcription.text = data["transcription"].ToString();
-            }
-            catch (KeyNotFoundException e)
-            {
-                Debug.Log(e);
-            }
-            try
-            {
-                this.response.text = data["response"].ToString();
 
-            }
-            catch (KeyNotFoundException e)
+            JsonData data = JsonMapper.ToObject(request.downloadHandler.text);
+
+            for (int i = 0; i < data.Count; i++)
             {
-                Debug.Log(e);
+                try
+                {
+                    for (int j = 0; j < data["titles"].Count; j++)
+                    {
+                        this.text[j].text = data["titles"][j].ToString();
+                    }
+                }
+                catch (KeyNotFoundException e)
+                {
+                    Debug.Log(e);
+                }
+                try
+                {
+                    for (int j = 0; j < data["images"].Count; j++)
+                    {
+                        // decode bytes from base64
+                        byte[] bytes = Convert.FromBase64String((data["images"][j].ToString()));
+                        // save the bytes to a file
+                        // string path = Application.dataPath + "/Temp/" + "image_" +j + ".jpg";
+                        // File.WriteAllBytes(path, bytes);
+                        Texture2D texture = new Texture2D(2, 2);
+                        texture.LoadImage(bytes);
+                        this.image[j].sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+                    }
+                }
+                catch (KeyNotFoundException e)
+                {
+                    Debug.Log(e);
+                }
+                try
+                {
+                    this.transcription.text = data["transcription"].ToString();
+                }
+                catch (KeyNotFoundException e)
+                {
+                    Debug.Log(e);
+                }
+                try
+                {
+                    this.response.text = data["response"].ToString();
+
+                }
+                catch (KeyNotFoundException e)
+                {
+                    Debug.Log(e);
+                }
             }
-            
             Debug.Log("Slots Received!");
         }
         yield return null;
@@ -508,6 +527,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         this.url = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
         this.url = this.url + "/" + this.path + "?bot=" + this.bot + "&sender=" + this.sender_id;
         this.urlText.text = this.url;
+        this.saveSettings();
     }
     public void changePort(string port)
     {
@@ -516,16 +536,19 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         this.url = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
         this.url = this.url + "/" + this.path + "?bot=" + this.bot + "&sender=" + this.sender_id;
         this.urlText.text = this.url;
+        this.saveSettings();
     }
     public void changeActivationThreshold(string value)
     {
         this.audioLevelUpperThreshold = float.Parse(value);
         Debug.Log("Activation Threshold changed to " + value);
+        this.saveSettings();
     }
     public void changeDeactivationThreshold(string value)
     {
         this.audioLevelLowerThreshold = float.Parse(value);
         Debug.Log("Deactivation Threshold changed to " + value);
+        this.saveSettings();
     }
     public void changeBot(string bot)
     {
@@ -534,5 +557,6 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         this.url = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
         this.url = this.url + "/" + this.path + "?bot=" + this.bot + "&sender=" + this.sender_id;
         this.urlText.text = this.url;
+        this.saveSettings();
     }
 }
