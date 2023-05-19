@@ -17,14 +17,22 @@ slots:
       intent:
         - symptoms
 
+  # start_date:
+  #   type: text
+  #   mappings:
+  #   - type: from_entity
+  #     entity: start_date
+  #     intent:
+  #       - symptoms
+  #       - date
   start_date:
     type: text
     mappings:
-    - type: from_entity
-      entity: start_date
-      intent:
-        - symptoms
-        - date
+      - type: custom
+        action: action_extract_whole_utterance
+        conditions:
+          - active_loop: investigate_symptoms_form
+            requested_slot: start_date
   frequency:
     type: text
     mappings:
@@ -33,7 +41,6 @@ slots:
       intent:
         - symptoms
         - date
-
   pain_level:
     type: text
     mappings:

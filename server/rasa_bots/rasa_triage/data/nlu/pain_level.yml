@@ -8,3 +8,7 @@ nlu:
     - I think [zero](pain_level)
     - It hurts a lot, [10](pain_level)
     - It doesn't hurt much, I would say a [5](pain_level)
+    - i would say [0](pain_level)
+    - i think [0](pain_level)
+    - id say [0](pain_level)
+    - i say [0](pain_level)
