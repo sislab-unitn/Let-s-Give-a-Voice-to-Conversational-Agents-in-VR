@@ -8,6 +8,8 @@ from pydantic import BaseModel
 from uvicorn.config import LOGGING_CONFIG
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname((os.path.abspath(__file__))))))
+print (sys.path)
+import src
 from src.config_parser import config_parser
 from src.asr.asr_model import ASRModel
 

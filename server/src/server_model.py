@@ -123,7 +123,10 @@ class ServerModel:
         try :
             answer = self.bots_responses[sender] | response["slots"]["results_data"] if response["slots"]["results_data"] is not None else self.bots_responses[sender]
         except KeyError:
-            answer = self.bots_responses[sender] 
+            try:
+                answer = self.bots_responses[sender]
+            except KeyError:
+                answer = {"transcription":"", "response":""}
         from pprint import pprint
         pprint (answer) 
         return answer

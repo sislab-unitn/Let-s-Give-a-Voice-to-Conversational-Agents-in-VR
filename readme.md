@@ -52,6 +52,12 @@ You will need a working installation of Rasa and Unity. You can check how to ins
 - https://rasa.com/docs/rasa/installation/installing-rasa-open-source/
 - https://unity.com/download
 
+If you use these instructions, you will need to install
+- spacy==3.5.1
+- toml==0.10.2
+- python-levenshtein==0.20.9
+- tmdbsimple==2.9.1
+
 Alternatively you can create the rasa environment by runnning
 `conda create -f server/rasa_bots/environment.yml`
 and afterwards running  `python -m spacy download en_core_web_lg`

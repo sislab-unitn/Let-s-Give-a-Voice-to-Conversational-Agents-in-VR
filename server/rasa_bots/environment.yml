@@ -1,4 +1,4 @@
-name: rasa_1
+name: rasa
 channels:
   - conda-forge
   - defaults

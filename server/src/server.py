@@ -133,6 +133,8 @@ async def audio_converse_stream(bot: str, sender: str, request: Request) -> Stre
     # rasa response
     timer = time.time()
     response = await server.text_to_text(bot, message, sender)
+    if response == "":
+        response = "Sorry, I didn't understand that."
     timer = time.time() - timer
     pprint(f"text_to_text: {timer}")
     pprint(response)

@@ -1,11 +1,20 @@
 version: "3.1"
 
 slots:
+  # name:
+  #   type: text
+  #   mappings:
+  #     - type: from_entity
+  #       entity: name
+  #       conditions:
+  #         - active_loop: investigate_form
+  #           requested_slot: name
+  #       influence_conversation: true
   name:
     type: text
     mappings:
-      - type: from_entity
-        entity: name
+      - type: custom        
+        action: action_extract_whole_utterance
         conditions:
           - active_loop: investigate_form
             requested_slot: name
