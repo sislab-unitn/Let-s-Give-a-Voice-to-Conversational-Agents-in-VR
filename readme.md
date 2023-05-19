@@ -178,6 +178,10 @@ python server/main.py
 by default each server is properly configured to run in `localhost` at different ports, respectively `:8081`, `:8082` and `:8080`. You can change these settings the the configuration of each server at `server/asr/config.toml` `server/tts/config.toml` `server/config.toml`
 Also by default, the `server/config.toml` has communcation in place for port `5004`  `5005`, `5006`, `5007` for movie_bot, triage, anamnesis and operation respectively
 
+#### NOTE for Windows Users
+you may need to activate `Developer Mode` in order to user speechbrain ASR. 
+https://learn.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+
 Now you should have a terminal that each looks something like this
 ![](assets/Screenshot%202023-03-18%20at%2011.03.36.png)
 

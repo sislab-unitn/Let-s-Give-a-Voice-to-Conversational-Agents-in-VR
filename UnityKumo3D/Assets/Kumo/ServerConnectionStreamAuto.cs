@@ -85,6 +85,10 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// autostart recording when the scene is loaded without pressing the button
     /// </summary>
     public bool autoStart = false;
+   /// <summary>
+    /// ignores the editor settings and loads the settings from the settings file
+    /// </summary>
+    public bool preloadSettings = true;
     /// <summary>
     /// Set the audiosource threshold noise level before starting recording
     /// <summary>
@@ -204,7 +208,10 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     void Start()
     {
         // PlayerPrefs.DeleteAll();
-        this.loadSettings();
+        if (this.preloadSettings)
+        {
+            this.loadSettings();
+        }
         const string glyphs= "abcdefghijklmnopqrstuvwxyz0123456789";
         string myString = "";
         for(int i=0; i<10; i++)
@@ -212,7 +219,6 @@ public class ServerConnectionStreamAuto : MonoBehaviour
             myString += glyphs[UnityEngine.Random.Range(0, glyphs.Length)];
         }
         this.sender_id = myString;
-        changeHost("44f6-193-205-210-82.ngrok-free.app");
         // UnityEngine.Debug.Log("SSL: " + this.ssl);
         this.url = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
         // UnityEngine.Debug.Log("URL: " + this.url);
