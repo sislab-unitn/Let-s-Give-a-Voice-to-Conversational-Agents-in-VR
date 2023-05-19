@@ -33,19 +33,27 @@ slots:
         conditions:
           - active_loop: investigate_symptoms_form
             requested_slot: start_date
+  # frequency:
+  #   type: text
+  #   mappings:
+  #   - type: from_entity
+  #     entity: frequency
+  #     intent:
+  #       - symptoms
+  #       - date
   frequency:
     type: text
     mappings:
-    - type: from_entity
-      entity: frequency
-      intent:
-        - symptoms
-        - date
+      - type: custom
+        action: action_extract_whole_utterance
+        conditions:
+          - active_loop: investigate_symptoms_form
+            requested_slot: frequency
   pain_level:
     type: text
     mappings:
-    - type: from_entity
-      entity: pain_level
+    - type: custom
+      action: action_extract_whole_utterance
       conditions:
         - active_loop: investigate_symptoms_form
           requested_slot: pain_level

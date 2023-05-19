@@ -71,6 +71,8 @@ This project contains 4 bots, 3 related to the healthcare environment and one fo
               \-- movie_bot 
 ```
 In here we will explain how to set up each of them to get the full experience. It is possible to replace these bots with other Rasa based bots.
+
+Before going on, open `server/db/config.toml` and change `[DB][db_path]` with the path where you want to save your conversation
 #### Movie Bot
 
 ##### The movie database account
