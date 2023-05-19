@@ -78,7 +78,6 @@ async def text_converse(bot: str,sender:str,message:str):
     response = await server.text_to_text(bot, message, sender)
     # get the tracker slot data
     tracker = await server.get_tracker_data(bot, sender)
-
     return {"response": response, "tracker": tracker}
 @app.post("/text_converse", response_model=TextResponse )
 async def text_converse(bot: str, request: Request):

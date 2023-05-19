@@ -1,3 +1,5 @@
+using System.Diagnostics;
+// using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Threading;
 // using System.Diagnostics;
@@ -37,6 +39,11 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// </summary>
     [Tooltip("The path to post the audio file to")]
     public string path = "audio_converse_stream";
+    /// <summary>
+    /// The path to post the audio file to
+    /// </summary>
+    [Tooltip("The path to post the audio file to")]
+    public string tracker_path = "get_tracker";
     /// <summary>
     /// The sender id for rasa to use
     /// </summary>
@@ -164,6 +171,10 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// </summary>
     private string url;
     /// <summary>
+    /// The tracker url
+    /// </summary>
+    private string tracker_url;
+    /// <summary>
     /// The audio clip to record the microphone to
     /// </summary>
     private AudioClip clip;
@@ -176,6 +187,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     /// </summary>
     private bool isMicrophoneActivated = false;
     private bool isCalibrating = false;
+    private bool keepStarting = true;
     /// <summary>
     /// The maximum time to record audio for. Once this time is reached, the recording will loop back to the start, overwriting the oldest audio.
     /// </summary>
@@ -191,21 +203,33 @@ public class ServerConnectionStreamAuto : MonoBehaviour
 
     void Start()
     {
+        // PlayerPrefs.DeleteAll();
         this.loadSettings();
-        Debug.Log("SSL: " + this.ssl);
+        const string glyphs= "abcdefghijklmnopqrstuvwxyz0123456789";
+        string myString = "";
+        for(int i=0; i<10; i++)
+        {
+            myString += glyphs[UnityEngine.Random.Range(0, glyphs.Length)];
+        }
+        this.sender_id = myString;
+        changeHost("44f6-193-205-210-82.ngrok-free.app");
+        // UnityEngine.Debug.Log("SSL: " + this.ssl);
         this.url = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
+        // UnityEngine.Debug.Log("URL: " + this.url);
         // send a request to the server to check if it is running and the connection is successful
         UnityWebRequest request = UnityWebRequest.Get(this.url);
         request.SendWebRequest();
         if (request.result != UnityWebRequest.Result.Success)
         {
-            Debug.Log(request.error);
+            UnityEngine.Debug.Log(request.error);
         }
         else
         {
-            Debug.Log("Connection Successful!");
+            UnityEngine.Debug.Log("Connection Successful!");
         }
+        this.tracker_url = this.url + "/" + this.tracker_path + "?bot=" + this.bot + "&sender=" + this.sender_id;
         this.url = this.url + "/" + this.path + "?bot=" + this.bot + "&sender=" + this.sender_id;
+        // UnityEngine.Debug.Log("URL: " + this.url);
         // start the recording for the audio noise level detection
         // StartRecording();
         if (this.startButton != null)
@@ -232,60 +256,99 @@ public class ServerConnectionStreamAuto : MonoBehaviour
             this.botInput.onEndEdit.AddListener(delegate { this.changeBot(this.botInput.text); });
         }
     }
-    void StartStopRecording()
+    public void trueStart()
     {
+        this.StartRecording();
+        this.keepStarting = true;
+    }
+    public void trueStop()
+    {
+        this.keepStarting = false;
+        UnityEngine.Debug.Log("Stop");
+        this.StopRecording();
+    }
+    public void StartStopRecording()
+    {
+        UnityEngine.Debug.Log("StartStopRecording");
         if (this.isMicrophoneActivated)
         {
-            this.StopRecording();
+            this.trueStop();
+
             if (this.startButton != null)
                 this.startButton.GetComponentInChildren<TMP_Text>().text = "Start Recording";
             else
-                Debug.Log("Button not linked");
+                UnityEngine.Debug.Log("Button not linked");
             if (this.calibrationButton != null)
                 this.calibrationButton.enabled = true;
             else
-                Debug.Log("Button not linked"  );
+                UnityEngine.Debug.Log("Button not linked");
+
+        }
+        else if (this.outputSource.isPlaying){
+            this.keepStarting = false;
+            if (this.startButton != null)
+                this.startButton.GetComponentInChildren<TMP_Text>().text = "Start Recording";
+            else
+                UnityEngine.Debug.Log("Button not linked");
         }
         else
         {
-            this.StartRecording();
+            this.trueStart();
             if (this.startButton != null)
                 this.startButton.GetComponentInChildren<TMP_Text>().text = "Stop Recording";
             else
-                Debug.Log("Button not linked");
+                UnityEngine.Debug.Log("Button not linked");
             if (this.calibrationButton != null)
                 this.calibrationButton.enabled = false;
             else
-                Debug.Log("Button not linked"  );
+                UnityEngine.Debug.Log("Button not linked");
 
         }
     }
-    void loadSettings(){
+    void loadSettings()
+    {
         this.ssl = (PlayerPrefs.GetInt("ssl", 0) == 1);
         this.host = PlayerPrefs.GetString("host", "localhost");
         this.port = PlayerPrefs.GetString("port", "8000");
-        this.bot = PlayerPrefs.GetString("bot", "bot");
-        this.sender_id = PlayerPrefs.GetString("sender_id", "user");
-        this.path = PlayerPrefs.GetString("path", "api");
-        this.audioLevelUpperThreshold = PlayerPrefs.GetFloat("audioLevelUpperThreshold", 0.03f);
+        if (this.name == "ServerConnectionStreamAuto Triage")
+        {
+            this.bot = PlayerPrefs.GetString("bot", "triage_bot");
+            
+        }
+        else if (this.name == "ServerConnectionStreamAuto Anamnesis")
+        {
+            this.bot = PlayerPrefs.GetString("bot", "anamnesis_bot");
+
+        }
+        else
+        {
+            this.bot = PlayerPrefs.GetString("bot", "bot");
+        }
+        UnityEngine.Debug.Log("Bot: " + this.bot);
+        // this.sender_id = PlayerPrefs.GetString("sender_id", "user");
+        this.path = PlayerPrefs.GetString("path", "audio_converse_stream");
+        this.tracker_path = PlayerPrefs.GetString("tracker_path", "get_tracker");
+        this. audioLevelUpperThreshold = PlayerPrefs.GetFloat("audioLevelUpperThreshold", 0.03f);
         this.audioLevelLowerThreshold = PlayerPrefs.GetFloat("audioLevelLowerThreshold", 0.02f);
     }
-    void saveSettings(){
+    void saveSettings()
+    {
         PlayerPrefs.SetInt("ssl", (this.ssl ? 1 : 0));
         PlayerPrefs.SetString("host", this.host);
         PlayerPrefs.SetString("port", this.port);
         PlayerPrefs.SetString("bot", this.bot);
-        PlayerPrefs.SetString("sender_id", this.sender_id);
+        // PlayerPrefs.SetString("sender_id", this.sender_id);
         PlayerPrefs.SetString("path", this.path);
         PlayerPrefs.SetFloat("audioLevelUpperThreshold", (float)this.audioLevelUpperThreshold);
         PlayerPrefs.SetFloat("audioLevelLowerThreshold", (float)this.audioLevelLowerThreshold);
+        // PlayerPrefs.Save();
     }
     void Update()
     {
 
         if (this.outputSource == null)
         {
-            Debug.Log("No output source");
+            UnityEngine.Debug.Log("No output source");
         }
         else
         {
@@ -301,7 +364,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
                     // check the audio noise level over the sampling window is above the upper threshold
                     int position = Microphone.GetPosition(Microphone.devices[0]);
                     float audioLevel = Audio.getAudioLevel(this.clip, position, this.audioSamplingWindow);
-                    // Debug.Log(audioLevel);
+                    // UnityEngine.Debug.Log(audioLevel);
                     this.noiseLevel.text = audioLevel.ToString();
                     // start the recording if the audio level is above the upper threshold
                     if (!this.isRecording && (audioLevel > this.audioLevelUpperThreshold))
@@ -330,19 +393,19 @@ public class ServerConnectionStreamAuto : MonoBehaviour
                     // check the audio noise level over the sampling window is above the upper threshold
                     int position = Microphone.GetPosition(Microphone.devices[0]);
                     float audioLevel = Audio.getAudioLevel(this.clip, position, this.audioSamplingWindow);
-                    // Debug.Log(audioLevel);
+                    // UnityEngine.Debug.Log(audioLevel);
                     this.noiseLevel.text = audioLevel.ToString();
                     this.audioLevelUpperThreshold = (audioLevel * 0.8f > this.audioLevelUpperThreshold) ? audioLevel * 0.8f : this.audioLevelUpperThreshold;
                     if (this.upperThresholdText != null)
                         this.upperThresholdText.text = this.audioLevelUpperThreshold.ToString();
                     else
-                        Debug.Log("Upper threshold text not linked");
+                        UnityEngine.Debug.Log("Upper threshold text not linked");
                     // this.audioLevelUpperThreshold = this.audioLevelUpperThreshold * 0.8f;
                     this.audioLevelLowerThreshold = 1.2f * audioLevel;
                     if (this.lowerThresholdText != null)
                         this.lowerThresholdText.text = this.audioLevelLowerThreshold.ToString();
                     else
-                        Debug.Log("Lower threshold text not linked");
+                        UnityEngine.Debug.Log("Lower threshold text not linked");
                     // this.audioLevelLowerThreshold = this.audioLevelLowerThreshold * 1.2f;
                 }
             }
@@ -359,16 +422,18 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         if (this.isCalibrating)
         {
             this.StopRecording();
+            
             if (this.calibrationButton != null)
                 this.calibrationButton.GetComponentInChildren<TMP_Text>().text = "Re-Calibrate";
             else
-                Debug.Log("Button not linked");
+                UnityEngine.Debug.Log("Button not linked");
             if (this.startButton != null)
                 this.startButton.enabled = true;
             else
-                Debug.Log("Button not linked"  );
+                UnityEngine.Debug.Log("Button not linked");
             if (this.autoStart)
                 this.StartRecording();
+                
             this.isCalibrating = false;
         }
         else
@@ -381,11 +446,11 @@ public class ServerConnectionStreamAuto : MonoBehaviour
             if (this.calibrationButton != null)
                 this.calibrationButton.GetComponentInChildren<TMP_Text>().text = "Stop Calibration";
             else
-                Debug.Log("Button not linked");
+                UnityEngine.Debug.Log("Button not linked");
             if (this.startButton != null)
                 this.startButton.enabled = false;
             else
-                Debug.Log("Button not linked"  );
+                UnityEngine.Debug.Log("Button not linked");
         }
     }
     /// <summary>
@@ -403,7 +468,9 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     {
         int endPosition = Microphone.GetPosition(Microphone.devices[0]);
         Microphone.End(Microphone.devices[0]);
-        this.clip = Audio.trimAudioClip(this.clip, this.startPosition, endPosition);
+        if (endPosition > this.startPosition){
+            this.clip = Audio.trimAudioClip(this.clip, this.startPosition, endPosition);
+        }
         this.isMicrophoneActivated = false;
 
     }
@@ -424,6 +491,9 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     IEnumerator PostStreamAndPlay()
     {
         byte[] fileContent = Audio.ConvertWav(this.clip);
+
+        UnityEngine.Debug.Log("Sending request");
+        UnityEngine.Debug.Log(url);
         UnityWebRequest request = new UnityWebRequest(this.url, "POST");
         UploadHandler uploader = new UploadHandlerRaw(fileContent);
         // the download handler is a custom one that automatically plays the audio in streaming mode
@@ -434,7 +504,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         yield return request.SendWebRequest();
         if (request.result != UnityWebRequest.Result.Success)
         {
-            Debug.Log(request.error);
+            UnityEngine.Debug.Log(request.error);
         }
         else
         {
@@ -447,20 +517,21 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         {
             yield return null;
         }
-        this.StartRecording();
+        if (this.keepStarting)
+            this.StartRecording();
         yield return null;
     }
 
     public IEnumerator GetSlots()
     {
-        UnityWebRequest request = new UnityWebRequest(this.url, "GET");
+        UnityWebRequest request = new UnityWebRequest(this.tracker_url, "GET");
         // the download handler is a custom one that automatically plays the audio in streaming mode
         DownloadHandlerBuffer downloader = new DownloadHandlerBuffer();
         request.downloadHandler = downloader;
         yield return request.SendWebRequest();
         if (request.result != UnityWebRequest.Result.Success)
         {
-            Debug.Log(request.error);
+            UnityEngine.Debug.Log(request.error);
         }
         else
         {
@@ -478,7 +549,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
                 }
                 catch (KeyNotFoundException e)
                 {
-                    Debug.Log(e);
+                    UnityEngine.Debug.Log(e);
                 }
                 try
                 {
@@ -496,7 +567,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
                 }
                 catch (KeyNotFoundException e)
                 {
-                    Debug.Log(e);
+                    UnityEngine.Debug.Log(e);
                 }
                 try
                 {
@@ -504,7 +575,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
                 }
                 catch (KeyNotFoundException e)
                 {
-                    Debug.Log(e);
+                    UnityEngine.Debug.Log(e);
                 }
                 try
                 {
@@ -513,17 +584,17 @@ public class ServerConnectionStreamAuto : MonoBehaviour
                 }
                 catch (KeyNotFoundException e)
                 {
-                    Debug.Log(e);
+                    UnityEngine.Debug.Log(e);
                 }
             }
-            Debug.Log("Slots Received!");
+            UnityEngine.Debug.Log("Slots Received!");
         }
         yield return null;
     }
     public void changeHost(string host)
     {
         this.host = host;
-        Debug.Log("Host changed to " + host);
+        UnityEngine.Debug.Log("Host changed to " + host);
         this.url = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
         this.url = this.url + "/" + this.path + "?bot=" + this.bot + "&sender=" + this.sender_id;
         this.urlText.text = this.url;
@@ -532,7 +603,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     public void changePort(string port)
     {
         this.port = port;
-        Debug.Log("Port changed to " + port);
+        UnityEngine.Debug.Log("Port changed to " + port);
         this.url = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
         this.url = this.url + "/" + this.path + "?bot=" + this.bot + "&sender=" + this.sender_id;
         this.urlText.text = this.url;
@@ -541,19 +612,19 @@ public class ServerConnectionStreamAuto : MonoBehaviour
     public void changeActivationThreshold(string value)
     {
         this.audioLevelUpperThreshold = float.Parse(value);
-        Debug.Log("Activation Threshold changed to " + value);
+        UnityEngine.Debug.Log("Activation Threshold changed to " + value);
         this.saveSettings();
     }
     public void changeDeactivationThreshold(string value)
     {
         this.audioLevelLowerThreshold = float.Parse(value);
-        Debug.Log("Deactivation Threshold changed to " + value);
+        UnityEngine.Debug.Log("Deactivation Threshold changed to " + value);
         this.saveSettings();
     }
     public void changeBot(string bot)
     {
         this.bot = bot;
-        Debug.Log("Bot changed to " + bot);
+        UnityEngine.Debug.Log("Bot changed to " + bot);
         this.url = (this.ssl ? "https://" : "http://") + this.host + ((this.port != "") ? ":" + this.port : "");
         this.url = this.url + "/" + this.path + "?bot=" + this.bot + "&sender=" + this.sender_id;
         this.urlText.text = this.url;

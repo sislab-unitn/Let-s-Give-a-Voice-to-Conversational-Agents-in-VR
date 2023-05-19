@@ -83,10 +83,10 @@ class TTSModel:
                 samples = len(io_buffer.getbuffer().tobytes())/2
                 play_time = samples / (self.config["audio"]["sample_rate"] * 1)
                 print(f"Play time: {play_time}")
-                if play_time < (timer):
-                    # print("Warning: play time is less than inference time")
-                    raise Warning("Play time is less than inference time")
-                    # exit()
+                # if play_time < (timer):
+                #     # print("Warning: play time is less than inference time")
+                #     raise Warning("Play time is less than inference time")
+                #     # exit()
                 yield io_buffer.read(end - cursor) + b"\x00\x00" * self.config["audio"][
                     "pause_length"
                 ]

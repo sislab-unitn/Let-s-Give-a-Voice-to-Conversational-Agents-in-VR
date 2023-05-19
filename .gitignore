@@ -111,8 +111,10 @@ docs/_build/
 # model bin
 *.bin
 
-*model_checkpoints/*
-*pretrained_models/*
+*/model_checkpoints/*
+*/pretrained_models/*
+*model_checkpoints*
+*pretrained_models*
 
 *.ipynb_checkpoints
 

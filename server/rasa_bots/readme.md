@@ -6,6 +6,9 @@ This folder contains a list of rasa bots:
 - anamnesis_bot, a similar bot that asks a more detailed form for a simulated amanesis
 - operation_bot, a simple rule based chatbot with 1 turn
 
+In order to run it is required to have a working rasa installation. You can either install it from the rasa website or you can simply create a environment using the enviromnent.yml provided here by
+`conda env create -f requirements.yml`
+After which activate the environment by `conda activate rasa` and install spacy language model by `python -m spacy download en_core_web_lg`
 ## usage
 Every bot in here can be run by using standard rasa practices:
 

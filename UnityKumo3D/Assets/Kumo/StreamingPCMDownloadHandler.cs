@@ -76,10 +76,10 @@ public class StreamingPCMDownloadHandler : DownloadHandlerScript
     // here i decode the audio and play it using the audio player
     protected override bool ReceiveData(byte[] data, int dataLength)
     {
-        Debug.Log("StreamingPCMDownloadHandler :: ReceiveData - received " + dataLength + " bytes");
+        // Debug.Log("StreamingPCMDownloadHandler :: ReceiveData - received " + dataLength + " bytes");
         if (data == null || data.Length < 1)
         {
-            Debug.Log("StreamingPCMDownloadHandler :: ReceiveData - received a null/empty buffer");
+            // Debug.Log("StreamingPCMDownloadHandler :: ReceiveData - received a null/empty buffer");
             return false;
         }
         // if the data is not a multiple of 2, we have a problem
@@ -96,7 +96,7 @@ public class StreamingPCMDownloadHandler : DownloadHandlerScript
         }
         else
         {
-            Debug.Log("StreamingPCMDownloadHandler :: ReceiveData - pause detected - dataLength: " + pause);
+            // Debug.Log("StreamingPCMDownloadHandler :: ReceiveData - pause detected - dataLength: " + pause);
             for (int i = skip; i < pause; i += 2)
             {
                 int sample = BitConverter.ToInt16(data, i);
@@ -133,7 +133,7 @@ public class StreamingPCMDownloadHandler : DownloadHandlerScript
     {
         if (this.f_decoding.Count < 1)
         {
-            Debug.Log("StreamingPCMDownloadHandler :: CompleteContent - no data to play");
+            // Debug.Log("StreamingPCMDownloadHandler :: CompleteContent - no data to play");
         }
         else
         {
@@ -145,7 +145,7 @@ public class StreamingPCMDownloadHandler : DownloadHandlerScript
                 // missing time to wait before playing the audio)
                 float missing = this.clip.length - timeSpan.Seconds;
 
-                Debug.Log("StreamingPCMDownloadHandler :: CompleteContent - DOWNLOAD COMPLETE!");
+                // Debug.Log("StreamingPCMDownloadHandler :: CompleteContent - DOWNLOAD COMPLETE!");
                 this.clip = AudioClip.Create("Response", this.f_decoding.Count, this.channels, this.sampleRate, stream: false);
                 this.clip.SetData(this.f_decoding.ToArray(), 0);
                 this.f_decoding.Clear();
@@ -159,7 +159,7 @@ public class StreamingPCMDownloadHandler : DownloadHandlerScript
             // otherwise i can play the audio immediately
             else
             {
-                Debug.Log("StreamingPCMDownloadHandler :: CompleteContent - DOWNLOAD COMPLETE!");
+                // Debug.Log("StreamingPCMDownloadHandler :: CompleteContent - DOWNLOAD COMPLETE!");
                 this.clip = AudioClip.Create("Response", this.f_decoding.Count, this.channels, this.sampleRate, stream: false);
                 this.clip.SetData(this.f_decoding.ToArray(), 0);
                 this.f_decoding.Clear();
@@ -178,7 +178,7 @@ public class StreamingPCMDownloadHandler : DownloadHandlerScript
 
     protected override void ReceiveContentLengthHeader(ulong contentLength)
     {
-        Debug.Log(string.Format("StreamingPCMDownloadHandler :: ReceiveContentLength - length {0}", contentLength));
+        // Debug.Log(string.Format("StreamingPCMDownloadHandler :: ReceiveContentLength - length {0}", contentLength));
     }
 
     /// <summary>

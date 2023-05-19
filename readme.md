@@ -4,12 +4,9 @@ Here is a movie and tv show recommendation system realized using several technol
 It is a Unity based conversational agent with future expandability planned right in the architecture. 
 ## Demo
 ![](assets/movie_bot_demo_v2.mp4)
-
-
-https://github.com/sislab-unitn/Let-s-Give-a-Voice-to-Conversational-Agents-in-VR/assets/12775524/af01d66b-b94a-45b5-91f7-1590ab013e00
-
-
 This is a demo of the current capabilities of the architecture for MovieBot
+![](assets/Demo%20v3.mp4)
+This is a demo of the capabilities for the architecture for Hospital
 
 
 
@@ -55,6 +52,9 @@ You will need a working installation of Rasa and Unity. You can check how to ins
 - https://rasa.com/docs/rasa/installation/installing-rasa-open-source/
 - https://unity.com/download
 
+Alternatively you can create the rasa environment by runnning
+`conda create -f server/rasa_bots/environment.yml`
+and afterwards running  `python -m spacy download en_core_web_lg`
 
 ### Set up Rasa bots
 This project contains 4 bots, 3 related to the healthcare environment and one for movie domain
