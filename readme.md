@@ -62,6 +62,9 @@ Alternatively you can create the rasa environment by runnning
 `conda create -f server/rasa_bots/environment.yml`
 and afterwards running  `python -m spacy download en_core_web_lg`
 
+## DB location
+inside `server/db/config.toml` change the variable `db_path` with the full path you want to save your conversations. Due to limitations of Rasa, it cannot prevent startup if the path is not correct, so please make sure the path is correct
+
 ### Set up Rasa bots
 This project contains 4 bots, 3 related to the healthcare environment and one for movie domain
 ```
