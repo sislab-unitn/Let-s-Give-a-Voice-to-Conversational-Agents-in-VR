@@ -1,3 +1,4 @@
+using System.Text;
 using System.Diagnostics;
 // using System.Diagnostics;
 using System.Threading.Tasks;
@@ -316,15 +317,17 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         this.ssl = (PlayerPrefs.GetInt("ssl", 0) == 1);
         this.host = PlayerPrefs.GetString("host", "localhost");
         this.port = PlayerPrefs.GetString("port", "8000");
-        if (this.name == "ServerConnectionStreamAuto Triage")
+        if (String.Equals(this.name, "ServerConnectionStreamAuto Triage", StringComparison.OrdinalIgnoreCase))
         {
             this.bot = PlayerPrefs.GetString("bot", "triage_bot");
             
+            this.bot = "triage_bot";
         }
-        else if (this.name == "ServerConnectionStreamAuto Anamnesis")
+        else if (String.Equals(this.name, "ServerConnectionStreamAuto Anamnesis", StringComparison.OrdinalIgnoreCase))
         {
             this.bot = PlayerPrefs.GetString("bot", "anamnesis_bot");
-
+            
+            this.bot = "anamnesis_bot";
         }
         else
         {
@@ -347,7 +350,7 @@ public class ServerConnectionStreamAuto : MonoBehaviour
         PlayerPrefs.SetString("path", this.path);
         PlayerPrefs.SetFloat("audioLevelUpperThreshold", (float)this.audioLevelUpperThreshold);
         PlayerPrefs.SetFloat("audioLevelLowerThreshold", (float)this.audioLevelLowerThreshold);
-        // PlayerPrefs.Save();
+        PlayerPrefs.Save();
     }
     void Update()
     {
