@@ -150,7 +150,7 @@ rasa shell --enable-api -p 5006
 ```
 This will turn on the shell, with the REST API, on port 5006. Similarly to the movie bot, you will need a corresponding action server that can be run by
 ```
-rasa run actions -p 5055
+rasa run actions -p 5056
 ```
 Do not close the shell, you will require the shell running in order to accept incoming request
 ##### rasa_operation
