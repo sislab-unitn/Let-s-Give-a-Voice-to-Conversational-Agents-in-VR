@@ -1,0 +1,197 @@
+# packages in environment at miniconda3/envs/vr_env:
+#
+# Name                    Version                   Build  Channel
+_libgcc_mutex             0.1                        main  
+_openmp_mutex             5.1                       1_gnu  
+absl-py                   2.1.0                    pypi_0    pypi
+accelerate                1.5.2                    pypi_0    pypi
+aiohappyeyeballs          2.6.1                    pypi_0    pypi
+aiohttp                   3.11.14                  pypi_0    pypi
+aiosignal                 1.3.2                    pypi_0    pypi
+annotated-types           0.7.0                    pypi_0    pypi
+anyascii                  0.3.2                    pypi_0    pypi
+anyio                     4.9.0                    pypi_0    pypi
+attrs                     25.3.0                   pypi_0    pypi
+audioread                 3.0.1                    pypi_0    pypi
+babel                     2.17.0                   pypi_0    pypi
+bangla                    0.0.2                    pypi_0    pypi
+blinker                   1.9.0                    pypi_0    pypi
+blis                      1.2.0                    pypi_0    pypi
+bnnumerizer               0.0.2                    pypi_0    pypi
+bnunicodenormalizer       0.1.7                    pypi_0    pypi
+bzip2                     1.0.8                h5eee18b_6  
+ca-certificates           2025.2.25            h06a4308_0  
+catalogue                 2.0.10                   pypi_0    pypi
+certifi                   2025.1.31                pypi_0    pypi
+cffi                      1.17.1                   pypi_0    pypi
+charset-normalizer        3.4.1                    pypi_0    pypi
+click                     8.1.8                    pypi_0    pypi
+cloudpathlib              0.21.0                   pypi_0    pypi
+confection                0.1.5                    pypi_0    pypi
+contourpy                 1.3.1                    pypi_0    pypi
+coqpit                    0.0.17                   pypi_0    pypi
+cycler                    0.12.1                   pypi_0    pypi
+cymem                     2.0.11                   pypi_0    pypi
+cython                    3.0.12                   pypi_0    pypi
+datasets                  3.4.1                    pypi_0    pypi
+dateparser                1.1.8                    pypi_0    pypi
+decorator                 5.2.1                    pypi_0    pypi
+dill                      0.3.8                    pypi_0    pypi
+docopt                    0.6.2                    pypi_0    pypi
+einops                    0.8.1                    pypi_0    pypi
+encodec                   0.1.1                    pypi_0    pypi
+fastapi                   0.115.11                 pypi_0    pypi
+filelock                  3.18.0                   pypi_0    pypi
+flask                     3.1.0                    pypi_0    pypi
+fonttools                 4.56.0                   pypi_0    pypi
+frozenlist                1.5.0                    pypi_0    pypi
+fsspec                    2024.12.0                pypi_0    pypi
+g2pkk                     0.1.2                    pypi_0    pypi
+grpcio                    1.71.0                   pypi_0    pypi
+gruut                     2.2.3                    pypi_0    pypi
+gruut-ipa                 0.13.0                   pypi_0    pypi
+gruut-lang-de             2.0.1                    pypi_0    pypi
+gruut-lang-en             2.0.1                    pypi_0    pypi
+gruut-lang-es             2.0.1                    pypi_0    pypi
+gruut-lang-fr             2.0.2                    pypi_0    pypi
+h11                       0.14.0                   pypi_0    pypi
+hangul-romanize           0.1.0                    pypi_0    pypi
+httpcore                  1.0.7                    pypi_0    pypi
+httpx                     0.28.1                   pypi_0    pypi
+huggingface-hub           0.29.3                   pypi_0    pypi
+hyperpyyaml               1.2.2                    pypi_0    pypi
+idna                      3.10                     pypi_0    pypi
+inflect                   7.5.0                    pypi_0    pypi
+itsdangerous              2.2.0                    pypi_0    pypi
+jamo                      0.4.1                    pypi_0    pypi
+jieba                     0.42.1                   pypi_0    pypi
+jinja2                    3.1.6                    pypi_0    pypi
+joblib                    1.4.2                    pypi_0    pypi
+jsonlines                 1.2.0                    pypi_0    pypi
+kiwisolver                1.4.8                    pypi_0    pypi
+langcodes                 3.5.0                    pypi_0    pypi
+language-data             1.3.0                    pypi_0    pypi
+lazy-loader               0.4                      pypi_0    pypi
+ld_impl_linux-64          2.40                 h12ee557_0  
+libffi                    3.4.4                h6a678d5_1  
+libgcc-ng                 11.2.0               h1234567_1  
+libgomp                   11.2.0               h1234567_1  
+librosa                   0.11.0                   pypi_0    pypi
+libstdcxx-ng              11.2.0               h1234567_1  
+libuuid                   1.41.5               h5eee18b_0  
+llvmlite                  0.44.0                   pypi_0    pypi
+marisa-trie               1.2.1                    pypi_0    pypi
+markdown                  3.7                      pypi_0    pypi
+markdown-it-py            3.0.0                    pypi_0    pypi
+markupsafe                3.0.2                    pypi_0    pypi
+matplotlib                3.10.1                   pypi_0    pypi
+mdurl                     0.1.2                    pypi_0    pypi
+more-itertools            10.6.0                   pypi_0    pypi
+mpmath                    1.3.0                    pypi_0    pypi
+msgpack                   1.1.0                    pypi_0    pypi
+multidict                 6.2.0                    pypi_0    pypi
+multiprocess              0.70.16                  pypi_0    pypi
+murmurhash                1.0.12                   pypi_0    pypi
+ncurses                   6.4                  h6a678d5_0  
+networkx                  2.8.8                    pypi_0    pypi
+nltk                      3.9.1                    pypi_0    pypi
+num2words                 0.5.14                   pypi_0    pypi
+numba                     0.61.0                   pypi_0    pypi
+numpy                     1.26.4                   pypi_0    pypi
+nvidia-cublas-cu12        12.4.5.8                 pypi_0    pypi
+nvidia-cuda-cupti-cu12    12.4.127                 pypi_0    pypi
+nvidia-cuda-nvrtc-cu12    12.4.127                 pypi_0    pypi
+nvidia-cuda-runtime-cu12  12.4.127                 pypi_0    pypi
+nvidia-cudnn-cu12         9.1.0.70                 pypi_0    pypi
+nvidia-cufft-cu12         11.2.1.3                 pypi_0    pypi
+nvidia-curand-cu12        10.3.5.147               pypi_0    pypi
+nvidia-cusolver-cu12      11.6.1.9                 pypi_0    pypi
+nvidia-cusparse-cu12      12.3.1.170               pypi_0    pypi
+nvidia-cusparselt-cu12    0.6.2                    pypi_0    pypi
+nvidia-nccl-cu12          2.21.5                   pypi_0    pypi
+nvidia-nvjitlink-cu12     12.4.127                 pypi_0    pypi
+nvidia-nvtx-cu12          12.4.127                 pypi_0    pypi
+openssl                   3.0.16               h5eee18b_0  
+packaging                 24.2                     pypi_0    pypi
+pandas                    1.5.3                    pypi_0    pypi
+peft                      0.14.0                   pypi_0    pypi
+pillow                    11.1.0                   pypi_0    pypi
+pip                       25.0            py311h06a4308_0  
+platformdirs              4.3.6                    pypi_0    pypi
+pooch                     1.8.2                    pypi_0    pypi
+preshed                   3.0.9                    pypi_0    pypi
+propcache                 0.3.0                    pypi_0    pypi
+protobuf                  6.30.1                   pypi_0    pypi
+psutil                    7.0.0                    pypi_0    pypi
+pyarrow                   19.0.1                   pypi_0    pypi
+pycparser                 2.22                     pypi_0    pypi
+pydantic                  2.10.6                   pypi_0    pypi
+pydantic-core             2.27.2                   pypi_0    pypi
+pygments                  2.19.1                   pypi_0    pypi
+pynndescent               0.5.13                   pypi_0    pypi
+pyparsing                 3.2.1                    pypi_0    pypi
+pypinyin                  0.53.0                   pypi_0    pypi
+pysbd                     0.3.4                    pypi_0    pypi
+python                    3.11.11              he870216_0  
+python-crfsuite           0.9.11                   pypi_0    pypi
+python-dateutil           2.9.0.post0              pypi_0    pypi
+pytz                      2025.1                   pypi_0    pypi
+pyyaml                    6.0.2                    pypi_0    pypi
+readline                  8.2                  h5eee18b_0  
+regex                     2024.11.6                pypi_0    pypi
+requests                  2.32.3                   pypi_0    pypi
+rich                      13.9.4                   pypi_0    pypi
+ruamel-yaml               0.18.10                  pypi_0    pypi
+ruamel-yaml-clib          0.2.12                   pypi_0    pypi
+safetensors               0.5.3                    pypi_0    pypi
+scikit-learn              1.6.1                    pypi_0    pypi
+scipy                     1.15.2                   pypi_0    pypi
+sentencepiece             0.2.0                    pypi_0    pypi
+setuptools                75.8.0          py311h06a4308_0  
+shellingham               1.5.4                    pypi_0    pypi
+six                       1.17.0                   pypi_0    pypi
+smart-open                7.1.0                    pypi_0    pypi
+sniffio                   1.3.1                    pypi_0    pypi
+soundfile                 0.13.1                   pypi_0    pypi
+soxr                      0.5.0.post1              pypi_0    pypi
+spacy                     3.8.4                    pypi_0    pypi
+spacy-legacy              3.0.12                   pypi_0    pypi
+spacy-loggers             1.0.5                    pypi_0    pypi
+speechbrain               1.0.2                    pypi_0    pypi
+sqlite                    3.45.3               h5eee18b_0  
+srsly                     2.5.1                    pypi_0    pypi
+starlette                 0.46.1                   pypi_0    pypi
+sudachidict-core          20250129                 pypi_0    pypi
+sudachipy                 0.6.10                   pypi_0    pypi
+sympy                     1.13.1                   pypi_0    pypi
+tensorboard               2.19.0                   pypi_0    pypi
+tensorboard-data-server   0.7.2                    pypi_0    pypi
+thinc                     8.3.4                    pypi_0    pypi
+threadpoolctl             3.6.0                    pypi_0    pypi
+tk                        8.6.14               h39e8969_0  
+tokenizers                0.21.1                   pypi_0    pypi
+torch                     2.5.0                    pypi_0    pypi
+torchaudio                2.5.0                    pypi_0    pypi
+tqdm                      4.67.1                   pypi_0    pypi
+trainer                   0.0.36                   pypi_0    pypi
+transformers              4.49.0                   pypi_0    pypi
+triton                    3.1.0                    pypi_0    pypi
+tts                       0.22.0                   pypi_0    pypi
+typeguard                 4.4.2                    pypi_0    pypi
+typer                     0.15.2                   pypi_0    pypi
+typing-extensions         4.12.2                   pypi_0    pypi
+tzdata                    2025a                h04d1e81_0  
+tzlocal                   5.3.1                    pypi_0    pypi
+umap-learn                0.5.7                    pypi_0    pypi
+unidecode                 1.3.8                    pypi_0    pypi
+urllib3                   2.3.0                    pypi_0    pypi
+uvicorn                   0.34.0                   pypi_0    pypi
+wasabi                    1.1.3                    pypi_0    pypi
+weasel                    0.4.1                    pypi_0    pypi
+werkzeug                  3.1.3                    pypi_0    pypi
+wheel                     0.45.1          py311h06a4308_0  
+wrapt                     1.17.2                   pypi_0    pypi
+xxhash                    3.5.0                    pypi_0    pypi
+xz                        5.6.4                h5eee18b_1  
+yarl                      1.18.3                   pypi_0    pypi
+zlib                      1.2.13               h5eee18b_1  

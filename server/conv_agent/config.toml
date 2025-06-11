@@ -1,0 +1,12 @@
+[server]
+    self_host = "localhost"
+    self_port = 8083
+    self_SSL = false
+[model]
+    model_name = "meta-llama/Meta-Llama-3-8B"
+    lora_weights = ""
+    device = "cuda"
+    prompt = """NARRATIVA:\n{input_text}\n\nDOMANDA:\n"""
+    token_id = ''
+[scripted]
+    scripted = false
