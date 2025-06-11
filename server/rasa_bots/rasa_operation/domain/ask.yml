@@ -1,6 +1,0 @@
-version: "3.1"
-
-responses:
-
-  utter_ask_rephrase:
-    - text: "Sorry, I didn't understand that. Can you rephrase please"

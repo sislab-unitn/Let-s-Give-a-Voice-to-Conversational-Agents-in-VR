@@ -1,325 +1,129 @@
-# AI_Movie_DB
+# Automatic Narratives Elicitation App
 
-Here is a movie and tv show recommendation system realized using several technologies.
-It is a Unity based conversational agent with future expandability planned right in the architecture. 
+This is the application for the automatic collection of personal narratives. The collection of narratives is conducted as an dialogue between a narrator and a conversational agent. 
+
 ## Demo
-![](assets/movie_bot_demo_v2.mp4)
-This is a demo of the current capabilities of the architecture for MovieBot
-![](assets/Demo%20v3.mp4)
-This is a demo of the capabilities for the architecture for Hospital
-
-
+Link to the demo:
+```
+https://www.youtube.com/watch?v=ozpuoEKsTjs
+```
 
 ## Architecture
+In this section the architecture of the system is described.
 
-![Alt text](assets/model.png)
+The system consists of the following modules:
+- Virtual Environment - responsible for handling all the interactions with the user. The component acts as a UI of the system.
+- Automatic Speech Recognition (ASR) - responsible for storing the ASR model and transcribing the user’s speech to text.
+- Conversational Agent (CA) - responsible for storing the ANE model and generating the eliciting questions.
+- Text-To-Speech (TTS) - responsible for storing the Text-To-Speech model and synthesizing the eliciting
+questions from text format to speech.
+- Connection Server (CS) - acts as a middleware between the virtual environment and the models. Addi-
+tionally, it stores the name recognition model and is responsible for detecting the name.
 
+The virtual environment was developed with the Unity framework, which gets connected to the VR headsets. This component plays all the messages to the narrator, records the speech in real-time and sends it to the connection server. The user’s speech is recorded using either a built-in or external microphone.
 
-In here is reported a demo of the architecture so far
-
-
-It consists of:
-- Unity module to record and play audio, receive data like images
-- Custom Connection Server implemented in python using FastAPI. This server handles the connection between ASR, Rasa and TTS
-- ASR module, using Wav2Vec2 from speechbrain
-- TTS module, using Speech_T5 from Microsoft
-- Rasa, custom conversational agent
-- The Movie DataBase for query real data
-
-
-For now a request consists of the following steps:
-- Unity records the audio
-- Unity sends the full audio to the connection server
-- The connection server sends the audio the ASR server to get the text transcription ( ASR )
-- The connection server sends the text transcription received from the ASR server to Rasa server
-- Rasa server receives the request and performs the NLU inference, eventually doing custom actions
-  - A custom action may require the connection to TheMovieDataBase for the query answer
-- The connection server receives the response from Rasa
-- The connection server also requests from rasa tracker the current state
-- The connection server sends a requests to TTS server for the speech synthesis ( TTS )
-- The connection server receives the data and sends it back to Unity, by streaming chunks
-- Unity plays the audio file ( with LipSync )
-
+The CS, ASR, CA and TTS components were developed with FastAPI. All the communications between Unity and other components are passed through the connection server. Once the CS receives a user’s utterance from the Unity component, it sends a request to the ASR service, which transcribes it to text. The CS then sends the transcription to the CA service, which passes it through the model and returns the eliciting question. After that, the CS sends the last request to the TTS server, which in turn synthesizes the question to the speech. Finally, the result is returned to Unity which plays the response to the user.
 
 ## How to run
 
-The model consists of a very complex architecture, so detailed instructions are provided to run the sample scene.
-
 ### Requirements
 
-You will need a working installation of Rasa and Unity. You can check how to install both by following these instructions
-
-- https://rasa.com/docs/rasa/installation/installing-rasa-open-source/
-- https://unity.com/download
-
-If you use these instructions, you will need to install
-- spacy==3.5.1
-- toml==0.10.2
-- python-levenshtein==0.20.9
-- tmdbsimple==2.9.1
-
-Alternatively you can create the rasa environment by runnning
-`conda create -f server/rasa_bots/environment.yml`
-and afterwards running  `python -m spacy download en_core_web_lg`
-
-## DB location
-inside `server/db/config.toml` change the variable `db_path` with the full path you want to save your conversations. Due to limitations of Rasa, it cannot prevent startup if the path is not correct, so please make sure the path is correct
-
-### Set up Rasa bots
-This project contains 4 bots, 3 related to the healthcare environment and one for movie domain
-```
-    rasa_bots  -- rasa_triage
-            \  -- rasa_anamnesis
-             \ -- rasa_operation
-              \-- movie_bot 
-```
-In here we will explain how to set up each of them to get the full experience. It is possible to replace these bots with other Rasa based bots.
-
-Before going on, open `server/db/config.toml` and change `[DB][db_path]` with the path where you want to save your conversation
-#### Movie Bot
-
-##### The movie database account
-Since the model uses real data from The Movie Database, you will need an API KEY in order to make successful requests. 
-
-Register the TMDB and get a API KEY one at this link https://developers.themoviedb.org/3/getting-started/introduction.
-##### Model
-After you are done installing Rasa, install the other requirements from `server/rasa_bots/rasa_movie_bot/actions/short requirements.txt`.
-Since this model uses sapcy `en_core_web_lg` you will need to install that as well.
-You can use `python -m spacy download en_core_web_lg` to download that.
-
-Once that is done, you can go to `server/rasa_bots/rasa_movie_bot/`. In a terminal write:
-```bash
-rasa train --domain ./domain --data ./data
-```
-This will start the training process using the data in the `./data` and `./domain` folders, with the current configuration
-
-Once that is done, you will need to run two servers from the Rasa end:
-- rasa action server, that communicates with the tmdb. Paste the API KEY in `server/rasa_movie_bot/actions/config.toml`
-- rasa shell, that will perform the inference
-In order to do both, open two terminals and in write respectively
-```bash
-rasa run actions -p 5054
-```
-```bash
-rasa shell --enable-api -p 5004
-```
-This will start the two servers on localhost on the ports `:5054` and `:5004`
-
-Test that the Rasa is working by writing on the second terminal simple questions like `Hello`
-![](assets/Screenshot%202023-03-18%20at%2010.53.48.png)
-
-
-#### Hospital Rasa
-
-For the hospital scene, you can do almost the same instructions, with a few key differences. 
-There are three bots
-
-Similarly as before you will need `spacy==3.5.1` and spacy `en_core_web_lg`
-You can use 
-```bash
-pip install spacy=3.5.1
-python -m spacy download en_core_web_lg
-``` 
-to download those.
-
-Once that is done, you will need to train and activate each bot.
-##### rasa_triage
-```bash
-cd server/rasa_bots/rasa_triage
-rasa train --domain ./domain --data ./data
-```
-This will start the training process, which it will take a while
-```bash
-rasa shell --enable-api -p 5005
-```
-This will turn on the shell, with the REST API, on port 5005. Similarly to the movie bot, you will need a corresponding action server that can be run by
-```bash
-rasa run actions -p 5055
-```
-
-Do not close the shell, you will require the shell running in order to accept incoming request
-
-##### rasa_anamnesis
-```bash
-cd server/rasa_bots/rasa_anamnesis
-rasa train --domain ./domain --data ./data
-```
-This will start the training process, which it will take a while
-```bash
-rasa shell --enable-api -p 5006
-```
-This will turn on the shell, with the REST API, on port 5006. Similarly to the movie bot, you will need a corresponding action server that can be run by
-```
-rasa run actions -p 5056
-```
-Do not close the shell, you will require the shell running in order to accept incoming request
-##### rasa_operation
-```bash
-cd server/rasa_bots/rasa_operation
-rasa train --domain ./domain --data ./data
-```
-This will start the training process, which it will take a while
-```bash
-rasa shell --enable-api -p 5007
-```
-This will turn on the shell, with the REST API, on port 5007. This model does not require a action server.
-Do not close the shell, you will require the shell running in order to accept incoming request
-### Set up the server
-
-Now you will need to run three other servers:       
-- ASR server
-- TTS server
-- A server that ties everything toghever
-
-Fortunately by default there is a ready to go solution
-
-We **HIGHLY** suggest you to run these servers in a different environment from the one you are using Rasa.
-In a different `python==3.10` environment install the requirements from `server/requirements.txt`
-
-Alternatively you can directly build the environment by:
-```bash
-conda env create -f environment.yml
-```
-
-Activate your environment and open a terminal and write:
-```bash
-python server/main.py
-```
-
-by default each server is properly configured to run in `localhost` at different ports, respectively `:8081`, `:8082` and `:8080`. You can change these settings the the configuration of each server at `server/asr/config.toml` `server/tts/config.toml` `server/config.toml`
-Also by default, the `server/config.toml` has communcation in place for port `5004`  `5005`, `5006`, `5007` for movie_bot, triage, anamnesis and operation respectively
-
-#### NOTE for Windows Users
-you may need to activate `Developer Mode` in order to user speechbrain ASR. 
-https://learn.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
-
-Now you should have a terminal that each looks something like this
-![](assets/Screenshot%202023-03-18%20at%2011.03.36.png)
+You will need a working installation of Unity. To run the back-end side of the system you will need a machine with at least 48GB of GPU.
 
 ## Unity scene
 
-Open the Unity project in `UnityKumo3D`. The editor version used for this demo is `2022.2.7f1` but it should work with any newer release. It may even work with older releases as there are very few dependencies.
+Open the Unity project in `vr_ante`. The editor version used for this demo is `2021.3.14f1`. 
 
-You can start the demo by opening the scene `UnityKumo3D/Assets/Scenes/Demo.unity`
+You can start the demo by opening the scene `vr_ante/Assets/Scenes/narratives_scene.unity`
 
-There is a GameObject called `ServerConnectionAuto` that handles the connection to the server. There are also many parameters that you may wish to change for a slighty different experience, but by default the scene should work.
-
-You can change `bot` with the name of the bot specified in `server/config.toml` in order to switch the bot you are talking to.
-
-The scene tries to detect your audio noise level and it sends the audio file whenever the noise level is above a threshold and then below a threshold for a certain amount of time. Since every device has a different microphone, a calibration button is included in the scene. 
-
-![](assets/Screenshot%202023-04-20%20at%2011.45.08.png)
-Press the calibration button and try to say `Hello`, press again the same button to stop the calibration when you are done talking. This should approximately set the threshold the correct level required by your device, your tone of voice and the environment around you. 
-
-Press the start recording button start talking.
+All the connections to the servers are handled by the `Assets/connection.cs` file. You may need to change the `host` and `port` parameters depending on where your `connection server` is run.
 
 
-## Build the App
+## Server components
 
-You can use the Unity VE to build both iOS and Android releases. 
-Due to developer limitations, only android releases are included in this repo.
+### Automatic Speech Recognition
 
-- `Kumo.apk` is the default test scene
-- `KumoVR.apk` is the version made for Oculus VR
-- `HospitalVR.apk` is the hospital scene, made for Oculus VR
+The default ASR module runs at `http://localhost:8081` and it is built using FastAPI. The code is located in `server/asr`. You can change the host and port in the `server/asr/config.toml` file. The automatic speech recognition is performed by `speechbrain/asr-wav2vec2-commonvoice-it` model, which is loaded locally.
 
-## Customization
-Now that you can build the standard app, let's talk customization.
-
-### ASR
-
-the default ASR module runs at `http://localhost:8081` and it is built using FastAPI. You can check the available API at `http://localhost:8081/docs` if you run the server. 
-At the moment it has only one path, `POST` `/asr`. At this path the model `asr-wav2vec2.0-commonvoice-en` is loaded and it is tasked to perform the ASR of any valid input `POST` audio file.
-Since it relies on `soundfile.open()` any audio file that is supported by soundfile should work, but the model was tested and validated only on `.wav` files.
-The result of the request should be a `JSON` file like this:
+Example of asr request:
+```
+curl -X POST --header ’Content-Type: audio/wav’ --header ’Transfer-Encoding: chunked’ --data-binary @speaker.wav http://127.0.0.1:8081/asr
+```
+The result of the request is `JSON` object:
 ```json
   {
     "text" : "Hello",
-    "is_final" : true
   }
 ```
-It is possible to replace the ASR with any other service, as long as it provides the same API
-### TTS
+It is possible to replace the ASR model with any other model that suits your need.
 
-the default TTS module runs at `http://localhost:8082` and it is built using FastAPI. You can check the available API at `http://localhost:8082/docs` if you run the server. 
-At the moment it has 4 available paths:
-- `POST` `/tts`
-- `GET` `/tts_synthesis`
-- `GET` `/tts_synthesis_full`
-- `GET` `/tts_speakers`
+Run the server with:
+```
+python asr_server.py
+```
 
-It is possible to change the implementation of the current TTS with another one as long as it provides the same API
-#### POST tts
-this path accepts as input a `JSON` file that contains the text to be synthetised.
+### Text-to-Speech
+The default TTS module runs at `http://localhost:8082` and it is built using FastAPI. The code is located in `server/tts`. You can change the host and port in the `server/tts/config.toml` file. The text synthesis is performed by `tts_models/multilingual/multi-dataset/xtts_v2` model, which is loaded locally. You will need to provide an sample of the voice that the model should clone and add to the config.toml file path to the file. The file should have .wav format and last 5-20 seconds. 
+
+It is possible to replace the TTS model with any other model that suits your need.
+
+Example of tts request:
+```
+curl -X POST --header ’Content-Type: application/json’ --header ’Accept: audio/raw’ -d ’{"text": "How is it goind?"}’
+http://127.0.0.1:8082/tts
+```
+The result of the request is an AudioResponse file:
+
+It is possible to replace the TTS model with any other model that suits your need.
+
+Run the server with:
+```
+python tts_server.py
+```
+
+### Conversational Agent
+The default Conversational Agent module (CA) runs at `http://localhost:8083` and it is built using FastAPI. The code is located in `server/conv_agent`. You can change the host and port in the `server/conv_agent/config.toml` file. The CA is based on `meta-llama/Meta-Llama-3-8B` model and is loaded locally. To use this model you will need to create a huggingface account and ask to grant the permit to the model. To load the model successfully you need to add your huggingface token_id to the config file. In this repo we load only the pre-pretrained model, without any fine-tuning. You may need to change or adapt the model to suit your needs. 
+
+Example of asr request:
+```
+curl -X POST -H ’Content-Type: application/json’ -d ’{"narrative": "What a nice weather today."}’ http://127.0.0.1:8083/elicit-question
+```
+The result of the request is `JSON` object:
 ```json
   {
-    "text" : "Hello, I'm Kumo, a movie and tv show recommendation system",
+    "model_out" : "How are you passing your time?",
   }
 ```
-a `speaker` parameter is also required in order to chose the correct voice.
 
-it outputs the a raw audio file, encoded in `PCM16` `signed integer` single channel at 16000Hz sampling rate. It is on the user to properly parse the raw data.
-The raw data is also chunked, as it is processed according to punctuation marks present in the text. Punctuation marks are any character that matched this regex `;,\*\n\\\/\.\=\+\:\"`. 
-This means that after any punctuation mark there is a "pause" of 100 zeros ( two zero bytes in PCM16 ) that can be used by the player to determine where to pause before playing the next chunk.
-
-#### GET tts_synthesis
-This request accepts two parameters:
-- `speaker`, for the voice
-- `text`, which is the text to be synthetised. 
-For all intents and purposes it is a GET version of the `tts` ad everything else is the same
-#### GET tts_synthesis_full
-This request accepts two parameters:
-- `speaker`, for the voice
-- `text`, which is the text to be synthetised. 
-Same as above, but without chunking of the data. One should expect long response times for long texts, wherease with the other two APIs this is negated by punctuation.
-#### GET tts_speakers
-This request returns a `JSON` list of possible speakers
-### Server
-This is the main server that handles the connection with everything else. I provides a few API:
-- `GET` and `POST` `/text_converse`
-- `POST` `/audio_converse_stream`
-- `GET` `get_tracker`
-
-The server has a configuration file `server/src/config.toml` that is loaded by default. This file specifies the addresses of the ASR and TTS modules, whether to start them automatically, which port to use and also a list of connected rasa agents. For each rasa agent it is possible to select the name, the port adn address at which they are found and the voice of the agent. 
-#### GET text_converse
-this API allows to send text messages with a rasa bot. It is useful for debugging.
-it requires as parameters:
-- `bot` bot to where to send the message
-- `sender` unique ID of the sender
-- `message` actual message
-#### POST text_converse
-this API allows to send text messages with a rasa bot. It is useful for debugging.
-it requires as parameters:
-- `bot` bot to where to send the message
-The other arguments are sent as `JSON`
-```json
-  {
-    "sender" : "Unity",
-    "message" : "Hey"
-  }
+Run the server with:
 ```
-#### POST audio_converse_stream
-This API is a simple wrapper that calls in sequence:
-- `/asr` for the transcription. Forwards the same input as the current request and extracts the `"text"` key from the `JSON` response
-- `/webhooks/rest/webhook` forwards to the correct rasa bot the transcription by calling this rasa API
-- `/tts` synthesises the text using the selected voice
-  
-This API requires as parameters:
-- `bot` bot to address
-- `speaker` the speaker to use for the synthesis
-#### GET get_tracker
-this API callbacks the rasa API and retrieves the tracker information and outputs a `JSON`
-
-```json
-{
-  "transcription" : "hei"
-  "response" : "hy, I'm Kumo, a movie and tv show recommendation system"
-}
+python agent_server.py
 ```
+
+### Connection server
+This is the main server that handles the communications with Unity and passes the requests to ASR, TTS, CA servers. The default connection module runs at `http://localhost:8080` and it is built using FastAPI. The code is located in `server/proxy_server`. 
+
+The main pipeline of the requests is executed through the /pipeline path. It receives the user utterance sent by the unity as sents it to ASR module. The transcribed speech is then sent to the CA module. Finally, the response of the CA is sent to the TTS module and the synthesized speech is returned to the Unity.
+
+Example of request:
+```
+curl -X POST --header ’Content-Type: audio/wav’ --header ’Transfer-Encoding: chunked’ --header ’Accept: audio/wav’ --data-binary @speaker.wav http://127.0.0.1:8083/pipeline
+```
+The result of the request is an AudioResponse file:
+
+Example of the name recognition request:
+```
+curl -X POST --header ’Content-Type: audio/wav’ --header ’Transfer-Encoding: chunked’ --header ’Accept: audio/wav’ --data-binary @speaker.wav http://127.0.0.1:8083/ner
+```
+
+The result of the request is an AudioResponse file:
+
+Run the server with:
+```
+python proxy_server.py
+```
+
 ## Credits
 - Unity for the engine
-- Speechbrain and Huggingface for the ASR model https://huggingface.co/speechbrain/asr-wav2vec2-commonvoice-en
-- Rasa for the creation of the custom agent 
-- Microsoft and Hugginface for the TTS model https://huggingface.co/microsoft/speecht5_tts
-- The Movie Database and celiao for the API and API wrapper for real movies data https://www.themoviedb.org https://github.com/celiao/tmdbsimple
-- uLipSync for the LipSync and the demo scene. https://github.com/hecomi/uLipSync
+- Speechbrain and Huggingface for the ASR model https://huggingface.co/speechbrain/asr-wav2vec2-commonvoice-it
+- Coqui for the TTS model 

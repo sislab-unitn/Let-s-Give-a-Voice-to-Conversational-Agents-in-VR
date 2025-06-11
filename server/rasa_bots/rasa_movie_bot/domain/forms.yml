@@ -1,9 +1,0 @@
-version: "3.1"
-forms:
-  movie_tv_genre_form:
-    required_slots:
-      - movie_or_tv
-      - genre
-  movie_tv_form:
-    required_slots:
-      - movie_or_tv

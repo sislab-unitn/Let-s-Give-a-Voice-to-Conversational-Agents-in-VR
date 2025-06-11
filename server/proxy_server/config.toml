@@ -1,0 +1,18 @@
+[server]
+    self_host = "localhost"
+    self_port = 8000
+
+    asr_host = "localhost"
+    asr_port = 8081
+    
+    tts_host = "localhost"
+    tts_port = 8082
+
+    agent_host = "localhost"
+    agent_port = 8083
+
+
+
+[settings]
+timeout = 60 # timeout for the server to respond
+device = 'cuda'

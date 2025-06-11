@@ -1,5 +1,0 @@
-version: "3.1"
-
-actions:
-  - action_db_sync # sync the conversation on the db
-  - action_extract_whole_utterance # extracts the whole utterance as slot for the next slow in a form
